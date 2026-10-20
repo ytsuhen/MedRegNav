@@ -1,0 +1,102 @@
+{
+  "source": "mdcg-2025-6",
+  "textSha256": "0f9e14f666c449c7d981306e697e69fa5e0825134511bc51894132a1c2091bc4",
+  "sections": [
+    {
+      "id": "q1",
+      "title": "When does the AIA apply to the ‘medical device software’?",
+      "kind": "section",
+      "ref": "Question 1",
+      "lines": [
+        113,
+        130
+      ],
+      "raw": "1. When does the AIA apply to the ‘medical device software’?\nAccording to MDCG 2019-115, \"medical device software\" (MDSW) refers to software\nintended, either alone or in combination, to fulfil a medical purpose as defined in\nArticle 2(1) MDR or Article 2(2) IVDR. The AI Act (AIA) defines an AI system in Article\n3(1) as a machine-based system that is designed to operate with varying levels of\nautonomy and that may exhibit adaptiveness after deployment, and that, for explicit\nor implicit objectives, infers, from the input it receives, how to generate outputs such\nas predictions, content, recommendations, or decisions that can influence physical or\nvirtual environments.6\nNote 1: all references to Medical Device Artificial Intelligence (MDAI) shall be\nunderstood to also cover MDR Annex XVI products, accessories to medical devices,\nin vitro diagnostic medical devices and accessories to in vitro diagnostic medical\ndevices.\nNote 2: Refer to MDCG 2019-11 for further details on the qualification and\nclassification of software, including the distinction between MD and IVD software and\non the definition of an AI system to the Commission Guidance on the AI system\ndefinition7.",
+      "sha256": "6c16942e0e17361708015bf54142d1365dbe6d031520b115ceb4dfe27cf7d9f8"
+    },
+    {
+      "id": "q2",
+      "title": "Under what conditions is a MDAI considered a high-risk AI system within the meaning of the AIA? (with Table 1)",
+      "kind": "section",
+      "ref": "Question 2 and Table 1",
+      "lines": [
+        130,
+        207
+      ],
+      "raw": "2. Under what conditions is a MDAI considered a high-risk AI system within\nthe meaning of the AIA?\nA MDAI is considered a high-risk AI system under Article 6(1) AIA if it meets both of\nthe following conditions:\n1. the MDAI is a safety component8 9 ,or the AI system is itself a medical\ndevice and\n2. the MDAI is subject to a third-party conformity assessment by a notified\nbody in accordance with the MDR/IVDR (See table 1 below).\n\n5 MDCG 2019-11: Guidance on Software Qualification and Classification.\n6\n\nCommission Guidelines on the definition of an artificial intelligence system established by Regulation (EU)\n2024/1689 (AIA).\n7 Commission Guidelines on the definition of an artificial intelligence system established by Regulation (EU)\n2024/1689 (AI Act), C(2025) 924 final.\n8 AIA Art 3(14) defines safety component as ‘a component of a product or of an AI system which fulfils a safety\nfunction for that product or AI system, or the failure or malfunctioning of which endangers the health and safety of\npersons or property’. European Commission is preparing horizontal guidelines on the classification of AI systems\nas high-risk that will also cover the concept of ‘safety component’.\n9 As regards AI systems that are safety components of products, or which are themselves products, falling within\nthe scope of [MDR or IVDR], it is appropriate to classify them as high-risk under the AIA if the product concerned\nundergoes the conformity assessment procedure with a third-party conformity assessment body pursuant to the\n[MDR or IVDR].\nMDCG 2025-6\n\nJoint Artificial Intelligence Board and\nMedical Device Coordination Group Document\n\nClassification\nMDR Class I (non-sterile, non-measuring, nonreusable surgical)\nMDR Class I (sterile, measuring, reusable\nsurgical)\nMDR Class IIa, IIb, III\nMDR Annex XVI10\nIVDR Class A (non-sterile)\nIVDR Class A)\nIVDR Class B, C, D\nIn-house device according to Art. 5(5)\nMDR/IVDR\n\nNotified\nInvolved?\n\nBody\n\nAIA High-Risk (Art.\n6(1))\nconditions\nfulfilled?\n\nNo\n\nNo\n\nYes\n\nYes\n\nYes\nYes\nNo\nYes\nYes\n\nYes\nYes\nNo\nYes\nYes\n\nNo\n\nNo\n\nTable 1: Non-exhaustive list of AIA Article 6(1) application to MDR/IVDR\n",
+      "sha256": "8fef9b58b9bfc4ab23d5368bf470168ca004a99293da7fb19014ba89dc0cf709"
+    },
+    {
+      "id": "q4",
+      "title": "Does the AIA impact the risk classification of MDAI under the MDR/IVDR?",
+      "kind": "section",
+      "ref": "Question 4",
+      "lines": [
+        212,
+        237
+      ],
+      "raw": "4. Does the AIA impact the risk classification of MDAI under the MDR/IVDR?\nThe classification of an AI system as a high-risk under Article 6(1) AIA does not imply\nthat the medical device or in vitro diagnostic medical device falls in a higher risk class\nunder the MDR and IVDR.11 Therefore, the AIA does not impact the risk classification\nof medical devices or in vitro diagnostic medical devices (IVDs) under the MDR or\nIVDR.\nIt is rather the classification of a medical device under the MDR/IVDR which\ndetermines whether the AI system qualifies as high-risk under Article 6(1) AIA (refer\nback to Q2). The classification of MDAI under the MDR or IVDR determines the\napplicable legal requirements for high-risk AI systems under Article 6(1) AIA and\ntherefore impacting the regulatory scrutiny and oversight required for the high-risk\nMDAI.\nThe application of Article 5 AIA, prohibited AI practices and Article 50 AIA\ntransparency obligations for providers and deployers of certain AI systems does not\ndepend on the MDR/IVDR classification.12\n\n10\n\nNote: Except for non-invasive devices which are classified as Class I in accordance with ‘Guidance on\nqualification and classification of Annex XVI products - A guide for manufacturers and notified bodies’.\n11 Recital 51 AIA.\n12 Commission Guidelines on prohibited artificial intelligence practices established by Regulation (EU) 2024/1689\n(AI Act), C(2025) 884 final.\nMDCG 2025-6\n",
+      "sha256": "ea05cd381ef8887564ba8140c42fe6a800822633040a945ae5457ac38f09c21a"
+    },
+    {
+      "id": "q6",
+      "title": "How do the MDR, IVDR and the AIA address the implementation of a quality management system?",
+      "kind": "section",
+      "ref": "Question 6",
+      "lines": [
+        259,
+        299
+      ],
+      "raw": "6. How do the MDR, IVDR and the AIA address the implementation of a quality\nmanagement system?\nJointly, the AIA and MDR or IVDR emphasize the importance of quality management\nto ensure the safety and performance of MDAI. The MDR and IVDR require\nmanufacturers to establish, document, implement, maintain, keep up to date and\ncontinually improve a quality management system to ensure compliance with the\nMDR and IVDR in the most effective manner and in a manner that is proportionate to\nthe risk class and the type of the device.\n\n13 e. g. Art. 10, Chapter VI, Chapter VII Annex I, Annex II, Annex IX, Annex X, Annex XIV.\n14 Article 9 para 2, Article 15, par. 1 AIA\n15 Article 72, par. 1, AIA\n16 Article 14 and recital 73 AIA\n17 AIA Recital 155, Article 15(4), Article 9, 11, 15, Annex IV.\nMDCG 2025-6\n\nSimilarly, the AIA mandates that providers/ manufacturers implement quality\nmanagement systems for AI systems to ensure compliance with the AIA. 18 The\nquality management system required under the AIA covers substantive requirements,\nprocedural obligations and at least thirteen aspects, to be implemented in a\nproportionate manner according to the size of the provider’s organization. Similar to\nthe MDR / IVDR, this includes a strategy for regulatory compliance, the\ndocumentation of a quality management system, which should encompass written\npolicies, procedures, and instructions regarding aspects such as risk management\nand performance testing.19\nThe quality management system obligations under the AIA are specifically targeted to\nthe AI system. Therefore, the AIA requirements are complementary to the quality\nmanagement system required under the MDR or IVDR and applicable to the overall\nMDAI. As the quality management system obligations under the AIA are specifically\ntargeted to the AI system, additional requirements such as data and data\ngovernance, record-keeping, transparency, human oversight must be integrated, as\nappropriate (non-exhaustive).20\nTo ensure this complementarity and to avoid unnecessary administrative burden,\nmanufacturers of AI systems may include the elements of the quality management\nsystem provided by the AIA as part of the existing quality management system\nprovided by the MDR and IVDR.21\nIn addition, the development of harmonised European and international standards\nrelevant to quality management systems for high-risk MDAI is ongoing, including\nunder the framework of the AIA and MDR/IVDR, to support consistent implementation\nand compliance across manufacturers.",
+      "sha256": "25394c0ee3ff02b538fe540544379b41036397ce47ad35ab40cbb58fae266a10"
+    },
+    {
+      "id": "q7",
+      "title": "What risk management requirements are outlined in the MDR, IVDR and AIA for high-risk MDAI?",
+      "kind": "section",
+      "ref": "Question 7",
+      "lines": [
+        299,
+        333
+      ],
+      "raw": "7. What risk management requirements are outlined in the MDR, IVDR and AIA\nfor high-risk MDAI?\nThe MDR, IVDR and AIA require a risk management system that is a continuous\niterative process throughout the entire lifecycle of the device, including in both the\npre-market and post-market phases.22 The process primarily aims at identifying and\nmitigating risks on health, safety and fundamental rights.23\nRisk management requirements specific to high-risk MDAI include ongoing\nassessments of known and reasonably foreseeable risks that the high-risk MDAI can\npose to fundamental rights, data biases, and system robustness, including\nidentification, analysis, and mitigation of risks related to system design, development,\nand deployment, and may include training to deployers. This includes measures to\nensure the safety and reliability of high-risk MDAI in healthcare settings through\n18 Article 17\n19 AIA, Article 17\n20 Refer to Section 2 Chapter III)\n21 Recital 81, Article 8 (2) and Article 17 (3) AIA\n22 Annex I Chapter MDR or IVDR\n23 Article 9 AIA\nMDCG 2025-6\n\ncomprehensive risk assessments, documentation of risk mitigation measures, and\ncontinuous monitoring of system performance.24 These requirements aim to prevent,\nand address known and reasonably foreseeable risks to ensure the safety and\nperformance of MDAIs.\nManufacturers of high-risk MDAI may integrate the additional risk management\nrequirements specific to MDAI set out in paragraphs 1-9 of Article 9 of the AIA into the\ntesting, reporting processes, information and documentation required under the AIA\ninto their existing documentation and procedures under the MDR and IVDR.25 Risk\nmanagement systems under both AIA and MDR/IVDR require a manufacturer to\nreduce the identified and assessed risks, and to address risks in their risk\nmanagement systems that can reasonably be mitigated. This refers not only to\norganisational measures, but also to specific actions taken during the development\nand design of MDAI.\n",
+      "sha256": "b4cf718840f89c1ec548509c4cfec36f8b4fc54db5464f79fcf3a9a20da3780a"
+    },
+    {
+      "id": "q8",
+      "title": "What data governance requirements are specified in the AIA, MDR and IVDR for high-risk MDAI?",
+      "kind": "section",
+      "ref": "Question 8",
+      "lines": [
+        334,
+        375
+      ],
+      "raw": "8. What data governance requirements are specified in the AIA, MDR and IVDR\nfor high-risk MDAI?\nData is addressed in both the AIA and the MDR/IVDR, though with a different scope\nand focus.\nThe MDR/IVDR mandate that clinical data used for device evaluation is robust,\nreliable, and derived from well-designed studies. To support the generation of\nsufficient clinical evidence, the clinical or performance evaluation must be based on\nclinical data representative of the intended use of the device. The procedures and\ntechniques for verifying, validating and controlling the design of the devices as well\nas documented information arising from those procedures and techniques, should be\ndocumented as part of the clinical evidence (and reviewed by the notified body).\nArticle 10 AIA provides further specifications related to the data and datasets of AI\nsystems. Moreover, it includes a provision for exceptional processing of special\ncategories of personal data.26 These requirements aim to ensure that high-risk MDAI\nis built and validated on trustworthy data.\nTo ensure that MDAI performs as intended and safely, high-quality data plays a\ncentral role in providing structure and in ensuring performance, especially for the\ndevelopment of high-risk MDAI-based on machine learning techniques. High-quality\ndata sets for training, validation and testing of MDAI require the implementation of\nappropriate data governance and management practices. The data governance and\nmanagement practices, in the case of personal data, should be fully compliant with\nthe GDPR provisions and include transparency about the original purpose of the data\ncollection. The requirements related to data governance can be complied with by\n24 AIA, Article 72\n25 Recital 64 AIA\n26 Article 10(5) AIA\nMDCG 2025-6\n\nhaving recourse to third parties that offer certified compliance services including\nverification of data governance.27\nTo ensure comprehensive data governance practices for MDAIs, datasets for training,\nvalidation, and testing must be relevant, sufficiently representative, and, to the best\nextent possible, free of errors and complete.28 When training, validating and testing\nhigh-risk MDAI, manufacturers must ensure that the datasets are sufficiently\nrepresentative of the target population, and in relation to the performance study\npopulation specifications on selection criteria and decisions related to the size of the\nperformance study population are defined.29 Manufacturers must implement\nprocedures ensuring data transparency and integrity and examine the data in view of\npossible biases, with detailed documentation of compliance. For further information\non generation on clinical evaluation (MDR) / performance evaluation (IVDR) of\nMDSW, see MDCG 2020-1.",
+      "sha256": "683061fd104e3bc6d6329cd843f5f495bc4e663dedf04102a7f0d8dea33dd56d"
+    },
+    {
+      "id": "q12",
+      "title": "What technical documentation is required by the MDR/IVDR and AIA for MDAI?",
+      "kind": "section",
+      "ref": "Question 12",
+      "lines": [
+        473,
+        502
+      ],
+      "raw": "12. What technical documentation is required by the MDR/IVDR and AIA for\nMDAI?\nThe MDR, IVDR and the AIA mandate the provision of comprehensive technical\ndocumentation for MDAI. The MDR/IVDR require detailed descriptions of software,\nsoftware architecture, data processing methods, and risk management strategies. 36\nThe AIA requires additional documentation, focusing on transparency and\naccountability, including risk assessments, data governance practices, and\nperformance testing outcomes of the high-risk MDAI.37\n32 AIA, Article 10\n33 AIA, Article 10\n34 e.g. high quality, sufficiently representative, free of errors (to the best extent possible).\n35 e.g. principles related to separation of datasets.\n36 MDR and IVDR Annex II, MDR/IVDR Annex III\n37 AIA, Article 11 and 72\nMDCG 2025-6\n\nJoint Artificial Intelligence Board and\nMedical Device Coordination Group Document\n\nThis documentation should include detailed information about the device's design,\ndevelopment, key design choices, functionality, performance characteristics, system\narchitecture, computational resources to develop, train and test, and intended use\nand purpose. Manufacturers must also provide evidence of conformity with relevant\nregulatory requirements, including training, validation and test data, risk\nassessments, and quality management processes.38 All three regulations aim to\nensure that manufacturers maintain detailed and up-to-date records to demonstrate\ncompliance.\nNote: Where it relates to technical documentation, Article 11 (2) of the AIA indicates\nthat a single set of technical documentation shall be drawn up for high-risk MDAI.",
+      "sha256": "54408ffc7acb05b11446d0168e29dbb8d3fa4b43deeaf46c5504b759704f6cee"
+    },
+    {
+      "id": "q14",
+      "title": "What requirements do the AIA and MDR/IVDR impose regarding transparency for MDAI?",
+      "kind": "section",
+      "ref": "Question 14",
+      "lines": [
+        517,
+        570
+      ],
+      "raw": "14. What requirements do the\ntransparency and for MDAI?\n\nAIA\n\nand\n\nMDR/IVDR\n\nimpose\n\nregarding\n\nThe AIA and MDR/IVDR put in place complementary obligations that address both\nmanufacturers and deployers to ensure transparency in the development,\ndeployment and use of MDAI.\nUnder the AIA, transparency is a core requirement for high-risk MDAI. It introduces\non providers a legally binding requirement to design and develop high-risk MDAI in\nsuch a way as to ensure that operation of high-risk MDAI is sufficiently transparent to\nenable deployers, to interpret outputs correctly and use the system appropriately,\nsupported by clear and comprehensible instructions for use.40\nFurthermore, manufacturers must ensure that high-risk MDAI intended to interact\ndirectly with natural persons are designed and developed in such a way that the\n38 MDR, Annex II; IVDR Annex II, AIA, Article 11).\n39 Article 52(4) and (6) MDR and Article 48(7) and (9) IVDR\n40 Article 13 AIA.\nMDCG 2025-6\n\nconcerned users of high-risk MDAI, regardless of risk class, are informed that they\nare interacting with an AI system unless this is obvious from the point of view of a\nuser who is reasonably well-informed, observant and circumspect, taking into\naccount the circumstances and the context of use.41,42 Additionally, it imposes\ntransparency obligations on deployers, including the requirement to inform providers\nappropriately and ensure proper use of the system.43\nThe MDR/IVDR embed transparency requirements within the General Safety and\nPerformance Requirements (GSPRs).44 They require that manufacturers provide\nclear and accessible information regarding the device’s intended purpose, operation\nand limitations.45 In addition, they require that software development follows the state\nof the art, incorporating lifecycle and risk management processes that inherently\nsupport traceability, documentation, and usability.46 These elements contribute to\ntransparency and the broader goal of ensuring that deployers and notified bodies can\nunderstand how the MDAI contributes to its performance and risk profile. In addition\nto Annex I, Annex II and III of the MDR/IVDR also impose detailed documentation\nrequirements, including on software development and performance evaluation, which\ncontribute to transparency and traceability throughout the device lifecycle.\nAccordingly, the MDR/IVDR and AIA collectively support a coherent regulatory\nframework that ensures MDAI systems are designed, documented, and deployed in a\ntransparent and explainable manner. Therefore, transparency requirements are not\noptional design features, but essential requirements to be addressed within the\nmanufacturer’s risk and quality management systems and verified through the\nconformity assessment procedure. These requirements collectively ensure that\nusers, deployers, and patients are adequately informed about the nature, operation\nand limitations of MDAI.",
+      "sha256": "d33697ac5a1dbc613be9f1f4533d3bbb25f0d5304746fb363f68ac6925552080"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "source": "com-2025-1023-annexes",
+  "sections": [
+    {
+      "id": "annex-i-6",
+      "title": "Annex I, point (6): amendments to Annex VIII of Regulation (EU) 2017/745",
+      "kind": "section",
+      "ref": "Annex I, point (6)",
+      "start": {
+        "startsWith": "(6)Annex VIII is amended as follows"
+      },
+      "end": {
+        "startsWith": "(7)Annex IX is amended as follows"
+      }
+    }
+  ]
+}

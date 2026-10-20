@@ -1,0 +1,185 @@
+{
+  "source": "ai-act",
+  "sections": [
+    {
+      "id": "art-3",
+      "title": "Definitions",
+      "kind": "article",
+      "ref": "Article 3",
+      "start": {
+        "line": "Article 3"
+      },
+      "end": {
+        "line": "Article 4"
+      }
+    },
+    {
+      "id": "art-6",
+      "title": "Classification rules for high-risk AI systems",
+      "kind": "article",
+      "ref": "Article 6",
+      "start": {
+        "line": "Article 6"
+      },
+      "end": {
+        "line": "Article 7"
+      }
+    },
+    {
+      "id": "art-8",
+      "title": "Compliance with the requirements",
+      "kind": "article",
+      "ref": "Article 8",
+      "start": {
+        "line": "Article 8"
+      },
+      "end": {
+        "line": "Article 9"
+      }
+    },
+    {
+      "id": "art-9",
+      "title": "Risk management system",
+      "kind": "article",
+      "ref": "Article 9",
+      "start": {
+        "line": "Article 9"
+      },
+      "end": {
+        "line": "Article 10"
+      }
+    },
+    {
+      "id": "art-10",
+      "title": "Data and data governance",
+      "kind": "article",
+      "ref": "Article 10",
+      "start": {
+        "line": "Article 10"
+      },
+      "end": {
+        "line": "Article 11"
+      }
+    },
+    {
+      "id": "art-11",
+      "title": "Technical documentation",
+      "kind": "article",
+      "ref": "Article 11",
+      "start": {
+        "line": "Article 11"
+      },
+      "end": {
+        "line": "Article 12"
+      }
+    },
+    {
+      "id": "art-12",
+      "title": "Record-keeping",
+      "kind": "article",
+      "ref": "Article 12",
+      "start": {
+        "line": "Article 12"
+      },
+      "end": {
+        "line": "Article 13"
+      }
+    },
+    {
+      "id": "art-13",
+      "title": "Transparency and provision of information to deployers",
+      "kind": "article",
+      "ref": "Article 13",
+      "start": {
+        "line": "Article 13"
+      },
+      "end": {
+        "line": "Article 14"
+      }
+    },
+    {
+      "id": "art-14",
+      "title": "Human oversight",
+      "kind": "article",
+      "ref": "Article 14",
+      "start": {
+        "line": "Article 14"
+      },
+      "end": {
+        "line": "Article 15"
+      }
+    },
+    {
+      "id": "art-15",
+      "title": "Accuracy, robustness and cybersecurity",
+      "kind": "article",
+      "ref": "Article 15",
+      "start": {
+        "line": "Article 15"
+      },
+      "end": {
+        "line": "SECTION 3"
+      }
+    },
+    {
+      "id": "art-17",
+      "title": "Quality management system",
+      "kind": "article",
+      "ref": "Article 17",
+      "start": {
+        "line": "Article 17"
+      },
+      "end": {
+        "line": "Article 18"
+      }
+    },
+    {
+      "id": "art-43",
+      "title": "Conformity assessment",
+      "kind": "article",
+      "ref": "Article 43",
+      "start": {
+        "line": "Article 43"
+      },
+      "end": {
+        "line": "Article 44"
+      }
+    },
+    {
+      "id": "art-50",
+      "title": "Transparency obligations for providers and deployers of certain AI systems",
+      "kind": "article",
+      "ref": "Article 50",
+      "start": {
+        "line": "Article 50"
+      },
+      "end": {
+        "line": "CHAPTER V"
+      }
+    },
+    {
+      "id": "art-113",
+      "title": "Entry into force and application",
+      "kind": "article",
+      "ref": "Article 113",
+      "start": {
+        "line": "Article 113"
+      },
+      "end": {
+        "line": "ANNEX I"
+      }
+    },
+    {
+      "id": "annex-i",
+      "title": "List of Union harmonisation legislation",
+      "kind": "annex",
+      "ref": "Annex I",
+      "start": {
+        "line": "ANNEX I"
+      },
+      "end": {
+        "line": "ANNEX II"
+      }
+    }
+  ]
+}

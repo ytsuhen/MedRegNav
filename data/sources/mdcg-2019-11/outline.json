@@ -1,0 +1,165 @@
+{
+  "source": "mdcg-2019-11",
+  "sections": [
+    {
+      "id": "sec-2",
+      "title": "Definitions and abbreviations",
+      "kind": "section",
+      "ref": "Section 2",
+      "start": {
+        "line": "2. Definitions and abbreviations",
+        "occurrence": 2
+      },
+      "end": {
+        "line": "3. Qualification"
+      }
+    },
+    {
+      "id": "sec-3",
+      "title": "Qualification",
+      "kind": "section",
+      "ref": "Section 3",
+      "start": {
+        "line": "3. Qualification",
+        "occurrence": 2
+      },
+      "end": {
+        "line": "3.1. Introduction to qualification criteria"
+      }
+    },
+    {
+      "id": "sec-3.1",
+      "title": "Introduction to qualification criteria",
+      "kind": "section",
+      "ref": "Section 3.1",
+      "start": {
+        "line": "3.1. Introduction to qualification criteria"
+      },
+      "end": {
+        "line": "3.2. Medical Device Software (MDSW)"
+      }
+    },
+    {
+      "id": "sec-3.2",
+      "title": "Medical Device Software (MDSW)",
+      "kind": "section",
+      "ref": "Section 3.2",
+      "start": {
+        "line": "3.2. Medical Device Software (MDSW)"
+      },
+      "end": {
+        "startsWith": "3.3. ‘Software driving or influencing"
+      }
+    },
+    {
+      "id": "sec-3.3",
+      "title": "‘Software driving or influencing the use of a medical device’",
+      "kind": "section",
+      "ref": "Section 3.3",
+      "start": {
+        "startsWith": "3.3. ‘Software driving or influencing"
+      },
+      "end": {
+        "startsWith": "Decision steps for deciding if a software is covered"
+      }
+    },
+    {
+      "id": "figure-1",
+      "title": "Decision steps for deciding if a software is covered by Medical Device Regulations (Figure 1)",
+      "kind": "figure",
+      "ref": "Section 3.3, decision steps (Figure 1)",
+      "start": {
+        "startsWith": "Decision steps for deciding if a software is covered"
+      },
+      "end": {
+        "startsWith": "3.4. Qualification criteria of MDSW"
+      }
+    },
+    {
+      "id": "sec-4.1",
+      "title": "Implementing Rules",
+      "kind": "section",
+      "ref": "Section 4.1",
+      "start": {
+        "line": "4.1. Implementing Rules"
+      },
+      "end": {
+        "line": "4.2. Classification Rules"
+      }
+    },
+    {
+      "id": "sec-4.2",
+      "title": "Classification Rules",
+      "kind": "section",
+      "ref": "Section 4.2",
+      "start": {
+        "line": "4.2. Classification Rules"
+      },
+      "end": {
+        "line": "4.2.1."
+      }
+    },
+    {
+      "id": "sec-4.2.1",
+      "title": "Rule 11 – Software for decisions with diagnosis or therapeutic purposes or software intended to monitor physiological processes",
+      "kind": "section",
+      "ref": "Section 4.2.1",
+      "start": {
+        "line": "4.2.1.",
+        "occurrence": 2
+      },
+      "end": {
+        "line": "4.2.2."
+      }
+    },
+    {
+      "id": "annex-i",
+      "title": "Illustrative examples of qualification of software used in the healthcare environment",
+      "kind": "annex",
+      "ref": "Annex I",
+      "start": {
+        "startsWith": "Annex I: Illustrative examples of qualification of software",
+        "occurrence": 2
+      },
+      "end": {
+        "startsWith": "9. Annex II - Qualification examples"
+      }
+    },
+    {
+      "id": "annex-ii",
+      "title": "Qualification examples of Medical Device Software (MDSW) according to Figures 1 and 2",
+      "kind": "annex",
+      "ref": "Annex II",
+      "start": {
+        "startsWith": "9. Annex II - Qualification examples",
+        "occurrence": 2
+      },
+      "end": {
+        "line": "10."
+      }
+    },
+    {
+      "id": "annex-iii",
+      "title": "Usability of the IMDRF risk classification framework in the context of the MDR (Table 1)",
+      "kind": "annex",
+      "ref": "Annex III, Table 1",
+      "start": {
+        "startsWith": "Annex III - Usability of the IMDRF"
+      },
+      "end": {
+        "line": "11. Annex IV – Classification examples"
+      }
+    },
+    {
+      "id": "annex-iv",
+      "title": "Classification examples",
+      "kind": "annex",
+      "ref": "Annex IV",
+      "start": {
+        "line": "11. Annex IV – Classification examples",
+        "occurrence": 2
+      },
+      "toEnd": true
+    }
+  ]
+}

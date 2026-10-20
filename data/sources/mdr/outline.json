@@ -1,0 +1,409 @@
+{
+  "source": "mdr",
+  "sections": [
+    {
+      "id": "art-2",
+      "title": "Definitions",
+      "kind": "article",
+      "ref": "Article 2",
+      "start": {
+        "line": "Article 2",
+        "occurrence": 1
+      },
+      "end": {
+        "line": "Article 3"
+      }
+    },
+    {
+      "id": "art-10",
+      "title": "General obligations of manufacturers",
+      "kind": "article",
+      "ref": "Article 10",
+      "start": {
+        "line": "Article 10",
+        "occurrence": 1
+      },
+      "end": {
+        "line": "Article 11"
+      }
+    },
+    {
+      "id": "art-11",
+      "title": "Authorised representative",
+      "kind": "article",
+      "ref": "Article 11",
+      "start": {
+        "line": "Article 11"
+      },
+      "end": {
+        "line": "Article 12"
+      }
+    },
+    {
+      "id": "art-15",
+      "title": "Person responsible for regulatory compliance",
+      "kind": "article",
+      "ref": "Article 15",
+      "start": {
+        "line": "Article 15",
+        "occurrence": 1
+      },
+      "end": {
+        "line": "Article 16"
+      }
+    },
+    {
+      "id": "art-19",
+      "title": "EU declaration of conformity",
+      "kind": "article",
+      "ref": "Article 19",
+      "start": {
+        "line": "Article 19",
+        "occurrence": 1
+      },
+      "end": {
+        "line": "Article 20"
+      }
+    },
+    {
+      "id": "art-20",
+      "title": "CE marking of conformity",
+      "kind": "article",
+      "ref": "Article 20",
+      "start": {
+        "line": "Article 20",
+        "occurrence": 1
+      },
+      "end": {
+        "line": "Article 21"
+      }
+    },
+    {
+      "id": "art-27",
+      "title": "Unique Device Identification system",
+      "kind": "article",
+      "ref": "Article 27",
+      "start": {
+        "line": "Article 27"
+      },
+      "end": {
+        "line": "Article 28"
+      }
+    },
+    {
+      "id": "art-29",
+      "title": "Registration of devices",
+      "kind": "article",
+      "ref": "Article 29",
+      "start": {
+        "line": "Article 29"
+      },
+      "end": {
+        "line": "Article 30"
+      }
+    },
+    {
+      "id": "art-31",
+      "title": "Registration of manufacturers, authorised representatives and importers",
+      "kind": "article",
+      "ref": "Article 31",
+      "start": {
+        "line": "Article 31"
+      },
+      "end": {
+        "line": "Article 32"
+      }
+    },
+    {
+      "id": "art-32",
+      "title": "Summary of safety and clinical performance",
+      "kind": "article",
+      "ref": "Article 32",
+      "start": {
+        "line": "Article 32"
+      },
+      "end": {
+        "line": "Article 33"
+      }
+    },
+    {
+      "id": "art-51",
+      "title": "Classification of devices",
+      "kind": "article",
+      "ref": "Article 51",
+      "start": {
+        "line": "Article 51",
+        "occurrence": 1
+      },
+      "end": {
+        "line": "SECTION 2"
+      }
+    },
+    {
+      "id": "art-52",
+      "title": "Conformity assessment procedures",
+      "kind": "article",
+      "ref": "Article 52",
+      "start": {
+        "line": "Article 52"
+      },
+      "end": {
+        "line": "Article 53"
+      }
+    },
+    {
+      "id": "art-61",
+      "title": "Clinical evaluation",
+      "kind": "article",
+      "ref": "Article 61",
+      "start": {
+        "line": "Article 61"
+      },
+      "end": {
+        "line": "Article 62"
+      }
+    },
+    {
+      "id": "art-83",
+      "title": "Post-market surveillance system of the manufacturer",
+      "kind": "article",
+      "ref": "Article 83",
+      "start": {
+        "line": "Article 83"
+      },
+      "end": {
+        "line": "Article 84"
+      }
+    },
+    {
+      "id": "art-84",
+      "title": "Post-market surveillance plan",
+      "kind": "article",
+      "ref": "Article 84",
+      "start": {
+        "line": "Article 84"
+      },
+      "end": {
+        "line": "Article 85"
+      }
+    },
+    {
+      "id": "art-85",
+      "title": "Post-market surveillance report",
+      "kind": "article",
+      "ref": "Article 85",
+      "start": {
+        "line": "Article 85"
+      },
+      "end": {
+        "line": "Article 86"
+      }
+    },
+    {
+      "id": "art-86",
+      "title": "Periodic safety update report",
+      "kind": "article",
+      "ref": "Article 86",
+      "start": {
+        "line": "Article 86"
+      },
+      "end": {
+        "line": "SECTION 2"
+      }
+    },
+    {
+      "id": "art-87",
+      "title": "Reporting of serious incidents and field safety corrective actions",
+      "kind": "article",
+      "ref": "Article 87",
+      "start": {
+        "line": "Article 87"
+      },
+      "end": {
+        "line": "Article 88"
+      }
+    },
+    {
+      "id": "art-88",
+      "title": "Trend reporting",
+      "kind": "article",
+      "ref": "Article 88",
+      "start": {
+        "line": "Article 88"
+      },
+      "end": {
+        "line": "Article 89"
+      }
+    },
+    {
+      "id": "art-123",
+      "title": "Entry into force and date of application",
+      "kind": "article",
+      "ref": "Article 123",
+      "start": {
+        "line": "Article 123"
+      },
+      "end": {
+        "line": "ANNEXES"
+      }
+    },
+    {
+      "id": "annex-i-17",
+      "title": "Electronic programmable systems — devices that incorporate electronic programmable systems and software that are devices in themselves",
+      "kind": "section",
+      "ref": "Annex I, Section 17",
+      "after": {
+        "line": "ANNEX I",
+        "occurrence": 1
+      },
+      "start": {
+        "line": "17."
+      },
+      "end": {
+        "line": "18."
+      }
+    },
+    {
+      "id": "annex-i-18",
+      "title": "Active devices and devices connected to them",
+      "kind": "section",
+      "ref": "Annex I, Section 18",
+      "after": {
+        "line": "ANNEX I",
+        "occurrence": 1
+      },
+      "start": {
+        "line": "18."
+      },
+      "end": {
+        "line": "19."
+      }
+    },
+    {
+      "id": "annex-ii",
+      "title": "Technical documentation",
+      "kind": "annex",
+      "ref": "Annex II",
+      "start": {
+        "line": "ANNEX II"
+      },
+      "end": {
+        "line": "ANNEX III"
+      }
+    },
+    {
+      "id": "annex-iii",
+      "title": "Technical documentation on post-market surveillance",
+      "kind": "annex",
+      "ref": "Annex III",
+      "start": {
+        "line": "ANNEX III"
+      },
+      "end": {
+        "line": "ANNEX IV"
+      }
+    },
+    {
+      "id": "annex-iv",
+      "title": "EU declaration of conformity",
+      "kind": "annex",
+      "ref": "Annex IV",
+      "start": {
+        "line": "ANNEX IV"
+      },
+      "end": {
+        "line": "ANNEX V"
+      }
+    },
+    {
+      "id": "annex-vi-c-6.5",
+      "title": "Device Software (UDI)",
+      "kind": "section",
+      "ref": "Annex VI, Part C, Section 6.5",
+      "after": {
+        "line": "PART C"
+      },
+      "start": {
+        "line": "6.5."
+      },
+      "end": {
+        "line": "ANNEX VII"
+      }
+    },
+    {
+      "id": "annex-viii-ch2",
+      "title": "Implementing rules",
+      "kind": "chapter",
+      "ref": "Annex VIII, Chapter II",
+      "after": {
+        "line": "ANNEX VIII"
+      },
+      "start": {
+        "line": "CHAPTER II"
+      },
+      "end": {
+        "line": "CHAPTER III"
+      }
+    },
+    {
+      "id": "annex-viii-rule-11",
+      "title": "Rule 11",
+      "kind": "rule",
+      "ref": "Annex VIII, Chapter III, Section 6.3 (Rule 11)",
+      "start": {
+        "line": "6.3. Rule 11"
+      },
+      "end": {
+        "line": "6.4. Rule 12"
+      }
+    },
+    {
+      "id": "annex-ix",
+      "title": "Conformity assessment based on a quality management system and on assessment of technical documentation",
+      "kind": "annex",
+      "ref": "Annex IX",
+      "start": {
+        "line": "ANNEX IX"
+      },
+      "end": {
+        "line": "ANNEX X"
+      }
+    },
+    {
+      "id": "annex-x",
+      "title": "Conformity assessment based on type-examination",
+      "kind": "annex",
+      "ref": "Annex X",
+      "start": {
+        "line": "ANNEX X"
+      },
+      "end": {
+        "line": "ANNEX XI"
+      }
+    },
+    {
+      "id": "annex-xi",
+      "title": "Conformity assessment based on product conformity verification",
+      "kind": "annex",
+      "ref": "Annex XI",
+      "start": {
+        "line": "ANNEX XI"
+      },
+      "end": {
+        "line": "ANNEX XII"
+      }
+    },
+    {
+      "id": "annex-xiv",
+      "title": "Clinical evaluation and post-market clinical follow-up",
+      "kind": "annex",
+      "ref": "Annex XIV",
+      "start": {
+        "line": "ANNEX XIV"
+      },
+      "end": {
+        "line": "ANNEX XV"
+      }
+    }
+  ]
+}

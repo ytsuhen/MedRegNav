@@ -1,0 +1,101 @@
+{
+  "source": "mdcg-2025-6",
+  "sections": [
+    {
+      "id": "q1",
+      "title": "When does the AIA apply to the ‘medical device software’?",
+      "kind": "section",
+      "ref": "Question 1",
+      "start": {
+        "startsWith": "1. When does the AIA apply"
+      },
+      "end": {
+        "startsWith": "2. Under what conditions is a MDAI considered"
+      }
+    },
+    {
+      "id": "q2",
+      "title": "Under what conditions is a MDAI considered a high-risk AI system within the meaning of the AIA? (with Table 1)",
+      "kind": "section",
+      "ref": "Question 2 and Table 1",
+      "start": {
+        "startsWith": "2. Under what conditions is a MDAI considered"
+      },
+      "end": {
+        "startsWith": "3. When do provisions on high-risk AI systems apply"
+      }
+    },
+    {
+      "id": "q4",
+      "title": "Does the AIA impact the risk classification of MDAI under the MDR/IVDR?",
+      "kind": "section",
+      "ref": "Question 4",
+      "start": {
+        "startsWith": "4. Does the AIA impact the risk classification"
+      },
+      "end": {
+        "line": "II. Requirements"
+      }
+    },
+    {
+      "id": "q6",
+      "title": "How do the MDR, IVDR and the AIA address the implementation of a quality management system?",
+      "kind": "section",
+      "ref": "Question 6",
+      "start": {
+        "startsWith": "6. How do the MDR, IVDR and the AIA address the implementation of a quality"
+      },
+      "end": {
+        "startsWith": "7. What risk management requirements"
+      }
+    },
+    {
+      "id": "q7",
+      "title": "What risk management requirements are outlined in the MDR, IVDR and AIA for high-risk MDAI?",
+      "kind": "section",
+      "ref": "Question 7",
+      "start": {
+        "startsWith": "7. What risk management requirements"
+      },
+      "end": {
+        "line": "2. Data Governance"
+      }
+    },
+    {
+      "id": "q8",
+      "title": "What data governance requirements are specified in the AIA, MDR and IVDR for high-risk MDAI?",
+      "kind": "section",
+      "ref": "Question 8",
+      "start": {
+        "startsWith": "8. What data governance requirements"
+      },
+      "end": {
+        "startsWith": "9. What requirements are in place"
+      }
+    },
+    {
+      "id": "q12",
+      "title": "What technical documentation is required by the MDR/IVDR and AIA for MDAI?",
+      "kind": "section",
+      "ref": "Question 12",
+      "start": {
+        "startsWith": "12. What technical documentation is required"
+      },
+      "end": {
+        "startsWith": "13. Will the assessment of the technical documentation"
+      }
+    },
+    {
+      "id": "q14",
+      "title": "What requirements do the AIA and MDR/IVDR impose regarding transparency for MDAI?",
+      "kind": "section",
+      "ref": "Question 14",
+      "start": {
+        "startsWith": "14. What requirements do the"
+      },
+      "end": {
+        "startsWith": "15. How do the MDR/IVDR and the AIA address transparency"
+      }
+    }
+  ]
+}

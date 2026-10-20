@@ -1,0 +1,18 @@
+{
+  "source": "com-2025-1023",
+  "textSha256": "15cd849b1d3d16ede105dc6b4af2640d1e668bfec61ce80dd39b4d8b663f3447",
+  "sections": [
+    {
+      "id": "em-topic-1-classification",
+      "title": "Explanatory memorandum: classification rules (MDR: Annex VIII)",
+      "kind": "section",
+      "ref": "Explanatory memorandum, Topic 1",
+      "lines": [
+        107,
+        109
+      ],
+      "raw": "Classification rules (MDR: Annex VIII)\nSome classification rules are adapted resulting in lower risk classes for certain devices, such as reusable surgical instruments, accessories to active implantable devices and software.",
+      "sha256": "a3291899e3f2611093ee8ec789ab66fd3bc7740446333adb515eea23018adc06"
+    }
+  ]
+}

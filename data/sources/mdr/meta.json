@@ -1,0 +1,21 @@
+{
+  "id": "mdr",
+  "title": "Regulation (EU) 2017/745 of the European Parliament and of the Council of 5 April 2017 on medical devices (consolidated text)",
+  "shortTitle": "MDR",
+  "kind": "regulation",
+  "format": "html",
+  "language": "en",
+  "url": "https://publications.europa.eu/resource/cellar/e56fc708-95ab-11f1-9262-01aa75ed71a1.0004.02/DOC_1",
+  "link": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:02017R0745-20260719",
+  "retrievedAt": "2026-10-20T22:14:24Z",
+  "sha256": "c43b527fb7a9624fe1ca9fef4442f1c4ac93f40f095fc5db5819591cdc549d7c",
+  "bytes": 1636706,
+  "edition": "Consolidated text 02017R0745-20260719, version 007.001 (B + M1–M8, corrigenda C1–C2)",
+  "notes": "Consolidated version: a documentation tool without legal effect; the authentic texts are those published in the Official Journal. Fetched from the Publications Office Cellar by CELEX (EUR-Lex answers non-browser clients with a bot challenge, DECISIONS D1). Extraction removes the consolidation markers (►M1 … ◄, ▼B; DECISIONS D3).",
+  "license": "© European Union, https://eur-lex.europa.eu. Reuse is authorised provided the source is acknowledged (Commission Decision 2011/833/EU).",
+  "extraction": {
+    "tool": "parse5 8.0.1 + htmlToLines",
+    "textSha256": "d48ba404f654cf4b2538372c091aa7208412eafa45878a2f04d13cffe3b0ebe8",
+    "lines": 5501
+  }
+}

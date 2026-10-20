@@ -1,0 +1,761 @@
+EUROPEAN COMMISSION
+Strasbourg, 16.12.2025
+COM(2025) 1023 final
+ANNEXES
+to the
+Proposal for a
+REGULATION OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL
+amending Regulations (EU) 2017/745 and (EU) 2017/746 as regards simplifying and reducing the burden of the rules on medical devices and in vitro diagnostic medical devices, and amending Regulation (EU) 2022/123 as regards the support of the European Medicines Agency for the expert panels on medical devices and Regulation (EU) 2024/1689 as regards the list of Union harmonisation legislation referred to in its Annex I
+{SWD(2025) 1050 final} - {SWD(2025) 1051 final} - {SWD(2025) 1052 final}
+ANNEX I
+Annexes I, II, III, VI, VII, VIII, IX, X, XI, XII, XIII, XIV and XV to Regulation (EU) 2017/745 are amended as follows:
+(1)Annex I is amended as follows:
+(a)Section 10.6 is replaced by the following:
+’10.6.Devices shall be designed and manufactured in such a way as to reduce as far as possible the risks linked to the size and the properties of particles which are or can be released into the patient's or user's body, unless they come into contact with intact skin only. Special attention shall be given to nanomaterials as defined in Commission Recommendation C/2022/3689*.
+______________________
+*Commission Recommendation of 10 June 2022 on the definition of nanomaterial (OJ C 229, 14.6.2022, pp. 1).`;
+(b)Section 13 is amended as follows:
+(i)Section 13.1. is replaced by the following:
+’13.1.For devices manufactured utilising derivatives of substances of human origin which are non-viable or are rendered non-viable covered by this Regulation in accordance with Article 1(6), point (g), the following shall apply:
+(a)donor registration, donor review, collection and testing of the substances of human origin shall be done in accordance with Regulation (EU) 2024/1938;
+(b)processing, preservation and any other handling of those substances of human origin or their derivatives shall be carried out so as to provide safety for patients, users and, where applicable, other persons. In particular, safety with regard to viruses and other transmissible agents shall be addressed by appropriate methods of sourcing and by implementation of validated methods of elimination or inactivation in the course of the manufacturing process;
+(c)the traceability system for those devices shall be complementary to and compatible with the traceability and data protection requirements laid down in Regulation (EU) 2024/1938.’;
+(ii)in Section 13.2., point (c) is replaced by the following:
+‘(c)in the case of devices manufactured utilising tissues or cells of animal origin or their derivatives, as referred to in Regulation (EU) No 722/2012, the particular requirements laid down in that Regulation, or in any subsequent implementing rules adopted pursuant to this Regulation, shall apply.’;
+(c)Section 17.4. is replaced by the following:
+‘17.4.Manufacturers shall set out minimum requirements concerning hardware, IT networks characteristics, IT security measures and cybersecurity, including protection against unauthorised access, necessary to run the software as intended.’;
+(d)Section 23.1. is amended as follows:
+(i)in the first subparagraph, the second sentence is replaced by the following:
+‘Such information may appear on the device itself, on the packaging or in the instructions for use, taking into account the following:’;
+(ii)in point (c), the following sentence is added:
+‘Labels may be provided in digital form to the extent, and only under the conditions, set out in any implementing rules adopted pursuant to this Regulation.’;
+(iii)in point (f), the reference to ‘Regulation (EU) No 207/2012’ is replaced by the reference to ‘Commission Implementing Regulation (EU) 2021/2226**’
+______________________
+**Commission Implementing Regulation (EU) 2021/2226 of 14 December 2021 laying down rules for the application of Regulation (EU) 2017/745 of the European Parliament and of the Council as regards electronic instructions for use of medical devices (OJ L 448, 15.12.2021, p. 32, ELI: http://data.europa.eu/eli/reg_impl/2021/2226/oj)’;
+(iv)the following point (i) is added:
+‘(i)For a device that is exclusively in use with a medicinal product in accordance with Article 19 of [Proposal for a Directive on the Union code relating to medicinal products for human use, and repealing Directive 2011/83/EC and Directive 2009/35/EC] and packaged together with a medicinal product, the instructions for use may be included, where needed, as part of the co-packaging of the medicinal product with the device. Moreover, the information on the label of the device may be limited to the particulars referred to in Section 23.2, points (a) and (c), where, following agreement of the competent authority responsible for the authorisation of the medicinal product, the following conditions are met:
+–the information necessary for safe use and correct functioning of the device is provided to the user with the summary of product characteristics and/or package leaflet of the medicinal product under the responsibility of the marketing authorisation holder set out in [Proposal for a Directive on the Union code relating to medicinal products for human use, and repealing Directive 2011/83/EC and Directive 2009/35/EC];
+–the traceability and identification of the device is ensured by the marketing authorisation holder.’;
+(e)Section 23.2. is amended as follows:
+(i)in point (e), the second and third indents are replaced by the following:
+–‘substances of human origin or their derivatives, or
+–tissues or cells of animal origin, or their derivatives, as referred to in Regulation (EU) No 722/2012 or in any subsequent implementing rules adopted pursuant to this Regulation’;
+(ii)point (o) is deleted;
+(iii)in point (q), the first sentence is replaced by the following:
+‘an indication that the device is a medical device or an accessory for a medical device’;
+(f)in Section 23.4., point (s), the fourth indent is replaced by the following:
+–‘if the device is intended to administer medicinal products, substances of human origin or tissues or cells of animal origin, or their derivatives, or biological substances, any limitations or incompatibility in the choice of substances to be delivered,’;
+(2)Annex II is amended as follows:
+(a)Section 6.1. is amended as follows:
+(i)the heading of Section 6.1. is replaced by the following:
+‘6.1.Non-clinical, pre-clinical and clinical data’;
+(ii) point (a) is replaced by the following:
+‘(a)results of tests, such as engineering, laboratory, in vitro, ex vivo, in silico testing, computational modeling, simulated use and animal tests, and evaluation of published literature applicable to the device, taking into account its intended purpose, or to similar devices, regarding the pre-clinical safety of the device and its conformity with the specifications;’;
+(iii)point (c) is replaced by the following:
+‘(c)the clinical evaluation plan, the clinical evaluation report and its updates referred to in Article 61(1) and Part A of Annex XIV.’;
+(iv)point (d) is deleted;
+(b)Section 6.2. is amended as follows:
+(i)in point (b), the first sentence is replaced by the following:
+‘(b)Where a device is manufactured utilising substances of human origin or tissues or cells of animal origin, or their derivatives, and is covered by this Regulation in accordance with Article 1(6), points (f) and (g), and where a device incorporates, as an integral part, substances of human origin or their derivatives that have an action ancillary to that of the device and is covered by this Regulation in accordance with Article 1(10), first subparagraph, a statement indicating this fact.’;
+(ii)the following point (h) is added:
+‘(h)Where the device incorporates as an integral part an in vitro diagnostic medical device that has an action ancillary to that of the device, as referred to in Article 1(7) of this Regulation, the documentation shall include the results of the assessment of the conformity of the in vitro diagnostic medical device part with the relevant general safety and performance requirements set out in Annex I to Regulation (EU) 2017/746 contained in the manufacturer's EU declaration of conformity or the relevant certificate issued by a notified body allowing the manufacturer to affix a CE marking to the in vitro diagnostic medical device. Where those results of the conformity assessment are not available and where for the conformity assessment of the in vitro diagnostic medical device, if used separately, the involvement of a notified body is required in accordance with Regulation (EU) 2017/746, an opinion on the conformity of the in vitro diagnostic medical device part with the relevant general safety and performance requirements set out in Annex I to Regulation 2017/746 issued by a notified body designated in accordance with that Regulation for the type of device in question shall be included in the documentation.’;
+(3)in Annex III, Section 2 is replaced by the following:
+‘2.The PSUR referred to in Article 86 or the post-market surveillance report referred to in Article 85.’;
+(4)Annex VI is amended as follows:
+(a)Parts A and B are replaced by the following:
+‘PART A
+INFORMATION TO BE SUBMITTED UPON THE REGISTRATION OF ECONOMIC OPERATORS IN ACCORDANCE WITH ARTICLE 31
+Manufacturers and where applicable, authorised representatives, and, where applicable, importers and, where applicable the persons referred to in Article 22(1) shall submit the following information relating to the economic operator:
+1.type of economic operator (manufacturer, authorised representative, importer or the person referred to in Article 22(1)),
+2.name, address and contact details, including the digital contact, of the economic operator,
+3.where submission of information is carried out by another person on behalf of any of the economic operators mentioned under Section 1.1, the name, address and contact details, including the digital contact, of that person,
+4.name, address and contact details, including the digital contact, of the person or persons responsible for regulatory compliance referred to in Article 15.
+PART B
+CORE DATA ELEMENTS TO BE PROVIDED TO THE UDI DATABASE IN ACCORDANCE WITH ARTICLES 28 AND 29
+The manufacturer shall provide to the UDI database the following information relating to the manufacturer and the device:
+1.Basic UDI-DI as referred to in Article 27 and any additional UDI-DIs,
+2.For devices referred to in Article 120(3), type, number and expiry date of the certificate issued by the notified body and the name or identification number of that notified body and the link to the information that appears on the certificate and was entered by the notified body in the electronic system on notified bodies and certificates,
+3.Member State in which the device is to be or has been placed on the market in the Union,
+4.Member States where the device is or is to be made available,
+5.risk class of the device,
+6.presence of a substance which, if used separately, may be considered to be a medicinal product and name of that substance,
+7.presence of a substance which, if used separately, may be considered to be a medicinal product derived from human blood or human plasma and name of this substance,
+8.presence of tissues or cells of human origin, or their derivatives (y/n),
+9.presence of tissues or cells of animal origin, or their derivatives, as referred to in Regulation (EU) No 722/2012 or any subsequent implementing rules adopted pursuant to that Regulation (y/n),
+10.where applicable, the single identification number of the clinical investigation or investigations conducted in relation to the device or a link to the clinical investigation registration in the electronic system on clinical investigations,
+11.in the case of devices listed in Annex XVI, specification as to whether the intended purpose of the device is other than a medical purpose,
+12.in the case of devices designed and manufactured by another legal or natural person as referred in Article 10(15), the name, address and contact details, including the digital contact, of that legal or natural person,
+13.where applicable, the summary of safety and clinical performance,
+14.status of the device (placed on the market, no longer placed on the market, recalled, field safety corrective action initiated).
+15.quantity per package configuration,
+16.the manner in which production of the device is controlled (expiry date or manufacturing date, lot number, serial number),
+17.if applicable, the unit of use UDI-DI (where a UDI is not labelled on the device at the level of its unit of use, a ‘unit of use’ DI shall be assigned so as to associate the use of a device with a patient),
+18.name and address of the manufacturer (as indicated on the label),
+19.the SRN issued in accordance with Article 31(2),
+20.if applicable, name and address of the authorised representative (as indicated on the label),
+21.the medical device nomenclature code as provided for in Article 26,
+22.if applicable, name or trade name, and if applicable additional trade names,
+23.if applicable, device model, reference, or catalogue number,
+24.if applicable, clinical size (including volume, length, gauge, diameter),
+25.additional product description (optional),
+26.if applicable, storage and/or handling conditions (as indicated on the label or in the instructions for use),
+27.labelled as a single-use device (y/n),
+28.if applicable, the maximum number of reuses,
+29.device labelled sterile (y/n),
+30.need for sterilisation before use (y/n),
+31.containing latex (y/n),
+32.where applicable, information labelled in accordance with Section 10.4.5 of Annex I,
+33.if applicable, the instructions for use, or where available, the URL of the website where the instructions for use are made available,
+34.if applicable, critical warnings or contra-indications.’
+(b)Part C is amended as follows:
+(i)in Section 1, the definition of ‘Basic UDI-DI’ is replaced by the following:
+‘Basic UDI-DI
+The Basic UDI-DI is the primary identifier of a device model. The Basic UDI-DI is the main key in the database and relevant documentation (e.g. certificates, declaration of conformity, technical documentation and summary of safety and clinical performance) to connect devices with the same intended purpose, risk class and essential design and manufacturing characteristics. It is the main key for records in the UDI database and is referenced in relevant certificates and EU declarations of conformity.’;
+(ii)in Section 4.10, the second sentence is replaced by the following:
+‘The UDI carrier for reusable devices that require cleaning, disinfection, sterilisation or refurbishing between patient uses shall be permanent and readable after each process performed to make the device ready for the subsequent use throughout the intended lifetime of the device, unless the device is intended to be reused exclusively by or for the same patient.’;
+(5)Annex VII is amended as follows:
+(a)in Section 1.1.1., the following sentence is added:
+‘It shall also include information about the larger organisation to which the notified body belongs.’;
+(b)Section 1.1.2. is replaced by the following:
+‘1.1.2.If the notified body is a legal entity that is part of a larger organisation, the activities of that organisation as well as its organisational structure and governance, and the relationship with the notified body shall be clearly documented. In such cases, the requirements of Section 1.2 are applicable to both the notified body and the larger organisation to which it belongs. The larger organisation and any of the legal entities belonging to it shall not be involved in the design, manufacture, marketing, installation or maintenance of the devices for which the notified body is designated or offer consultancy services for such activities, neither shall they represent the parties engaged in such activities.’;
+(c)in Section 1.2.9., the following sentence is added:
+‘The notified body shall have documented procedures in place to offer and carry out dialogues with the manufacturer before and after an application for conformity assessment is lodged.’;
+(d)Section 1.3.1. is replaced by the following:
+‘1.3.1.The notified body shall have documented procedures in place ensuring that its personnel, committees, branch offices, subsidiaries, subcontractors, and any associated body or personnel of external bodies respect the confidentiality of the information which comes into its possession during the performance of conformity assessment activities, except when disclosure is required by law.’;
+(e)in Section 1.4.2., the second sentence is deleted;
+(f)the following Section 1.4.3. is inserted:
+’1.4.3.By way of derogation from Section 1.4.1, the notified body may demonstrate coverage for liability through adherence to a guarantee fund that provides effective protection and is recognised by the Member State(s) concerned.’;
+(g)Section 1.6.1. is replaced by the following:
+‘1.6.1.The notified body shall participate in the activities of the notified body coordination group referred to in Article 49 and ensure that its assessment and decision-making personnel are informed of all relevant legislation, standards, guidance and best practice documents adopted in the framework of this Regulation.’;
+(h)Section 2.1. is replaced by the following:
+‘2.1.The notified body shall establish, document, implement, maintain and operate a quality management system that is appropriate to the nature, area and scale of its conformity assessment activities and is capable of supporting and demonstrating in the most efficient manner the consistent fulfilment of the requirements of this Regulation.’ ;
+(i)Section 2.3. is replaced by the following:
+‘2.3.The top-level management of the notified body shall ensure that the quality management system is fully understood, implemented and maintained throughout the notified body organisation, including branch offices, subsidiaries and subcontractors involved in conformity assessment activities pursuant to this Regulation.’;
+(j)Section 3.2.3. is amended as follows:
+(i)the first sentence is replaced by the following:
+‘3.2.3.The personnel responsible for establishing qualification criteria and for authorising other personnel to perform specific conformity assessment activities shall not be external experts or be subcontracted.’;
+(ii)the sixth indent is replaced by the following:
+–‘adequate experience in conformity assessments under this Regulation, Regulation (EU) 2017/746 or previously applicable law within a notified body.’
+(k)in Section 3.2.4., the first sentence is replaced by the following:
+‘The notified body shall have permanent availability of personnel with relevant clinical expertise.’;
+(l)in Section 3.2.7., the first sentence is replaced by the following:
+‘The personnel with overall responsibility for final reviews and decision-making on certification shall not be external experts or be subcontracted.’;
+(m)in Section 3.4.1., first paragraph, the following sentence is added:
+‘They shall inform the manufacturer accordingly.’;
+(n)in Section 4.1., the second paragraph is replaced by the following:
+‘The requirements laid down in Sections 4.3, 4.4, 4.7 and 4.8 shall not be subcontracted or fulfilled by external experts.’;
+(o)in Section 4.2.(a), the second sentence is replaced by the following:
+‘That description shall include which languages are acceptable for submission of documentation and for any related correspondence and the modalities for carrying out the dialogue referred to in Section 1.2.9 before an application is lodged;’;
+(p)in Section 4.5.1., the second subparagraph is amended as follows:
+(i)the ninth indent is replaced by the following:
+–‘in the case of class IIa or class IIb devices, assess the technical documentation of the representative device(s);’;
+(ii)the eleventh indent is deleted;
+(iii)the following indents are added:
+–‘where appropriate, perform a rolling review of the manufacturer’s data or documentation as they become available;
+–in case of class I devices that are placed on the market in sterile condition, have measuring function or are reusable surgical instrument, assess the quality management system only in relation to the relevant special aspects of these devices;
+–leverage evidence from previous assessments performed.’;
+(q)Section 4.5.2.(a) is amended as follows:
+(i)the introductory wording is replaced by the following:
+‘(a)As part of the assessment of the quality management system, a notified body shall prior to or in relation with an audit and in accordance with its documented procedures:’;
+(ii)the fourth indent is replaced by the following:
+–‘clearly identify, for class IIa and class IIb devices, the representative devices selected for the assessment of technical documentation as referred to in Annexes II and III,’;
+(r)in Section 4.5.2.(b), the second paragraph is replaced by the following:
+‘The documentation shall be sampled in such a manner as to reflect the risks associated with the intended use of the device, the complexity of the manufacturing technologies, the range and classes of devices produced or under certification and any available post-market surveillance information.’;
+(s)in Section 4.5.4(a), the second indent is replaced by the following:
+–‘the pre-clinical testing, for example laboratory, in vitro, ex vivo, in silico testing, simulated use testing, computer modelling, the use of animal models;’;
+(t)in Section 4.5.5., third paragraph, the following indent is added:
+–where applicable, the justification for the confirmation of the safety and performance that is based on the results of non-clinical testing methods alone,’;
+(u)in Section 4.5.6., the second paragraph is replaced by the following:
+‘In the case of devices manufactured utilising tissues or cells of animal origin or their derivatives, such as from transmissible spongiform encephalopathy (TSE) susceptible species, as referred to in Regulation (EU) No 722/2012, or in any subsequent implementing rules adopted pursuant to this Regulation, the notified body shall have documented procedures in place that fulfil the requirements laid down in Regulation (EU) No 722/2012 or those subsequent implementing rules.’;
+(v)in Section 4.6., second paragraph, the introductory wording is replaced by the following:
+‘The report(s) of the notified body shall:’;
+(w)Section 4.8. is amended as follows:
+(i)the first sentence is replaced by the following:
+‘The notified body shall have documented procedures for decision-making including as regards the allocation of responsibilities for the issuance, suspension, limitation and withdrawal of certificates.’.;
+(ii)the third sentence is amended as follows:
+(1)the fourth indent is replaced by the following:
+–‘decide whether conditions or limitations need to be defined for the certification,’;
+(2)the fifth indent is replaced by the following:
+–‘where appropriate, decide, based on the novelty, risk classification, clinical evaluation and conclusions from the risk analysis of the device, on a period of certification,’;
+(3)the eighth indent is replaced by the following:
+–‘issue a certificate or certificates in accordance with the minimum requirements laid down in Annex XII and indicate whether there are conditions or limitations associated with the certification,’;
+(x)Section 4.9. is amended as follows:
+(i)the third indent is replaced by the following:
+–‘the intended purpose of or claims made for the device,’;
+(ii)the second paragraph is replaced by the following:
+‘The procedures and contractual arrangements referred to in the first paragraph shall clearly distinguish between changes that do not need to be reported, that need to be reported without requiring prior approval and that require prior approval.’;
+(iii)in the third paragraph, the introductory sentence is replaced by the following:
+‘In accordance with its documented procedures, the notified body in question shall, where changes require prior approval:’;
+(iv)the following paragraph is added:
+‘Where appropriate, the notified body and the manufacturer shall agree on a predetermined change control plan enabling the manufacturer to implement changes in accordance with such a plan without prior information.’;
+(y)Section 4.10. is amended as follows:
+(i)in the first paragraph, the second and third indents are replaced by the following:
+–for screening relevant sources of scientific and clinical data and post-market information relating to the scope of their designation. That screening shall be conducted in the framework of the coordination group established in Article 49 to avoid unnecessary duplication and to enhance efficiency and work-sharing. The findings from the screening shall be taken into account in the planning and conduct of surveillance activities,
+–to assess whether any reported serious incident related to a serious public health threat or any field safety corrective action taken or envisaged by the manufacturer or required of it by a competent authority has an impact on the validity of existing certificates. The results of the evaluation and any decisions taken shall be thoroughly documented.’;
+(ii)the second paragraph is amended as follows:
+(1)the introductory wording is replaced by the following:
+‘The notified body in question shall, with regard to signals arising from vigilance data to which they have access under Article 92(2), decide which of the following options to apply, where appropriate:’;
+(2)the first indent is deleted;
+(iii)the third paragraph is amended as follows:
+(1)the first indent is replaced by the following:
+–‘conduct surveillance audits of the manufacturer which shall be planned and conducted in line with the relevant requirements in Section 4.5,’;
+(2)the eighth indent is replaced by the following:
+–’where necessary, impose conditions or limitations on the relevant certificate, or suspend or withdraw it.’;
+(iv)in the fourth paragraph, the third indent is replaced by the following:
+–‘ensure that the clinical evaluation, as most recently updated, is appropriately reflected in the instructions for use and, where applicable, the summary of safety and clinical performance.’;
+(``)Section 4.11. is replaced by the following:
+‘4.11.Periodic reviews and extension of a certificate’s period of validity’
+The notified body shall have documented procedures in place relating to periodic reviews of approved quality management systems or EU technical documentation assessment certificates or EU type-examination certificates.
+Those procedures shall require the manufacturer in question to submit at predefined intervals a summary of changes and of relevant data gathered by the manufacturer’s post-market surveillance system. The notified body shall assess such information and shall pay particular attention to clinical data from post-market surveillance and PMCF activities undertaken since the previous certification or periodic review, including appropriate updates to manufacturers' clinical evaluation reports, without repeating assessments already conducted.
+The notified body shall have documented procedures in place relating to the extension of the period of validity of a certificate in cases where it has exceptionally limited the period of validity. Those procedures shall require the manufacturer to submit prior to the expiry of the certificate the data or documentation specified by the notified body to enable it to decide about the extension of the period of validity of the certificate.’;
+(6)Annex VIII is amended as follows:
+(a)Section 3.2 is replaced by the following:
+‘3.2If the device in question is intended to be used in combination with another device, the classification rules shall apply separately to each of the devices. Accessories for a medical device and accessories for a product listed in Annex XVI shall be classified in their own right separately from the device with which they are used.’;
+(b)in Section 4.2, first paragraph, the second indent is replaced by the following:
+–‘if they are intended for use for channeling or storing blood or other body liquids or for storing organs, parts of organs or body cells and tissues, except for blood bags; by derogation from any other classification rule, blood bags are classified as class IIb.’;
+(c)in Section 5.2, the second indent is replaced by the following:
+–‘are reusable surgical instruments regardless of the body part with which they come into contact, in which case they are classified as class I;’;
+(d)in Section 5.3, the following indent is added:
+–‘are reusable surgical instruments regardless of the body part with which they come into contact, in which case they are classified as class I;’;
+(e)Section 5.4 is amended as follows:
+(i)the sixth indent is replaced by the following:
+–‘are active implantable devices, in which cases they are classified as class III; ‘;
+(ii)the eighth and ninth indents are replaced by the following:
+–‘are total or partial joint replacements, in which case they are classified as class III, with the exception of components such as screws, wedges, plates and instruments and other devices that are well-established technology devices; or
+–are spinal disc replacement implants or are implantable devices that come into contact with the spinal column, in which case they are classified as class III with the exception of components such as screws, wedges, plates and instruments and other devices that are well-established technology devices.’;
+(f)in Section 6.1, the first and second paragraphs are replaced by the following:
+‘All active therapeutic devices and all active products listed in Annex XVI intended to administer or exchange energy are classified as class IIa unless their characteristics are such that they may administer energy to or exchange energy with the human body in a potentially hazardous way, taking account of the nature, the density and site of application of the energy, in which case they are classified as class IIb.
+All active devices intended to control or monitor the performance of active therapeutic class IIb devices, and of any active product listed in Annex XVI falling in class IIb, or intended directly to influence the performance of such devices are classified as class IIb.’;
+(g)Section 6.3 is replaced by the following:
+‘6.3Rule 11
+Software which is intended to generate an output that confers a clinical benefit and is used for diagnosis, treatment, prevention, monitoring, prediction, prognosis, compensation or alleviation of a disease or condition is classified as class I, unless the output is intended for a disease or condition:
+–in a critical situation with a risk of causing death or an irreversible deterioration of a person's state of health, in which case it is classified as class III;
+–in a serious situation with a risk of causing a serious deterioration of a person's state of health or a surgical intervention, or to drive clinical management in a critical situation in which cases it is classified as class IIb;
+–in a non-serious situation, or to drive clinical management in a serious situation or to inform clinical management in a critical or serious situation in which cases it is classified as class IIa.’;
+(h)in Section 7.6, the introductory wording is replaced by the following:
+‘Rule 19
+All devices incorporating or consisting of nanomaterial as defined in Commission Recommendation C/2022/3689 are classified as:’;
+(i)in Section 7.8, the introductory wording is replaced by the following:
+‘Devices that are composed of substances or of combinations of substances that are intended to be introduced into the human body via a body orifice or applied to the skin and that are absorbed by or locally dispersed on or in the human body are classified as:’;
+(7)Annex IX is amended as follows:
+(a)in Section 2.3, the third and fourth paragraphs are replaced by the following:
+‘Moreover, in the case of class IIa and class IIb devices, the quality management system assessment shall be accompanied by the assessment of the technical documentation, as referred to in Annex II and III, as specified in Sections 4.3 to 4.8 for a representative device. However, in case of class IIa devices, Section 3(a) of Annex II shall be excluded from the assessment. In choosing the representative device, the notified body shall apply a risk-based approach, taking into account the principle of proportionality and in particular the physical, chemical, biological characteristics of the device, the novelty of the technology, similarities in design, technology, manufacturing and sterilisation methods, the intended purpose, the application by the manufacturer of harmonised standards or CS for the device and the results of any previous relevant assessments such as with regard to physical, chemical, biological or clinical properties, that have been carried out in accordance with this Regulation. The notified body in question shall document its rationale for the representative devices taken.
+For class IIa and class IIb devices, the notified body may include a ‘for-cause’ assessment of the technical documentation of additional representative devices on duly justified grounds identified during the quality management system assessment.
+If the quality management system and the technical documentation of the assessed representative device conforms to the relevant provisions of this Regulation, the notified body shall issue an EU quality management system certificate. The notified body shall notify the manufacturer of its decision to issue the certificate. The decision shall contain the conclusions of the audit and a reasoned report.’;
+(b)in Section 3.2, the second indent is replaced by the following:
+–‘documentation on any findings and conclusions resulting from the application of the post-market surveillance plan, including the PMCF plan, for the representative devices, and of the provisions on vigilance set out in Articles 87 to 92,’;
+(c)Section 3.3 is replaced by the following:
+‘3.3Notified bodies shall periodically carry out appropriate audits and assessments to make sure that the manufacturer in question applies the approved quality management system and the post-market surveillance plan. Those audits and assessments shall include audits on the premises of the manufacturer and, if appropriate, of the manufacturer's suppliers and/or subcontractors. On justified grounds, the audit may be conducted remotely instead of on-site. The notified body shall, where necessary, carry out or ask for tests in order to check that the quality management system is working properly. It shall provide the manufacturer with a surveillance audit report and, if a test has been carried out, with a test report.
+The notified body shall carry out the surveillance audits and assessments once every 12 months. However, where justified in light of the results of previous surveillance audits and assessments, and in the absence of any concerns resulting from data from post-market surveillance or vigilance, the notified body shall carry out the surveillance audits and assessments only once every 24 months.’;
+(d)Section 3.4 is amended as follows:
+(i)the first paragraph is replaced by the following:
+‘The notified body shall perform short-notice or unannounced audits on the site of the manufacturer and, where appropriate, of the manufacturer's suppliers and/or subcontractors when justified based on concerns related to post-market surveillance or vigilance data or at the request of a competent authority. The short-notice or unannounced audit may be combined with the periodic surveillance assessment referred to in Section 3.3. or be performed in addition to that surveillance assessment.’;
+(ii)in the second paragraph, the first sentence is replaced by the following:
+‘Within the context of such unannounced on-site audits, the notified body may test an adequate sample of the devices produced or an adequate sample from the manufacturing process to verify that the manufactured device is in conformity with the technical documentation, with the exception of the devices referred to in the second subparagraph of Article 52(8).’;
+(iii)in the third paragraph, the first sentence is replaced by the following:
+‘Instead of, or in addition to, the sampling referred to in the second paragraph, the notified body may take samples of devices from the market to verify that the manufactured device is in conformity with the technical documentation, with the exception of the devices referred to in the second subparagraph of Article 52(8).’;
+(e)Section 3.5 is replaced by the following:
+‘3.5In the case of class IIa and class IIb devices, and of class III devices that are well-established technology devices, during the surveillance assessment the notified body may include a ‘for-cause’ assessment of the technical documentation of representative devices where the notified body has identified potential concerns on the basis of post-market surveillance data or other duly justified grounds.
+In the case of class III devices, with the exception of well-established technology devices, the surveillance assessment shall also include a test of the approved parts and/or materials that are essential for the integrity of the device, including, where appropriate, a check that the quantities of produced or purchased parts and/or materials correspond to the quantities of finished devices.’;
+(f)Section 3.7. is replaced by the following;
+‘3.7.If the notified body finds a divergence between the sample taken from the devices produced or from the market and the specifications laid down in the technical documentation or the approved design, it shall suspend or withdraw the relevant certificate or impose conditions or limitations on it.’;
+(g)the title of Section 4 is replaced by the following:
+‘4.Assessment of the technical documentation’;
+(h)in Section 4.2, the second sentence is replaced by the following:
+‘It shall include the technical documentation as referred to in Annexes II and III or a plan and related timelines for submission of such technical documentation.’;
+(i)in Section 4.4, the second sentence is replaced by the following:
+‘The notified body shall use device reviewers with sufficient clinical expertise and, if necessary, use external clinical experts with direct and current experience relating to the device in question or the clinical condition in which it is utilised, for the purposes of that review.’;
+(j)Section 4.8 is replaced by the following:
+‘The notified body shall provide the manufacturer with a report on the technical documentation assessment, including a clinical evaluation assessment report.’;
+(k)in Section 4.9, the first and the third sentences are deleted;
+(l)Section 5.1 is amended as follows:
+(i)the title is replaced by the following:
+‘5.1Assessment procedure for devices covered by Article 54’;
+(ii)in point (a), the first and second paragraphs are replaced by the following:
+‘(a)For devices covered by Article 54, the notified body shall, having verified the quality of clinical data supporting the clinical evaluation report of the manufacturer referred to in Article 61(1), prepare a clinical evaluation assessment report which sets out its conclusions concerning the clinical evidence provided by the manufacturer, in particular concerning the benefit-risk determination, the consistency of that evidence with the intended purpose, including the medical indication or indications and the PMCF plan referred to in Article 10(3) and Part B of Annex XIV.
+The notified body shall transmit its clinical evaluation assessment report, along with the manufacturer's clinical evaluation report and, where applicable, the PMCF plan, to the Commission.’;
+(iii)in point (b), the following sentence is added:
+‘Where appropriate, the expert panel may also invite the manufacturer to present the conclusions of its clinical evaluation.’;
+(iv)point (g) is replaced by the following:
+‘(g)The notified body shall give utmost consideration to the views expressed in the scientific opinion of the expert panel and, where appropriate, update its clinical evaluation assessment report. Where the expert panel finds that the level of clinical evidence is not sufficient or otherwise gives rise to serious concerns about the benefit-risk determination, the consistency of that evidence with the intended purpose, including the medical indication(s), and with the PMCF plan, the notified body shall, if necessary, advise the manufacturer to gather additional clinical data and update its clinical evaluation, to limit the intended purpose of the device to certain groups of patients or certain medical indications and/or to impose a limit on the duration of validity of the certificate, to undertake specific PMCF studies, to adapt the instructions for use or the summary of safety and clinical performance, or to impose other conditions in its conformity assessment report, as appropriate. The notified body shall provide an explanation of how it has addressed the views and recommendations expressed in the expert panel opinion and, where it has not followed the views and recommendations of the expert panel, provide a substantiated justification for it. The scientific opinion of the expert panel and the explanation of how is has been addressed or, if applicable, the substantiated justification provided by the notified body shall be publicly available via Eudamed without any confidential information as referred to in Article 109.’;
+(m)Section 5.2 is amended as follows:
+(i)point (d) is replaced by the following:
+‘The medicinal products authority consulted shall provide its opinion to the notified body within 90 days of receipt of all the necessary documentation. This 90-day period may be extended once for a further 30 days on justified grounds. Where the medicinal substance is not previously authorised in the Union, the medicinal products authority consulted shall provide its opinion within 180 days. When preparing its opinion, the medicinal products authority consulted may request the notified body, or the manufacturer, to provide within a specific time period additional information necessary for its assessment referred to in point (b). In case of such a request, the time-limit set out in this paragraph shall be suspended until the additional information requested is provided.’;
+(ii)point (g) is replaced by the following:
+‘(g)Where the medicinal products authority consulted obtains information on the ancillary substance, which could have an impact on the risk or benefit previously established concerning the incorporation of the substance into the device, it shall advise the notified body as to whether this information has an impact on the risk or benefit previously established concerning the incorporation of the substance into the device. In the case of information relating to serious incidents obtained via the notification outlined in the first subparagraph of Article 89(6) of this Regulation, the medicinal products authority consulted shall review the data, which may be presented in aggregated form and may engage with the notified body to obtain further information where necessary. The notified body shall take that advice into account in reconsidering its assessment of the conformity assessment procedure.’;
+(n)Section 5.3.1. is replaced by the following:
+‘5.3.1Substances of human origin or their derivatives
+(a)For devices manufactured utilising derivatives of substances of human origin that are covered by this Regulation in accordance with point (g) of Article 1(6) and for devices that incorporate, as an integral part, substances of human origin, or their derivatives, covered by Regulation (EU) 2024/1938, that have an action ancillary to that of the device, the notified body shall, prior to issuing an EU technical documentation assessment certificate, seek a scientific opinion from one of the competent authorities designated by the Member States in accordance with Regulation (EU) 2024/1938 (‘SoHO competent authority’) on the aspects relating to donor registration, donor review, collection and testing of the substances of human origin or their derivatives. The notified body shall submit a summary of the preliminary conformity assessment which provides, among other things, information about the non-viability of the substance of human origin in question, donor registration, donor review, collection and testing and the risk or benefit of the incorporation of the substance of human origin or their derivatives into the device.
+(b)Within 90 days of receipt of all the necessary documentation, the SoHO competent authority shall provide to the notified body its opinion. This 90-day period may be extended once for a further 30 days on justified grounds.
+(c)The scientific opinion of the SoHO competent authority, and any possible update, shall be included in the documentation of the notified body concerning the device. The notified body shall give due consideration to the views expressed in the scientific opinion of the SoHO competent authority when making its decision. The notified body shall not deliver the certificate if that scientific opinion is unfavourable. It shall convey its final decision to the SoHO competent authority concerned.
+(d)Before any change is made with respect to non-viable substances of human origin or their derivatives incorporated in a device, in particular relating to donor registration, donor review, collection and testing, the manufacturer shall inform the notified body of the intended changes. The notified body shall consult the authority that was involved in the initial consultation, in order to confirm that the quality and safety of the substances of human origin or their derivatives incorporated in the device are maintained. The SoHO competent authority concerned shall take into account the data relating to the usefulness of incorporation of the substances of human origin or their derivatives into the device as determined by the notified body, in order to ensure that the changes have no negative impact on the established benefit-risk ratio of the addition of the substances of human origin or their derivatives in the device. It shall provide its opinion within 60 days of receipt of all the necessary documentation regarding the intended changes. The notified body shall not deliver a supplement to the EU technical documentation assessment certificate if the scientific opinion is unfavourable and shall convey its final decision to the SoHO competent authority concerned.
+(e)In the case of information relating to serious incidents obtained via the notification outlined in the second subparagraph of Article 89(6), the SoHO competent authority consulted shall review the data and may engage with the notified body to obtain further information where necessary.’;
+(o)Section 5.3.2. is deleted;
+(p)in Section 5.4, points (b), (c) and (d) are deleted;
+(8)Annex X is amended as follows:
+(a)in Section 3, point (c) is replaced by the following:
+‘(c)review the clinical evidence presented by the manufacturer in the clinical evaluation report in accordance with Section 4 of Annex XIV. The notified body shall use device reviewers with sufficient clinical expertise and, if necessary, use external clinical experts with direct and current experience relating to the device in question or to the clinical condition in which it is utilised, for the purposes of that review;’;
+(b)Section 4 is replaced by the following:
+‘If the type conforms to this Regulation, the notified body shall issue an EU type-examination certificate. The relevant parts of the documentation shall be annexed to the certificate and a copy kept by the notified body.’
+(9)Annex XI is amended as follows:
+(a)Section 3 is replaced by the following:
+‘3.By way of derogation from Sections 1 and 2, Section 10 or Section 18 of this Annex coupled with the drawing up of technical documentation as set out in Annexes II and III may also be applied by manufacturers of class IIa devices.’;
+(b)the following Section 3a is inserted before Part A:
+‘3a.By way of derogation from Sections 1 and 2 above, Section 10a may also be applied by manufacturers of class I devices that are placed on the market in sterile condition, have a measuring function or are reusable surgical instruments.’;
+(c)in Section 7, the second paragraph is replaced by the following:
+‘In the case of class III devices, other than well-established technology devices, surveillance shall also include a check that the quantities of produced or purchased raw material or crucial components approved for the type correspond to the quantities of finished devices.’;
+(d)Section 10 is replaced by the following:
+’10.Application to class IIa devices
+10.1.The manufacturer shall ensure that the quality management system approved for the manufacture of the devices concerned is implemented.
+10.2By virtue of the EU declaration of conformity the manufacturer shall be deemed to ensure and to declare that the class IIa devices in question are manufactured in conformity with the technical documentation referred to in Annexes II and III and meet the requirements of this Regulation which apply to them.
+10.3.The manufacturer shall lodge an application for assessment of its quality management system with a notified body. The application shall include all elements listed in Section 2.1 of Annex IX. The manufacturer shall ensure that an adequate description of all elements listed in Section 2.2, points (a), (b), (d) and (e) of Annex IX is available for the assessment of the quality management system.
+10.4The first four paragraphs of Section 2.3 of Annex IX shall apply.
+10.5.Where the assessment under Section 10.4. of this Annex confirms that the devices in question conform to the technical documentation referred to in Annexes II and III and meet the requirements of this Regulation which apply to them, the notified body shall issue an EU production quality assurance certificate pursuant to Part A of this Annex.
+10.6.Section 2.4 of Annex IX shall apply.
+10.7.Section 3.1, Section 3.2, first, second and fourth indents, and Sections 3.3 to 3.7 of Annex IX shall apply.
+10.8.The manufacturer or its authorised representative shall, for a period ending no sooner than 10 years after the last device has been placed on the market, keep at the disposal of the competent authorities:
+–the EU declaration of conformity,
+–the technical documentation referred to in Annexes II and III, and
+–the certificate referred to in Section 10.5 of this Annex.
+10.9.Section 8 of Annex IX shall apply.’;
+(e)the following Section 10a is inserted before Part B:
+’10a.Application to class I devices that are placed on the market in sterile condition, have a measuring function or are reusable surgical instruments
+10a.1.The manufacturer shall ensure that the quality management system approved for the manufacture of the devices concerned is implemented.
+10a.2.By virtue of the EU declaration of conformity the manufacturer shall be deemed to ensure and to declare that the devices in question are manufactured in conformity with the technical documentation referred to in Annexes II and III and meet the requirements of this Regulation which apply to them.
+10a.3.The manufacturer shall lodge an application for assessment of its quality management system with a notified body. The application shall include the elements listed in Section 2.1, first to sixth indents, of Annex IX. The manufacturer shall ensure that an adequate description of all elements listed in Section 2.2, points (d) and (e), of Annex IX is available for the assessment of the quality management system.
+10a.4.Section 2.3, first and second paragraphs, of Annex IX shall apply. The assessment of the notified body shall be limited:
+–in the case of devices placed on the market in sterile condition, to the aspects relating to establishing, securing and maintaining sterile conditions;
+–in the case of devices with a measuring function, to the aspects relating to the conformity of the devices with the metrological requirements;
+–in the case of reusable surgical instruments, to the aspects relating to the reuse of the device, in particular cleaning, disinfection, sterilization, maintenance and functional testing and the related instructions for use.
+10a.5.Where the assessment under Section 10a.4. confirms that elements of the quality management system comply with the relevant provisions of this Regulation, the notified body shall issue an EU production quality assurance certificate pursuant to this Part of this Annex.
+10a.6.Section 2.4 of Annex IX shall apply.
+10a.7.Section 3.1, Section 3.2, first, second and fourth indents, Sections 3.3, 3.4 and 3.6 of Annex IX shall apply.
+10a.8.The manufacturer or its authorised representative shall, for a period ending no sooner than 10 years after the last device has been placed on the market, keep at the disposal of the competent authorities:
+–the EU declaration of conformity,
+–the documentation referred to in the fifth indent of Section 2.1 of Annex IX,
+–the certificate referred to in Section 10a.5.
+10a.9.Section 8 of Annex IX shall apply.’;
+(f)in Section 12, the second paragraph is replaced by the following:
+‘In addition, for devices placed on the market in a sterile condition, and only for those aspects of the manufacturing process designed to secure and maintain sterility, the manufacturer shall apply the provisions of Sections 6.1, 6.2, 6.3, first paragraph, 6.4 and 7.’;
+(g)Section 18 is replaced by the following:
+‘18.Application to class IIa devices
+18.1.Product verification shall be understood to be the procedure whereby after examination of every manufactured device, the manufacturer, by issuing an EU declaration of conformity in accordance with Article 19 and Annex IV, shall be deemed to ensure and to declare that the devices which have been subject to the procedure set out in Sections 14 and 15 conform to the technical documentation referred to in Annexes II and III and meet the requirements of this Regulation which apply to them.
+18.2.The manufacturer shall take all the measures necessary to ensure that the manufacturing process produces devices which conform to the devices described in the EU declaration of conformity and to the requirements of the Regulation which apply to them. Prior to the start of manufacture, the manufacturer shall prepare documents defining the manufacturing process, in particular as regards sterilisation where necessary, together with all routine, pre-established procedures to be implemented to ensure homogeneous production.
+In addition, for devices placed on the market in a sterile condition, and only for those aspects of the manufacturing process designed to secure and maintain sterility, the manufacturer shall apply the provisions of Sections 10.3, 10.4, 10.6 and 10.7.
+18.3.Sections 13 and 14 shall apply. Section 15 shall apply with the aim of verifying the conformity of the devices with those described in the EU declaration of conformity.
+18.4.By way of derogation from Section 17, the manufacturer or its authorised representative shall, for a period ending no sooner than 10 years after the last device has been placed on the market, keep at the disposal of the competent authorities:
+–the EU declaration of conformity,
+–the documentation referred to in Section 18.2,
+– the technical documentation referred to in Annexes II and III,
+–the certificate referred to in Section 15.2.
+18.5.Section 8 of Annex IX shall apply.’;
+(10)Annex XII is amended as follows:
+(a)in Chapter I, Section 4, point (b) is replaced by the following:
+‘(b)EU quality management system certificates and EU quality assurance certificates shall include the identification of the devices or groups of devices, the risk classification and the manufacturing site(s) covered.’;
+(b)Chapter II is amended as follows:
+(i)Section 6 is replaced by the following:
+‘6.where applicable, date of expiry’;
+(ii)Section 7 is replaced by the following:
+‘7.data needed for the unambiguous identification of the device or devices where applicable as specified in Section 4 of Chapter I;’;
+(iii)Section 10 is replaced by the following:
+’10.reference to relevant CS and harmonised standards;’;
+(11)Annex XIII is amended as follows:
+(a)in Section 1, the eighth indent is replaced by the following:
+‘where applicable, an indication that the device contains or incorporates a medicinal substance, including a human blood or plasma derivative, or tissues or cells of human origin, or of animal origin as referred to in Regulation (EU) No 722/2012, or in any subsequent implementing rules adopted pursuant to this Regulation.’;
+(b)in Section 5, the first sentence is replaced by the following:
+‘The manufacturer shall review and document experience gained in the post-production phase, including where applicable from PMCF as referred to in Part B of Annex XIV, and implement appropriate means to apply any necessary corrective action.’;
+(12)Annex XIV is amended as follows:
+(a)Section 1 is amended as follows:
+(i)point (a) is amended as follows:
+(1)the first indent is replaced by the following:
+–‘an identification of the general safety and performance requirements that require support from relevant clinical data, or adequate justification that confirmation of safety and performance based on clinical data is not deemed appropriate in accordance with Article 61(10);’;
+(2)the seventh and eighth indents are replaced by the following:
+–‘an indication how benefit-risk issues relating to specific components such as use of pharmaceutical, non-viable substances of human origin or non-viable animal tissues, are to be addressed;
+–where applicable, a clinical development strategy indicating progression from exploratory investigations, such as first-in-man studies, feasibility and pilot studies, to confirmatory investigations, such as pivotal clinical investigations, and a PMCF as referred to in Part B with an indication of milestones and a description of potential acceptance criteria;’;
+(ii)the following paragraph is added:
+‘Points (b) to (e) shall not apply to devices for which confirmation of safety and performance based on clinical data is not deemed appropriate in accordance with Article 61(10).’;
+(b)in Section 3, the second and third indents are replaced by the following:
+–‘Biological: the device uses the same or similar materials or substances in contact with the same human tissues or body fluids for a similar kind and duration of contact and similar release characteristics of substances, including degradation products and leachables;
+–Clinical: the device is used for the same or similar clinical condition or purpose, including similar severity and stage of disease, at the same site in the body, in a similar population, including as regards age, anatomy and physiology; has the same kind of user; has similar relevant critical performance in view of the expected clinical effect for a specific intended purpose.’;
+(c)in Section 5, the following sentence is inserted after the first sentence:
+‘Where PMCF is deemed not applicable, the manufacturer shall provide a justification in the post-market surveillance plan as referred to in Section 1 of Annex III.’;
+(d)Section 7 is replaced by the following:
+‘7.The manufacturer shall analyse the findings of the PMCF and document the results in the clinical evaluation report and the technical documentation.’;
+(e)Section 8 is replaced by the following:
+‘8.The conclusions of the PMCF shall be taken into account for the clinical evaluation referred to in Article 61 and Part A of this Annex and in the risk management referred to in Section 3 of Annex I. If, through the PMCF, the need for preventive and/or corrective measures has been identified, the manufacturer shall implement them.’;
+(13)Annex XV is amended as follows:
+(a)in Chapter I, Section 2.6., the following sentence is added:
+‘For combined studies, endpoints reporting on the device and medicinal product together may be used.’;
+(b)Chapter II is amended as follows:
+(i)Section 1.4. is replaced by the following:
+‘1.4.status of the clinical investigation application (i.e. first submission, resubmission, substantial modification);’;
+(ii)Section 1.6. is replaced by the following:
+‘1.6.If the application is a resubmission with regard to a device for which an application has been already submitted, the date or dates and reference number or numbers of the earlier application or, in the case of substantial modification, reference to the original application. The sponsor shall identify all of the changes from the previous application together with a rationale for those changes, in particular, whether any changes have been made to address conclusions of previous competent authority or ethics committee reviews;’.
+ANNEX II
+Annexes I, II, III, VI, VII, IX, X, XI, XII, XIII and XIV to Regulation (EU) 2017/746 are amended as follows:
+(1)Annex I is amended as follows:
+(a)Section 16.4. is replaced by the following:
+‘Manufacturers shall set out minimum requirements concerning hardware, IT networks characteristics and IT security measures and cybersecurity, including protection against unauthorised access, necessary to run the software as intended.’;
+(b)Section 20.1. is amended as follows:
+(i)the second sentence of the first paragraph is replaced by the following:
+‘Such information may appear on the device itself, on the packaging or in the instructions for use, taking into account the following:’;
+(ii)in point (c), the following sentence is added:
+‘Labels may be provided in digital form to the extent, and only under the conditions, set out in implementing rules adopted pursuant to this Regulation.’;
+(iii)point (e) is replaced by the following:
+‘(e)Where multiple devices are supplied to a single user and/or location, a single copy of the instructions for use may be provided if so agreed by the purchaser who in any case may request further copies to be provided free of charge.’;
+(iv)point (f) is replaced by the following:
+‘(f)When the device is intended for professional use only, instructions for use may be provided to the user in non-paper format (e.g. electronic).’;
+(v) the following point (k) is added:
+‘(k)For devices that are used exclusively with a medicinal product in accordance with Article 19 of [Proposal for a Directive on the Union code relating to medicinal products for human use, and repealing Directive 2011/83/EC and Directive 2009/35/EC] and packaged together with a medicinal product, the instructions for use may be included, where needed, as part of the co-packaging of the medicinal product with the device. Moreover, the information on the label of the device may be limited to the particulars referred to in Section 20.2., points (a) and (c), where, following agreement of the competent authority responsible for the authorisation of the medicinal product, the following conditions are met:
+(i)the information necessary for safe use and correct functioning of the device is provided to the user with the summary of product characteristics and/or package leaflet of the medicinal product under the responsibility of the marketing authorisation holder set out in [Proposal for a Directive on the Union code relating to medicinal products for human use, and repealing Directive 2011/83/EC and Directive 2009/35/EC;
+(ii)the traceability and identification of the device is ensured by the marketing authorisation holder.’;
+(c)Section 20.2. is amended as follows:
+(i)point (e) is replaced by the following:
+‘(e)an indication that the device is an in vitro diagnostic medical device or an accessory for an in vitro diagnostic medical device, or if the device is a ‘device for performance study’, an indication of that fact;’;
+(ii)point (j) is replaced by the following:
+‘(j)where relevant, an indication of the net quantity of contents, expressed in terms of weight or volume, numerical count, or any combination thereof, or other terms which accurately reflect the contents of the package;’;
+(iii)point (r) is replaced by the following:
+‘(r)where rapid assays are not intended for self-testing or near-patient testing, the explicit exclusion thereof;’;
+(d)Section 20.4.1. is amended as follows:
+(i)in point (c), subpoint (viii) is replaced by the following:
+‘(viii)for companion diagnostics, the International Non-proprietary Name(s) (INN) or description of the specific group of the associated medicinal product(s) for which it is a companion diagnostic.’;
+(ii)point (d) is replaced by the following:
+‘(d)an indication that the device is an in vitro diagnostic medical device or an accessory for an in vitro diagnostic medical device, or, if the device is a ‘device for performance study’, an indication of that fact;’;
+(iii)point (h) is replaced by the following:
+‘(h)a description of the reagents and any limitation upon their use (e.g. suitable for a dedicated instrument only) and the composition of the reagent product by nature and amount or concentration of the critical ingredient(s) of the reagent(s) or kit as well as a statement, where appropriate, that the device contains other ingredients which might influence the measurement;’;
+(iv)point (w) is replaced by the following:
+‘(w)analytical and clinical performance characteristics as referred to in Section 9.1, points (a) and (b) ;’;
+(v)point (x) is deleted;
+(vi)point (z) is replaced by the following:
+‘(z)information about the use of available reference measurement procedures and materials by the use;’;
+(vii)point (ae) is replaced by the following:
+‘(ae)date of issue of the instructions for use or, if they have been revised, date of issue and identifier of the latest revision of the instructions for use;’;
+(2)Annex II is amended as follows:
+(a)Section 1.1. is amended as follows:
+(i)point (c) is replaced by the following:
+‘(c)the intended purpose of the device as referred to in Section 20.4.1, point (c), of Annex I ;’;
+(ii)point (g) is replaced by the following:
+‘(g)the description of the components and where appropriate, the description of the critical ingredients of relevant components such as antibodies, antigens, enzymes and nucleic acid primers;’;
+(b)in Section 3.1., point (a) is replaced by the following:
+‘(a)where applicable, a description of the critical reagents such as antibodies, antigens, enzymes and nucleic acid primers not provided but recommended for use with the device;’;
+(c)Section 6.1.2.6., point (c) is replaced by the following:
+‘(c)statistical methods such as Receiver Operating Characteristic (ROC) to generate results and if applicable, define grey-zone/equivocal zone.’;
+(d)Section 6.1.3. is deleted;
+(e)in Section 6.2., the heading and the first paragraph are replaced by the following:
+‘6.2.Information on overall performance evaluation and clinical studies
+The documentation shall contain the performance evaluation plan referred to in Section 1.1 of Annex XIII and the performance evaluation report referred to in Section 1.3.2 of Annex XIII.’;
+(f)in Section 6.5., the following point (e) is added:
+‘(e)Where the device incorporates as an integral part a medical device that has an action ancillary to that of the device, as referred to in Article 1(4) of this Regulation, the documentation shall include the results of the assessment of the conformity of the medical device part with the relevant general safety and performance requirements set out in Annex I to Regulation (EU) 2017/745 contained in the manufacturer's EU declaration of conformity or the relevant certificate issued by a notified body allowing the manufacturer to affix a CE marking to the medical device. Where those results of the conformity assessment are not available and where for the conformity assessment of medical device, if used separately, the involvement of a notified body is required in accordance with Regulation (EU) 2017/745, an opinion on the conformity of the medical device part with the relevant general safety and performance requirements set out in Annex I to Regulation 2017/745 issued by a notified body designated in accordance with that Regulation for the type of device in question shall be included in the documentation.’;
+(3)Annex III is amended as follows:
+(a)in Section 1, point (a), the sixth indent is replaced by the following:
+–‘publicly-available information about similar devices.’;
+(b)Section 2 is replaced by the following:
+‘2.The PSUR referred to in Article 81 or the post-market surveillance report referred to in Article 80.’;
+(4)Annex VI is amended as follows:
+(a)Parts A and B are replaced by the following:
+‘PART A
+INFORMATION TO BE SUBMITTED UPON THE REGISTRATION OF ECONOMIC OPERATORS IN ACCORDANCE WITH ARTICLE 28
+Manufacturers and, where applicable, authorised representatives, and, where applicable, importers shall submit the following information relating to the economic operator:
+1.type of economic operator (manufacturer, authorised representative, or importer),
+2.name, address and contact details, including the digital contact, of the economic operator,
+3.where submission of information is carried out by another person on behalf of any of the economic operators mentioned under Section 1.1, the name, address and contact details, including the digital contact, of that person,
+4.name, address and contact details, including the digital contact, of the person or persons responsible for regulatory compliance referred to in Article 15.
+PART B
+CORE DATA ELEMENTS TO BE PROVIDED TO THE UDI DATABASE TOGETHER WITH THE UDI-DI IN ACCORDANCE WITH ARTICLES 25 AND 26
+The manufacturer shall provide to the UDI database the following information relating to the manufacturer and the device:
+1.Basic UDI-DI as referred to in Article 24 and any additional UDI-DIs,
+2.For devices referred to in Article 110(3), type, number and expiry date of the certificate issued by the notified body and the name or identification number of that notified body and the link to the information that appears on the certificate and was entered by the notified body in the electronic system on notified bodies and certificates,
+3.Member State in which the device is to be or has been placed on the market in the Union,
+4.Member States where the device is or is to be made available,
+5.presence of substances of human origin or their derivatives (y/n),
+6.presence of cells or substances of microbial origin (y/n),
+7.risk class of the device,
+8.where applicable, the single identification number of the performance study,
+9.in the case of devices designed and manufactured by another legal or natural person as referred in Article 10(14), the name, address and contact details, including the digital contact, of that legal or natural person,
+10.where applicable, the summary of safety and performance,
+11.status of the device (placed on the market, no longer placed on the market, recalled, field safety corrective action initiated),
+12.indication as to whether the device is intended for self-testing or near-patient testing.
+13.quantity per package configuration,
+14.the manner in which production of the device is controlled (expiry date or manufacturing date, lot number, serial number),
+15.if applicable, the ‘unit of use’ UDI-DI (where a UDI is not labelled on the device at the level of its ‘unit of use’, a ‘unit of use’ UDI-DI shall be assigned so as to associate the use of a device with a patient),
+16.name and address of the manufacturer, as indicated on the label,
+17.the SRN issued in accordance with Article 28(2),
+18.if applicable, name and address of the authorised representative (as indicated on the label),
+19.the medical device nomenclature code as provided for in Article 23,
+20.if applicable, name or trade name, and if applicable, additional trade names,
+21.if applicable, device model, reference, or catalogue number,
+22.additional product description (optional),
+23.if applicable, storage and/or handling conditions (as indicated on the label or in the instructions for use),
+24.labelled as a single use device (y/n),
+25.if applicable, the maximum number of reuses,
+26.device labelled sterile (y/n),
+27.need for sterilisation before use (y/n),
+28. if applicable, the instructions for use, or where available, the URL of the website where the instructions for use are made available,
+29.if applicable, critical warnings or contra-indications.’;
+(b)Part C is amended as follows:
+(i)in Section 1, the definition of ‘Basic UDI-DI’ is replaced by the following:
+‘Basic UDI-DI
+The Basic UDI-DI is the primary identifier of a device model. The Basic UDI-DI is the main key in the database and relevant documentation (e.g. certificates, declaration of conformity, technical documentation and summary of safety and performance) to connect devices with the same intended purpose, risk class and essential design and manufacturing characteristics. It is the main key for records in the UDI database and is referenced in relevant certificates and EU declarations of conformity.’;
+(ii)Section 4.10. is replaced by the following:
+‘4.10.Devices that are reusable shall bear a UDI carrier on the device itself. The UDI carrier for reusable devices that require disinfection, sterilisation or refurbishing between patient uses shall be permanent and readable after each process performed to make the device ready for the subsequent use throughout the intended lifetime of the device, unless the device is intended to be reused exclusively by or for the same patient. The requirement of this Section shall not apply to devices in the following circumstances:
+(a)any type of direct marking would interfere with the safety or performance of the device;
+(b)the device cannot be directly marked because it is not technologically feasible.’;
+(5)Annex VII is amended as follows:
+(a)in Section 1.1.1., the following sentence is added:
+‘It shall also include information about the larger organisation to which the notified body belongs.’;
+(b)Section 1.1.2. is replaced by the following:
+‘1.1.2If the notified body is a legal entity that is part of a larger organisation, the activities of that organisation as well as its organisational structure and governance, and the relationship with the notified body shall be clearly documented. In such cases, the requirements set out in Section 1.2 are applicable to both the notified body and the larger organisation to which it belongs. The larger organisation and any of the legal entities belonging to it shall not be involved in the design, manufacture, marketing, installation or maintenance of the devices for which the notified body is designated or offer consultancy services for such activities. They shall not represent the parties engaged in those activities.’;
+(c)Section 1.1.5. is replaced by the following:
+‘1.1.5.The notified body shall clearly document its organisational structure and the functions, responsibilities and authority of its top-level management and of other personnel who may have an influence on the performance by the notified body and on the results of its conformity assessment activities.’;
+(d)in Section 1.2.9., the following sentence is added:
+‘The notified body shall have documented procedures in place to offer and carry out dialogues with the manufacturer before and after an application for conformity assessment is lodged.’;
+(e)Section 1.3.1. is replaced by the following:
+‘1.3.1.The notified body shall have documented procedures in place ensuring that its personnel, committees, branch offices, subsidiaries, subcontractors, and any associated body or personnel of external bodies respect the confidentiality of the information which comes into its possession during the performance of the conformity assessment activities, except when disclosure is required by law.’;
+(f)in Section 1.4.2., the second sentence is deleted;
+(g)the following Section 1.4.3. is added:
+‘1.4.3.By way of derogation from Section 1.4.1., the notified body may demonstrate coverage for liability through adherence to a guarantee fund that provides effective protection and is recognised by the Member State(s) concerned.’;
+(h)Section 1.6.1. is replaced by the following:
+‘1.6.1.The notified body shall participate in the activities of the notified body coordination group referred to in Article 49 of Regulation (EU) 2017/745 and ensure that its assessment and decision-making personnel are informed of all relevant legislation, standards, guidance and best practice documents adopted in the framework of this Regulation.’;
+(i)Section 2.1. is replaced by the following:
+‘2.1.The notified body shall establish, document, implement, maintain and operate a quality management system that is appropriate to the nature, area and scale of its conformity assessment activities and is capable of supporting and demonstrating in the most effective manner the consistent fulfilment of the requirements of this Regulation.’;
+(j)Section 2.3. is replaced by the following:
+‘2.3.The top-level management of the notified body shall ensure that the quality management system is fully understood, implemented and maintained throughout the notified body organisation including branch offices, subsidiaries and subcontractors involved in conformity assessment activities pursuant to this Regulation.’;
+(k)Section 3.2.3. is amended as follows:
+(i)the first sentence is replaced by the following:
+‘The personnel responsible for establishing qualification criteria and for authorising other personnel to perform specific conformity assessment activities shall not be external experts or be subcontracted.’;
+(ii)in the second sentence, the sixth indent is replaced by the following:
+–‘adequate experience in conformity assessments under this Regulation, Regulation (EU) 2017/745 or previously applicable law within a notified body.’;
+(l)in Section 3.2.4., the first sentence is replaced by the following:
+‘The notified body shall have permanent availability of personnel with relevant clinical expertise.’;
+(m)in Section 3.2.7., the first sentence is replaced by the following:
+‘The personnel with overall responsibility for final reviews and decision-making on certification shall not be external experts or be subcontracted.’;
+(n)in Section 3.4.1., first paragraph, the following sentence is added:
+‘They shall inform the manufacturer accordingly.’;
+(o)in Section 4.1., the second paragraph is replaced by the following:
+‘The requirements laid down in Sections 4.3., 4.4., 4.7. and 4.8. shall not be subcontracted and shall not be fulfilled by external experts.’;
+(p)in Section 4.2., point (a), the second sentence is replaced by the following:
+‘That description shall include which languages are acceptable for submission of documentation and for any related correspondence and the modalities for carrying out the dialogue referred to in Section 1.2.9 of this Annex before an application is lodged.’;
+(q)in Section 4.3., second paragraph, the third sentence is replaced by the following:
+‘This contract shall have clear terms and conditions and contain obligations that enable the notified body to act as required under this Regulation, including an obligation on the manufacturer to inform the notified body of vigilance reports, the right of the notified body to suspend, limit or withdraw certificates issued and the duty of the notified body to fulfil its information obligations.’;
+(r)in Section 4.5.1., the second paragraph is amended as follows:
+(i)the eighth indent is replaced by the following:
+–‘in the case of class B or class C devices, to assess the technical documentation of the representative device(s),’;
+(ii)the tenth indent is deleted;
+(iii)the following indents are added:
+–where appropriate, to perform a rolling review of the manufacturer’s data or documentation as they become available,
+–to leverage evidence from previously performed assessments.’;
+(s)Section 4.5.2. is amended as follows:
+(i)point (a) is amended as follows:
+(1)the introductory wording is replaced by the following:
+‘As part of the assessment of the quality management system, a notified body shall prior to or in relation with an audit and in accordance with its documented procedures:’;
+(2)the fourth indent is replaced by the following:
+–clearly identify, for class B and class C devices, the representative devices selected for the assessment of technical documentation as referred to in Annexes II and II, and’;
+(ii)in point (b), the fourth indent is replaced by the following:
+–‘the documentation shall be sampled in such as a manner as to reflect the risks associated with the intended use of the device, the complexity of the manufacturing technologies, the range and classes of devices produced or under certification and any available post-market surveillance information,’;
+(t)in Section 4.5.3., the third paragraph which is headed ‘Verification by examination and testing of every product batch’ is replaced by the following:
+‘Verification by examination and testing of products or product batches
+The notified body shall:
+(a)have documented procedures, sufficient expertise and access to facilities for the verification by examination and testing of products or product batches;
+(b)establish a test plan identifying all relevant and critical parameters which need to be tested under the notified body’s responsibility and document its selection for the selection of the parameters;
+(c)have documented procedures to carry out the appropriate assessments and tests in order to verify the conformity of the device with the requirements of this Regulation including, where applicable, procedures in relation to testing by EU reference laboratories in accordance with Annexes IX, X and XI;
+(d)have documented procedures providing for the reaching of an agreement with the applicant concerning when and where necessary tests that are not to be carried out by the notified body itself are to be performed;
+(e)assume full responsibility for test results in accordance with documented procedures, except where testing was carried out by EU reference laboratories in accordance with Annexes IX, X or XI of this Regulation; test reports submitted by the manufacturer shall only be taken into account if they have been issued by conformity assessment bodies which are competent and independent of the manufacturer.’;
+(u)in Section 4.6., the introductory sentence in the second paragraph is replaced by the following:
+‘The report(s) of the notified body shall:’;
+(v)Section 4.8. is amended as follows:
+(i)the first sentence is replaced by the following:
+‘The notified body shall have documented procedures for decision-making including as regards the allocation of responsibilities for the issuance, suspension, limitation and withdrawal of certificates.’;
+(ii)the third sentence is amended as follows:
+(1)the fourth indent is replaced by the following:
+–‘decide whether conditions or limitations need to be defined for the certification,’;
+(2)the fifth indent is replaced by the following:
+–‘where appropriate, decide, based on the novelty, risk classification, performance evaluation and conclusions from the risk analysis of the device, on a period of certification,’;
+(3)the eighth indent is replaced by the following:
+–‘issue a certificate or certificates in accordance with the minimum requirements laid down in Annex XII and shall indicate whether there are conditions or limitations associated with the certification,’;
+(w)Section 4.9. is amended as follows:
+(i)in the first paragraph, the fourth indent is replaced by the following:
+–‘the intended purpose of or claims made for the device.’;
+(ii)the second paragraph is replaced by the following:
+‘The procedures and contractual arrangements referred to in the first paragraph shall clearly distinguish between changes that do not need to be reported, that need to be reported without requiring prior approval and that require prior approval.’;
+(iii)the third paragraph is amended as follows:
+(1)the introductory sentence is replaced by the following:
+‘In accordance with its documented procedures, the notified body in question shall, where changes require prior approval:’;
+(2)the following fourth paragraph is added:
+‘Where appropriate, the notified body and the manufacturer shall agree on a predetermined change control plan enabling the manufacturer to implement changes in accordance with such a plan without prior information.’;
+(x)Section 4.10. is amended as follows:
+(i)the first paragraph is amended as follows:
+(1)the second indent is replaced by the following:
+–‘for screening relevant sources of scientific and clinical data and post-market information relating to the scope of their designation. That screening shall be conducted in the framework of the coordination group established in Article 49 to avoid unnecessary duplication and to enhance efficiency and work-sharing. The findings from the screening shall be taken into account in the planning and conduct of surveillance activities,’;
+(2)the first sentence of the third indent is replaced by the following:
+–‘to assess whether any reported serious incident related to a serious public health threat or any field safety corrective action taken or envisaged by the manufacturer or required of it by a competent authority has an impact on the validity of existing certificates. The results of the evaluation and any decisions taken shall be thoroughly documented.’;
+(ii)the second paragraph is amended as follows:
+(1)the opening sentence is replaced by the following:
+‘The notified body in question shall, with regard to signals arising from vigilance data to which they have access under Article 87(2), decide on which of the following options to apply, where appropriate:’;
+(2)the first indent is deleted;
+(iii)the third paragraph is amended as follows:
+(1)the first indent is replaced by the following:
+–‘conduct surveillance audits of the manufacturer which shall be planned and conducted in line with the relevant requirements in Section 4.5.;
+(2)the eight indent is replaced by the following:
+–‘where necessary, impose conditions or limitations on the relevant certificate, or suspend or withdraw it.’;
+(y)Section 4.11. is replaced by the following:
+‘Periodic reviews and extension of a certificate’s period of validity
+The notified body shall have documented procedures in place relating to the periodic reviews of the approved quality management systems or EU technical documentation assessment certificates or EU type-examination certificates.
+Those procedures shall require the manufacturer in question to submit at predefined intervals a summary of changes and of relevant data gathered by the manufacturer’s post-market surveillance system. The notified body shall assess such information and shall pay particular attention to clinical evidence gained from post-market surveillance and PMPF activities undertaken since the previous certification or periodic review, including appropriate updates to manufacturers' performance evaluation reports, without repeating assessments already conducted.
+The notified body shall have documented procedures in place relating to the extension of the period of validity of a certificate in cases where it has exceptionally limited the period of validity. Those procedures shall require the manufacturer to submit prior to the expiry of the certificate the data or documentation specified by the notified body to enable it to decide about the extension of the period of validity of the certificate.’;
+(6)Annex IX is amended as follows:
+(a)in Section 2.3., the third and fourth paragraphs are replaced by the following:
+‘Moreover, in the case of class B and class C devices, the quality management system assessment shall be accompanied by the assessment of the technical documentation, as referred to in Annexes II and III, as specified in Sections 4.3. to 4.8., for a representative device selected as follows:
+–for class B devices, one device;
+–for class C devices, one device per generic device group.
+In choosing the representative device, the notified body shall apply a risk-based approach, taking into account the principle of proportionality and in particular, the novelty of the technology, the novelty of the analyte and/or marker being detected, the potential impact on the patient and standard medical practice, similarities in design, technology, manufacturing and, where applicable, sterilisation methods, the intended purpose, the application by the manufacturer of harmonised standards or CS for the device and the results of any previous relevant assessments that have been carried out in accordance with this Regulation. The notified body in question shall document its rationale for the representative device taken.
+The notified body may include a ‘for-cause’ assessment of the technical documentation of additional representative devices on duly justified grounds identified during the quality management system assessment.
+If the quality management system and the technical documentation of the assessed representative device conforms to the relevant provisions of this Regulation, the notified body shall issue an EU quality management system certificate. The notified body shall notify the manufacturer of its decision to issue the certificate. The decision shall contain the conclusions of the audit and a reasoned report.’;
+(b)in Section 3.2., the second indent is replaced by the following:
+–‘the documentation on any findings and conclusions resulting from the application of the post-market surveillance plan, including the PMPF plan, for the representative devices, and of the provisions on vigilance set out in Articles 82 to 87,’;
+(c)Section 3.3. is replaced by the following:
+‘3.3.Notified bodies shall periodically carry out appropriate audits and assessments to make sure that the manufacturer in question applies the approved quality management system and the post-market surveillance plan. Those audits and assessments shall include audits on the premises of the manufacturer and, if appropriate, of the manufacturer's suppliers and/or subcontractors. On justified grounds, the audit may be conducted remotely instead of on-site. The notified body shall, where necessary, carry out or ask for tests in order to check that the quality management system is working properly. It shall provide the manufacturer with a surveillance audit report and, if a test has been carried out, with a test report.
+The notified body shall carry out the surveillance audits and assessments once every 12 months. However, where justified in light of the results of previous surveillance audits and assessments, and in the absence of any concerns resulting from data from post-market surveillance or vigilance, the notified body shall carry out the surveillance audits and assessments only once every 24 months.’;
+(d)Section 3.4. is amended as follows:
+(i)the first paragraph is replaced by the following:
+‘3.4.The notified body shall perform audits, at short notice or unannounced, on the site of the manufacturer and, where appropriate, the site of the manufacturer’s suppliers and/or subcontractors, when justified based on concerns related to post-market surveillance or vigilance data or at the request of a competent authority. The short-notice or unannounced audit may be combined with the periodic surveillance assessment referred to in Section 3.3. or be performed in addition to that surveillance assessment.’;
+(ii)in the second paragraph, the first sentence is replaced by the following:
+‘Within the context of such unannounced on-site audits, the notified body may test an adequate sample of the devices produced or an adequate sample from the manufacturing process to verify that the manufactured device is in conformity with the technical documentation.’;
+(iii)in the third paragraph, the first sentence is replaced by the following:
+‘Instead of, or in addition to, the sampling referred to in the second paragraph, the notified body may take samples of devices from the market to verify that the manufactured device is in conformity with the technical documentation.’;
+(e)Section 3.5. is replaced by the following:
+‘3.5.In the case of class B and class C devices, during the surveillance assessment the notified body may include a ‘for-cause’ assessment of the technical documentation of representative devices where the notified body has identified potential concerns on the basis of post-market surveillance data or other duly justified grounds.’;
+(f)Section 3.7. is replaced by the following:
+‘3.7.If the notified body finds a divergence between the sample taken from the devices produced or from the market and the specifications laid down in the technical documentation or the approved design, it shall suspend or withdraw the relevant certificate or impose conditions or limitations on it.’;
+(g)the heading of Section 4 is replaced by the following:
+‘4.Assessment of the technical documentation’;
+(h)in Section 4.2., the second sentence is replaced by the following:
+‘It shall include the technical documentation as referred to in Annexes II and III or a plan for submission of such technical documentation.’;
+(i)in Section 4.4., the second sentence is replaced by the following:
+‘The notified body shall use device reviewers with sufficient clinical expertise and including external clinical experts with direct and current experience relating to the clinical application of the device in question for the purposes of that review.’;
+(j)Section 4.8. is replaced by the following:
+‘4.8.The notified body shall provide the manufacturer with a report on the technical documentation assessment, including a performance evaluation assessment report.’;
+(k)Section 4.9. is amended as follows:
+(i)the second paragraph is deleted;
+(ii)the fourth paragraph is replaced by the following:
+‘The scientific opinion of the EU reference laboratory and any possible updates shall be included in the documentation of the notified body concerning the device. The notified body shall, when making its decision, give due consideration to the views expressed in the scientific opinion of the EU reference laboratory. The notified body shall not deliver the certificate if the scientific opinion of the EU reference laboratory is unfavourable.’;
+(l)in Section 4.10., the first and third sentences are deleted;
+(m)Section 4.12. is amended as follows:
+(i)the third sentence is replaced by the following:
+‘Furthermore, the manufacturer shall make the samples of manufactured batches of devices available to the notified body in accordance with pre-agreed conditions and detailed arrangements which shall include that the manufacturer shall send samples of the manufactured batches of devices to the EU reference laboratory, where such a laboratory has been designated in accordance with Article 100, to carry out appropriate tests.’;
+(ii)the following sentence is added:
+‘Where no EU reference laboratory has been designated in accordance with Article 100, those arrangements may include that the notified body conducts verification of samples or batches by alternative means.’;
+(n)Section 5.1. is amended as follows:
+(i)the heading is replaced by the following:
+‘Assessment of the technical documentation of class B, C and D devices for self-testing’;
+(ii)point (a) is replaced by the following:
+‘(a)The manufacturer of class B, C and D devices for self-testing shall lodge with the notified body an application for the assessment of the technical documentation.’;
+(iii)point (b)(iii) is replaced by the following:
+‘(iii)data showing the suitability of the device in view of its intended purpose for self-testing;’;
+(o)Section 5.2. is amended as follows:
+(i)point (c) is replaced by the following:
+‘(c)The notified body shall, before issuing an EU technical documentation assessment certificate for the companion diagnostic and on the basis of the draft summary of safety and performance and the draft instructions for use, seek a scientific opinion from one of the competent authorities designated by the Member States in accordance with Directive 2001/83/EC or from the EMA, either of which to be referred to in this Section as ‘the medicinal products authority consulted’ depending on which has been consulted under this point, regarding the suitability of the clinical performance of the device in relation to the medicinal product concerned. The assessment of the medicinal products authority consulted shall not repeat the assessment to be performed by the notified body in accordance with this Regulation. Where the medicinal product falls exclusively within the scope of the Annex I to Regulation (EC) No 726/2004 of the European Parliament and of the Council*, the notified body shall seek the opinion of the EMA. If the medicinal product concerned is already authorised, or if an application for its authorisation has been submitted, the notified body shall consult the medicinal products authority, or the EMA, that is responsible for the authorisation.
+_______________
+*Regulation (EC) No 726/2004 of the European Parliament and of the Council of 31 March 2004 laying down Community procedures for the authorisation and supervision of medicinal products for human and veterinary use and establishing a European Medicines Agency (OJ L 136, 30.4.2004, p. 1, ELI: http://data.europa.eu/eli/reg/2004/726/oj).’;
+(ii)in point (d), after the second sentence the following sentences are inserted:
+‘When preparing its opinion, the medicinal products authority consulted may request the notified body, or the manufacturer, to provide within a specific time period additional information necessary for its assessment referred to in point (c). In case of such a request, the time-limit set out in this paragraph shall be suspended until the additional information requested is provided.’;
+(iii)in point (f), the first sentence is replaced by the following:
+‘Before changes affecting the performance and/or the intended purpose and/or the suitability of the clinical performance of the device in relation to the medicinal product concerned are made, the manufacturer shall inform the notified body of the changes.’;
+(iv)the following point (g) is added:
+‘(g)points (c) to (f) shall not apply where the following conditions are met:
+(i)the companion diagnostic has the same intended purpose as another already CE-marked companion diagnostic for which a medicinal products authority issued a favourable opinion in accordance with point (d) or Section 3 of Annex X, point (k)
+(ii)the manufacturer shows equivalent performance to that already CE-marked companion diagnostic.’;
+(7)Annex X is amended as follows:
+(a)Section 2 is amended as follows:
+(i)the third indent is replaced by the following:
+–‘in the case of devices for self-testing, test reports, including results of studies carried out with intended users, and data showing the handling suitability of the device in relation to its intended purpose for self-testing’;
+(ii)the fifth indent is replaced by the following:
+–‘data showing the suitability of the device in relation to its intended purpose for self-testing,’;
+(b)Section 3 is amended as follows:
+(i)point (c) is replaced by the following
+‘(c)review the clinical evidence presented by the manufacturer in the performance evaluation report in accordance with Section 1.3.2 of Annex XIII. The notified body shall use device reviewers with sufficient clinical expertise and, if necessary, use external clinical experts with direct and current experience relating to the clinical application of the device in question for the purposes of that review;’;
+(ii)point (i) is replaced by the following:
+‘(i)draw up an EU type-examination report on the results of the assessments and tests carried out under points (a) to (g), including the performance evaluation assessment report referred to in point (e);’;
+(iii)point (j) is amended as follows:
+(1)the second paragraph is deleted;
+(2)the fourth paragraph is replaced by the following:
+‘The scientific opinion of the EU reference laboratory and any possible updates shall be included in the documentation of the notified body concerning the device. The notified body shall give due consideration to the views expressed in the scientific opinion of the EU reference laboratory, when making its decision. The notified body shall not deliver the certificate if the scientific opinion of the EU reference laboratory is unfavourable;’;
+(iv)point (k) is replaced by the following:
+‘(k)for companion diagnostics, seek the opinion, on the basis of the draft summary of safety and performance and the draft instructions for use, of one of the competent authorities designated by the Member States in accordance with Directive 2001/83/EC or the EMA (either of which to be hereinafter referred to as ‘the medicinal products authority consulted’ depending on which has been consulted under this point) on the suitability of the clinical performance of the device in relation to the medicinal product concerned. The assessment of the medicinal products authority consulted shall not repeat the assessment to be performed by the notified body in accordance with this Regulation. Where the medicinal product falls exclusively within the scope of the Annex I of Regulation (EC) No 726/2004, the notified body shall consult the EMA. If the medicinal product concerned is already authorised, or if an application for its authorisation has been submitted, the notified body shall consult the medicinal products competent authority, or the EMA, that is responsible for the authorisation. The medicinal products authority consulted shall deliver its opinion within 60 days of receipt of all the necessary documentation. This 60-day period may be extended once for a further 60 days on justified grounds. When preparing its opinion, the medicinal products authority consulted may request the notified body, or the manufacturer, to provide within a specific time period additional information necessary for its assessment. In case of such a request, the time-limit set out in this paragraph shall be suspended until the additional information requested is provided. The opinion of the medicinal products authority consulted and any possible update shall be included in the documentation of the notified body concerning the device. The notified body shall give due consideration to the opinion expressed by the medicinal products authority consulted when making its decision. It shall convey its final decision to the medicinal products authority consulted.
+This point shall not apply where the following conditions are met:
+(i)the companion diagnostic has the same intended purpose as another already CE-marked companion diagnostic for which a medicinal products authority issued a favourable opinion in accordance with the previous paragraph or Section 5.2. of Annex IX, point (d);
+(ii)the manufacturer shows equivalent performance to that already CE-marked companion diagnostic; and’
+(v)point (l) is replaced by the following:
+‘(l)draw up the EU type-examination report referred to in point (i) taking into account the scientific opinions provided under points (j) and (k),’
+(c)in Section 4, the second sentence is deleted;
+(d)in Section 5.5., the first sentence is replaced by the following:
+‘Where the changes affect the performance or the intended purpose of a companion diagnostic approved through the EU type-examination certificate or the suitability of its clinical performance in relation to a medicinal product, the notified body shall consult the medicinal products competent authority that was involved in the initial consultation or the EMA.’;
+(8)Annex XI is amended as follows:
+(a)in Section 2, the second sentence is replaced by the following:
+‘By issuing an EU declaration of conformity, the manufacturer shall be deemed to ensure, and to declare, that the device concerned meets the requirements of this Regulation which apply to the device, and in the case of devices that undergo a type examination, conforms to the type described in the EU type-examination certificate.’;
+(b)Section 5.1. is amended as follows:
+(i)the third sentence is replaced by the following:
+‘Furthermore, the manufacturer shall make samples of manufactured devices or batches of devices available to the notified body in accordance with pre-agreed conditions and detailed arrangements which shall include that the manufacturer shall send samples of the manufactured devices or batches of devices to an EU reference laboratory, where such a laboratory has been designated in accordance with Article 100, to carry out appropriate laboratory tests.’;
+(ii)the following sentence is added:
+‘Where no EU reference laboratory has been designated in accordance with Article 100, those arrangements may include that the notified body conducts verification of samples or batches by alternative means.’;
+(9)Annex XII is amended as follows:
+(a)Chapter I is amended as follows:
+(i)in Section 4, point (b) is replaced by the following:
+‘(b)EU quality management system certificates and EU production quality assurance certificates shall include the identification of the devices or groups of devices, the risk classification, and the manufacturing site(s) covered.’;
+(ii)Section 7 is deleted;
+(b)Chapter II is amended as follows:
+(i)Section 6 is replaced by the following:
+‘6.where applicable, date of expiry;’;
+(ii)Section 7is replaced by the following
+‘7.data needed for the unambiguous identification of the device or devices where applicable as specified in Section 4 of Chapter I;’;
+(iii)Section 10 is replaced by the following:
+‘10.reference to relevant CS and, harmonised standards;’;
+(10)Annex XIII is amended as follows:
+(a)Section 1.1. is amended as follows:
+(i)the first and second indents are replaced by the following:
+–‘a specification of the intended purpose of the device as referred to in Section 20.4.1, point (c), of Annex I, including a specification of the analyte or marker to be determined by the device;
+–‘a specification of the characteristics of the device as described in Section 9 of Annex I;’;
+(ii)the third indent is deleted;
+(b)in Section 1.2., the third indent is replaced by the following:
+–‘generate any new or additional data necessary to address outstanding issues; where appropriate this may be supported by computational modelling and in silico testing.’;
+(c)in Section 1.2.1., the second paragraph is replaced by the following:
+‘The scientific validity of the analyte or marker shall be demonstrated and documented in a dedicated section of the performance evaluation report.’;
+(d)in Section 1.2.2., the fourth paragraph is replaced by the following:
+‘Analytical performance shall be demonstrated and documented in a dedicated section of the performance evaluation report.’;
+(e)Section 1.2.3. is replaced by the following:
+‘1.2.3. Demonstration of the clinical performance
+The manufacturer shall demonstrate the clinical performance of the device in relation to all the parameters described in point (b) of Section 9.1. of Annex I, unless any omission can be justified as not applicable.
+Demonstration of the clinical performance of a device shall be based on one or a combination of the following sources:
+–clinical performance studies of the device concerned or of a device for which equivalence to the device concerned can be demonstrated;
+–other studies published in scientific literature on the device concerned or of a device for which equivalence to the device concerned can be demonstrated;
+–other clinical experience published in peer-reviewed scientific literature with the device concerned or a device for which equivalence to the device concerned can be demonstrated;
+–clinically relevant information coming from post-market surveillance, in particular the PMPF;
+–published experience gained by routine diagnostic testing.
+Clinical performance studies shall be performed unless due justification is provided for relying on other sources of clinical performance data.
+Clinical performance shall be demonstrated and documented in a dedicated section of the performance evaluation report.’;
+(f)in Section 1.3.1., the first sentence is replaced by the following:
+‘The manufacturer shall assess all relevant scientific validity, analytical and clinical performance data.’;
+(g)in Section 1.3.2., first paragraph, the second sentence is replaced by the following:
+‘This report shall include an assessment of scientific validity, analytical performance and clinical performance allowing demonstration of sufficient clinical evidence.’;
+(h)Section 1.3.3. is deleted;
+(i)Section 2.3.2., second paragraph, is amended as follows:
+(i)in point (k), the reference to ‘Section 9.1 of Chapter I of Annex I’ is replaced by the reference to ‘Section 9.1 of Annex I’;
+(ii)in point (l), the following sentence is added:
+‘for combined studies, endpoints reporting on the device and medicinal product together may be used;’;
+(iii)point (n) is replaced by the following:
+‘information on use of data from left-over specimen banks, genetic or tissue banks, patient or disease registries etc. with description of reliability and representativity and statistical analysis approach; assurance of relevant method for determining the true clinical status of patient specimens;’;
+(j)Section 3, is replaced by the following:
+‘3. OTHER PERFORMANCE STUDIES
+By analogy, the performance study plan referred to in Section 2.3.2, and the performance study report, referred to in Section 2.3.3, shall be documented for performance studies other than clinical performance studies.’;
+(k)in Section 4, first paragraph, the following sentence is added:
+‘Where PMCF is deemed not applicable, the manufacturer shall provide a justification in the post-market surveillance plan as referred to in Section 1 of Annex III.’;
+(l)Section 6 is replaced by the following:
+‘6.The manufacturer shall analyse the findings of the PMPF and document the results in the performance evaluation report and the technical documentation.’;
+(m)Section 8 is deleted;
+(11)Annex XIV is amended as follows:
+(a)Chapter I is amended as follows:
+(i)Section 1.2. is replaced by the following:
+‘1.2.if different from those in Section 1.1, name, address and contact details of the manufacturer of the device intended for the performance study and, if applicable, of its authorised representative;’;
+(ii)Section 1.5. is replaced by the following
+‘1.5.status of the performance study, such as the first submission, resubmission, substantial modification;’;
+(iii)Section 1.7. is replaced by the following:
+‘1.7.if the application is a resubmission with regard to a device for which an application has been already submitted, the date or dates and reference number or numbers of the earlier application or in the case of substantial modification, reference to the original application.’.

@@ -1,0 +1,21 @@
+{
+  "id": "com-2025-1023",
+  "title": "Proposal for a Regulation amending Regulations (EU) 2017/745 and (EU) 2017/746 as regards simplifying and reducing the burden of the rules on medical devices and in vitro diagnostic medical devices, COM(2025) 1023 final (explanatory memorandum and articles)",
+  "shortTitle": "COM(2025) 1023",
+  "kind": "proposal",
+  "format": "html",
+  "language": "en",
+  "url": "https://publications.europa.eu/resource/cellar/aeac54e6-dbdd-11f0-8da2-01aa75ed71a1.0001.03/DOC_1",
+  "link": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52025PC1023",
+  "retrievedAt": "2026-10-20T22:15:13Z",
+  "sha256": "457104347e61a3eed278e6a93bb48044eac08ebdc50b8ff91b805999774c9cf3",
+  "bytes": 997135,
+  "edition": "COM(2025) 1023 final, Strasbourg, 16.12.2025; procedure 2025/0404(COD)",
+  "notes": "Commission proposal, not law. Used only for the hypothetical 'what if' revision (DECISIONS L4). Fetched from the Publications Office Cellar (XHTML manifestation, DOC_1).",
+  "license": "© European Union, https://eur-lex.europa.eu. Reuse is authorised provided the source is acknowledged (Commission Decision 2011/833/EU).",
+  "extraction": {
+    "tool": "parse5 8.0.1 + htmlToLines",
+    "textSha256": "15cd849b1d3d16ede105dc6b4af2640d1e668bfec61ce80dd39b4d8b663f3447",
+    "lines": 3384
+  }
+}

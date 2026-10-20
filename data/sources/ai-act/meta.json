@@ -1,0 +1,21 @@
+{
+  "id": "ai-act",
+  "title": "Regulation (EU) 2024/1689 of the European Parliament and of the Council of 13 June 2024 laying down harmonised rules on artificial intelligence (Artificial Intelligence Act) (consolidated text)",
+  "shortTitle": "AI Act",
+  "kind": "regulation",
+  "format": "html",
+  "language": "en",
+  "url": "https://publications.europa.eu/resource/cellar/b1730fb2-8f1c-11f1-9262-01aa75ed71a1.0001.03/DOC_1",
+  "link": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:02024R1689-20260727",
+  "retrievedAt": "2026-10-20T22:14:25Z",
+  "sha256": "5e7719f77e8a606b257dc25958ee3222c4383300a5a34270a5b850a2ce8b8715",
+  "bytes": 851286,
+  "edition": "Consolidated text 02024R1689-20260727, version 001.001 (B + M1 = Regulation (EU) 2026/1744, Digital Omnibus on AI)",
+  "notes": "Consolidated version: a documentation tool without legal effect; the authentic texts are those published in the Official Journal. Fetched from the Publications Office Cellar by CELEX (EUR-Lex answers non-browser clients with a bot challenge, DECISIONS D1). Extraction removes the consolidation markers (►M1 … ◄, ▼B; DECISIONS D3).",
+  "license": "© European Union, https://eur-lex.europa.eu. Reuse is authorised provided the source is acknowledged (Commission Decision 2011/833/EU).",
+  "extraction": {
+    "tool": "parse5 8.0.1 + htmlToLines",
+    "textSha256": "ab542cf55de6ba34547bcd0e40c25dd2ed39f825ba997ff82edbb500166b7d31",
+    "lines": 3123
+  }
+}

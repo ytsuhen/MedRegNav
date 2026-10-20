@@ -1,0 +1,53 @@
+{
+  "source": "mdcg-2021-24",
+  "sections": [
+    {
+      "id": "sec-2.1-2.6",
+      "title": "Requirements depending on the class (classification, conformity assessment, clinical evaluation, post-market surveillance, traceability, instructions for use)",
+      "kind": "section",
+      "ref": "Sections 2.1–2.6",
+      "start": {
+        "startsWith": "According to MDR Article 51 devices are divided"
+      },
+      "end": {
+        "line": "3 How to carry out classification"
+      }
+    },
+    {
+      "id": "measuring-function",
+      "title": "Devices with a measuring function",
+      "kind": "section",
+      "ref": "Section 3.1, Devices with a measuring function",
+      "start": {
+        "line": "Devices with a measuring function"
+      },
+      "end": {
+        "line": "Systems and procedure packs"
+      }
+    },
+    {
+      "id": "rule-10",
+      "title": "Rule 10 – Active devices for diagnosis and monitoring",
+      "kind": "rule",
+      "ref": "Rule 10",
+      "start": {
+        "startsWith": "Rule 10 - Active devices for diagnosis and monitoring"
+      },
+      "end": {
+        "startsWith": "Rule 11 – Software intended to provide information"
+      }
+    },
+    {
+      "id": "rule-11",
+      "title": "Rule 11 – Software intended to provide information to inform decisions with diagnosis or therapeutic purposes or software intended to monitor physiological processes",
+      "kind": "rule",
+      "ref": "Rule 11",
+      "start": {
+        "startsWith": "Rule 11 – Software intended to provide information"
+      },
+      "end": {
+        "startsWith": "Rule 12 - Active devices intended to administer"
+      }
+    }
+  ]
+}

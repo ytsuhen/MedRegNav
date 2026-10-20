@@ -1,0 +1,42 @@
+{
+  "source": "mdcg-2020-1",
+  "sections": [
+    {
+      "id": "sec-4.1",
+      "title": "General principles of the MDSW clinical evaluation (MDR) / performance evaluation (IVDR) process — Introduction",
+      "kind": "section",
+      "ref": "Section 4.1",
+      "start": {
+        "line": "4. General principles of the MDSW CLINICAL EVALUATION (MDR) /"
+      },
+      "end": {
+        "line": "4.2."
+      }
+    },
+    {
+      "id": "sec-4.4",
+      "title": "Clinical investigations and clinical performance studies; where demonstration of conformity based on clinical data is not deemed appropriate",
+      "kind": "section",
+      "ref": "Sections 4.4.1–4.4.2",
+      "start": {
+        "line": "4.4.1. Clinical investigations and clinical performance studies"
+      },
+      "end": {
+        "line": "4.5."
+      }
+    },
+    {
+      "id": "sec-4.6",
+      "title": "Continuous update of the clinical evaluation (MDR) / performance evaluation (IVDR)",
+      "kind": "section",
+      "ref": "Section 4.6",
+      "start": {
+        "line": "4.6.",
+        "occurrence": 2
+      },
+      "end": {
+        "startsWith": "Annex I – Methodological principle"
+      }
+    }
+  ]
+}

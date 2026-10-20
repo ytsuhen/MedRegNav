@@ -1,0 +1,5 @@
+# Official source documents and files generated from them: not code, not reviewed as diffs.
+data/sources/** linguist-vendored
+data/sources/*/original.* -diff
+data/sources/*/text.txt linguist-generated
+data/sources/*/sections.json -diff linguist-generated

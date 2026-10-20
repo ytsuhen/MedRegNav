@@ -1,6 +1,8 @@
 // `pnpm mrn <command>`: the command line. All file I/O lives in apps/; @mrn/core stays pure.
 import { argv, exit, stdout } from "node:process";
 import { pathToFileURL } from "node:url";
+import { check, cite } from "./commands/cite.ts";
+import { extract, quote, sections } from "./commands/sources.ts";
 
 export interface Out {
   write(text: string): unknown;
@@ -23,6 +25,31 @@ export const COMMANDS: Record<string, Command> = {
         out.write(`  ${command.usage.padEnd(width)}  ${command.summary}\n`);
       return 0;
     },
+  },
+  extract: {
+    usage: "extract [<source>…|--all]",
+    summary: "original (XHTML/PDF) → data/sources/<id>/text.txt, recorded in meta.json",
+    run: extract,
+  },
+  sections: {
+    usage: "sections [<source>…|--all]",
+    summary: "text.txt + outline.json → sections.json",
+    run: sections,
+  },
+  quote: {
+    usage: "quote <source>[/<section>] [--find <text>|--at a:b]",
+    summary: "show a section (or list sections) and highlight a quote",
+    run: quote,
+  },
+  cite: {
+    usage: "cite [--write] [<file>…]",
+    summary: "pin citations in data files: sha256 + offsets from each quote",
+    run: cite,
+  },
+  check: {
+    usage: "check",
+    summary: "every data check: originals, text, sections, citations",
+    run: check,
   },
 };
 

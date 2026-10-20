@@ -1,14 +1,37 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
-  "vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
-  "files": { "includes": ["**", "!data/sources/*/original.*", "!data/sources/inbox"] },
-  "formatter": { "indentStyle": "space", "lineWidth": 120 },
-  "linter": { "rules": { "preset": "recommended" } },
-  "css": { "parser": { "tailwindDirectives": true } },
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "files": {
+    "includes": ["**", "!data/sources"]
+  },
+  "formatter": {
+    "indentStyle": "space",
+    "lineWidth": 120
+  },
+  "linter": {
+    "rules": {
+      "preset": "recommended"
+    }
+  },
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
+    }
+  },
   "overrides": [
     {
       "includes": ["packages/core/src/**", "apps/web/src/**"],
-      "linter": { "rules": { "correctness": { "noNodejsModules": "error" } } }
+      "linter": {
+        "rules": {
+          "correctness": {
+            "noNodejsModules": "error"
+          }
+        }
+      }
     }
   ]
 }

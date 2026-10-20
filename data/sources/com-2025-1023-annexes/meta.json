@@ -1,0 +1,21 @@
+{
+  "id": "com-2025-1023-annexes",
+  "title": "Annexes to the Proposal for a Regulation amending Regulations (EU) 2017/745 and (EU) 2017/746, COM(2025) 1023 final",
+  "shortTitle": "COM(2025) 1023, Annexes",
+  "kind": "proposal",
+  "format": "html",
+  "language": "en",
+  "url": "https://publications.europa.eu/resource/cellar/aeac54e6-dbdd-11f0-8da2-01aa75ed71a1.0001.03/DOC_2",
+  "link": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52025PC1023",
+  "retrievedAt": "2026-10-20T22:15:14Z",
+  "sha256": "0cc3498bf99379e3bf69e0f89444ba54e66ace44b25d2b55e547275f22267d84",
+  "bytes": 222795,
+  "edition": "COM(2025) 1023 final, Annexes, Strasbourg, 16.12.2025; procedure 2025/0404(COD)",
+  "notes": "Commission proposal, not law. Annex I amends Annex VIII of the MDR, including Section 6.3 (Rule 11). Fetched from the Publications Office Cellar (XHTML manifestation, DOC_2).",
+  "license": "© European Union, https://eur-lex.europa.eu. Reuse is authorised provided the source is acknowledged (Commission Decision 2011/833/EU).",
+  "extraction": {
+    "tool": "parse5 8.0.1 + htmlToLines",
+    "textSha256": "cf9108af7890ac859dec38fac2ad5212475ac68f6a0d9473781730cfa16f1209",
+    "lines": 761
+  }
+}
