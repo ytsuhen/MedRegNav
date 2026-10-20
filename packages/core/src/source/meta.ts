@@ -8,7 +8,7 @@ export const SourceMetaSchema = z.strictObject({
   id: z.string().regex(/^[a-z0-9][a-z0-9-]*$/),
   title: z.string().min(1),
   shortTitle: z.string().min(1).describe("How the UI names the source, e.g. 'MDR', 'MDCG 2019-11 rev.1'"),
-  kind: z.enum(["regulation", "guidance", "proposal"]),
+  kind: z.enum(["regulation", "decision", "guidance", "proposal", "webpage"]),
   format: z.enum(["html", "pdf"]),
   language: z.literal("en"),
   url: z.url().describe("The address the original was downloaded from"),

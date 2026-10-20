@@ -1,0 +1,2697 @@
+{
+  "market": "EU",
+  "obligations": [
+    {
+      "id": "classify-justify",
+      "branch": "class",
+      "title": {
+        "uk": "Визначити клас і обґрунтувати правила класифікації",
+        "en": "Determine the class and justify the classification rules"
+      },
+      "summary": {
+        "uk": "Клас визначає виробник за додатком VIII з огляду на призначення; клас і обґрунтування застосованих правил мають бути в техдокументації.",
+        "en": "The manufacturer classifies the device under Annex VIII by its intended purpose; the class and the justification of the rules applied go into the technical documentation."
+      },
+      "when": {
+        "result": "eu-mdr-classification",
+        "in": ["I", "IIa", "IIb", "III"]
+      },
+      "effective": {
+        "from": "2021-05-26",
+        "citations": [
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "It shall apply from 26 May 2021.",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 200,
+            "end": 232
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "Розділ техдокументації: клас і застосовані правила (правило 11, 3.3, 3.5) з обґрунтуванням",
+          "en": "Technical documentation section: the class and the rules applied (Rule 11, 3.3, 3.5) with a justification"
+        },
+        "standards": [],
+        "who": {
+          "uk": "Виробник",
+          "en": "Manufacturer"
+        }
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "art-51",
+          "quote": "Devices shall be divided into classes I, IIa, IIb and III, taking into account the intended purpose of the devices and their inherent risks. Classification shall be carried out in accordance with Annex VIII.",
+          "sha256": "8c79563e0606d3fd59bf802c949c325bf16be6b941bb9e07f9d3f85f9bfc13fb",
+          "start": 40,
+          "end": 247
+        }
+      ],
+      "guidance": [
+        {
+          "source": "mdcg-2021-24",
+          "section": "sec-2.1-2.6",
+          "quote": "to be drawn up by the manufacturer must include the risk class of the device and the justification for the classification rule(s) applied in accordance with Annex VIII of the MDR.",
+          "sha256": "2d9ace73cc96e23bafe3f0fb8315a6d74563ec934cf26ca15da8a41f37c53dd8",
+          "start": 469,
+          "end": 648
+        }
+      ]
+    },
+    {
+      "id": "class-dispute",
+      "branch": "class",
+      "title": {
+        "uk": "Спір про клас з нотифікованим органом — до компетентного органу",
+        "en": "A classification dispute with the notified body goes to the competent authority"
+      },
+      "summary": {
+        "uk": "Якщо виробник і нотифікований орган розходяться щодо застосування додатка VIII, рішення ухвалює компетентний орган держави-члена виробника.",
+        "en": "If the manufacturer and the notified body disagree on applying Annex VIII, the competent authority of the manufacturer's Member State decides."
+      },
+      "when": {
+        "result": "eu-mdr-notified-body",
+        "in": ["full", "limited"]
+      },
+      "effective": {
+        "from": "2021-05-26",
+        "citations": [
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "It shall apply from 26 May 2021.",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 200,
+            "end": 232
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "Звернення до компетентного органу держави-члена, де зареєстрований виробник",
+          "en": "A referral to the competent authority of the Member State where the manufacturer is registered"
+        },
+        "standards": [],
+        "who": {
+          "uk": "Виробник",
+          "en": "Manufacturer"
+        }
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "art-51",
+          "quote": "Any dispute between the manufacturer and the notified body concerned, arising from the application of Annex VIII, shall be referred for a decision to the competent authority of the Member State in which the manufacturer has its registered place of business.",
+          "sha256": "8c79563e0606d3fd59bf802c949c325bf16be6b941bb9e07f9d3f85f9bfc13fb",
+          "start": 251,
+          "end": 508
+        }
+      ]
+    },
+    {
+      "id": "route-iii",
+      "branch": "market",
+      "title": {
+        "uk": "Оцінка відповідності для класу III",
+        "en": "Conformity assessment for class III"
+      },
+      "summary": {
+        "uk": "Нотифікований орган оцінює систему якості й техдокументацію (додаток IX) або експертизу типу разом з перевіркою продукції (додатки X і XI).",
+        "en": "A notified body assesses the quality management system and the technical documentation (Annex IX), or type examination with product conformity verification (Annexes X and XI)."
+      },
+      "when": {
+        "result": "eu-mdr-classification",
+        "in": ["III"]
+      },
+      "effective": {
+        "from": "2021-05-26",
+        "citations": [
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "It shall apply from 26 May 2021.",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 200,
+            "end": 232
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "Сертифікати ЄС нотифікованого органу (додаток XII) за додатком IX або X + XI",
+          "en": "EU certificates of the notified body (Annex XII) under Annex IX, or X + XI"
+        },
+        "standards": ["iso-13485"],
+        "who": {
+          "uk": "Виробник; оцінює нотифікований орган",
+          "en": "Manufacturer; assessed by the notified body"
+        }
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "art-52",
+          "quote": "Manufacturers of class III devices, other than custom-made or investigational devices, shall be subject to a conformity assessment as specified in Annex IX. Alternatively, the manufacturer may choose to apply a conformity assessment as specified in Annex X coupled with a conformity assessment as specified in Annex XI.",
+          "sha256": "3c60ee5b21009be048ae7992d592229168eac2900d35e28d08e615f9c87c9974",
+          "start": 515,
+          "end": 834
+        }
+      ]
+    },
+    {
+      "id": "route-iib",
+      "branch": "market",
+      "title": {
+        "uk": "Оцінка відповідності для класу IIb",
+        "en": "Conformity assessment for class IIb"
+      },
+      "summary": {
+        "uk": "Нотифікований орган оцінює систему якості (додаток IX, глави I і III) і техдокументацію щонайменше одного репрезентативного виробу на групу.",
+        "en": "A notified body assesses the quality management system (Annex IX, Chapters I and III) and the technical documentation of at least one representative device per generic device group."
+      },
+      "when": {
+        "result": "eu-mdr-classification",
+        "in": ["IIb"]
+      },
+      "effective": {
+        "from": "2021-05-26",
+        "citations": [
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "It shall apply from 26 May 2021.",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 200,
+            "end": 232
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "Сертифікати ЄС нотифікованого органу за додатком IX (або X + XI)",
+          "en": "EU certificates of the notified body under Annex IX (or X + XI)"
+        },
+        "standards": ["iso-13485"],
+        "who": {
+          "uk": "Виробник; оцінює нотифікований орган",
+          "en": "Manufacturer; assessed by the notified body"
+        }
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "art-52",
+          "quote": "Manufacturers of class IIb devices, other than custom-made or investigational devices, shall be subject to a conformity assessment as specified in Chapters I and III of Annex IX, and including an assessment of the technical documentation as specified in Section 4 of that Annex of at least one representative device per generic device group.",
+          "sha256": "3c60ee5b21009be048ae7992d592229168eac2900d35e28d08e615f9c87c9974",
+          "start": 838,
+          "end": 1179
+        },
+        {
+          "source": "mdr",
+          "section": "art-52",
+          "quote": "Alternatively, the manufacturer may choose to apply a conformity assessment based on type examination as specified in Annex X coupled with a conformity assessment based on product conformity verification as specified in Annex XI.",
+          "sha256": "3c60ee5b21009be048ae7992d592229168eac2900d35e28d08e615f9c87c9974",
+          "start": 1925,
+          "end": 2154
+        }
+      ]
+    },
+    {
+      "id": "route-iia",
+      "branch": "market",
+      "title": {
+        "uk": "Оцінка відповідності для класу IIa",
+        "en": "Conformity assessment for class IIa"
+      },
+      "summary": {
+        "uk": "Нотифікований орган оцінює систему якості (додаток IX, глави I і III) і техдокументацію щонайменше одного репрезентативного виробу на категорію; або техдокументація з перевіркою продукції за додатком XI.",
+        "en": "A notified body assesses the quality management system (Annex IX, Chapters I and III) and the technical documentation of at least one representative device per category; or technical documentation with Annex XI product conformity verification."
+      },
+      "when": {
+        "result": "eu-mdr-classification",
+        "in": ["IIa"]
+      },
+      "effective": {
+        "from": "2021-05-26",
+        "citations": [
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "It shall apply from 26 May 2021.",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 200,
+            "end": 232
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "Сертифікати ЄС нотифікованого органу за додатком IX (або II–III + XI)",
+          "en": "EU certificates of the notified body under Annex IX (or II–III + XI)"
+        },
+        "standards": ["iso-13485"],
+        "who": {
+          "uk": "Виробник; оцінює нотифікований орган",
+          "en": "Manufacturer; assessed by the notified body"
+        }
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "art-52",
+          "quote": "Manufacturers of class IIa devices, other than custom-made or investigational devices, shall be subject to a conformity assessment as specified in Chapters I and III of Annex IX, and including an assessment of the technical documentation as specified in Section 4 of that Annex of at least one representative device for each category of devices.",
+          "sha256": "3c60ee5b21009be048ae7992d592229168eac2900d35e28d08e615f9c87c9974",
+          "start": 2715,
+          "end": 3060
+        },
+        {
+          "source": "mdr",
+          "section": "art-52",
+          "quote": "Alternatively, the manufacturer may choose to draw up the technical documentation set out in Annexes II and III coupled with a conformity assessment as specified in Section 10 or Section 18 of Annex XI.",
+          "sha256": "3c60ee5b21009be048ae7992d592229168eac2900d35e28d08e615f9c87c9974",
+          "start": 3061,
+          "end": 3263
+        }
+      ]
+    },
+    {
+      "id": "route-i",
+      "branch": "market",
+      "title": {
+        "uk": "Клас I: самодекларація",
+        "en": "Class I: self-declaration"
+      },
+      "summary": {
+        "uk": "Без нотифікованого органу: виробник складає техдокументацію і декларацію відповідності.",
+        "en": "No notified body: the manufacturer draws up the technical documentation and the declaration of conformity."
+      },
+      "when": {
+        "result": "eu-mdr-notified-body",
+        "in": ["none"]
+      },
+      "effective": {
+        "from": "2021-05-26",
+        "citations": [
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "It shall apply from 26 May 2021.",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 200,
+            "end": 232
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "Техдокументація (додатки II і III) і декларація відповідності ЄС",
+          "en": "Technical documentation (Annexes II and III) and the EU declaration of conformity"
+        },
+        "standards": [],
+        "who": {
+          "uk": "Виробник",
+          "en": "Manufacturer"
+        }
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "art-52",
+          "quote": "Manufacturers of class I devices, other than custom-made or investigational devices, shall declare the conformity of their products by issuing the EU declaration of conformity referred to in Article 19 after drawing up the technical documentation set out in Annexes II and III.",
+          "sha256": "3c60ee5b21009be048ae7992d592229168eac2900d35e28d08e615f9c87c9974",
+          "start": 3394,
+          "end": 3671
+        }
+      ]
+    },
+    {
+      "id": "route-im",
+      "branch": "market",
+      "title": {
+        "uk": "Клас I з функцією вимірювання: нотифікований орган для метрології",
+        "en": "Class I with a measuring function: a notified body for metrology"
+      },
+      "summary": {
+        "uk": "Процедура за додатком IX (глави I і III) або XI (частина A), але нотифікований орган оцінює лише відповідність метрологічним вимогам.",
+        "en": "The Annex IX (Chapters I and III) or Annex XI (Part A) procedure, with the notified body assessing only conformity with the metrological requirements."
+      },
+      "when": {
+        "result": "eu-mdr-notified-body",
+        "in": ["limited"]
+      },
+      "effective": {
+        "from": "2021-05-26",
+        "citations": [
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "It shall apply from 26 May 2021.",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 200,
+            "end": 232
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "Сертифікат нотифікованого органу щодо метрологічних аспектів",
+          "en": "A notified body certificate on the metrological aspects"
+        },
+        "standards": [],
+        "who": {
+          "uk": "Виробник; оцінює нотифікований орган",
+          "en": "Manufacturer; assessed by the notified body"
+        }
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "art-52",
+          "quote": "If those devices are placed on the market in sterile condition, have a measuring function or are reusable surgical instruments, the manufacturer shall apply the procedures set out in Chapters I and III of Annex IX, or in Part A of Annex XI.",
+          "sha256": "3c60ee5b21009be048ae7992d592229168eac2900d35e28d08e615f9c87c9974",
+          "start": 3672,
+          "end": 3912
+        },
+        {
+          "source": "mdr",
+          "section": "art-52",
+          "quote": "in the case of devices with a measuring function, to the aspects relating to the conformity of the devices with the metrological requirements;",
+          "sha256": "3c60ee5b21009be048ae7992d592229168eac2900d35e28d08e615f9c87c9974",
+          "start": 4157,
+          "end": 4299
+        }
+      ]
+    },
+    {
+      "id": "declaration",
+      "branch": "market",
+      "title": {
+        "uk": "Декларація відповідності ЄС",
+        "en": "EU declaration of conformity"
+      },
+      "summary": {
+        "uk": "Після успішної оцінки відповідності виробник складає й оновлює декларацію за змістом додатка IV і бере відповідальність за відповідність.",
+        "en": "After a successful conformity assessment the manufacturer draws up and keeps updating the declaration with the content of Annex IV and takes responsibility for compliance."
+      },
+      "when": {
+        "result": "eu-mdr-classification",
+        "in": ["I", "IIa", "IIb", "III"]
+      },
+      "effective": {
+        "from": "2021-05-26",
+        "citations": [
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "It shall apply from 26 May 2021.",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 200,
+            "end": 232
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "Декларація відповідності ЄС зі змістом за додатком IV і Basic UDI-DI",
+          "en": "The EU declaration of conformity with the Annex IV content and the Basic UDI-DI"
+        },
+        "standards": [],
+        "who": {
+          "uk": "Виробник",
+          "en": "Manufacturer"
+        }
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "art-19",
+          "quote": "The EU declaration of conformity shall state that the requirements specified in this Regulation have been fulfilled in relation to the device that is covered. The manufacturer shall continuously update the EU declaration of conformity.",
+          "sha256": "706d5a81891f116aba4ed7c9a01618db9157d9a95f631410a1b3fcc8a2d4d2de",
+          "start": 43,
+          "end": 278
+        },
+        {
+          "source": "mdr",
+          "section": "art-19",
+          "quote": "By drawing up the EU declaration of conformity, the manufacturer shall assume responsibility for compliance with the requirements of this Regulation and all other Union legislation applicable to the device.",
+          "sha256": "706d5a81891f116aba4ed7c9a01618db9157d9a95f631410a1b3fcc8a2d4d2de",
+          "start": 1027,
+          "end": 1233
+        },
+        {
+          "source": "mdr",
+          "section": "art-27",
+          "quote": "The Basic UDI-DI, as defined in Part C of Annex VI, of the device shall appear on the EU declaration of conformity referred to in Article 19.",
+          "sha256": "df3e1d7177d7a5d0e7626f3a051acdc18f5932d4bf2da3fe8bfe2acabab7316c",
+          "start": 3392,
+          "end": 3533
+        }
+      ]
+    },
+    {
+      "id": "ce-marking",
+      "branch": "market",
+      "title": {
+        "uk": "Знак CE",
+        "en": "CE marking"
+      },
+      "summary": {
+        "uk": "Знак CE — до розміщення на ринку, також в інструкції з використання; для класів з нотифікованим органом — з його ідентифікаційним номером.",
+        "en": "The CE marking before placing on the market, also in the instructions for use; for classes with a notified body, followed by its identification number."
+      },
+      "when": {
+        "result": "eu-mdr-classification",
+        "in": ["I", "IIa", "IIb", "III"]
+      },
+      "effective": {
+        "from": "2021-05-26",
+        "citations": [
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "It shall apply from 26 May 2021.",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 200,
+            "end": 232
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "Знак CE в інструкції (і на екрані чи упаковці); для IIa і вище — з номером нотифікованого органу",
+          "en": "The CE marking in the instructions (and on screen or packaging); for IIa and above with the notified body's number"
+        },
+        "standards": [],
+        "who": {
+          "uk": "Виробник",
+          "en": "Manufacturer"
+        }
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "art-20",
+          "quote": "Devices, other than custom-made or investigational devices, considered to be in conformity with the requirements of this Regulation shall bear the CE marking of conformity, as presented in Annex V.",
+          "sha256": "2ef1691cc3334976890eb833dd8bf5dce8a0114b5b89015487b25daa38b27a29",
+          "start": 39,
+          "end": 236
+        },
+        {
+          "source": "mdr",
+          "section": "art-20",
+          "quote": "The CE marking shall also appear in any instructions for use and on any sales packaging.",
+          "sha256": "2ef1691cc3334976890eb833dd8bf5dce8a0114b5b89015487b25daa38b27a29",
+          "start": 601,
+          "end": 689
+        },
+        {
+          "source": "mdr",
+          "section": "art-20",
+          "quote": "Where applicable, the CE marking shall be followed by the identification number of the notified body responsible for the conformity assessment procedures set out in Article 52.",
+          "sha256": "2ef1691cc3334976890eb833dd8bf5dce8a0114b5b89015487b25daa38b27a29",
+          "start": 857,
+          "end": 1033
+        }
+      ]
+    },
+    {
+      "id": "udi-assign",
+      "branch": "market",
+      "title": {
+        "uk": "Присвоїти UDI програмному виробу",
+        "en": "Assign a UDI to the software device"
+      },
+      "summary": {
+        "uk": "UDI присвоюється на рівні системи ПЗ; зміна продуктивності, безпеки, призначення чи інтерпретації даних потребує нового UDI-DI, дрібні ревізії — нового UDI-PI.",
+        "en": "The UDI is assigned at the system level of the software; a change of performance, safety, intended use or interpretation of data needs a new UDI-DI, minor revisions a new UDI-PI."
+      },
+      "when": {
+        "result": "eu-mdr-classification",
+        "in": ["I", "IIa", "IIb", "III"]
+      },
+      "effective": {
+        "from": "2021-05-26",
+        "citations": [
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "It shall apply from 26 May 2021.",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 200,
+            "end": 232
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "UDI-DI і UDI-PI за правилами видавця UDI; перелік присвоєних UDI в техдокументації",
+          "en": "UDI-DI and UDI-PI under the issuing entity's rules; the list of assigned UDIs in the technical documentation"
+        },
+        "standards": [],
+        "who": {
+          "uk": "Виробник",
+          "en": "Manufacturer"
+        }
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "art-27",
+          "quote": "Before placing a device, other than a custom-made device, on the market, the manufacturer shall assign to the device and, if applicable, to all higher levels of packaging, a UDI created in compliance with the rules of the issuing entity designated by the Commission in accordance with paragraph 2.",
+          "sha256": "df3e1d7177d7a5d0e7626f3a051acdc18f5932d4bf2da3fe8bfe2acabab7316c",
+          "start": 2495,
+          "end": 2792
+        },
+        {
+          "source": "mdr",
+          "section": "annex-vi-c-6.5",
+          "quote": "The UDI shall be assigned at the system level of the software.",
+          "sha256": "55c9de3ebf1c8644febe0db4c0d8befbefd75327dddcd0717603a6aaed84aa73",
+          "start": 52,
+          "end": 114
+        },
+        {
+          "source": "mdr",
+          "section": "annex-vi-c-6.5",
+          "quote": "A new UDI-DI shall be required whenever there is a modification that changes:",
+          "sha256": "55c9de3ebf1c8644febe0db4c0d8befbefd75327dddcd0717603a6aaed84aa73",
+          "start": 395,
+          "end": 472
+        },
+        {
+          "source": "mdr",
+          "section": "annex-vi-c-6.5",
+          "quote": "Minor software revisions shall require a new UDI-PI and not a new UDI-DI.",
+          "sha256": "55c9de3ebf1c8644febe0db4c0d8befbefd75327dddcd0717603a6aaed84aa73",
+          "start": 760,
+          "end": 833
+        }
+      ]
+    },
+    {
+      "id": "udi-carrier-iii",
+      "branch": "market",
+      "title": {
+        "uk": "Носій UDI для ПЗ (клас III)",
+        "en": "UDI carrier for software (class III)"
+      },
+      "summary": {
+        "uk": "Для ПЗ UDI показують на легкодоступному екрані звичайним текстом (вікно «Про програму» чи стартовий екран); ПЗ без інтерфейсу передає UDI через API.",
+        "en": "For software the UDI is shown on a readily accessible screen in plain text (an 'about' window or the start-up screen); software without a user interface transmits it through an API."
+      },
+      "when": {
+        "result": "eu-mdr-classification",
+        "in": ["III"]
+      },
+      "effective": {
+        "from": "2021-05-26",
+        "citations": [
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "for implantable devices and for class III devices Article 27(4) shall apply from 26 May 2021.",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 4842,
+            "end": 4935
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "UDI у вікні «Про програму» чи на стартовому екрані; для ПЗ без інтерфейсу — через API",
+          "en": "The UDI in the 'about' window or on the start-up screen; through an API for software without a user interface"
+        },
+        "standards": [],
+        "who": {
+          "uk": "Виробник",
+          "en": "Manufacturer"
+        }
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "art-27",
+          "quote": "UDI carriers shall be placed on the label of the device and on all higher levels of packaging.",
+          "sha256": "df3e1d7177d7a5d0e7626f3a051acdc18f5932d4bf2da3fe8bfe2acabab7316c",
+          "start": 3087,
+          "end": 3181
+        },
+        {
+          "source": "mdr",
+          "section": "annex-vi-c-6.5",
+          "quote": "the UDI shall be provided on a readily accessible screen for the user in an easily-readable plain-text format, such as an ’about’ file, or included on the start-up screen;",
+          "sha256": "55c9de3ebf1c8644febe0db4c0d8befbefd75327dddcd0717603a6aaed84aa73",
+          "start": 1470,
+          "end": 1641
+        },
+        {
+          "source": "mdr",
+          "section": "annex-vi-c-6.5",
+          "quote": "software lacking a user interface such as middleware for image conversion, shall be capable of transmitting the UDI through an application programming interface (API);",
+          "sha256": "55c9de3ebf1c8644febe0db4c0d8befbefd75327dddcd0717603a6aaed84aa73",
+          "start": 1646,
+          "end": 1813
+        }
+      ]
+    },
+    {
+      "id": "udi-carrier-iia-iib",
+      "branch": "market",
+      "title": {
+        "uk": "Носій UDI для ПЗ (класи IIa і IIb)",
+        "en": "UDI carrier for software (classes IIa and IIb)"
+      },
+      "summary": {
+        "uk": "Для ПЗ UDI показують на легкодоступному екрані звичайним текстом (вікно «Про програму» чи стартовий екран); ПЗ без інтерфейсу передає UDI через API.",
+        "en": "For software the UDI is shown on a readily accessible screen in plain text (an 'about' window or the start-up screen); software without a user interface transmits it through an API."
+      },
+      "when": {
+        "result": "eu-mdr-classification",
+        "in": ["IIa", "IIb"]
+      },
+      "effective": {
+        "from": "2023-05-26",
+        "citations": [
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "For class IIa and class IIb devices Article 27(4) shall apply from 26 May 2023.",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 4936,
+            "end": 5015
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "UDI у вікні «Про програму» чи на стартовому екрані; для ПЗ без інтерфейсу — через API",
+          "en": "The UDI in the 'about' window or on the start-up screen; through an API for software without a user interface"
+        },
+        "standards": [],
+        "who": {
+          "uk": "Виробник",
+          "en": "Manufacturer"
+        }
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "art-27",
+          "quote": "UDI carriers shall be placed on the label of the device and on all higher levels of packaging.",
+          "sha256": "df3e1d7177d7a5d0e7626f3a051acdc18f5932d4bf2da3fe8bfe2acabab7316c",
+          "start": 3087,
+          "end": 3181
+        },
+        {
+          "source": "mdr",
+          "section": "annex-vi-c-6.5",
+          "quote": "the UDI shall be provided on a readily accessible screen for the user in an easily-readable plain-text format, such as an ’about’ file, or included on the start-up screen;",
+          "sha256": "55c9de3ebf1c8644febe0db4c0d8befbefd75327dddcd0717603a6aaed84aa73",
+          "start": 1470,
+          "end": 1641
+        },
+        {
+          "source": "mdr",
+          "section": "annex-vi-c-6.5",
+          "quote": "software lacking a user interface such as middleware for image conversion, shall be capable of transmitting the UDI through an application programming interface (API);",
+          "sha256": "55c9de3ebf1c8644febe0db4c0d8befbefd75327dddcd0717603a6aaed84aa73",
+          "start": 1646,
+          "end": 1813
+        }
+      ]
+    },
+    {
+      "id": "udi-carrier-i",
+      "branch": "market",
+      "title": {
+        "uk": "Носій UDI для ПЗ (клас I)",
+        "en": "UDI carrier for software (class I)"
+      },
+      "summary": {
+        "uk": "Для ПЗ UDI показують на легкодоступному екрані звичайним текстом (вікно «Про програму» чи стартовий екран); ПЗ без інтерфейсу передає UDI через API.",
+        "en": "For software the UDI is shown on a readily accessible screen in plain text (an 'about' window or the start-up screen); software without a user interface transmits it through an API."
+      },
+      "when": {
+        "result": "eu-mdr-classification",
+        "in": ["I"]
+      },
+      "effective": {
+        "from": "2025-05-26",
+        "citations": [
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "For class I devices Article 27(4) shall apply from 26 May 2025;",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 5016,
+            "end": 5079
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "UDI у вікні «Про програму» чи на стартовому екрані; для ПЗ без інтерфейсу — через API",
+          "en": "The UDI in the 'about' window or on the start-up screen; through an API for software without a user interface"
+        },
+        "standards": [],
+        "who": {
+          "uk": "Виробник",
+          "en": "Manufacturer"
+        }
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "art-27",
+          "quote": "UDI carriers shall be placed on the label of the device and on all higher levels of packaging.",
+          "sha256": "df3e1d7177d7a5d0e7626f3a051acdc18f5932d4bf2da3fe8bfe2acabab7316c",
+          "start": 3087,
+          "end": 3181
+        },
+        {
+          "source": "mdr",
+          "section": "annex-vi-c-6.5",
+          "quote": "the UDI shall be provided on a readily accessible screen for the user in an easily-readable plain-text format, such as an ’about’ file, or included on the start-up screen;",
+          "sha256": "55c9de3ebf1c8644febe0db4c0d8befbefd75327dddcd0717603a6aaed84aa73",
+          "start": 1470,
+          "end": 1641
+        },
+        {
+          "source": "mdr",
+          "section": "annex-vi-c-6.5",
+          "quote": "software lacking a user interface such as middleware for image conversion, shall be capable of transmitting the UDI through an application programming interface (API);",
+          "sha256": "55c9de3ebf1c8644febe0db4c0d8befbefd75327dddcd0717603a6aaed84aa73",
+          "start": 1646,
+          "end": 1813
+        }
+      ]
+    },
+    {
+      "id": "eudamed-actor",
+      "branch": "market",
+      "title": {
+        "uk": "Зареєструватися в EUDAMED і отримати SRN",
+        "en": "Register in EUDAMED and obtain an SRN"
+      },
+      "summary": {
+        "uk": "До розміщення виробу на ринку виробник реєструється в електронній системі (модуль Actor) і отримує єдиний реєстраційний номер; обов'язкове використання модуля — з 28 травня 2026 року.",
+        "en": "Before placing a device on the market the manufacturer registers in the electronic system (Actor module) and obtains a single registration number; mandatory use of the module from 28 May 2026."
+      },
+      "when": {
+        "result": "eu-mdr-classification",
+        "in": ["I", "IIa", "IIb", "III"]
+      },
+      "effective": {
+        "from": "2026-05-28",
+        "citations": [
+          {
+            "source": "ec-eudamed-actor",
+            "section": "mandatory",
+            "quote": "as from 28 May 2026 the Actor module is mandatory to use.",
+            "sha256": "abcbcb95eb68caf9c3a6e7992f4fa3347f4b555496d9bc1235c1e4f0836aa8a3",
+            "start": 362,
+            "end": 419
+          },
+          {
+            "source": "ec-eudamed-actor",
+            "section": "news-first-modules",
+            "quote": "The first four modules of EUDAMED became mandatory since 28 May 2026",
+            "sha256": "3bd5ed7839c14057693766d8ef05b9eb1f57ace5031e1efa54fc6fdb39f949d7",
+            "start": 0,
+            "end": 68
+          },
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "the obligations and requirements that relate to any of the electronic systems referred to in Article 33(2) shall apply from the date corresponding to 6 months from the date of publication of the notice referred to in Article 34(3)",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 737,
+            "end": 967
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "Реєстрація в модулі Actor EUDAMED і SRN",
+          "en": "Registration in the EUDAMED Actor module and the SRN"
+        },
+        "standards": [],
+        "who": {
+          "uk": "Виробник",
+          "en": "Manufacturer"
+        }
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "art-31",
+          "quote": "Before placing a device, other than a custom-made device, on the market, manufacturers, authorised representatives and importers shall, in order to register, submit to the electronic system referred to in Article 30 the information referred to in Section 1 of Part A of Annex VI",
+          "sha256": "1a36f9590beddca711061ffe633697b4bbd300e5e9940c09f1df99531981ca42",
+          "start": 86,
+          "end": 364
+        },
+        {
+          "source": "mdr",
+          "section": "art-31",
+          "quote": "After having verified the data entered pursuant to paragraph 1, the competent authority shall obtain a single registration number (’SRN’) from the electronic system referred to in Article 30 and issue it to the manufacturer, the authorised representative or the importer.",
+          "sha256": "1a36f9590beddca711061ffe633697b4bbd300e5e9940c09f1df99531981ca42",
+          "start": 713,
+          "end": 984
+        },
+        {
+          "source": "decision-2025-2371",
+          "section": "art-1",
+          "quote": "the electronic system on registration of economic operators referred to in Article 30 of Regulation (EU) 2017/745",
+          "sha256": "4ce35cfb952483fee672d4bb831c5b07dce224f61b2d37a513e65a004c649d5f",
+          "start": 267,
+          "end": 380
+        }
+      ]
+    },
+    {
+      "id": "eudamed-device",
+      "branch": "market",
+      "title": {
+        "uk": "Зареєструвати виріб: Basic UDI-DI у базі UDI",
+        "en": "Register the device: the Basic UDI-DI in the UDI database"
+      },
+      "summary": {
+        "uk": "До розміщення на ринку виробник присвоює Basic UDI-DI і подає його з основними даними до бази UDI; обов'язкове використання модуля — з 28 травня 2026 року.",
+        "en": "Before placing on the market the manufacturer assigns a Basic UDI-DI and submits it with the core data to the UDI database; mandatory use of the module from 28 May 2026."
+      },
+      "when": {
+        "result": "eu-mdr-classification",
+        "in": ["I", "IIa", "IIb", "III"]
+      },
+      "effective": {
+        "from": "2026-05-28",
+        "citations": [
+          {
+            "source": "ec-eudamed-actor",
+            "section": "mandatory",
+            "quote": "as from 28 May 2026 the Actor module is mandatory to use.",
+            "sha256": "abcbcb95eb68caf9c3a6e7992f4fa3347f4b555496d9bc1235c1e4f0836aa8a3",
+            "start": 362,
+            "end": 419
+          },
+          {
+            "source": "ec-eudamed-actor",
+            "section": "news-first-modules",
+            "quote": "The first four modules of EUDAMED became mandatory since 28 May 2026",
+            "sha256": "3bd5ed7839c14057693766d8ef05b9eb1f57ace5031e1efa54fc6fdb39f949d7",
+            "start": 0,
+            "end": 68
+          },
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "the obligations and requirements that relate to any of the electronic systems referred to in Article 33(2) shall apply from the date corresponding to 6 months from the date of publication of the notice referred to in Article 34(3)",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 737,
+            "end": 967
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "Запис виробу в модулі UDI/Devices EUDAMED",
+          "en": "The device record in the EUDAMED UDI/Devices module"
+        },
+        "standards": [],
+        "who": {
+          "uk": "Виробник",
+          "en": "Manufacturer"
+        }
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "art-29",
+          "quote": "Before placing a device, other than a custom-made device, on the market, the manufacturer shall, in accordance with the rules of the issuing entity referred to in Article 27(2), assign a Basic UDI-DI as defined in Part C of Annex VI to the device and shall provide it to the UDI database",
+          "sha256": "9721c373fef17e853d567278c429f4c53e490525905e672fb5cda49cb3f17ed8",
+          "start": 38,
+          "end": 325
+        },
+        {
+          "source": "decision-2025-2371",
+          "section": "art-1",
+          "quote": "the UDI database and the electronic system for registration of devices referred to in Articles 28 and 29 of Regulation (EU) 2017/745",
+          "sha256": "4ce35cfb952483fee672d4bb831c5b07dce224f61b2d37a513e65a004c649d5f",
+          "start": 429,
+          "end": 561
+        }
+      ]
+    },
+    {
+      "id": "authorised-representative",
+      "branch": "market",
+      "title": {
+        "uk": "Уповноважений представник у ЄС",
+        "en": "Authorised representative in the EU"
+      },
+      "summary": {
+        "uk": "Виробник поза ЄС може розмістити виріб на ринку ЄС лише через єдиного уповноваженого представника.",
+        "en": "A manufacturer outside the EU may place the device on the EU market only through a sole authorised representative."
+      },
+      "when": {
+        "all": [
+          {
+            "result": "eu-mdr-classification",
+            "in": ["I", "IIa", "IIb", "III"]
+          },
+          {
+            "attr": "manufacturerOutsideEu",
+            "isTrue": true
+          }
+        ]
+      },
+      "effective": {
+        "from": "2021-05-26",
+        "citations": [
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "It shall apply from 26 May 2021.",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 200,
+            "end": 232
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "Письмовий мандат, прийнятий уповноваженим представником",
+          "en": "A written mandate accepted by the authorised representative"
+        },
+        "standards": [],
+        "who": {
+          "uk": "Виробник призначає; уповноважений представник у ЄС",
+          "en": "The manufacturer designates; the authorised representative in the EU"
+        }
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "art-11",
+          "quote": "Where the manufacturer of a device is not established in a Member State, the device may only be placed on the Union market if the manufacturer designates a sole authorised representative.",
+          "sha256": "7f78c88c72a21767727f99a3d078aa7233cf9920344e87fd76ae3e89bfe74d5d",
+          "start": 40,
+          "end": 227
+        },
+        {
+          "source": "mdr",
+          "section": "art-11",
+          "quote": "The designation shall constitute the authorised representative’s mandate, it shall be valid only when accepted in writing by the authorised representative",
+          "sha256": "7f78c88c72a21767727f99a3d078aa7233cf9920344e87fd76ae3e89bfe74d5d",
+          "start": 231,
+          "end": 385
+        }
+      ]
+    },
+    {
+      "id": "prrc",
+      "branch": "market",
+      "title": {
+        "uk": "Особа, відповідальна за дотримання регуляторних вимог (PRRC)",
+        "en": "Person responsible for regulatory compliance (PRRC)"
+      },
+      "summary": {
+        "uk": "Щонайменше одна особа з потрібною кваліфікацією; мікро- і малі підприємства можуть мати її постійно доступною ззовні.",
+        "en": "At least one person with the required expertise; micro and small enterprises may have such a person permanently available from outside."
+      },
+      "when": {
+        "result": "eu-mdr-classification",
+        "in": ["I", "IIa", "IIb", "III"]
+      },
+      "effective": {
+        "from": "2021-05-26",
+        "citations": [
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "It shall apply from 26 May 2021.",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 200,
+            "end": 232
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "Призначення PRRC (диплом і рік досвіду або чотири роки досвіду в регуляторних справах чи СУЯ)",
+          "en": "Appointment of the PRRC (a degree and one year's experience, or four years in regulatory affairs or QMS)"
+        },
+        "standards": [],
+        "who": {
+          "uk": "Виробник",
+          "en": "Manufacturer"
+        }
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "art-15",
+          "quote": "Manufacturers shall have available within their organisation at least one person responsible for regulatory compliance who possesses the requisite expertise in the field of medical devices.",
+          "sha256": "a17538efd7545ae04d3edcd9a667a762814cc19ddc0e8dc6976d712327b88ff1",
+          "start": 59,
+          "end": 248
+        },
+        {
+          "source": "mdr",
+          "section": "art-15",
+          "quote": "shall not be required to have the person responsible for regulatory compliance within their organisation but shall have such person permanently and continuously at their disposal.",
+          "sha256": "a17538efd7545ae04d3edcd9a667a762814cc19ddc0e8dc6976d712327b88ff1",
+          "start": 1265,
+          "end": 1444
+        }
+      ]
+    },
+    {
+      "id": "liability-coverage",
+      "branch": "market",
+      "title": {
+        "uk": "Фінансове покриття відповідальності",
+        "en": "Financial coverage of liability"
+      },
+      "summary": {
+        "uk": "Заходи для достатнього фінансового покриття можливої відповідальності за дефектний виріб, пропорційні класу, типу виробу й розміру підприємства.",
+        "en": "Measures for sufficient financial coverage of potential liability for a defective device, proportionate to the class, type of device and size of the enterprise."
+      },
+      "when": {
+        "result": "eu-mdr-classification",
+        "in": ["I", "IIa", "IIb", "III"]
+      },
+      "effective": {
+        "from": "2021-05-26",
+        "citations": [
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "It shall apply from 26 May 2021.",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 200,
+            "end": 232
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "Страхування відповідальності чи інше фінансове покриття",
+          "en": "Liability insurance or other financial coverage"
+        },
+        "standards": [],
+        "who": {
+          "uk": "Виробник",
+          "en": "Manufacturer"
+        }
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "art-10",
+          "quote": "Manufacturers shall, in a manner that is proportionate to the risk class, type of device and the size of the enterprise, have measures in place to provide sufficient financial coverage in respect of their potential liability under Directive 85/374/EEC",
+          "sha256": "5c7f3e65f7194bb6a9eb788d60346510ae4e4b579813939dd4c8af8585ff97a1",
+          "start": 9194,
+          "end": 9445
+        }
+      ]
+    },
+    {
+      "id": "qms",
+      "branch": "qms",
+      "title": {
+        "uk": "Система управління якістю",
+        "en": "Quality management system"
+      },
+      "summary": {
+        "uk": "Задокументована СУЯ, що охоплює щонайменше перелічені в ст. 10(9) аспекти: стратегію відповідності, ризики, клінічну оцінку, розробку, UDI, PMS, vigilance, CAPA.",
+        "en": "A documented QMS covering at least the aspects listed in Article 10(9): compliance strategy, risk, clinical evaluation, product realisation, UDI, PMS, vigilance, CAPA."
+      },
+      "when": {
+        "result": "eu-mdr-classification",
+        "in": ["I", "IIa", "IIb", "III"]
+      },
+      "effective": {
+        "from": "2021-05-26",
+        "citations": [
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "It shall apply from 26 May 2021.",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 200,
+            "end": 232
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "Настанова з якості, процедури й записи СУЯ",
+          "en": "The quality manual, QMS procedures and records"
+        },
+        "standards": ["iso-13485"],
+        "who": {
+          "uk": "Виробник",
+          "en": "Manufacturer"
+        }
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "art-10",
+          "quote": "The quality management system shall cover all parts and elements of a manufacturer’s organisation dealing with the quality of processes, procedures and devices.",
+          "sha256": "5c7f3e65f7194bb6a9eb788d60346510ae4e4b579813939dd4c8af8585ff97a1",
+          "start": 3393,
+          "end": 3553
+        },
+        {
+          "source": "mdr",
+          "section": "art-10",
+          "quote": "The quality management system shall address at least the following aspects:",
+          "sha256": "5c7f3e65f7194bb6a9eb788d60346510ae4e4b579813939dd4c8af8585ff97a1",
+          "start": 3771,
+          "end": 3846
+        }
+      ]
+    },
+    {
+      "id": "risk-management",
+      "branch": "qms",
+      "title": {
+        "uk": "Управління ризиками",
+        "en": "Risk management"
+      },
+      "summary": {
+        "uk": "Система управління ризиками як безперервний ітеративний процес протягом усього життєвого циклу виробу.",
+        "en": "A risk management system as a continuous iterative process over the whole life cycle of the device."
+      },
+      "when": {
+        "result": "eu-mdr-classification",
+        "in": ["I", "IIa", "IIb", "III"]
+      },
+      "effective": {
+        "from": "2021-05-26",
+        "citations": [
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "It shall apply from 26 May 2021.",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 200,
+            "end": 232
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "План, файл і звіт з управління ризиками",
+          "en": "Risk management plan, file and report"
+        },
+        "standards": ["iso-14971"],
+        "who": {
+          "uk": "Виробник",
+          "en": "Manufacturer"
+        }
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "art-10",
+          "quote": "Manufacturers shall establish, document, implement and maintain a system for risk management as described in Section 3 of Annex I.",
+          "sha256": "5c7f3e65f7194bb6a9eb788d60346510ae4e4b579813939dd4c8af8585ff97a1",
+          "start": 254,
+          "end": 384
+        },
+        {
+          "source": "mdr",
+          "section": "annex-i-ch1",
+          "quote": "Risk management shall be understood as a continuous iterative process throughout the entire lifecycle of a device, requiring regular systematic updating.",
+          "sha256": "1dc10651229cb99212d241a0ac361be21f96dc4e855090687f5a9166c0048ec4",
+          "start": 959,
+          "end": 1112
+        }
+      ]
+    },
+    {
+      "id": "software-lifecycle",
+      "branch": "qms",
+      "title": {
+        "uk": "Життєвий цикл розробки ПЗ",
+        "en": "Software development life cycle"
+      },
+      "summary": {
+        "uk": "ПЗ розробляють за сучасним рівнем техніки з урахуванням життєвого циклу розробки, управління ризиками (зокрема інформаційною безпекою), верифікації й валідації.",
+        "en": "Software is developed according to the state of the art, taking into account the development life cycle, risk management (including information security), verification and validation."
+      },
+      "when": {
+        "result": "eu-mdr-classification",
+        "in": ["I", "IIa", "IIb", "III"]
+      },
+      "effective": {
+        "from": "2021-05-26",
+        "citations": [
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "It shall apply from 26 May 2021.",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 200,
+            "end": 232
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "План розробки ПЗ, вимоги, архітектура, керування конфігурацією й змінами, SOUP",
+          "en": "Software development plan, requirements, architecture, configuration and change management, SOUP"
+        },
+        "standards": ["iec-62304"],
+        "who": {
+          "uk": "Виробник",
+          "en": "Manufacturer"
+        }
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "annex-i-17",
+          "quote": "For devices that incorporate software or for software that are devices in themselves, the software shall be developed and manufactured in accordance with the state of the art taking into account the principles of development life cycle, risk management, including information security, verification and validation.",
+          "sha256": "7b840a94e45041194eed67b2e0f96704776bb3232592e0c43137479535054b6e",
+          "start": 543,
+          "end": 857
+        },
+        {
+          "source": "mdr",
+          "section": "annex-i-17",
+          "quote": "Devices that incorporate electronic programmable systems, including software, or software that are devices in themselves, shall be designed to ensure repeatability, reliability and performance in line with their intended use.",
+          "sha256": "7b840a94e45041194eed67b2e0f96704776bb3232592e0c43137479535054b6e",
+          "start": 145,
+          "end": 370
+        }
+      ]
+    },
+    {
+      "id": "software-vv",
+      "branch": "qms",
+      "title": {
+        "uk": "Верифікація й валідація ПЗ у техдокументації",
+        "en": "Software verification and validation in the technical documentation"
+      },
+      "summary": {
+        "uk": "Техдокументація описує процес розробки ПЗ і містить докази валідації ПЗ у готовому виробі, для всіх заявлених апаратних конфігурацій і операційних систем.",
+        "en": "The technical documentation describes the software design and development process and contains evidence of validation in the finished device, for all declared hardware configurations and operating systems."
+      },
+      "when": {
+        "result": "eu-mdr-classification",
+        "in": ["I", "IIa", "IIb", "III"]
+      },
+      "effective": {
+        "from": "2021-05-26",
+        "citations": [
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "It shall apply from 26 May 2021.",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 200,
+            "end": 232
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "Звіти модульного, інтеграційного й системного тестування; валідація в реальному чи імітованому середовищі",
+          "en": "Unit, integration and system test reports; validation in a real or simulated user environment"
+        },
+        "standards": ["iec-62304"],
+        "who": {
+          "uk": "Виробник",
+          "en": "Manufacturer"
+        }
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "annex-ii",
+          "quote": "software verification and validation (describing the software design and development process and evidence of the validation of the software, as used in the finished device.",
+          "sha256": "c710624a9012a374b1ce7637951f7dfa0e2a27decf860418fcbf6de5ceb5381d",
+          "start": 6521,
+          "end": 6693
+        }
+      ]
+    },
+    {
+      "id": "usability",
+      "branch": "qms",
+      "title": {
+        "uk": "Зручність використання і помилки використання",
+        "en": "Usability and use error"
+      },
+      "summary": {
+        "uk": "Зменшувати ризики помилок використання через ергономіку й середовище використання; для мобільних платформ — враховувати екран і зовнішні умови.",
+        "en": "Reduce the risks of use error through ergonomics and the environment of use; for mobile platforms, take the screen and external conditions into account."
+      },
+      "when": {
+        "result": "eu-mdr-classification",
+        "in": ["I", "IIa", "IIb", "III"]
+      },
+      "effective": {
+        "from": "2021-05-26",
+        "citations": [
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "It shall apply from 26 May 2021.",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 200,
+            "end": 232
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "Файл інженерії зручності використання: специфікація інтерфейсу, формативна й сумативна оцінка",
+          "en": "Usability engineering file: user interface specification, formative and summative evaluation"
+        },
+        "standards": ["iec-62366-1"],
+        "who": {
+          "uk": "Виробник",
+          "en": "Manufacturer"
+        }
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "annex-i-ch1",
+          "quote": "In eliminating or reducing risks related to use error, the manufacturer shall:",
+          "sha256": "1dc10651229cb99212d241a0ac361be21f96dc4e855090687f5a9166c0048ec4",
+          "start": 2896,
+          "end": 2974
+        },
+        {
+          "source": "mdr",
+          "section": "annex-i-ch1",
+          "quote": "reduce as far as possible the risks related to the ergonomic features of the device and the environment in which the device is intended to be used (design for patient safety), and",
+          "sha256": "1dc10651229cb99212d241a0ac361be21f96dc4e855090687f5a9166c0048ec4",
+          "start": 2979,
+          "end": 3158
+        },
+        {
+          "source": "mdr",
+          "section": "annex-i-17",
+          "quote": "Software referred to in this Section that is intended to be used in combination with mobile computing platforms shall be designed and manufactured taking into account the specific features of the mobile platform (e.g. size and contrast ratio of the screen) and the external factors related to their use (varying environment as regards level of light or noise).",
+          "sha256": "7b840a94e45041194eed67b2e0f96704776bb3232592e0c43137479535054b6e",
+          "start": 864,
+          "end": 1224
+        }
+      ]
+    },
+    {
+      "id": "technical-documentation",
+      "branch": "qms",
+      "title": {
+        "uk": "Технічна документація",
+        "en": "Technical documentation"
+      },
+      "summary": {
+        "uk": "Техдокументацію складають і оновлюють за додатками II і III та зберігають щонайменше 10 років після розміщення останнього виробу.",
+        "en": "The technical documentation is drawn up and kept up to date under Annexes II and III and kept for at least 10 years after the last device was placed on the market."
+      },
+      "when": {
+        "result": "eu-mdr-classification",
+        "in": ["I", "IIa", "IIb", "III"]
+      },
+      "effective": {
+        "from": "2021-05-26",
+        "citations": [
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "It shall apply from 26 May 2021.",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 200,
+            "end": 232
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "Техдокументація (додатки II–III), доступна компетентним органам",
+          "en": "Technical documentation (Annexes II–III) available to competent authorities"
+        },
+        "standards": [],
+        "who": {
+          "uk": "Виробник",
+          "en": "Manufacturer"
+        }
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "art-10",
+          "quote": "Manufacturers of devices other than custom-made devices shall draw up and keep up to date technical documentation for those devices.",
+          "sha256": "5c7f3e65f7194bb6a9eb788d60346510ae4e4b579813939dd4c8af8585ff97a1",
+          "start": 532,
+          "end": 664
+        },
+        {
+          "source": "mdr",
+          "section": "art-10",
+          "quote": "available for the competent authorities for a period of at least 10 years after the last device covered by the EU declaration of conformity has been placed on the market",
+          "sha256": "5c7f3e65f7194bb6a9eb788d60346510ae4e4b579813939dd4c8af8585ff97a1",
+          "start": 1978,
+          "end": 2147
+        }
+      ]
+    },
+    {
+      "id": "pms",
+      "branch": "qms",
+      "title": {
+        "uk": "Система й план нагляду після виходу на ринок",
+        "en": "Post-market surveillance system and plan"
+      },
+      "summary": {
+        "uk": "Для кожного виробу — система PMS, пропорційна класу, як частина СУЯ, на основі плану PMS за додатком III.",
+        "en": "For each device a PMS system proportionate to the class, as part of the QMS, based on a PMS plan under Annex III."
+      },
+      "when": {
+        "result": "eu-mdr-classification",
+        "in": ["I", "IIa", "IIb", "III"]
+      },
+      "effective": {
+        "from": "2021-05-26",
+        "citations": [
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "It shall apply from 26 May 2021.",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 200,
+            "end": 232
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "План PMS (додаток III) у техдокументації; процедури збору й аналізу даних",
+          "en": "PMS plan (Annex III) in the technical documentation; procedures for gathering and analysing data"
+        },
+        "standards": [],
+        "who": {
+          "uk": "Виробник",
+          "en": "Manufacturer"
+        }
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "art-83",
+          "quote": "For each device, manufacturers shall plan, establish, document, implement, maintain and update a post-market surveillance system in a manner that is proportionate to the risk class and appropriate for the type of device.",
+          "sha256": "56e818c5b2281976e8b60c7e304619b0a71b6e90c33f02e4701cd54611cd3397",
+          "start": 66,
+          "end": 286
+        },
+        {
+          "source": "mdr",
+          "section": "art-84",
+          "quote": "The post-market surveillance system referred to in Article 83 shall be based on a post-market surveillance plan, the requirements for which are set out in Section 1 of Annex III.",
+          "sha256": "ca8468ea6ef99b37e3bbdda575176bad2f0e6e695582092e1d9fd93a24f1e495",
+          "start": 41,
+          "end": 219
+        }
+      ]
+    },
+    {
+      "id": "pms-report",
+      "branch": "qms",
+      "title": {
+        "uk": "Звіт PMS (клас I)",
+        "en": "PMS report (class I)"
+      },
+      "summary": {
+        "uk": "Для класу I — звіт про результати нагляду після виходу на ринок і вжиті заходи.",
+        "en": "For class I, a report on the post-market surveillance results and the actions taken."
+      },
+      "when": {
+        "result": "eu-mdr-classification",
+        "in": ["I"]
+      },
+      "effective": {
+        "from": "2021-05-26",
+        "citations": [
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "It shall apply from 26 May 2021.",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 200,
+            "end": 232
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "Звіт PMS, оновлюваний за потреби",
+          "en": "A PMS report, updated when necessary"
+        },
+        "standards": [],
+        "who": {
+          "uk": "Виробник",
+          "en": "Manufacturer"
+        }
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "art-85",
+          "quote": "Manufacturers of class I devices shall prepare a post-market surveillance report summarising the results and conclusions of the analyses of the post-market surveillance data gathered as a result of the post-market surveillance plan referred to in Article 84",
+          "sha256": "2587e2dfb7a0ba658a283990b60ffab2fd4d83fd8cb0181d98d34ec2fc133a28",
+          "start": 43,
+          "end": 300
+        }
+      ]
+    },
+    {
+      "id": "psur",
+      "branch": "qms",
+      "title": {
+        "uk": "Періодичний звіт з безпеки (PSUR)",
+        "en": "Periodic safety update report (PSUR)"
+      },
+      "summary": {
+        "uk": "Для класів IIa, IIb і III — PSUR: для IIb і III щонайменше щороку, для IIa — за потреби й щонайменше раз на два роки.",
+        "en": "For classes IIa, IIb and III a PSUR: at least annually for IIb and III, when necessary and at least every two years for IIa."
+      },
+      "when": {
+        "result": "eu-mdr-classification",
+        "in": ["IIa", "IIb", "III"]
+      },
+      "effective": {
+        "from": "2021-05-26",
+        "citations": [
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "It shall apply from 26 May 2021.",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 200,
+            "end": 232
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "PSUR у техдокументації (IIb, III — щороку; IIa — щонайменше раз на два роки)",
+          "en": "A PSUR in the technical documentation (IIb, III yearly; IIa at least every two years)"
+        },
+        "standards": [],
+        "who": {
+          "uk": "Виробник",
+          "en": "Manufacturer"
+        }
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "art-86",
+          "quote": "Manufacturers of class IIa, class IIb and class III devices shall prepare a periodic safety update report (’PSUR’) for each device and where relevant for each category or group of devices",
+          "sha256": "6d5fec1f8b5d1f05aa6b96159ce7cefabdea24e76c464698c16f3696c22f2343",
+          "start": 44,
+          "end": 231
+        },
+        {
+          "source": "mdr",
+          "section": "art-86",
+          "quote": "Manufacturers of class IIb and class III devices shall update the PSUR at least annually.",
+          "sha256": "6d5fec1f8b5d1f05aa6b96159ce7cefabdea24e76c464698c16f3696c22f2343",
+          "start": 864,
+          "end": 953
+        },
+        {
+          "source": "mdr",
+          "section": "art-86",
+          "quote": "Manufacturers of class IIa devices shall update the PSUR when necessary and at least every two years.",
+          "sha256": "6d5fec1f8b5d1f05aa6b96159ce7cefabdea24e76c464698c16f3696c22f2343",
+          "start": 1089,
+          "end": 1190
+        }
+      ]
+    },
+    {
+      "id": "vigilance",
+      "branch": "qms",
+      "title": {
+        "uk": "Звітування про серйозні інциденти й тренди",
+        "en": "Reporting serious incidents and trends"
+      },
+      "summary": {
+        "uk": "Повідомляти компетентні органи про серйозні інциденти й коригувальні дії з безпеки (не пізніше 15 днів) і про статистично значуще зростання інцидентів.",
+        "en": "Report serious incidents and field safety corrective actions to the competent authorities (no later than 15 days) and any statistically significant increase in incidents."
+      },
+      "when": {
+        "result": "eu-mdr-classification",
+        "in": ["I", "IIa", "IIb", "III"]
+      },
+      "effective": {
+        "from": "2021-05-26",
+        "citations": [
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "It shall apply from 26 May 2021.",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 200,
+            "end": 232
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "Процедури vigilance і звітування про тренди в плані PMS",
+          "en": "Vigilance and trend reporting procedures in the PMS plan"
+        },
+        "standards": [],
+        "who": {
+          "uk": "Виробник",
+          "en": "Manufacturer"
+        }
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "art-87",
+          "quote": "Manufacturers of devices made available on the Union market, other than investigational devices, shall report, to the relevant competent authorities, in accordance with Articles 92(5) and (7), the following:",
+          "sha256": "0666fac69516130324eeaedcfed3f55bed1a772c0fc94c0c499ecba8ee7e409b",
+          "start": 81,
+          "end": 288
+        },
+        {
+          "source": "mdr",
+          "section": "art-87",
+          "quote": "not later than 15 days after they become aware of the incident.",
+          "sha256": "0666fac69516130324eeaedcfed3f55bed1a772c0fc94c0c499ecba8ee7e409b",
+          "start": 1452,
+          "end": 1515
+        },
+        {
+          "source": "mdr",
+          "section": "art-88",
+          "quote": "Manufacturers shall report, by means of the electronic system referred to in Article 92, any statistically significant increase in the frequency or severity of incidents that are not serious incidents",
+          "sha256": "9d80171c9a4f49ad1023e915f4700e027ad3ab38138f2429b3705a248041652d",
+          "start": 30,
+          "end": 230
+        }
+      ]
+    },
+    {
+      "id": "clinical-evaluation",
+      "branch": "clinical",
+      "title": {
+        "uk": "Клінічна оцінка",
+        "en": "Clinical evaluation"
+      },
+      "summary": {
+        "uk": "Виробник визначає й обґрунтовує потрібний рівень клінічних доказів і планує, проводить і документує клінічну оцінку. Для MDSW MDCG 2020-1 виділяє три складники: клінічну валідність, технічну продуктивність і клінічну продуктивність.",
+        "en": "The manufacturer specifies and justifies the level of clinical evidence and plans, conducts and documents the clinical evaluation. For MDSW, MDCG 2020-1 names three components: valid clinical association, technical performance and clinical performance."
+      },
+      "when": {
+        "result": "eu-mdr-classification",
+        "in": ["I", "IIa", "IIb", "III"]
+      },
+      "effective": {
+        "from": "2021-05-26",
+        "citations": [
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "It shall apply from 26 May 2021.",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 200,
+            "end": 232
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "План і звіт клінічної оцінки (додаток XIV, частина A)",
+          "en": "Clinical evaluation plan and report (Annex XIV, Part A)"
+        },
+        "standards": [],
+        "who": {
+          "uk": "Виробник",
+          "en": "Manufacturer"
+        }
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "art-10",
+          "quote": "Manufacturers shall conduct a clinical evaluation in accordance with the requirements set out in Article 61 and Annex XIV, including a PMCF.",
+          "sha256": "5c7f3e65f7194bb6a9eb788d60346510ae4e4b579813939dd4c8af8585ff97a1",
+          "start": 388,
+          "end": 528
+        },
+        {
+          "source": "mdr",
+          "section": "art-61",
+          "quote": "The manufacturer shall specify and justify the level of clinical evidence necessary to demonstrate conformity with the relevant general safety and performance requirements.",
+          "sha256": "85a717718b432d65aa9bb30f769164ce3d3b2e3fe71cf31cb61bfe81b5bbd630",
+          "start": 490,
+          "end": 662
+        },
+        {
+          "source": "mdr",
+          "section": "art-61",
+          "quote": "To that end, manufacturers shall plan, conduct and document a clinical evaluation in accordance with this Article and Part A of Annex XIV.",
+          "sha256": "85a717718b432d65aa9bb30f769164ce3d3b2e3fe71cf31cb61bfe81b5bbd630",
+          "start": 787,
+          "end": 925
+        }
+      ],
+      "guidance": [
+        {
+          "source": "mdcg-2020-1",
+          "section": "sec-4.1",
+          "quote": "Three key components should be taken into account when compiling CLINICAL EVIDENCE for every MDSW",
+          "sha256": "e799f6d988eb837a307c67cf50d6eb3bec505e3ebc3be607d7c0e60a9983cbb1",
+          "start": 2618,
+          "end": 2715
+        },
+        {
+          "source": "mdcg-2020-1",
+          "section": "sec-4.1",
+          "quote": "Validation of the TECHNICAL PERFORMANCE / ANALYTICAL PERFORMANCE is the demonstration of the MDSW’s ability to accurately, reliably and precisely generate the intended output, from the input data.",
+          "sha256": "e799f6d988eb837a307c67cf50d6eb3bec505e3ebc3be607d7c0e60a9983cbb1",
+          "start": 4556,
+          "end": 4752
+        },
+        {
+          "source": "mdcg-2020-1",
+          "section": "sec-4.1",
+          "quote": "Validation of the CLINICAL PERFORMANCE is the demonstration of a MDSW’s ability to yield clinically relevant output in accordance with the intended purpose.",
+          "sha256": "e799f6d988eb837a307c67cf50d6eb3bec505e3ebc3be607d7c0e60a9983cbb1",
+          "start": 5083,
+          "end": 5239
+        }
+      ]
+    },
+    {
+      "id": "clinical-investigation-iii",
+      "branch": "clinical",
+      "title": {
+        "uk": "Клінічне дослідження (клас III)",
+        "en": "Clinical investigation (class III)"
+      },
+      "summary": {
+        "uk": "Для класу III клінічні дослідження обов'язкові, крім винятків ст. 61(4)–(6).",
+        "en": "For class III, clinical investigations are required, except under Article 61(4)–(6)."
+      },
+      "when": {
+        "result": "eu-mdr-classification",
+        "in": ["III"]
+      },
+      "effective": {
+        "from": "2021-05-26",
+        "citations": [
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "It shall apply from 26 May 2021.",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 200,
+            "end": 232
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "Клінічне дослідження за ст. 62–80 і додатком XV або обґрунтування винятку",
+          "en": "A clinical investigation under Articles 62–80 and Annex XV, or the justification of an exception"
+        },
+        "standards": [],
+        "who": {
+          "uk": "Виробник",
+          "en": "Manufacturer"
+        }
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "art-61",
+          "quote": "In the case of implantable devices and class III devices, clinical investigations shall be performed, except if:",
+          "sha256": "85a717718b432d65aa9bb30f769164ce3d3b2e3fe71cf31cb61bfe81b5bbd630",
+          "start": 2618,
+          "end": 2730
+        }
+      ],
+      "guidance": [
+        {
+          "source": "mdcg-2020-1",
+          "section": "sec-4.4",
+          "quote": "If the MDSW is used for the determination of a patient’s future state (e.g. predisposition, prognosis, prediction) or if the output of the MDSW impacts clinical outcomes (e.g. treatment efficacy) or patient management decisions, then a prospective study may be required",
+          "sha256": "480ec5c6c90cabdae55a0f341df2ae5039d86a57d5d321b6f8de760c05d7e6e9",
+          "start": 616,
+          "end": 885
+        }
+      ]
+    },
+    {
+      "id": "sscp",
+      "branch": "clinical",
+      "title": {
+        "uk": "Резюме безпеки й клінічної продуктивності (клас III)",
+        "en": "Summary of safety and clinical performance (class III)"
+      },
+      "summary": {
+        "uk": "Для класу III — резюме безпеки й клінічної продуктивності, зрозуміле користувачу, валідоване нотифікованим органом і опубліковане в EUDAMED.",
+        "en": "For class III, a summary of safety and clinical performance clear to the intended user, validated by the notified body and published in Eudamed."
+      },
+      "when": {
+        "result": "eu-mdr-classification",
+        "in": ["III"]
+      },
+      "effective": {
+        "from": "2021-05-26",
+        "citations": [
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "It shall apply from 26 May 2021.",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 200,
+            "end": 232
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "SSCP, валідоване нотифікованим органом",
+          "en": "An SSCP validated by the notified body"
+        },
+        "standards": [],
+        "who": {
+          "uk": "Виробник; оцінює нотифікований орган",
+          "en": "Manufacturer; assessed by the notified body"
+        }
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "art-32",
+          "quote": "For implantable devices and for class III devices, other than custom-made or investigational devices, the manufacturer shall draw up a summary of safety and clinical performance.",
+          "sha256": "bd003eb1769a682f3608da5ab58e5a3d4df50e44e6164f555c875399dff3885d",
+          "start": 57,
+          "end": 235
+        }
+      ]
+    },
+    {
+      "id": "pmcf",
+      "branch": "clinical",
+      "title": {
+        "uk": "Клінічне спостереження після виходу на ринок (PMCF)",
+        "en": "Post-market clinical follow-up (PMCF)"
+      },
+      "summary": {
+        "uk": "PMCF — безперервний процес, що оновлює клінічну оцінку, за задокументованим планом; для MDSW зручні дані реального використання.",
+        "en": "PMCF is a continuous process that updates the clinical evaluation, following a documented plan; for MDSW real-world performance data are at hand."
+      },
+      "when": {
+        "result": "eu-mdr-classification",
+        "in": ["I", "IIa", "IIb", "III"]
+      },
+      "effective": {
+        "from": "2021-05-26",
+        "citations": [
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "It shall apply from 26 May 2021.",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 200,
+            "end": 232
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "План і звіт PMCF",
+          "en": "PMCF plan and evaluation report"
+        },
+        "standards": [],
+        "who": {
+          "uk": "Виробник",
+          "en": "Manufacturer"
+        }
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "annex-xiv",
+          "quote": "PMCF shall be understood to be a continuous process that updates the clinical evaluation referred to in Article 61 and Part A of this Annex and shall be addressed in the manufacturer’s post-market surveillance plan.",
+          "sha256": "1b1e2afa97a194bb2b53b8e28f407c1e279468f04d6ac935f6dfd14999d5080b",
+          "start": 5103,
+          "end": 5318
+        },
+        {
+          "source": "mdr",
+          "section": "annex-xiv",
+          "quote": "PMCF shall be performed pursuant to a documented method laid down in a PMCF plan.",
+          "sha256": "1b1e2afa97a194bb2b53b8e28f407c1e279468f04d6ac935f6dfd14999d5080b",
+          "start": 5850,
+          "end": 5931
+        }
+      ],
+      "guidance": [
+        {
+          "source": "mdcg-2020-1",
+          "section": "sec-4.6",
+          "quote": "The unique level of connectivity of MDSW facilitates access to REAL-WORLD PERFORMANCE data, which can be used for multiple purposes",
+          "sha256": "ce4c819a813eba8d4c1e0c96a25230b2da17f1d55a17a5eaa600f1e63b15c5b6",
+          "start": 530,
+          "end": 661
+        }
+      ]
+    },
+    {
+      "id": "information-security",
+      "branch": "cyber",
+      "title": {
+        "uk": "Інформаційна безпека в розробці й захист від несанкціонованого доступу",
+        "en": "Information security in development and protection against unauthorised access"
+      },
+      "summary": {
+        "uk": "Інформаційна безпека — частина управління ризиками в життєвому циклі ПЗ; виріб захищають від несанкціонованого доступу, що заважає йому працювати як призначено.",
+        "en": "Information security is part of risk management in the software life cycle; the device is protected against unauthorised access that could hamper it from functioning as intended."
+      },
+      "when": {
+        "result": "eu-mdr-classification",
+        "in": ["I", "IIa", "IIb", "III"]
+      },
+      "effective": {
+        "from": "2021-05-26",
+        "citations": [
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "It shall apply from 26 May 2021.",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 200,
+            "end": 232
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "Моделювання загроз, безпечна розробка, тестування безпеки, керування вразливостями й оновленнями",
+          "en": "Threat modelling, secure development, security testing, vulnerability and update management"
+        },
+        "standards": ["iec-81001-5-1"],
+        "who": {
+          "uk": "Виробник",
+          "en": "Manufacturer"
+        }
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "annex-i-17",
+          "quote": "risk management, including information security, verification and validation.",
+          "sha256": "7b840a94e45041194eed67b2e0f96704776bb3232592e0c43137479535054b6e",
+          "start": 780,
+          "end": 857
+        },
+        {
+          "source": "mdr",
+          "section": "annex-i-18",
+          "quote": "Devices shall be designed and manufactured in such a way as to protect, as far as possible, against unauthorised access that could hamper the device from functioning as intended.",
+          "sha256": "0d460c207cc15f1f84042c80d1a1c9f7699439b9770aebb8109aa64166103dc6",
+          "start": 1799,
+          "end": 1977
+        }
+      ]
+    },
+    {
+      "id": "it-requirements",
+      "branch": "cyber",
+      "title": {
+        "uk": "Мінімальні вимоги до ІТ-середовища в інструкції",
+        "en": "Minimum IT environment requirements in the instructions"
+      },
+      "summary": {
+        "uk": "Виробник визначає мінімальні вимоги до апаратного забезпечення, мереж і заходів ІТ-безпеки, зокрема захисту від несанкціонованого доступу, і наводить їх в інструкції з використання.",
+        "en": "The manufacturer sets out minimum requirements for hardware, IT networks and IT security measures, including protection against unauthorised access, and gives them in the instructions for use."
+      },
+      "when": {
+        "result": "eu-mdr-classification",
+        "in": ["I", "IIa", "IIb", "III"]
+      },
+      "effective": {
+        "from": "2021-05-26",
+        "citations": [
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "It shall apply from 26 May 2021.",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 200,
+            "end": 232
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "Розділ інструкції з використання з мінімальними вимогами до ІТ-середовища",
+          "en": "A section of the instructions for use with minimum IT environment requirements"
+        },
+        "standards": ["iec-81001-5-1"],
+        "who": {
+          "uk": "Виробник",
+          "en": "Manufacturer"
+        }
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "annex-i-17",
+          "quote": "Manufacturers shall set out minimum requirements concerning hardware, IT networks characteristics and IT security measures, including protection against unauthorised access, necessary to run the software as intended.",
+          "sha256": "7b840a94e45041194eed67b2e0f96704776bb3232592e0c43137479535054b6e",
+          "start": 1231,
+          "end": 1447
+        },
+        {
+          "source": "mdr",
+          "section": "annex-i-23.4",
+          "quote": "for devices that incorporate electronic programmable systems, including software, or software that are devices in themselves, minimum requirements concerning hardware, IT networks characteristics and IT security measures, including protection against unauthorised access, necessary to run the software as intended.",
+          "sha256": "eaa8eb2605e780610cf15802b33dd63fd01443ea5ef9879d8ee4f6d3b1b11ef9",
+          "start": 8152,
+          "end": 8466
+        }
+      ]
+    },
+    {
+      "id": "ai-transparency-art50",
+      "branch": "ai",
+      "title": {
+        "uk": "Прозорість: людина знає, що спілкується з AI",
+        "en": "Transparency: people know they interact with AI"
+      },
+      "summary": {
+        "uk": "AI-систему, що прямо взаємодіє з людьми, проєктують так, щоб людей інформували про взаємодію з AI, якщо це не очевидно. Не залежить від класу за MDR.",
+        "en": "An AI system that interacts directly with people is designed so that they are informed they interact with AI unless it is obvious. It does not depend on the MDR class."
+      },
+      "when": {
+        "all": [
+          {
+            "attr": "isAiSystem",
+            "isTrue": true
+          },
+          {
+            "attr": "interactsWithPersons",
+            "isTrue": true
+          }
+        ]
+      },
+      "effective": {
+        "from": "2026-08-02",
+        "citations": [
+          {
+            "source": "ai-act",
+            "section": "art-113",
+            "quote": "It shall apply from 2 August 2026.",
+            "sha256": "dfa244ae47cf67b619e4e2b9b034bc97a997f9ac8427ec4e59915cedf2d21865",
+            "start": 186,
+            "end": 220
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "Повідомлення в інтерфейсі під час першої взаємодії",
+          "en": "A notice in the user interface at the first interaction"
+        },
+        "standards": [],
+        "who": {
+          "uk": "Постачальник AI-системи (виробник)",
+          "en": "Provider of the AI system (the manufacturer)"
+        }
+      },
+      "citations": [
+        {
+          "source": "ai-act",
+          "section": "art-50",
+          "quote": "Providers shall ensure that AI systems intended to interact directly with natural persons are designed and developed in such a way that the natural persons concerned are informed that they are interacting with an AI system, unless this is obvious from the point of view of a natural person who is reasonably well-informed, observant and circumspect, taking into account the circumstances and the context of use.",
+          "sha256": "95e01b726a900e165607c5ceff41cdcdeedaabbe68e86e89b8ebb0b7efc1fd76",
+          "start": 89,
+          "end": 500
+        }
+      ],
+      "guidance": [
+        {
+          "source": "mdcg-2025-6",
+          "section": "q4",
+          "quote": "The application of Article 5 AIA, prohibited AI practices and Article 50 AIA transparency obligations for providers and deployers of certain AI systems does not depend on the MDR/IVDR classification.",
+          "sha256": "ea05cd381ef8887564ba8140c42fe6a800822633040a945ae5457ac38f09c21a",
+          "start": 840,
+          "end": 1039
+        }
+      ]
+    },
+    {
+      "id": "ai-conformity-43-3",
+      "branch": "ai",
+      "title": {
+        "uk": "Вимоги AI Act — у межах оцінки відповідності за MDR",
+        "en": "AI Act requirements within the MDR conformity assessment"
+      },
+      "summary": {
+        "uk": "Для високоризикової AI-системи в медвиробі діє процедура MDR; вимоги розділу 2 глави III AI Act (ст. 9–15) і система якості ст. 17 перевіряються в межах цієї оцінки.",
+        "en": "For a high-risk AI system in a medical device the MDR procedure applies; Chapter III Section 2 of the AI Act (Articles 9–15) and the Article 17 quality management system are checked within that assessment."
+      },
+      "when": {
+        "result": "eu-ai-act-high-risk",
+        "in": ["high-risk"]
+      },
+      "effective": {
+        "from": "2028-08-02",
+        "citations": [
+          {
+            "source": "ai-act",
+            "section": "art-113",
+            "quote": "2 August 2028 as regards AI systems classified as high-risk pursuant to Article 6(1) and Annex I;",
+            "sha256": "dfa244ae47cf67b619e4e2b9b034bc97a997f9ac8427ec4e59915cedf2d21865",
+            "start": 787,
+            "end": 884
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "Одна оцінка відповідності за MDR, що охоплює вимоги AI Act",
+          "en": "One MDR conformity assessment covering the AI Act requirements"
+        },
+        "standards": [],
+        "who": {
+          "uk": "Виробник; оцінює нотифікований орган",
+          "en": "Manufacturer; assessed by the notified body"
+        }
+      },
+      "citations": [
+        {
+          "source": "ai-act",
+          "section": "art-43",
+          "quote": "For high-risk AI systems covered by the Union harmonisation legislation listed in Section A of Annex I, the provider of the system shall follow the relevant conformity assessment procedure as required in accordance with the relevant Union harmonisation legislation. The requirements set out in Section 2 of this Chapter shall apply to those high-risk AI systems and shall be part of that assessment.",
+          "sha256": "575333f57536f7c81c234d077ec0df4ac34c663a723d8384b5450fcac17e527c",
+          "start": 2024,
+          "end": 2423
+        }
+      ]
+    },
+    {
+      "id": "ai-risk-art9",
+      "branch": "ai",
+      "title": {
+        "uk": "Система управління ризиками AI (ст. 9)",
+        "en": "AI risk management system (Article 9)"
+      },
+      "summary": {
+        "uk": "Безперервний процес щодо ризиків для здоров'я, безпеки й основоположних прав; його можна вбудувати в наявне управління ризиками за MDR.",
+        "en": "A continuous process on risks to health, safety and fundamental rights; it can be built into the existing MDR risk management."
+      },
+      "when": {
+        "result": "eu-ai-act-high-risk",
+        "in": ["high-risk"]
+      },
+      "effective": {
+        "from": "2028-08-02",
+        "citations": [
+          {
+            "source": "ai-act",
+            "section": "art-113",
+            "quote": "2 August 2028 as regards AI systems classified as high-risk pursuant to Article 6(1) and Annex I;",
+            "sha256": "dfa244ae47cf67b619e4e2b9b034bc97a997f9ac8427ec4e59915cedf2d21865",
+            "start": 787,
+            "end": 884
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "Розширений файл управління ризиками з AI-специфічними ризиками",
+          "en": "An extended risk management file with AI-specific risks"
+        },
+        "standards": ["iso-14971"],
+        "who": {
+          "uk": "Постачальник AI-системи (виробник)",
+          "en": "Provider of the AI system (the manufacturer)"
+        }
+      },
+      "citations": [
+        {
+          "source": "ai-act",
+          "section": "art-9",
+          "quote": "A risk management system shall be established, implemented, documented and maintained in relation to high-risk AI systems.",
+          "sha256": "0cb4966d8980391b2ff0fc506353e2b49a1088644aecc95b71ceff8f8f164b21",
+          "start": 36,
+          "end": 158
+        }
+      ],
+      "guidance": [
+        {
+          "source": "mdcg-2025-6",
+          "section": "q7",
+          "quote": "Manufacturers of high-risk MDAI may integrate the additional risk management requirements specific to MDAI set out in paragraphs 1-9 of Article 9 of the AIA",
+          "sha256": "b4cf718840f89c1ec548509c4cfec36f8b4fc54db5464f79fcf3a9a20da3780a",
+          "start": 1322,
+          "end": 1478
+        }
+      ]
+    },
+    {
+      "id": "ai-data-art10",
+      "branch": "ai",
+      "title": {
+        "uk": "Дані й управління даними (ст. 10)",
+        "en": "Data and data governance (Article 10)"
+      },
+      "summary": {
+        "uk": "Набори для навчання, валідації й тестування — релевантні, достатньо репрезентативні, наскільки можливо без помилок і повні; перевірені на упередження.",
+        "en": "Training, validation and testing data sets that are relevant, sufficiently representative, as error-free and complete as possible, and examined for bias."
+      },
+      "when": {
+        "result": "eu-ai-act-high-risk",
+        "in": ["high-risk"]
+      },
+      "effective": {
+        "from": "2028-08-02",
+        "citations": [
+          {
+            "source": "ai-act",
+            "section": "art-113",
+            "quote": "2 August 2028 as regards AI systems classified as high-risk pursuant to Article 6(1) and Annex I;",
+            "sha256": "dfa244ae47cf67b619e4e2b9b034bc97a997f9ac8427ec4e59915cedf2d21865",
+            "start": 787,
+            "end": 884
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "Документація управління даними: походження, підготовка, репрезентативність, аналіз упереджень",
+          "en": "Data governance documentation: provenance, preparation, representativeness, bias analysis"
+        },
+        "standards": [],
+        "who": {
+          "uk": "Постачальник AI-системи (виробник)",
+          "en": "Provider of the AI system (the manufacturer)"
+        }
+      },
+      "citations": [
+        {
+          "source": "ai-act",
+          "section": "art-10",
+          "quote": "High-risk AI systems which make use of techniques involving the training of AI models with data shall be developed on the basis of training, validation and testing data sets that meet the quality criteria referred to in paragraphs 2, 3 and 4 of this Article",
+          "sha256": "cc45a03f1cc62dcce6b0a858dd4f70d4f6cd18fe5b8f88dbfef7bcca178100b1",
+          "start": 39,
+          "end": 296
+        }
+      ],
+      "guidance": [
+        {
+          "source": "mdcg-2025-6",
+          "section": "q8",
+          "quote": "To ensure comprehensive data governance practices for MDAIs, datasets for training, validation, and testing must be relevant, sufficiently representative, and, to the best extent possible, free of errors and complete.",
+          "sha256": "683061fd104e3bc6d6329cd843f5f495bc4e663dedf04102a7f0d8dea33dd56d",
+          "start": 1903,
+          "end": 2120
+        }
+      ]
+    },
+    {
+      "id": "ai-documentation-art11",
+      "branch": "ai",
+      "title": {
+        "uk": "Технічна документація AI (ст. 11): один комплект",
+        "en": "AI technical documentation (Article 11): a single set"
+      },
+      "summary": {
+        "uk": "Для виробу з додатка I, розділ A, складають єдиний комплект техдокументації: дані за AI Act і за MDR разом.",
+        "en": "For a product covered by Annex I, Section A, a single set of technical documentation holds both the AI Act and the MDR information."
+      },
+      "when": {
+        "result": "eu-ai-act-high-risk",
+        "in": ["high-risk"]
+      },
+      "effective": {
+        "from": "2028-08-02",
+        "citations": [
+          {
+            "source": "ai-act",
+            "section": "art-113",
+            "quote": "2 August 2028 as regards AI systems classified as high-risk pursuant to Article 6(1) and Annex I;",
+            "sha256": "dfa244ae47cf67b619e4e2b9b034bc97a997f9ac8427ec4e59915cedf2d21865",
+            "start": 787,
+            "end": 884
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "Єдина техдокументація: MDR (додатки II–III) + AI Act (додаток IV)",
+          "en": "A single technical documentation: MDR (Annexes II–III) + AI Act (Annex IV)"
+        },
+        "standards": [],
+        "who": {
+          "uk": "Постачальник AI-системи (виробник)",
+          "en": "Provider of the AI system (the manufacturer)"
+        }
+      },
+      "citations": [
+        {
+          "source": "ai-act",
+          "section": "art-11",
+          "quote": "The technical documentation of a high-risk AI system shall be drawn up before that system is placed on the market or put into service and shall be kept up-to date.",
+          "sha256": "93205639f72bda05cab0f20061d5c5d4e1d129d28e99b4d76312eadc75c31da1",
+          "start": 38,
+          "end": 201
+        },
+        {
+          "source": "ai-act",
+          "section": "art-11",
+          "quote": "Where a high-risk AI system related to a product covered by the Union harmonisation legislation listed in Section A of Annex I is placed on the market or put into service, a single set of technical documentation shall be drawn up containing all the information set out in paragraph 1, as well as the information required under those legal acts.",
+          "sha256": "93205639f72bda05cab0f20061d5c5d4e1d129d28e99b4d76312eadc75c31da1",
+          "start": 1181,
+          "end": 1525
+        }
+      ],
+      "guidance": [
+        {
+          "source": "mdcg-2025-6",
+          "section": "q12",
+          "quote": "Note: Where it relates to technical documentation, Article 11 (2) of the AIA indicates that a single set of technical documentation shall be drawn up for high-risk MDAI.",
+          "sha256": "54408ffc7acb05b11446d0168e29dbb8d3fa4b43deeaf46c5504b759704f6cee",
+          "start": 1452,
+          "end": 1621
+        }
+      ]
+    },
+    {
+      "id": "ai-logging-art12",
+      "branch": "ai",
+      "title": {
+        "uk": "Журналювання подій (ст. 12)",
+        "en": "Record-keeping and logs (Article 12)"
+      },
+      "summary": {
+        "uk": "Система технічно дозволяє автоматично записувати події протягом усього строку служби.",
+        "en": "The system technically allows the automatic recording of events over its whole lifetime."
+      },
+      "when": {
+        "result": "eu-ai-act-high-risk",
+        "in": ["high-risk"]
+      },
+      "effective": {
+        "from": "2028-08-02",
+        "citations": [
+          {
+            "source": "ai-act",
+            "section": "art-113",
+            "quote": "2 August 2028 as regards AI systems classified as high-risk pursuant to Article 6(1) and Annex I;",
+            "sha256": "dfa244ae47cf67b619e4e2b9b034bc97a997f9ac8427ec4e59915cedf2d21865",
+            "start": 787,
+            "end": 884
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "Журнали подій для простежуваності й моніторингу",
+          "en": "Event logs for traceability and monitoring"
+        },
+        "standards": [],
+        "who": {
+          "uk": "Постачальник AI-системи (виробник)",
+          "en": "Provider of the AI system (the manufacturer)"
+        }
+      },
+      "citations": [
+        {
+          "source": "ai-act",
+          "section": "art-12",
+          "quote": "High-risk AI systems shall technically allow for the automatic recording of events (logs) over the lifetime of the system.",
+          "sha256": "6ede0f56bc42c894796c0f9ccf9603e22398733884ddd3334712fca4639219e9",
+          "start": 29,
+          "end": 151
+        }
+      ]
+    },
+    {
+      "id": "ai-transparency-art13",
+      "branch": "ai",
+      "title": {
+        "uk": "Прозорість і інформація для впроваджувачів (ст. 13)",
+        "en": "Transparency and information for deployers (Article 13)"
+      },
+      "summary": {
+        "uk": "Робота системи достатньо прозора, щоб впроваджувачі правильно інтерпретували вихід; до неї додається інструкція з використання.",
+        "en": "The system's operation is transparent enough for deployers to interpret its output correctly; it comes with instructions for use."
+      },
+      "when": {
+        "result": "eu-ai-act-high-risk",
+        "in": ["high-risk"]
+      },
+      "effective": {
+        "from": "2028-08-02",
+        "citations": [
+          {
+            "source": "ai-act",
+            "section": "art-113",
+            "quote": "2 August 2028 as regards AI systems classified as high-risk pursuant to Article 6(1) and Annex I;",
+            "sha256": "dfa244ae47cf67b619e4e2b9b034bc97a997f9ac8427ec4e59915cedf2d21865",
+            "start": 787,
+            "end": 884
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "Інструкція для впроваджувачів: можливості, обмеження, точність, нагляд людини",
+          "en": "Instructions for deployers: capabilities, limitations, accuracy, human oversight"
+        },
+        "standards": [],
+        "who": {
+          "uk": "Постачальник AI-системи (виробник)",
+          "en": "Provider of the AI system (the manufacturer)"
+        }
+      },
+      "citations": [
+        {
+          "source": "ai-act",
+          "section": "art-13",
+          "quote": "High-risk AI systems shall be designed and developed in such a way as to ensure that their operation is sufficiently transparent to enable deployers to interpret a system’s output and use it appropriately.",
+          "sha256": "a6d9d580aefb5443e6cf8a81ee9868f87790c009248ae715460f9848ac425567",
+          "start": 69,
+          "end": 274
+        },
+        {
+          "source": "ai-act",
+          "section": "art-13",
+          "quote": "High-risk AI systems shall be accompanied by instructions for use in an appropriate digital format or otherwise that include concise, complete, correct and clear information that is relevant, accessible and comprehensible to deployers.",
+          "sha256": "a6d9d580aefb5443e6cf8a81ee9868f87790c009248ae715460f9848ac425567",
+          "start": 459,
+          "end": 694
+        }
+      ],
+      "guidance": [
+        {
+          "source": "mdcg-2025-6",
+          "section": "q14",
+          "quote": "Under the AIA, transparency is a core requirement for high-risk MDAI.",
+          "sha256": "d33697ac5a1dbc613be9f1f4533d3bbb25f0d5304746fb363f68ac6925552080",
+          "start": 267,
+          "end": 336
+        }
+      ]
+    },
+    {
+      "id": "ai-oversight-art14",
+      "branch": "ai",
+      "title": {
+        "uk": "Нагляд людини (ст. 14)",
+        "en": "Human oversight (Article 14)"
+      },
+      "summary": {
+        "uk": "Систему проєктують так, щоб люди могли ефективно наглядати за нею під час використання, зокрема через інтерфейс.",
+        "en": "The system is designed so that people can effectively oversee it while in use, including through the interface."
+      },
+      "when": {
+        "result": "eu-ai-act-high-risk",
+        "in": ["high-risk"]
+      },
+      "effective": {
+        "from": "2028-08-02",
+        "citations": [
+          {
+            "source": "ai-act",
+            "section": "art-113",
+            "quote": "2 August 2028 as regards AI systems classified as high-risk pursuant to Article 6(1) and Annex I;",
+            "sha256": "dfa244ae47cf67b619e4e2b9b034bc97a997f9ac8427ec4e59915cedf2d21865",
+            "start": 787,
+            "end": 884
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "Засоби нагляду в інтерфейсі; опис у техдокументації й інструкції",
+          "en": "Oversight tools in the interface; their description in the documentation and instructions"
+        },
+        "standards": ["iec-62366-1"],
+        "who": {
+          "uk": "Постачальник AI-системи (виробник)",
+          "en": "Provider of the AI system (the manufacturer)"
+        }
+      },
+      "citations": [
+        {
+          "source": "ai-act",
+          "section": "art-14",
+          "quote": "High-risk AI systems shall be designed and developed in such a way, including with appropriate human-machine interface tools, that they can be effectively overseen by natural persons during the period in which they are in use.",
+          "sha256": "7e5bf5125d31f331d764e42d1e30abbf54a95fc084c49bf575af28cf3b6943a6",
+          "start": 30,
+          "end": 256
+        }
+      ]
+    },
+    {
+      "id": "ai-robustness-art15",
+      "branch": "ai",
+      "title": {
+        "uk": "Точність, стійкість і кібербезпека AI (ст. 15)",
+        "en": "AI accuracy, robustness and cybersecurity (Article 15)"
+      },
+      "summary": {
+        "uk": "Відповідний рівень точності, стійкості й кібербезпеки протягом життєвого циклу; рівні точності й метрики зазначають в інструкції.",
+        "en": "An appropriate level of accuracy, robustness and cybersecurity throughout the life cycle; accuracy levels and metrics are declared in the instructions."
+      },
+      "when": {
+        "result": "eu-ai-act-high-risk",
+        "in": ["high-risk"]
+      },
+      "effective": {
+        "from": "2028-08-02",
+        "citations": [
+          {
+            "source": "ai-act",
+            "section": "art-113",
+            "quote": "2 August 2028 as regards AI systems classified as high-risk pursuant to Article 6(1) and Annex I;",
+            "sha256": "dfa244ae47cf67b619e4e2b9b034bc97a997f9ac8427ec4e59915cedf2d21865",
+            "start": 787,
+            "end": 884
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "Задекларовані метрики точності; тести стійкості й безпеки, зокрема AI-специфічних атак",
+          "en": "Declared accuracy metrics; robustness and security tests, including AI-specific attacks"
+        },
+        "standards": ["iec-81001-5-1"],
+        "who": {
+          "uk": "Постачальник AI-системи (виробник)",
+          "en": "Provider of the AI system (the manufacturer)"
+        }
+      },
+      "citations": [
+        {
+          "source": "ai-act",
+          "section": "art-15",
+          "quote": "High-risk AI systems shall be designed and developed in such a way that they achieve an appropriate level of accuracy, robustness, and cybersecurity, and that they perform consistently in those respects throughout their lifecycle.",
+          "sha256": "8e0f0d2d47bc2b2bcea0807645a8077357bb0633812d956373c43a83f6e89b23",
+          "start": 53,
+          "end": 283
+        },
+        {
+          "source": "ai-act",
+          "section": "art-15",
+          "quote": "The levels of accuracy and the relevant accuracy metrics of high-risk AI systems shall be declared in the accompanying instructions of use.",
+          "sha256": "8e0f0d2d47bc2b2bcea0807645a8077357bb0633812d956373c43a83f6e89b23",
+          "start": 676,
+          "end": 815
+        }
+      ]
+    },
+    {
+      "id": "ai-qms-art17",
+      "branch": "ai",
+      "title": {
+        "uk": "Система управління якістю для AI (ст. 17)",
+        "en": "Quality management system for AI (Article 17)"
+      },
+      "summary": {
+        "uk": "Постачальник має СУЯ, що забезпечує відповідність AI Act; її оцінюють у межах оцінки за MDR, а елементи можна включити в наявну СУЯ.",
+        "en": "The provider has a QMS ensuring compliance with the AI Act; it is assessed within the MDR assessment, and its elements can be included in the existing QMS."
+      },
+      "when": {
+        "result": "eu-ai-act-high-risk",
+        "in": ["high-risk"]
+      },
+      "effective": {
+        "from": "2028-08-02",
+        "citations": [
+          {
+            "source": "ai-act",
+            "section": "art-113",
+            "quote": "2 August 2028 as regards AI systems classified as high-risk pursuant to Article 6(1) and Annex I;",
+            "sha256": "dfa244ae47cf67b619e4e2b9b034bc97a997f9ac8427ec4e59915cedf2d21865",
+            "start": 787,
+            "end": 884
+          }
+        ]
+      },
+      "how": {
+        "deliverable": {
+          "uk": "Елементи СУЯ за ст. 17 AI Act у СУЯ за MDR",
+          "en": "AI Act Article 17 QMS elements within the MDR QMS"
+        },
+        "standards": ["iso-13485"],
+        "who": {
+          "uk": "Постачальник AI-системи (виробник)",
+          "en": "Provider of the AI system (the manufacturer)"
+        }
+      },
+      "citations": [
+        {
+          "source": "ai-act",
+          "section": "art-17",
+          "quote": "Providers of high-risk AI systems shall put a quality management system in place that ensures compliance with this Regulation.",
+          "sha256": "b5c80f424bb520e3ee0a888a22747be11be0ac02dc3bdb4de608864542f586aa",
+          "start": 40,
+          "end": 166
+        },
+        {
+          "source": "ai-act",
+          "section": "art-43",
+          "quote": "Assessment of the quality management system set out in Article 17 shall also be undertaken",
+          "sha256": "575333f57536f7c81c234d077ec0df4ac34c663a723d8384b5450fcac17e527c",
+          "start": 2424,
+          "end": 2514
+        }
+      ],
+      "guidance": [
+        {
+          "source": "mdcg-2025-6",
+          "section": "q6",
+          "quote": "manufacturers of AI systems may include the elements of the quality management system provided by the AIA as part of the existing quality management system provided by the MDR and IVDR.",
+          "sha256": "25394c0ee3ff02b538fe540544379b41036397ce47ad35ab40cbb58fae266a10",
+          "start": 2045,
+          "end": 2230
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": "decision-2025-2371",
+  "title": "Commission Decision (EU) 2025/2371 of 26 November 2025 on the notice regarding the functionality and the fulfilment of the functional specifications of certain electronic systems included in the European Database on Medical Devices",
+  "shortTitle": "Decision (EU) 2025/2371",
+  "kind": "decision",
+  "format": "html",
+  "language": "en",
+  "url": "https://publications.europa.eu/resource/cellar/52629153-cb32-11f0-8da2-01aa75ed71a1.0006.03/DOC_1",
+  "link": "https://eur-lex.europa.eu/eli/dec/2025/2371/oj",
+  "retrievedAt": "2026-10-20T23:11:27Z",
+  "sha256": "4edc0d860abbea22d8be11b386193f19355beba88847e94c3e728e61dce8c11a",
+  "bytes": 14561,
+  "edition": "OJ L series 2025/2371, 27.11.2025",
+  "notes": "The notice under Article 34(3) MDR: the Actors, UDI and devices, Notified bodies and certificates, and Market surveillance electronic systems of Eudamed are functional. Starts the transition periods of Article 123(3)(d)–(ec) MDR. Fetched from the Publications Office Cellar.",
+  "license": "© European Union, https://eur-lex.europa.eu. Reuse is authorised provided the source is acknowledged (Commission Decision 2011/833/EU).",
+  "extraction": {
+    "tool": "parse5 8.0.1 + htmlToLines",
+    "textSha256": "b2d5e33fc6981bdaef40202c379c2d7a4e0c90e56f7a90c7499bd05d4bc4e6a0",
+    "lines": 48
+  }
+}

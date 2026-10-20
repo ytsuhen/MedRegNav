@@ -9,7 +9,7 @@ import {
   findCitations,
   resolveCitation,
 } from "@mrn/core";
-import { checkCitations, checkExamples, checkRules, checkSources, type Issue } from "../checks.ts";
+import { checkCitations, checkExamples, checkObligations, checkRules, checkSources, type Issue } from "../checks.ts";
 import type { Out } from "../cli.ts";
 import { dataJsonFiles, readJson, repoPath, sectionLookup, writeJson } from "../data.ts";
 
@@ -68,6 +68,7 @@ export async function check(_args: string[], out: Out): Promise<number> {
     ["citations", () => checkCitations()],
     ["rules", () => checkRules()],
     ["examples", () => checkExamples()],
+    ["obligations", () => checkObligations()],
   ];
   let total = 0;
   for (const [name, run] of groups) {

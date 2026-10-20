@@ -55,6 +55,26 @@ export {
 } from "./ir/schema.ts";
 export { type IrIssue, type IrIssueCode, irHash, validateRules } from "./ir/validate.ts";
 export { IdSchema, IsoDateSchema, LANGS, type Lang, type Text, TextSchema } from "./model/text.ts";
+export { type Navigation, type NavigatorModel, navigate, type Scenario } from "./navigator.ts";
+export {
+  BRANCHES,
+  type Branch,
+  type Condition,
+  type ConditionResult,
+  ConditionSchema,
+  conditionAttributes,
+  evaluateCondition,
+  evaluateObligations,
+  type Obligation,
+  type ObligationResult,
+  ObligationSchema,
+  ObligationsFileSchema,
+  obligationIssues,
+  type Standard,
+  StandardSchema,
+  StandardsFileSchema,
+  timingOf,
+} from "./obligations.ts";
 export {
   CITATION_KEYS,
   type Citation,

@@ -6,6 +6,7 @@ import {
   canonicalJson,
   checkCitation,
   findCitations,
+  obligationIssues,
   profileIssues,
   runExample,
   type SectionLookup,
@@ -18,11 +19,13 @@ import {
   readExamples,
   readJson,
   readMeta,
+  readObligations,
   readOutline,
   readRegistry,
   readRuleFiles,
   readRules,
   readSections,
+  readStandards,
   readTextLines,
   repoPath,
   sectionLookup,
@@ -114,4 +117,12 @@ export function checkExamples(): Issue[] {
       message: `${f.rule}: expected ${f.expected}, got ${f.status} {${f.actual.join(", ")}}`,
     })),
   ]);
+}
+
+/** The obligations catalogue references only registered attributes, existing rules and outcomes, known standards. */
+export function checkObligations(): Issue[] {
+  return obligationIssues(readObligations(), readRegistry(), readRules(), readStandards()).map((message) => ({
+    where: "data/obligations",
+    message,
+  }));
 }

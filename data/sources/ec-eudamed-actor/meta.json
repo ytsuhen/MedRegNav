@@ -1,0 +1,21 @@
+{
+  "id": "ec-eudamed-actor",
+  "title": "European Commission, Public Health: EUDAMED — Actor registration module (web page)",
+  "shortTitle": "Commission, EUDAMED page",
+  "kind": "webpage",
+  "format": "html",
+  "language": "en",
+  "url": "https://health.ec.europa.eu/medical-devices-eudamed/actor-registration-module_en",
+  "link": "https://health.ec.europa.eu/medical-devices-eudamed/actor-registration-module_en",
+  "retrievedAt": "2026-10-20T23:11:50Z",
+  "sha256": "4aacee21e9725d395f357a5ec49adbcd6340e2295bbeb69903ffb108eb8872af",
+  "bytes": 78396,
+  "edition": "Web page as retrieved (states the mandatory date of the first EUDAMED modules)",
+  "notes": "A Commission web page, not a legal act; cited only for the date from which the first EUDAMED modules are mandatory to use, which follows from Decision (EU) 2025/2371 and Article 123(3)(d) MDR. The page may change; this copy is pinned by its sha256.",
+  "license": "© European Union. Content owned by the EU on the Commission's websites is licensed under CC BY 4.0 (Commission reuse policy): credit given, changes indicated.",
+  "extraction": {
+    "tool": "parse5 8.0.1 + htmlToLines",
+    "textSha256": "f4c6088f1c3a31c31700358dfb3c3119a2b81a2830beca46684f100dc28f546f",
+    "lines": 108
+  }
+}

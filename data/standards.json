@@ -1,0 +1,72 @@
+{
+  "standards": [
+    {
+      "id": "iso-13485",
+      "number": "ISO 13485",
+      "edition": "2016 (3rd edition; confirmed 2025)",
+      "title": "Medical devices — Quality management systems — Requirements for regulatory purposes",
+      "purpose": {
+        "uk": "Система управління якістю для регуляторних цілей — звична основа СУЯ за ст. 10(9) MDR.",
+        "en": "Quality management system for regulatory purposes — the usual basis of a QMS under Article 10(9) MDR."
+      },
+      "link": "https://www.iso.org/standard/59752.html",
+      "checkedAt": "2026-10-21"
+    },
+    {
+      "id": "iso-14971",
+      "number": "ISO 14971",
+      "edition": "2019 (3rd edition)",
+      "title": "Medical devices — Application of risk management to medical devices",
+      "purpose": {
+        "uk": "Процес управління ризиками медвиробу протягом усього життєвого циклу.",
+        "en": "The risk management process for a medical device over its whole life cycle."
+      },
+      "link": "https://www.iso.org/standard/72704.html",
+      "checkedAt": "2026-10-21",
+      "note": {
+        "uk": "Редакцію перевірено за національними каталогами стандартів; сторінку ISO в цій сесії не відкрито.",
+        "en": "Edition checked against national standards catalogues; the ISO page itself was not opened in this session."
+      }
+    },
+    {
+      "id": "iec-62304",
+      "number": "IEC 62304",
+      "edition": "2006+AMD1:2015 (edition 1.1)",
+      "title": "Medical device software — Software life cycle processes",
+      "purpose": {
+        "uk": "Процеси життєвого циклу ПЗ: планування, вимоги, архітектура, верифікація, супровід, керування конфігурацією й проблемами.",
+        "en": "Software life cycle processes: planning, requirements, architecture, verification, maintenance, configuration and problem management."
+      },
+      "link": "https://webstore.iec.ch/en/publication/22794",
+      "checkedAt": "2026-10-21",
+      "note": {
+        "uk": "Готується редакція 2 (назва «Health software»); каталог IEC на дату перевірки заміни не показує.",
+        "en": "Edition 2 ('Health software') is in preparation; the IEC catalogue shows no replacement on the date checked."
+      }
+    },
+    {
+      "id": "iec-62366-1",
+      "number": "IEC 62366-1",
+      "edition": "2015+AMD1:2020 (edition 1.1)",
+      "title": "Medical devices — Part 1: Application of usability engineering to medical devices",
+      "purpose": {
+        "uk": "Інженерія зручності використання: помилки використання, специфікація інтерфейсу, формативна й сумативна оцінка.",
+        "en": "Usability engineering: use errors, user interface specification, formative and summative evaluation."
+      },
+      "link": "https://webstore.iec.ch/en/publication/67220",
+      "checkedAt": "2026-10-21"
+    },
+    {
+      "id": "iec-81001-5-1",
+      "number": "IEC 81001-5-1",
+      "edition": "2021 (edition 1.0; corrected version 2025-12)",
+      "title": "Health software and health IT systems safety, effectiveness and security — Part 5-1: Security — Activities in the product life cycle",
+      "purpose": {
+        "uk": "Діяльність з кібербезпеки на всіх етапах життєвого циклу ПЗ: загрози, безпечна розробка, тестування, вразливості, оновлення.",
+        "en": "Security activities across the software life cycle: threats, secure development, testing, vulnerabilities, updates."
+      },
+      "link": "https://webstore.iec.ch/en/publication/63293",
+      "checkedAt": "2026-10-21"
+    }
+  ]
+}

@@ -13,12 +13,17 @@ import {
   DeviceIrSchema,
   type Example,
   ExamplesFileSchema,
+  type NavigatorModel,
+  type Obligation,
+  ObligationsFileSchema,
   type Outline,
   OutlineSchema,
   type SectionLookup,
   type SourceMeta,
   SourceMetaSchema,
   type SourceSection,
+  type Standard,
+  StandardsFileSchema,
 } from "@mrn/core";
 
 export const REPO_ROOT = join(dirname(fileURLToPath(import.meta.url)), "../../..");
@@ -127,4 +132,19 @@ export function readRules(): DeviceIr[] {
 
 export function readExamples(): Example[] {
   return jsonFilesIn(EXAMPLES_DIR).flatMap((path) => ExamplesFileSchema.parse(readJson(path)).examples);
+}
+
+export const OBLIGATIONS_DIR = join(DATA_DIR, "obligations");
+
+export function readObligations(): Obligation[] {
+  return jsonFilesIn(OBLIGATIONS_DIR).flatMap((path) => ObligationsFileSchema.parse(readJson(path)).obligations);
+}
+
+export function readStandards(): Standard[] {
+  return StandardsFileSchema.parse(readJson(join(DATA_DIR, "standards.json"))).standards;
+}
+
+/** Everything the navigator needs, from data/. */
+export function readModel(): NavigatorModel {
+  return { registry: readRegistry(), rules: readRules(), obligations: readObligations(), standards: readStandards() };
 }

@@ -261,6 +261,34 @@
       }
     },
     {
+      "id": "annex-i-ch1",
+      "title": "General requirements",
+      "kind": "chapter",
+      "ref": "Annex I, Chapter I",
+      "after": {
+        "line": "ANNEX I",
+        "occurrence": 1
+      },
+      "start": {
+        "line": "CHAPTER I"
+      },
+      "end": {
+        "line": "CHAPTER II"
+      }
+    },
+    {
+      "id": "annex-i-23.4",
+      "title": "Information in the instructions for use",
+      "kind": "section",
+      "ref": "Annex I, Section 23.4",
+      "start": {
+        "line": "23.4. Information in the instructions for use"
+      },
+      "end": {
+        "line": "ANNEX II"
+      }
+    },
+    {
       "id": "annex-i-17",
       "title": "Electronic programmable systems — devices that incorporate electronic programmable systems and software that are devices in themselves",
       "kind": "section",

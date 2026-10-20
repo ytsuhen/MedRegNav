@@ -1,0 +1,30 @@
+{
+  "source": "ec-eudamed-actor",
+  "textSha256": "f4c6088f1c3a31c31700358dfb3c3119a2b81a2830beca46684f100dc28f546f",
+  "sections": [
+    {
+      "id": "mandatory",
+      "title": "Mandatory use of the Actor module",
+      "kind": "section",
+      "ref": "Actor registration module",
+      "lines": [
+        38,
+        39
+      ],
+      "raw": "The Commission Decision (EU) 2025/2371 of 26 November 2025 on the notice regarding the functionality and the fulfilment of the functional specifications of certain electronic systems included in the European Database on Medical Devices has declared this module functional and, in accordance with the transitional provisions set out in Regulation (EU) 2024/1860; as from 28 May 2026 the Actor module is mandatory to use.",
+      "sha256": "abcbcb95eb68caf9c3a6e7992f4fa3347f4b555496d9bc1235c1e4f0836aa8a3"
+    },
+    {
+      "id": "news-first-modules",
+      "title": "News: the first four modules mandatory",
+      "kind": "section",
+      "ref": "News announcement, 1 June 2026",
+      "lines": [
+        68,
+        69
+      ],
+      "raw": "The first four modules of EUDAMED became mandatory since 28 May 2026",
+      "sha256": "3bd5ed7839c14057693766d8ef05b9eb1f57ace5031e1efa54fc6fdb39f949d7"
+    }
+  ]
+}

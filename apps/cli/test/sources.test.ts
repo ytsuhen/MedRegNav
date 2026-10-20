@@ -52,6 +52,8 @@ describe("data/sources", () => {
       "ai-act",
       "com-2025-1023",
       "com-2025-1023-annexes",
+      "decision-2025-2371",
+      "ec-eudamed-actor",
       "mdcg-2019-11",
       "mdcg-2020-1",
       "mdcg-2021-24",

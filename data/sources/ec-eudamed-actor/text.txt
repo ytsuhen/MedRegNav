@@ -1,0 +1,108 @@
+Skip to main content
+en
+Select your language
+Close
+bgбългарски
+esespañol
+csčeština
+dadansk
+deDeutsch
+eteesti
+elελληνικά
+enEnglish
+frfrançais
+gaGaeilge
+hrhrvatski
+ititaliano
+lvlatviešu
+ltlietuvių
+humagyar
+mtMalti
+nlNederlands
+plpolski
+ptportuguês
+roromână
+skslovenčina
+slslovenščina
+fisuomi
+svsvenska
+Search
+Search
+Public Health
+Home
+Medical Devices - EUDAMED
+Actors registration
+Actor registration module
+Page contents
+Page contents
+The Actor registration is the first of the six EUDAMED modules.
+The Commission Decision (EU) 2025/2371 of 26 November 2025 on the notice regarding the functionality and the fulfilment of the functional specifications of certain electronic systems included in the European Database on Medical Devices has declared this module functional and, in accordance with the transitional provisions set out in Regulation (EU) 2024/1860; as from 28 May 2026 the Actor module is mandatory to use.
+The Actor module is used voluntarily since December 2020.
+Actor identifier / Single registration number (SRN)
+The Actor registration module enables economic operators to submit, by means of an actor registration request, the information necessary to obtain an actor identifier/single registration number (Actor ID/SRN).
+The Actor ID/SRN is a EU-wide unique identification for economic operators in the medical devices sector.
+Following the assessment and approval of the request by the concerned national competent authority, EUDAMED generates the Actor ID/SRN of the economic operator to the national competent authority and transfers it to the requesting economic operator
+Infographic: Actor roles and Actor ID/SRN
+Actor registration request process
+Economic operators in the medical devices sector Every economic operator (EU and non-EU manufacturers, authorised representatives, system/procedure pack producers and importers) must register as an actor in EUDAMED before placing devices or Systems/Procedure Packs in the EU market.
+Infographic: Actor registration request process
+Documents to provide with the actor registration request
+Declaration on information security responsibilities
+All actors must upload a signed declaration on information security responsibilities (template in all EU languages)
+Mandate summary document
+To register in EUDAMED, non-EU manufacturers must have an active authorised representative and submit a mandate summary document with their registration request.
+EUDAMED registered users
+When an actor is registered in EUDAMED, everyone who intends to act on behalf of this actor needs to submit an access request.
+Infographic: Users access requests
+Documentation
+The EUDAMED Information Centre contains the relevant updated documentation including User Guides, technical documentation and Q&A sections.
+Guidance
+MDCG 2021-13 Rev. 1 - Questions and answers on obligations and related rules for the registration in EUDAMED of actors other than manufacturers, authorised representatives and importers subject to the obligations of Article 31 MDR and Article 28 IVDR
+Guidance documents to assist stakeholders in implementing the medical devices regulations
+Latest updates
+News announcement
+16 June 2026
+Upcoming webinar about new SS(C)P functionality in EUDAMED - 2 July 2026, 13:00-17:00 CEST
+1 min read
+News announcement
+1 June 2026
+The first four modules of EUDAMED became mandatory since 28 May 2026
+1 min read
+News announcement
+14 April 2026
+Upcoming all-day web-streamed EUDAMED trainings
+1 min read
+News announcement
+18 March 2026
+Recording available - Commissioner Várhelyi to open high-level event on medical devices
+1 min read
+See all
+Documents
+Events
+Publications
+Public Health
+This site is managed by:
+Directorate-General for Health and Food Safety
+EU One Health
+Latest updates
+Health & Food Safety Newsletters
+EU public health – databases and other online services
+About us
+Directorate-General for Health and Food Safety
+Related links
+EU Health Policy Platform
+Food Safety
+Follow the European Commission
+Mastodon
+LinkedIn
+Bluesky
+Facebook
+Youtube
+Other
+Contact us
+Report an IT vulnerability
+Languages on our websites
+Cookies
+Privacy policy
+Legal notice
+Accessibility

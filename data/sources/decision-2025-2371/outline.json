@@ -1,0 +1,29 @@
+{
+  "source": "decision-2025-2371",
+  "sections": [
+    {
+      "id": "art-1",
+      "title": "Electronic systems confirmed as functional",
+      "kind": "article",
+      "ref": "Article 1",
+      "start": {
+        "line": "Article 1"
+      },
+      "end": {
+        "line": "Article 2"
+      }
+    },
+    {
+      "id": "heading",
+      "title": "Title and publication",
+      "kind": "section",
+      "ref": "Heading",
+      "start": {
+        "line": "2025/2371"
+      },
+      "end": {
+        "line": "(Text with EEA relevance)"
+      }
+    }
+  ]
+}

@@ -34,6 +34,8 @@ Code runs through `tsx` (CLI) and `vitest` (tests); `tsc --noEmit` only type-che
 | `core/src/ir/decisive.ts` | `decisiveUnknowns(registry, profile, signature, candidates)`, `ruleSignature(rules, asOf?)`, `attributesRead(rules)` (idea from vlk-engine `fhir/decisive.ts`) |
 | `core/src/ir/crosscheck.ts` | `crossCheck(ir, result, profile)` → `CrossCheckResult` |
 | `core/src/examples.ts` | `ExampleSchema`, `ExamplesFileSchema`, `runExample(rules, example, asOf?)` |
+| `core/src/obligations.ts` | `ObligationSchema`, `ObligationsFileSchema`, `StandardSchema`, `StandardsFileSchema`, `ConditionSchema`, `BRANCHES`, `evaluateCondition`, `evaluateObligations(obligations, profile, results, asOf)`, `timingOf`, `conditionAttributes`, `obligationIssues`; types `Obligation`, `ObligationResult`, `Condition`, `Standard`, `Branch` |
+| `core/src/navigator.ts` | `navigate(model, profile, { asOf, proposals? })` → `Navigation` (results, cross-checks, obligations, questions, guidance questions, proposal scenario); types `NavigatorModel`, `Scenario` |
 | `cli/src/cli.ts` | `runCli(args, out?)` → exit code, `COMMANDS` |
 | `cli/src/data.ts` | `REPO_ROOT`, `DATA_DIR`, `SOURCES_DIR`, `sourceIds()`, `readMeta`, `readTextLines`, `readOutline`, `readSections`, `sectionLookup()`, `dataJsonFiles()`, `readJson`, `writeJson` (Biome-formats data files), `sha256OfBytes` |
 | `cli/src/sources/html.ts` | `htmlToLines(html)`, `cleanLine(text)` |
@@ -42,6 +44,7 @@ Code runs through `tsx` (CLI) and `vitest` (tests); `tsc --noEmit` only type-che
 | `cli/src/commands/sources.ts` | `extract`, `sections`, `quote` |
 | `cli/src/commands/cite.ts` | `cite`, `check` |
 | `cli/src/commands/rules.ts` | `rules` (`--rehash`), `evalCommand` (`pnpm mrn eval`) |
+| `cli/src/commands/obligations.ts` | `obligationsCommand` (`pnpm mrn obligations`) |
 
 ## Sources and citations
 
@@ -140,3 +143,29 @@ dependency order, nodes in file order). They are the questions the UI asks.
 **Soundness** is a property test on the real rules: for random partial profiles and random completions, the completed
 profile's possibilities are a subset of the partial one's and every node already decided keeps its value; every complete
 profile gives each rule `determined` or `not-applicable`, never `conflict`.
+
+## Obligations
+
+`data/obligations/eu.json` (`ObligationsFileSchema`): `{ market, obligations }`; each obligation:
+
+| Field | Meaning |
+|---|---|
+| `id`, `branch` | One of the six branches: `class`, `market`, `qms`, `clinical`, `cyber`, `ai` |
+| `title`, `summary` | The requirement and what it means for software — our words, `{ uk, en }` |
+| `when` | A condition: `{ all: [...] }`, `{ any: [...] }`, `{ not }`, `{ attr, isTrue }`, `{ attr, equals }`, `{ attr, in }`, `{ result: <rule>, in: [outcomes] }`, `{ always: true }` — the same Kleene logic and support as rule nodes |
+| `effective` | `{ from, until?, citations }` — every date is cited (MDR Art. 123, AI Act Art. 113, the Commission's EUDAMED notice) |
+| `how` | `{ deliverable, standards: [ids in data/standards.json], who }` — the "how to comply" card |
+| `citations`, `guidance?` | The legal basis and supporting guidance, verbatim |
+
+`evaluateObligations` gives per obligation `applies` (true / false / null = depends on an unknown answer), `timing`
+relative to the as-of date (`in-force`, `upcoming`, `expired`) and `support`. `data/standards.json`: `{ id, number, edition,
+title, purpose, link, checkedAt, note? }` — catalogue metadata only, never text of a standard.
+
+## Navigator
+
+`navigate(model, profile, { asOf, proposals })` is the single entry point of the UI: it evaluates the rules in force
+(primary and cross-check), the cross-checks and the obligations; `questions` are the decisive unknowns for the primary
+rules and the obligations (signature: per primary rule scope + possible outcomes, per obligation `applies`), candidates in
+reading order (rule attributes, then obligation attributes); `guidanceQuestions` are those that only the cross-check rules
+need. With `proposals`, every hypothetical rule replaces the rule it revises (`withRevision`) and the same scenario is
+evaluated again (`proposal`).

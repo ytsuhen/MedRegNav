@@ -2,6 +2,7 @@
 import { argv, exit, stdout } from "node:process";
 import { pathToFileURL } from "node:url";
 import { check, cite } from "./commands/cite.ts";
+import { obligationsCommand } from "./commands/obligations.ts";
 import { evalCommand, rules } from "./commands/rules.ts";
 import { extract, quote, sections } from "./commands/sources.ts";
 
@@ -56,6 +57,11 @@ export const COMMANDS: Record<string, Command> = {
     usage: "eval <example-id|profile.json> [--asof YYYY-MM-DD]",
     summary: "evaluate a device profile: every rule's result, its support and the decisive unknowns",
     run: evalCommand,
+  },
+  obligations: {
+    usage: "obligations <example-id|profile.json> [--asof YYYY-MM-DD] [--proposals]",
+    summary: "the obligations catalogue for a device: what applies, from when, how, with citations",
+    run: obligationsCommand,
   },
   check: {
     usage: "check",

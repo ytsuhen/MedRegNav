@@ -1,0 +1,30 @@
+{
+  "source": "decision-2025-2371",
+  "textSha256": "b2d5e33fc6981bdaef40202c379c2d7a4e0c90e56f7a90c7499bd05d4bc4e6a0",
+  "sections": [
+    {
+      "id": "art-1",
+      "title": "Electronic systems confirmed as functional",
+      "kind": "article",
+      "ref": "Article 1",
+      "lines": [
+        27,
+        37
+      ],
+      "raw": "Article 1\nIt is hereby confirmed that the following electronic systems included in the European Database on Medical Devices (Eudamed) have achieved functionality and meet the functional specifications, as referred to in Article 34(2) of Regulation (EU) 2017/745:\n(a)\nthe electronic system on registration of economic operators referred to in Article 30 of Regulation (EU) 2017/745 and Article 27 of Regulation (EU) 2017/746;\n(b)\nthe UDI database and the electronic system for registration of devices referred to in Articles 28 and 29 of Regulation (EU) 2017/745 and Articles 25 and 26 of Regulation (EU) 2017/746;\n(c)\nthe electronic system on notified bodies and certificates referred to in Article 57 of Regulation (EU) 2017/745 and Article 52 of Regulation (EU) 2017/746;\n(d)\nthe electronic system on market surveillance referred to in Article 100 of Regulation (EU) 2017/745 and Article 95 of Regulation (EU) 2017/746.",
+      "sha256": "4ce35cfb952483fee672d4bb831c5b07dce224f61b2d37a513e65a004c649d5f"
+    },
+    {
+      "id": "heading",
+      "title": "Title and publication",
+      "kind": "section",
+      "ref": "Heading",
+      "lines": [
+        4,
+        9
+      ],
+      "raw": "2025/2371\n27.11.2025\nCOMMISSION DECISION (EU) 2025/2371\nof 26 November 2025\non the notice regarding the functionality and the fulfilment of the functional specifications of certain electronic systems included in the European Database on Medical Devices referred to in Article 34(1) of Regulation (EU) 2017/745 of the European Parliament and of the Council",
+      "sha256": "7496d716ab6d15acebd067e79ced51e67f65b9f31928d7b5f80b539d9ce01284"
+    }
+  ]
+}

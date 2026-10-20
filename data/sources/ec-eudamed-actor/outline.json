@@ -1,0 +1,29 @@
+{
+  "source": "ec-eudamed-actor",
+  "sections": [
+    {
+      "id": "mandatory",
+      "title": "Mandatory use of the Actor module",
+      "kind": "section",
+      "ref": "Actor registration module",
+      "start": {
+        "startsWith": "The Commission Decision (EU) 2025/2371 of 26 November 2025"
+      },
+      "end": {
+        "startsWith": "The Actor module is used voluntarily"
+      }
+    },
+    {
+      "id": "news-first-modules",
+      "title": "News: the first four modules mandatory",
+      "kind": "section",
+      "ref": "News announcement, 1 June 2026",
+      "start": {
+        "line": "The first four modules of EUDAMED became mandatory since 28 May 2026"
+      },
+      "end": {
+        "line": "1 min read"
+      }
+    }
+  ]
+}
