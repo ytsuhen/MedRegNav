@@ -1,0 +1,7 @@
+packages:
+  - packages/*
+  - apps/*
+
+# esbuild (via tsx and vite) works from its prebuilt platform package; no install scripts needed.
+ignoredBuiltDependencies:
+  - esbuild
