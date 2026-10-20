@@ -2,6 +2,19 @@
   "source": "mdr",
   "sections": [
     {
+      "id": "art-1",
+      "title": "Subject matter and scope",
+      "kind": "article",
+      "ref": "Article 1",
+      "start": {
+        "line": "Article 1",
+        "occurrence": 1
+      },
+      "end": {
+        "line": "Article 2"
+      }
+    },
+    {
       "id": "art-2",
       "title": "Definitions",
       "kind": "article",

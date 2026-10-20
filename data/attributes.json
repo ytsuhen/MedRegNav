@@ -1,0 +1,930 @@
+{
+  "attributes": [
+    {
+      "id": "isSoftware",
+      "type": "boolean",
+      "group": "qualification",
+      "label": {
+        "uk": "Це ПЗ",
+        "en": "Software"
+      },
+      "question": {
+        "uk": "Чи є продукт програмним забезпеченням — набором інструкцій, що обробляє вхідні дані й створює вихідні?",
+        "en": "Is the product software — a set of instructions that processes input data and creates output data?"
+      },
+      "help": {
+        "uk": "Крок 1 рішень MDCG 2019-11. Де працює ПЗ (телефон, хмара, вбудоване в апарат), на кваліфікацію не впливає.",
+        "en": "MDCG 2019-11 decision step 1. Where the software runs (phone, cloud, embedded in hardware) does not change the qualification."
+      },
+      "citations": [
+        {
+          "source": "mdcg-2019-11",
+          "section": "sec-2",
+          "quote": "For the purpose of this guidance, “software” is defined as a set of instructions that processes input data and creates output data.",
+          "sha256": "b7d0bcaa90e9bc419528248ad9ced394a56827f7b63a2c99c89f90430d887607",
+          "start": 7323,
+          "end": 7454
+        },
+        {
+          "source": "mdcg-2019-11",
+          "section": "figure-1",
+          "quote": "Decision step 1: if the product is software according to Section 2 (Definitions and Abbreviations) of this guidance, then it may be a MDSW, proceed to decision step 2; if the product is not software according to the definition of this guidance, then it is not covered by this guidance but may still be covered by the Medical Devices Regulations.",
+          "sha256": "59616e47334d93781ca1e8053552dbe0f8308d91fa706328654c12931a2489fe",
+          "start": 94,
+          "end": 439
+        },
+        {
+          "source": "mdcg-2019-11",
+          "section": "sec-3.2",
+          "quote": "Note 3: Software may be qualified as MDSW regardless of its location (e.g. operating in the cloud, on a computer, on a mobile phone, or as an additional functionality on a hardware medical device).",
+          "sha256": "f82f9b7edda2f67f2067fd87248f2c5a7b89130255e59336e68adebb8af0f656",
+          "start": 5118,
+          "end": 5315
+        }
+      ]
+    },
+    {
+      "id": "medicalPurpose",
+      "type": "boolean",
+      "group": "qualification",
+      "label": {
+        "uk": "Медичне призначення",
+        "en": "Medical purpose"
+      },
+      "question": {
+        "uk": "Чи призначає виробник ПЗ для однієї з медичних цілей ст. 2(1) MDR: діагностики, профілактики, моніторингу, прогнозування, прогнозу, лікування чи полегшення хвороби; діагностики, моніторингу, лікування чи компенсації травми або інвалідності; дослідження чи зміни анатомії або фізіологічного процесу; контролю чи підтримки зачаття?",
+        "en": "Does the manufacturer intend the software for one of the medical purposes of Article 2(1) MDR: diagnosis, prevention, monitoring, prediction, prognosis, treatment or alleviation of disease; diagnosis, monitoring, treatment of, or compensation for, an injury or disability; investigation or modification of the anatomy or of a physiological process; control or support of conception?"
+      },
+      "help": {
+        "uk": "Крок 5 MDCG 2019-11. Вирішує призначення, заявлене виробником (етикетка, інструкція, реклама, клінічна оцінка — ст. 2(12)), а не технологія. Ризик збою сам по собі не критерій. ПЗ лише для немедичних цілей (рахунки, розклад персоналу, велнес, фітнес) медвиробом не є.",
+        "en": "MDCG 2019-11 decision step 5. What counts is the purpose the manufacturer states (label, instructions, promotion, clinical evaluation — Article 2(12)), not the technology. The risk of a malfunction is not itself a criterion. Software for non-medical purposes only (invoicing, staff planning, wellness, fitness) is not a medical device."
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "art-2",
+          "quote": "’medical device’ means any instrument, apparatus, appliance, software, implant, reagent, material or other article intended by the manufacturer to be used, alone or in combination, for human beings for one or more of the following specific medical purposes:",
+          "sha256": "d49b89fe6cae84b2723ab5fad6aa8312aea8e5096c014abd5db62b0073342721",
+          "start": 96,
+          "end": 353
+        },
+        {
+          "source": "mdr",
+          "section": "art-2",
+          "quote": "diagnosis, prevention, monitoring, prediction, prognosis, treatment or alleviation of disease,",
+          "sha256": "d49b89fe6cae84b2723ab5fad6aa8312aea8e5096c014abd5db62b0073342721",
+          "start": 356,
+          "end": 450
+        },
+        {
+          "source": "mdr",
+          "section": "art-2",
+          "quote": "diagnosis, monitoring, treatment, alleviation of, or compensation for, an injury or disability,",
+          "sha256": "d49b89fe6cae84b2723ab5fad6aa8312aea8e5096c014abd5db62b0073342721",
+          "start": 453,
+          "end": 548
+        },
+        {
+          "source": "mdr",
+          "section": "art-2",
+          "quote": "devices for the control or support of conception;",
+          "sha256": "d49b89fe6cae84b2723ab5fad6aa8312aea8e5096c014abd5db62b0073342721",
+          "start": 1071,
+          "end": 1120
+        },
+        {
+          "source": "mdr",
+          "section": "art-2",
+          "quote": "’intended purpose’ means the use for which a device is intended according to the data supplied by the manufacturer on the label, in the instructions for use or in promotional or sales materials or statements and as specified by the manufacturer in the clinical evaluation;",
+          "sha256": "d49b89fe6cae84b2723ab5fad6aa8312aea8e5096c014abd5db62b0073342721",
+          "start": 4620,
+          "end": 4892
+        },
+        {
+          "source": "mdcg-2019-11",
+          "section": "figure-1",
+          "quote": "Decision step 5: Is the software medical device software (MDSW) according to the definition of this guidance?",
+          "sha256": "59616e47334d93781ca1e8053552dbe0f8308d91fa706328654c12931a2489fe",
+          "start": 1860,
+          "end": 1969
+        },
+        {
+          "source": "mdcg-2019-11",
+          "section": "sec-3.1",
+          "quote": "In addition, software only intended for non-medical purposes (excluding MDR Annex XVI devices), such as invoicing, staff planning, e-mailing, web or voice messaging, data parsing, word processing, and back-up, wellness or fitness apps, do not qualify as MDSW.",
+          "sha256": "c552c82349ea237f952d12598bb5f5f8ab27939c11374d993df25011e091f38f",
+          "start": 3281,
+          "end": 3540
+        },
+        {
+          "source": "mdcg-2019-11",
+          "section": "sec-3.1",
+          "quote": "It must be highlighted that the risk of harm to patients, users of the software, or any other person, related to the use of the software within healthcare, including a possible malfunction is not a criterion on whether the software qualifies as a medical device.",
+          "sha256": "c552c82349ea237f952d12598bb5f5f8ab27939c11374d993df25011e091f38f",
+          "start": 3772,
+          "end": 4034
+        }
+      ]
+    },
+    {
+      "id": "actsOnData",
+      "type": "boolean",
+      "group": "qualification",
+      "label": {
+        "uk": "Дія над даними",
+        "en": "Acts on data"
+      },
+      "question": {
+        "uk": "Чи виконує ПЗ дію над даними понад зберігання, архівування, передавання, простий пошук чи стиснення без втрат?",
+        "en": "Does the software perform an action on data beyond storage, archival, communication, simple search or lossless compression?"
+      },
+      "help": {
+        "uk": "Крок 3 MDCG 2019-11. Обробка, аналіз, інтерпретація, розрахунок, створення чи зміна медичної інформації — так; лише показ, передавання чи архів — ні.",
+        "en": "MDCG 2019-11 decision step 3. Processing, analysing, interpreting, calculating, creating or modifying medical information — yes; only displaying, transferring or archiving — no."
+      },
+      "citations": [
+        {
+          "source": "mdcg-2019-11",
+          "section": "figure-1",
+          "quote": "Decision step 3: if the software does perform an action on data, or performs an action beyond storage, archival, communication",
+          "sha256": "59616e47334d93781ca1e8053552dbe0f8308d91fa706328654c12931a2489fe",
+          "start": 769,
+          "end": 895
+        },
+        {
+          "source": "mdcg-2019-11",
+          "section": "figure-1",
+          "quote": "simple search, lossless compression (i.e. using a compression procedure that allows the exact reconstruction of the original data) then it may be a MDSW",
+          "sha256": "59616e47334d93781ca1e8053552dbe0f8308d91fa706328654c12931a2489fe",
+          "start": 900,
+          "end": 1052
+        },
+        {
+          "source": "mdcg-2019-11",
+          "section": "sec-3.1",
+          "quote": "However, software which is intended to process, analyse, interpret, calculate, create or modify medical information may be qualified as a MDSW if the creation or modification of that information is governed by a medical intended purpose.",
+          "sha256": "c552c82349ea237f952d12598bb5f5f8ab27939c11374d993df25011e091f38f",
+          "start": 2290,
+          "end": 2527
+        }
+      ]
+    },
+    {
+      "id": "individualPatients",
+      "type": "boolean",
+      "group": "qualification",
+      "label": {
+        "uk": "Для окремих пацієнтів",
+        "en": "For individual patients"
+      },
+      "question": {
+        "uk": "Чи виконує ПЗ цю дію на користь окремих пацієнтів?",
+        "en": "Is the action for the benefit of individual patients?"
+      },
+      "help": {
+        "uk": "Крок 4 MDCG 2019-11. Ні — якщо ПЗ лише агрегує популяційні дані, дає загальні діагностичні чи лікувальні алгоритми, не спрямовані на конкретного пацієнта, або призначене для епідеміологічних досліджень і реєстрів.",
+        "en": "MDCG 2019-11 decision step 4. No — if the software only aggregates population data, provides generic diagnostic or treatment pathways not directed to individual patients, or serves epidemiological studies and registers."
+      },
+      "citations": [
+        {
+          "source": "mdcg-2019-11",
+          "section": "figure-1",
+          "quote": "Decision step 4: is the action for the benefit of individual patients?",
+          "sha256": "59616e47334d93781ca1e8053552dbe0f8308d91fa706328654c12931a2489fe",
+          "start": 1141,
+          "end": 1211
+        },
+        {
+          "source": "mdcg-2019-11",
+          "section": "figure-1",
+          "quote": "Examples of software which are not considered as being for the benefit of individual patients are those which are intended only to aggregate population data, provide generic diagnostic or treatment pathways (not directed to individual patients), scientific literature, medical",
+          "sha256": "59616e47334d93781ca1e8053552dbe0f8308d91fa706328654c12931a2489fe",
+          "start": 1212,
+          "end": 1488
+        }
+      ]
+    },
+    {
+      "id": "drivesDevice",
+      "type": "boolean",
+      "group": "qualification",
+      "label": {
+        "uk": "Керує апаратом",
+        "en": "Drives a device"
+      },
+      "question": {
+        "uk": "Чи керує ПЗ (апаратним) медвиробом або впливає на його використання — вмикає, змінює стан, керує ним або видає дані про його роботу?",
+        "en": "Does the software drive or influence the use of a (hardware) medical device — operate, modify the state of or control it, or supply output about its functioning?"
+      },
+      "help": {
+        "uk": "Крок 2 MDCG 2019-11 і правило застосування 3.3 додатка VIII: таке ПЗ має клас цього апарата. Якщо ПЗ ще й має власне медичне призначення, воно — MDSW, а його клас не нижчий за клас апарата.",
+        "en": "MDCG 2019-11 decision step 2 and implementing rule 3.3 of Annex VIII: such software takes the class of that device. If it also has a medical purpose of its own, it is MDSW and its class is not lower than the device's."
+      },
+      "citations": [
+        {
+          "source": "mdcg-2019-11",
+          "section": "sec-2",
+          "quote": "Software which is intended to drive or influence the use of a (hardware) medical device and does not have or perform a medical purpose on its own, nor does it create information on its own for one or more of the medical purposes described in the definition of a medical device or an in vitro diagnostic medical device.",
+          "sha256": "b7d0bcaa90e9bc419528248ad9ced394a56827f7b63a2c99c89f90430d887607",
+          "start": 9072,
+          "end": 9390
+        },
+        {
+          "source": "mdcg-2019-11",
+          "section": "sec-2",
+          "quote": "(a) operate, modify the state of, or control the device either through an interface (e.g., software, hardware) or via the operator of this device",
+          "sha256": "b7d0bcaa90e9bc419528248ad9ced394a56827f7b63a2c99c89f90430d887607",
+          "start": 9433,
+          "end": 9578
+        },
+        {
+          "source": "mdr",
+          "section": "annex-viii-ch2",
+          "quote": "Software, which drives a device or influences the use of a device, shall fall within the same class as the device.",
+          "sha256": "2a492dd28b44f7046f2eb9dbed3b8af780c9f248ab70ca795472d3106ca8aa5a",
+          "start": 425,
+          "end": 539
+        }
+      ]
+    },
+    {
+      "id": "accessory",
+      "type": "boolean",
+      "group": "qualification",
+      "label": {
+        "uk": "Аксесуар",
+        "en": "Accessory"
+      },
+      "question": {
+        "uk": "Чи призначене ПЗ, не будучи саме медвиробом, для використання разом з конкретним медвиробом, щоб уможливити його використання за призначенням або безпосередньо допомагати його медичній функції?",
+        "en": "Is the software, without being a medical device itself, intended to be used together with particular medical device(s) to enable their use for their intended purpose or to directly assist their medical functionality?"
+      },
+      "help": {
+        "uk": "Крок 2 MDCG 2019-11. Аксесуар підпадає під MDR і класифікується сам по собі (правило застосування 3.2); у цьому демо його клас рахує правило 11 разом із 3.3.",
+        "en": "MDCG 2019-11 decision step 2. An accessory falls under the MDR and is classified in its own right (implementing rule 3.2); this demo classifies it with Rule 11 together with rule 3.3."
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "art-2",
+          "quote": "’accessory for a medical device’ means an article which, whilst not being itself a medical device, is intended by its manufacturer to be used together with one or several particular medical device(s) to specifically enable the medical device(s) to be used in accordance with its/their intended purpose(s) or to specifically and directly assist the medical functionality of the medical device(s) in terms of its/their intended purpose(s);",
+          "sha256": "d49b89fe6cae84b2723ab5fad6aa8312aea8e5096c014abd5db62b0073342721",
+          "start": 1311,
+          "end": 1748
+        },
+        {
+          "source": "mdcg-2019-11",
+          "section": "figure-1",
+          "quote": "Decision step 2: if the product is an MDR Annex XVI device, or is an accessory for a medical device",
+          "sha256": "59616e47334d93781ca1e8053552dbe0f8308d91fa706328654c12931a2489fe",
+          "start": 440,
+          "end": 539
+        },
+        {
+          "source": "mdr",
+          "section": "annex-viii-ch2",
+          "quote": "Accessories for a medical device shall be classified in their own right separately from the device with which they are used.",
+          "sha256": "2a492dd28b44f7046f2eb9dbed3b8af780c9f248ab70ca795472d3106ca8aa5a",
+          "start": 295,
+          "end": 419
+        }
+      ]
+    },
+    {
+      "id": "annexXvi",
+      "type": "boolean",
+      "group": "qualification",
+      "label": {
+        "uk": "Продукт додатка XVI",
+        "en": "Annex XVI product"
+      },
+      "question": {
+        "uk": "Чи це продукт без медичного призначення з переліку додатка XVI MDR?",
+        "en": "Is it a product without an intended medical purpose listed in Annex XVI of the MDR?"
+      },
+      "help": {
+        "uk": "Крок 2 MDCG 2019-11. Для таких продуктів MDR діє через спільні специфікації; цей демо їх далі не розбирає.",
+        "en": "MDCG 2019-11 decision step 2. The MDR applies to such products through common specifications; this demo does not go further for them."
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "art-1",
+          "quote": "This Regulation shall also apply, as from the date of application of common specifications adopted pursuant to Article 9, to the groups of products without an intended medical purpose that are listed in Annex XVI",
+          "sha256": "2d04b493b2e117fd9d051e9521709f14f46bea84cafa1e90890b3dde0723ccb4",
+          "start": 374,
+          "end": 586
+        },
+        {
+          "source": "mdcg-2019-11",
+          "section": "figure-1",
+          "quote": "Decision step 2: if the product is an MDR Annex XVI device, or is an accessory for a medical device",
+          "sha256": "59616e47334d93781ca1e8053552dbe0f8308d91fa706328654c12931a2489fe",
+          "start": 440,
+          "end": 539
+        }
+      ]
+    },
+    {
+      "id": "decisionInfo",
+      "type": "boolean",
+      "group": "classification",
+      "label": {
+        "uk": "Інформація для рішень",
+        "en": "Information for decisions"
+      },
+      "question": {
+        "uk": "Чи призначене ПЗ надавати інформацію, яку використовують для ухвалення рішень з діагностичною чи лікувальною метою?",
+        "en": "Is the software intended to provide information which is used to take decisions with diagnosis or therapeutic purposes?"
+      },
+      "help": {
+        "uk": "Підправило 11a. За MDCG 2019-11 так у загальних рисах описано «спосіб дії» майже кожного MDSW. Ні — якщо ПЗ лише моніторить фізіологічні процеси (11b) або має інше медичне призначення без таких рішень, напр. компенсує інвалідність чи підтримує зачаття (11c).",
+        "en": "Sub-rule 11a. MDCG 2019-11 calls this, in very general terms, the 'mode of action' of almost every MDSW. No — if the software only monitors physiological processes (11b) or has another medical purpose without such decisions, e.g. compensating a disability or supporting conception (11c)."
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "annex-viii-rule-11",
+          "quote": "Software intended to provide information which is used to take decisions with diagnosis or therapeutic purposes is classified as class IIa, except if such decisions have an impact that may cause:",
+          "sha256": "510d927f64f8f80ef430fc62df63fad52931ae21e755bd04f1af398ff95eda49",
+          "start": 13,
+          "end": 208
+        },
+        {
+          "source": "mdcg-2019-11",
+          "section": "sec-4.2.1",
+          "quote": "The wording “intended to provide information which is used to take decisions with diagnosis or therapeutic purposes” describes, in very general terms, the “mode of action” which is characteristic of all MDSW.",
+          "sha256": "af5f0dc9ab0ef6fd67d4c1280dc605518b36e108a54ce9d9dcaaf8a59aa38437",
+          "start": 1380,
+          "end": 1588
+        }
+      ]
+    },
+    {
+      "id": "decisionImpact",
+      "type": "enum",
+      "group": "classification",
+      "values": [
+        {
+          "id": "death-or-irreversible",
+          "label": {
+            "uk": "Смерть або незворотне погіршення здоров'я",
+            "en": "Death or an irreversible deterioration of a person's state of health"
+          }
+        },
+        {
+          "id": "serious-or-surgery",
+          "label": {
+            "uk": "Серйозне погіршення здоров'я або хірургічне втручання",
+            "en": "A serious deterioration of a person's state of health or a surgical intervention"
+          }
+        },
+        {
+          "id": "other",
+          "label": {
+            "uk": "Нічого з цього",
+            "en": "Neither of these"
+          }
+        }
+      ],
+      "label": {
+        "uk": "Вплив рішення",
+        "en": "Impact of decisions"
+      },
+      "question": {
+        "uk": "Якщо рішення ухвалять на основі хибної інформації від ПЗ, який найгірший обґрунтовано ймовірний наслідок?",
+        "en": "If a decision is taken on incorrect information from the software, what is the worst reasonably likely impact?"
+      },
+      "help": {
+        "uk": "Винятки підправила 11a: клас III і IIb. За MDCG 2019-11 важать значущість наданої інформації і можливий вплив хибного рішення. Підказку дає таблиця IMDRF (MDCG 2019-11, додаток III) — її можна заповнити для перехресної перевірки.",
+        "en": "The exceptions of sub-rule 11a: class III and IIb. Per MDCG 2019-11, what matters is the significance of the information and the possible impact of an incorrect decision. The IMDRF table (MDCG 2019-11, Annex III) helps; fill it in for a cross-check."
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "annex-viii-rule-11",
+          "quote": "death or an irreversible deterioration of a person’s state of health, in which case it is in class III; or",
+          "sha256": "510d927f64f8f80ef430fc62df63fad52931ae21e755bd04f1af398ff95eda49",
+          "start": 211,
+          "end": 317
+        },
+        {
+          "source": "mdr",
+          "section": "annex-viii-rule-11",
+          "quote": "a serious deterioration of a person’s state of health or a surgical intervention, in which case it is classified as class IIb.",
+          "sha256": "510d927f64f8f80ef430fc62df63fad52931ae21e755bd04f1af398ff95eda49",
+          "start": 320,
+          "end": 446
+        },
+        {
+          "source": "mdcg-2019-11",
+          "section": "sec-4.2.1",
+          "quote": "Accordingly, MDSW that is intended to provide information which is used to take decisions with diagnosis and therapeutic purposes, is at a higher risk class where such decisions, if based on incorrect information from the MDSW, are reasonably likely to have an impact that may cause:",
+          "sha256": "af5f0dc9ab0ef6fd67d4c1280dc605518b36e108a54ce9d9dcaaf8a59aa38437",
+          "start": 2498,
+          "end": 2781
+        }
+      ]
+    },
+    {
+      "id": "monitorsPhysiological",
+      "type": "boolean",
+      "group": "classification",
+      "label": {
+        "uk": "Моніторинг",
+        "en": "Monitoring"
+      },
+      "question": {
+        "uk": "Чи призначене ПЗ для моніторингу фізіологічних процесів?",
+        "en": "Is the software intended to monitor physiological processes?"
+      },
+      "help": {
+        "uk": "Підправило 11b — для ПЗ, призначеного лише для моніторингу. Якщо ПЗ ще й дає інформацію для рішень, діють обидва підправила, і перемагає суворіше (правило застосування 3.5).",
+        "en": "Sub-rule 11b, for software intended only for monitoring. If the software also provides information for decisions, both sub-rules apply and the stricter wins (implementing rule 3.5)."
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "annex-viii-rule-11",
+          "quote": "Software intended to monitor physiological processes is classified as class IIa, except if it is intended for monitoring of vital physiological parameters, where the nature of variations of those parameters is such that it could result in immediate danger to the patient, in which case it is classified as class IIb.",
+          "sha256": "510d927f64f8f80ef430fc62df63fad52931ae21e755bd04f1af398ff95eda49",
+          "start": 447,
+          "end": 763
+        },
+        {
+          "source": "mdcg-2019-11",
+          "section": "sec-4.2.1",
+          "quote": "Sub-rule 11b) should therefore be considered as a specific rule for MDSW intended only for monitoring purposes.",
+          "sha256": "af5f0dc9ab0ef6fd67d4c1280dc605518b36e108a54ce9d9dcaaf8a59aa38437",
+          "start": 4509,
+          "end": 4620
+        }
+      ]
+    },
+    {
+      "id": "vitalImmediateDanger",
+      "type": "boolean",
+      "group": "classification",
+      "label": {
+        "uk": "Життєві параметри",
+        "en": "Vital parameters"
+      },
+      "question": {
+        "uk": "Чи моніторить ПЗ життєво важливі параметри, зміни яких можуть створити безпосередню небезпеку для пацієнта?",
+        "en": "Does it monitor vital physiological parameters whose variations could result in immediate danger to the patient?"
+      },
+      "help": {
+        "uk": "Життєві параметри — напр., дихання, частота серцевих скорочень, функції мозку, гази крові, тиск, температура. Постійне спостереження в анестезії, інтенсивній чи невідкладній допомозі — так (IIb); показники під час планових оглядів чи самоконтролю вдома — ні (IIa).",
+        "en": "Vital parameters include e.g. respiration, heart rate, cerebral functions, blood gases, blood pressure, body temperature. Continuous surveillance in anaesthesia, intensive or emergency care — yes (IIb); readings in routine check-ups or self-monitoring at home — no (IIa)."
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "annex-viii-rule-11",
+          "quote": "except if it is intended for monitoring of vital physiological parameters, where the nature of variations of those parameters is such that it could result in immediate danger to the patient, in which case it is classified as class IIb.",
+          "sha256": "510d927f64f8f80ef430fc62df63fad52931ae21e755bd04f1af398ff95eda49",
+          "start": 528,
+          "end": 763
+        },
+        {
+          "source": "mdcg-2019-11",
+          "section": "sec-4.2.1",
+          "quote": "Vital physiological processes and parameters include, for example, respiration, heart rate, cerebral functions, blood gases, blood pressure and body temperature.",
+          "sha256": "af5f0dc9ab0ef6fd67d4c1280dc605518b36e108a54ce9d9dcaaf8a59aa38437",
+          "start": 4990,
+          "end": 5151
+        },
+        {
+          "source": "mdcg-2021-24",
+          "section": "rule-10",
+          "quote": "Medical devices intended to be used for continuous surveillance of vital physiological parameters in anesthesia, intensive care or emergency care are in class IIb, whilst medical devices intended to be used to obtain readings of vital physiological signals as part of routine checkups or self-monitoring are in class IIa.",
+          "sha256": "f0b57e15e3365f59c5f0b33e191545d93d3a527e6292dd9d96469c3ffd86e55e",
+          "start": 3830,
+          "end": 4151
+        }
+      ]
+    },
+    {
+      "id": "drivenDeviceClass",
+      "type": "enum",
+      "group": "classification",
+      "values": [
+        {
+          "id": "I",
+          "label": {
+            "uk": "Клас I",
+            "en": "Class I"
+          }
+        },
+        {
+          "id": "IIa",
+          "label": {
+            "uk": "Клас IIa",
+            "en": "Class IIa"
+          }
+        },
+        {
+          "id": "IIb",
+          "label": {
+            "uk": "Клас IIb",
+            "en": "Class IIb"
+          }
+        },
+        {
+          "id": "III",
+          "label": {
+            "uk": "Клас III",
+            "en": "Class III"
+          }
+        }
+      ],
+      "label": {
+        "uk": "Клас апарата",
+        "en": "Device class"
+      },
+      "question": {
+        "uk": "Якого класу (апаратний) медвиріб, яким керує ПЗ або на використання якого впливає?",
+        "en": "What is the class of the (hardware) medical device the software drives or whose use it influences?"
+      },
+      "help": {
+        "uk": "Правило застосування 3.3: ПЗ, що керує виробом, має той самий клас. За MDCG 2019-11, якщо ПЗ має й власне призначення, клас визначає воно, але не нижчий за клас апарата.",
+        "en": "Implementing rule 3.3: software that drives a device has the device's class. Per MDCG 2019-11, if the software also has its own purpose, that purpose decides the class, but never below the device's."
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "annex-viii-ch2",
+          "quote": "Software, which drives a device or influences the use of a device, shall fall within the same class as the device.",
+          "sha256": "2a492dd28b44f7046f2eb9dbed3b8af780c9f248ab70ca795472d3106ca8aa5a",
+          "start": 425,
+          "end": 539
+        },
+        {
+          "source": "mdcg-2019-11",
+          "section": "sec-4.1",
+          "quote": "In such a case, however, the risk class shall not be lower than the risk class of the hardware medical device.",
+          "sha256": "e407811772da9b5b7155eb48781ad81cd8cf614a1ef0ff29fa168c07ce95b04b",
+          "start": 1122,
+          "end": 1232
+        }
+      ]
+    },
+    {
+      "id": "measuringFunction",
+      "type": "boolean",
+      "group": "classification",
+      "label": {
+        "uk": "Функція вимірювання",
+        "en": "Measuring function"
+      },
+      "question": {
+        "uk": "Чи має ПЗ функцію вимірювання: кількісно вимірює фізіологічний чи анатомічний параметр, показує результат в одиницях вимірювання, а точність важлива для здоров'я пацієнта?",
+        "en": "Does the software have a measuring function: it quantitatively measures a physiological or anatomical parameter, shows the result in legal units, and its accuracy matters for the patient's health?"
+      },
+      "help": {
+        "uk": "Важить лише для класу I: тоді нотифікований орган перевіряє метрологічні аспекти (ст. 52(7)(b)). За MDCG 2025-6 такий виріб — з участю нотифікованого органу, тож AI-система в ньому високоризикова.",
+        "en": "Matters for class I only: a notified body then assesses the metrological aspects (Article 52(7)(b)). Per MDCG 2025-6 such a device involves a notified body, so an AI system in it is high-risk."
+      },
+      "citations": [
+        {
+          "source": "mdcg-2021-24",
+          "section": "measuring-function",
+          "quote": "The following criteria, if fulfilled together, indicate that a device has a measuring function:",
+          "sha256": "87e2da21c619e219828d5854431305cc5c39ce26f339ee163897271f20f09c54",
+          "start": 34,
+          "end": 129
+        },
+        {
+          "source": "mdcg-2021-24",
+          "section": "measuring-function",
+          "quote": "quantitatively a physiological or anatomical parameter",
+          "sha256": "87e2da21c619e219828d5854431305cc5c39ce26f339ee163897271f20f09c54",
+          "start": 190,
+          "end": 244
+        },
+        {
+          "source": "mdcg-2021-24",
+          "section": "measuring-function",
+          "quote": "The intended purpose implies accuracy, claimed explicitly or implicitly, where a non-compliance with the implied accuracy could result in a significant adverse effect on the patient’s health and safety.",
+          "sha256": "87e2da21c619e219828d5854431305cc5c39ce26f339ee163897271f20f09c54",
+          "start": 1064,
+          "end": 1266
+        },
+        {
+          "source": "mdr",
+          "section": "art-52",
+          "quote": "in the case of devices with a measuring function, to the aspects relating to the conformity of the devices with the metrological requirements;",
+          "sha256": "3c60ee5b21009be048ae7992d592229168eac2900d35e28d08e615f9c87c9974",
+          "start": 4157,
+          "end": 4299
+        }
+      ]
+    },
+    {
+      "id": "imdrfSituation",
+      "type": "enum",
+      "group": "guidance",
+      "values": [
+        {
+          "id": "critical",
+          "label": {
+            "uk": "Критична",
+            "en": "Critical"
+          }
+        },
+        {
+          "id": "serious",
+          "label": {
+            "uk": "Серйозна",
+            "en": "Serious"
+          }
+        },
+        {
+          "id": "non-serious",
+          "label": {
+            "uk": "Несерйозна",
+            "en": "Non-serious"
+          }
+        }
+      ],
+      "label": {
+        "uk": "Ситуація (IMDRF)",
+        "en": "Situation (IMDRF)"
+      },
+      "question": {
+        "uk": "Який стан медичної ситуації чи пацієнта за IMDRF: критичний, серйозний чи несерйозний?",
+        "en": "What is the state of the healthcare situation or patient condition (IMDRF): critical, serious or non-serious?"
+      },
+      "help": {
+        "uk": "Для перехресної перевірки за таблицею MDCG 2019-11 (додаток III) і для «що як» за пропозицією COM(2025) 1023. Наприклад, гострий інсульт — критичний стан; депресія — серйозний.",
+        "en": "For the cross-check with the MDCG 2019-11 table (Annex III) and the 'what if' of proposal COM(2025) 1023. For example, acute stroke is critical; depression is serious."
+      },
+      "citations": [
+        {
+          "source": "mdcg-2019-11",
+          "section": "sec-4.2.1",
+          "quote": "The IMDRF framework for risk categorisation of software as a medical device (SaMD) (“IMDRF Risk Framework”) categorises the risk of software based on the combination of the significance of the information provided by the software to the healthcare decision and the healthcare situation or patient condition.",
+          "sha256": "af5f0dc9ab0ef6fd67d4c1280dc605518b36e108a54ce9d9dcaaf8a59aa38437",
+          "start": 3382,
+          "end": 3689
+        },
+        {
+          "source": "mdcg-2019-11",
+          "section": "annex-iii",
+          "quote": "State of Healthcare situation or patient condition",
+          "sha256": "c9e3b74c5153a50bde2a4ef407c3672d836839f317f9b000ba46018dffa6fa56",
+          "start": 911,
+          "end": 961
+        }
+      ]
+    },
+    {
+      "id": "imdrfSignificance",
+      "type": "enum",
+      "group": "guidance",
+      "values": [
+        {
+          "id": "treat-or-diagnose",
+          "label": {
+            "uk": "Лікувати чи діагностувати",
+            "en": "Treat or diagnose"
+          }
+        },
+        {
+          "id": "drive",
+          "label": {
+            "uk": "Керувати клінічним веденням",
+            "en": "Drive clinical management"
+          }
+        },
+        {
+          "id": "inform",
+          "label": {
+            "uk": "Інформувати клінічне ведення",
+            "en": "Inform clinical management"
+          }
+        }
+      ],
+      "label": {
+        "uk": "Значущість (IMDRF)",
+        "en": "Significance (IMDRF)"
+      },
+      "question": {
+        "uk": "Яка значущість інформації від ПЗ для медичного рішення за IMDRF: лікувати чи діагностувати, керувати клінічним веденням чи лише інформувати його?",
+        "en": "What is the significance of the information the software provides to the healthcare decision (IMDRF): treat or diagnose, drive clinical management, or inform clinical management?"
+      },
+      "help": {
+        "uk": "Для перехресної перевірки за таблицею MDCG 2019-11 (додаток III) і для «що як» за пропозицією COM(2025) 1023.",
+        "en": "For the cross-check with the MDCG 2019-11 table (Annex III) and the 'what if' of proposal COM(2025) 1023."
+      },
+      "citations": [
+        {
+          "source": "mdcg-2019-11",
+          "section": "annex-iii",
+          "quote": "Significance of Information provided by the MDSW to a healthcare situation related to diagnosis/therapy",
+          "sha256": "c9e3b74c5153a50bde2a4ef407c3672d836839f317f9b000ba46018dffa6fa56",
+          "start": 807,
+          "end": 910
+        },
+        {
+          "source": "mdcg-2019-11",
+          "section": "annex-iii",
+          "quote": "Treat or diagnose ~ IMDRF 5.1.1 Drives clinical management ~ IMDRF 5.1.2 Informs clinical management (everything else)",
+          "sha256": "c9e3b74c5153a50bde2a4ef407c3672d836839f317f9b000ba46018dffa6fa56",
+          "start": 978,
+          "end": 1096
+        }
+      ]
+    },
+    {
+      "id": "clinicalBenefitOutput",
+      "type": "boolean",
+      "group": "guidance",
+      "label": {
+        "uk": "Клінічний вихід",
+        "en": "Clinical output"
+      },
+      "question": {
+        "uk": "Чи призначене ПЗ генерувати вихідні дані, що дають клінічну користь і використовуються для діагностики, лікування, профілактики, моніторингу, прогнозування, прогнозу, компенсації чи полегшення хвороби або стану?",
+        "en": "Is the software intended to generate an output that confers a clinical benefit and is used for diagnosis, treatment, prevention, monitoring, prediction, prognosis, compensation or alleviation of a disease or condition?"
+      },
+      "help": {
+        "uk": "Лише для «що як»: так формулює правило 11 пропозиція Єврокомісії COM(2025) 1023. Це не чинне право.",
+        "en": "For the 'what if' only: this is how proposal COM(2025) 1023 words Rule 11. It is not law in force."
+      },
+      "citations": [
+        {
+          "source": "com-2025-1023-annexes",
+          "section": "annex-i-6",
+          "quote": "Software which is intended to generate an output that confers a clinical benefit and is used for diagnosis, treatment, prevention, monitoring, prediction, prognosis, compensation or alleviation of a disease or condition is classified as class I, unless the output is intended for a disease or condition:",
+          "sha256": "2e12c6b4311f9cb71d1d449c20a4a5d04130570ebc25ae6fcc2c7e0dde43c78c",
+          "start": 2792,
+          "end": 3095
+        }
+      ]
+    },
+    {
+      "id": "isAiSystem",
+      "type": "boolean",
+      "group": "ai",
+      "label": {
+        "uk": "AI-система",
+        "en": "AI system"
+      },
+      "question": {
+        "uk": "Чи є ПЗ або його частина AI-системою за ст. 3(1) AI Act — машинною системою, що з отриманих даних виводить, як генерувати прогнози, рекомендації чи рішення?",
+        "en": "Is the software, or a part of it, an AI system under Article 3(1) of the AI Act — a machine-based system that infers from its input how to generate predictions, recommendations or decisions?"
+      },
+      "help": {
+        "uk": "За MDCG 2025-6 AI Act не змінює класу за MDR; навпаки, клас за MDR визначає, чи AI-система високоризикова.",
+        "en": "Per MDCG 2025-6 the AI Act does not change the MDR class; rather, the MDR class decides whether the AI system is high-risk."
+      },
+      "citations": [
+        {
+          "source": "ai-act",
+          "section": "art-3",
+          "quote": "’AI system’ means a machine-based system that is designed to operate with varying levels of autonomy and that may exhibit adaptiveness after deployment, and that, for explicit or implicit objectives, infers, from the input it receives, how to generate outputs such as predictions, content, recommendations, or decisions that can influence physical or virtual environments;",
+          "sha256": "10b75b77fc61805672f5ff0a2d4d047b7712de2c379cbf7e03371941e7860356",
+          "start": 96,
+          "end": 468
+        },
+        {
+          "source": "mdcg-2025-6",
+          "section": "q4",
+          "quote": "Therefore, the AIA does not impact the risk classification of medical devices or in vitro diagnostic medical devices (IVDs) under the MDR or IVDR.",
+          "sha256": "ea05cd381ef8887564ba8140c42fe6a800822633040a945ae5457ac38f09c21a",
+          "start": 280,
+          "end": 426
+        }
+      ]
+    },
+    {
+      "id": "aiRole",
+      "type": "enum",
+      "group": "ai",
+      "values": [
+        {
+          "id": "device",
+          "label": {
+            "uk": "Сама є медвиробом (MDSW)",
+            "en": "It is itself the medical device (MDSW)"
+          }
+        },
+        {
+          "id": "safety-component",
+          "label": {
+            "uk": "Компонент безпеки: його збій загрожує здоров'ю чи безпеці",
+            "en": "A safety component: its failure would endanger health and safety"
+          }
+        },
+        {
+          "id": "other-component",
+          "label": {
+            "uk": "Лише небезпекові аспекти: допомога користувачу, оптимізація, автоматизація, зручність, контроль якості",
+            "en": "Only non-safety aspects: user assistance, performance optimisation, automation, convenience, quality control"
+          }
+        }
+      ],
+      "label": {
+        "uk": "Роль AI",
+        "en": "AI role"
+      },
+      "question": {
+        "uk": "Яку роль відіграє AI-система у виробі?",
+        "en": "What role does the AI system play in the device?"
+      },
+      "help": {
+        "uk": "Ст. 6(1)(a): AI-система є продуктом або компонентом безпеки продукту, на який поширюється законодавство з додатка I (там є MDR). Пункти 1a і 1b додано Регламентом 2026/1744.",
+        "en": "Article 6(1)(a): the AI system is a product, or a safety component of a product, covered by the legislation of Annex I (which lists the MDR). Paragraphs 1a and 1b were added by Regulation 2026/1744."
+      },
+      "citations": [
+        {
+          "source": "ai-act",
+          "section": "art-6",
+          "quote": "the AI system is intended to be used as a safety component of a product, or the AI system is itself a product, covered by the Union harmonisation legislation listed in Annex I;",
+          "sha256": "90222d70d647ea74780e7450dbcdee87d2530b68c83b6eb7af480ab460bfbab1",
+          "start": 314,
+          "end": 490
+        },
+        {
+          "source": "ai-act",
+          "section": "art-6",
+          "quote": "For the purposes of this Regulation, including paragraph 1 of this Article, AI systems that are solely used for non-safety related aspects of user assistance, performance optimisation, service efficiency, automation or convenience or quality control shall not qualify as safety components.",
+          "sha256": "90222d70d647ea74780e7450dbcdee87d2530b68c83b6eb7af480ab460bfbab1",
+          "start": 824,
+          "end": 1113
+        },
+        {
+          "source": "ai-act",
+          "section": "art-6",
+          "quote": "Notwithstanding paragraph 1a, AI systems the failure or malfunctioning of which would endanger health and safety shall qualify as safety components.",
+          "sha256": "90222d70d647ea74780e7450dbcdee87d2530b68c83b6eb7af480ab460bfbab1",
+          "start": 1118,
+          "end": 1266
+        }
+      ]
+    },
+    {
+      "id": "interactsWithPersons",
+      "type": "boolean",
+      "group": "ai",
+      "label": {
+        "uk": "Спілкується з людьми",
+        "en": "Interacts with people"
+      },
+      "question": {
+        "uk": "Чи призначена AI-система для прямої взаємодії з людьми (напр., чат-бот для пацієнтів)?",
+        "en": "Is the AI system intended to interact directly with natural persons (e.g. a chatbot for patients)?"
+      },
+      "help": {
+        "uk": "Ст. 50(1) AI Act — прозорість: людей інформують, що вони взаємодіють з AI, якщо це не очевидно. Не залежить від класу за MDR.",
+        "en": "Article 50(1) AI Act — transparency: people are told they are interacting with an AI system unless it is obvious. It does not depend on the MDR class."
+      },
+      "citations": [
+        {
+          "source": "ai-act",
+          "section": "art-50",
+          "quote": "Providers shall ensure that AI systems intended to interact directly with natural persons are designed and developed in such a way that the natural persons concerned are informed that they are interacting with an AI system",
+          "sha256": "95e01b726a900e165607c5ceff41cdcdeedaabbe68e86e89b8ebb0b7efc1fd76",
+          "start": 89,
+          "end": 311
+        },
+        {
+          "source": "mdcg-2025-6",
+          "section": "q4",
+          "quote": "The application of Article 5 AIA, prohibited AI practices and Article 50 AIA transparency obligations for providers and deployers of certain AI systems does not depend on the MDR/IVDR classification.",
+          "sha256": "ea05cd381ef8887564ba8140c42fe6a800822633040a945ae5457ac38f09c21a",
+          "start": 840,
+          "end": 1039
+        }
+      ]
+    },
+    {
+      "id": "manufacturerOutsideEu",
+      "type": "boolean",
+      "group": "market",
+      "label": {
+        "uk": "Виробник поза ЄС",
+        "en": "Manufacturer outside the EU"
+      },
+      "question": {
+        "uk": "Чи виробник не має зареєстрованого місця діяльності в державі-члені ЄС?",
+        "en": "Is the manufacturer not established in an EU Member State?"
+      },
+      "help": {
+        "uk": "Тоді виріб можна розмістити на ринку ЄС лише з єдиним уповноваженим представником (ст. 11 MDR).",
+        "en": "Then the device may only be placed on the EU market with a sole authorised representative (Article 11 MDR)."
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "art-11",
+          "quote": "Where the manufacturer of a device is not established in a Member State, the device may only be placed on the Union market if the manufacturer designates a sole authorised representative.",
+          "sha256": "7f78c88c72a21767727f99a3d078aa7233cf9920344e87fd76ae3e89bfe74d5d",
+          "start": 40,
+          "end": 227
+        }
+      ]
+    }
+  ]
+}

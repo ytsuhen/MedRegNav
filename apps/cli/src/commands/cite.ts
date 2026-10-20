@@ -1,8 +1,15 @@
 // `pnpm mrn cite [--write] [files…]`: completes and re-pins citations in the data files from their quotes;
 // `pnpm mrn check`: every data check (sources, sections, citations, and later rules and obligations).
 import { resolve } from "node:path";
-import { CitationDraftSchema, checkCitation, findCitations, resolveCitation } from "@mrn/core";
-import { checkCitations, checkSources, type Issue } from "../checks.ts";
+import {
+  CITATION_KEYS,
+  CitationDraftSchema,
+  checkCitation,
+  citationFields,
+  findCitations,
+  resolveCitation,
+} from "@mrn/core";
+import { checkCitations, checkExamples, checkRules, checkSources, type Issue } from "../checks.ts";
 import type { Out } from "../cli.ts";
 import { dataJsonFiles, readJson, repoPath, sectionLookup, writeJson } from "../data.ts";
 
@@ -21,7 +28,7 @@ export async function cite(args: string[], out: Out): Promise<number> {
         ok++;
         continue;
       }
-      const draft = CitationDraftSchema.safeParse(value);
+      const draft = CitationDraftSchema.safeParse(citationFields(value));
       const section = draft.success ? lookup(draft.data.source, draft.data.section) : undefined;
       const result = draft.success && section ? resolveCitation(draft.data, section) : undefined;
       if (!result || "issue" in result) {
@@ -38,14 +45,13 @@ export async function cite(args: string[], out: Out): Promise<number> {
       }
       fixed++;
       if (write) {
-        // Rewrite in place with a stable key order; other keys of the object (none expected) are kept after.
+        // Rewrite in place with a stable key order: id (if any), the citation, then any other keys.
+        const { id, ...others } = value;
         const rest = Object.fromEntries(
-          Object.entries(value).filter(
-            ([k]) => !["source", "section", "quote", "sha256", "start", "end", "occurrence"].includes(k),
-          ),
+          Object.entries(others).filter(([k]) => !(CITATION_KEYS as readonly string[]).includes(k)),
         );
         for (const k of Object.keys(value)) delete value[k];
-        Object.assign(value, result.citation, rest);
+        Object.assign(value, id === undefined ? {} : { id }, result.citation, rest);
         changed = true;
       } else out.write(`${repoPath(file)} ${path}: needs --write (${draft.data?.quote.slice(0, 60)}…)\n`);
     }
@@ -60,6 +66,8 @@ export async function check(_args: string[], out: Out): Promise<number> {
   const groups: [string, () => Issue[]][] = [
     ["sources", () => checkSources()],
     ["citations", () => checkCitations()],
+    ["rules", () => checkRules()],
+    ["examples", () => checkExamples()],
   ];
   let total = 0;
   for (const [name, run] of groups) {

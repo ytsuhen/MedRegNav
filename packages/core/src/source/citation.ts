@@ -89,9 +89,22 @@ export function resolveCitation(
   return { citation };
 }
 
-/** Problems with a complete citation: its section is gone or changed, or the text at the offsets is not the quote. */
+/** The keys of a citation; a data object may carry others (e.g. a criterion's `id`), validated by its own schema. */
+export const CITATION_KEYS = ["source", "section", "quote", "sha256", "start", "end", "occurrence"] as const;
+
+/** Only the citation fields of an object that embeds a citation. */
+export function citationFields(value: unknown): Record<string, unknown> {
+  if (!value || typeof value !== "object") return {};
+  const record = value as Record<string, unknown>;
+  return Object.fromEntries(CITATION_KEYS.filter((k) => k in record).map((k) => [k, record[k]]));
+}
+
+/**
+ * Problems with a complete citation: its section is gone or changed, or the text at the offsets is not the quote.
+ * Only the citation fields are checked (`citationFields`).
+ */
 export function checkCitation(value: unknown, lookup: SectionLookup): CitationIssue[] {
-  const parsed = CitationSchema.safeParse(value);
+  const parsed = CitationSchema.safeParse(citationFields(value));
   if (!parsed.success) {
     return [
       { code: "schema", message: parsed.error.issues.map((i) => `${i.path.join(".")}: ${i.message}`).join("; ") },

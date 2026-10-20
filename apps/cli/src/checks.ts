@@ -2,13 +2,26 @@
 // reproducible, every citation still verbatim.
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { canonicalJson, checkCitation, findCitations, type SectionLookup, sliceSections } from "@mrn/core";
+import {
+  canonicalJson,
+  checkCitation,
+  findCitations,
+  profileIssues,
+  runExample,
+  type SectionLookup,
+  sliceSections,
+  validateRules,
+} from "@mrn/core";
 import {
   dataJsonFiles,
   originalPath,
+  readExamples,
   readJson,
   readMeta,
   readOutline,
+  readRegistry,
+  readRuleFiles,
+  readRules,
   readSections,
   readTextLines,
   repoPath,
@@ -77,4 +90,28 @@ export function checkCitations(files = dataJsonFiles(), lookup: SectionLookup = 
     }
   }
   return issues;
+}
+
+/** The rule set validates against the schema, each other and the attribute registry. */
+export function checkRules(): Issue[] {
+  return validateRules(
+    readRuleFiles().map((f) => f.json),
+    readRegistry(),
+  ).map((i) => ({
+    where: `data/rules/${i.rule}.json${i.nodeId ? `#${i.nodeId}` : ""}`,
+    message: `${i.code}: ${i.message}`,
+  }));
+}
+
+/** Every reference example gives the outcomes the guidance states. */
+export function checkExamples(): Issue[] {
+  const rules = readRules().filter((r) => r.role !== "hypothetical");
+  const registry = readRegistry();
+  return readExamples().flatMap((e) => [
+    ...profileIssues(registry, e.profile).map((message) => ({ where: `example ${e.id}`, message })),
+    ...runExample(rules, e).failures.map((f) => ({
+      where: `example ${e.id}`,
+      message: `${f.rule}: expected ${f.expected}, got ${f.status} {${f.actual.join(", ")}}`,
+    })),
+  ]);
 }

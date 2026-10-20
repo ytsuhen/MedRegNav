@@ -1,0 +1,634 @@
+{
+  "id": "eu-mdr-classification",
+  "title": {
+    "uk": "Клас за MDR (додаток VIII, правило 11)",
+    "en": "MDR class (Annex VIII, Rule 11)"
+  },
+  "summary": {
+    "uk": "Правило 11 (підправила 11a, 11b, 11c) і правила застосування 3.3 (ПЗ, що керує виробом, — класу цього виробу) та 3.5 (діє найсуворіше правило). Інші правила для активних виробів (9, 10, 12, 13, 15, 22) у демо не закодовано.",
+    "en": "Rule 11 (sub-rules 11a, 11b, 11c) with implementing rules 3.3 (software that drives a device takes its class) and 3.5 (the strictest rule applies). The other rules for active devices (9, 10, 12, 13, 15, 22) are not encoded in this demo."
+  },
+  "market": "EU",
+  "role": "primary",
+  "effective": {
+    "from": "2021-05-26",
+    "criterionIds": ["c-mdr-apply"]
+  },
+  "scopeId": "covered",
+  "resolution": "highest-rank",
+  "resolutionCriterionIds": ["c-3.5"],
+  "outcomes": [
+    {
+      "id": "III",
+      "label": {
+        "uk": "Клас III",
+        "en": "Class III"
+      },
+      "rank": 4,
+      "rootId": "class-iii",
+      "criterionIds": ["c-r11a-iii", "c-3.3a"]
+    },
+    {
+      "id": "IIb",
+      "label": {
+        "uk": "Клас IIb",
+        "en": "Class IIb"
+      },
+      "rank": 3,
+      "rootId": "class-iib",
+      "criterionIds": ["c-r11a-iib", "c-r11b", "c-3.3a"]
+    },
+    {
+      "id": "IIa",
+      "label": {
+        "uk": "Клас IIa",
+        "en": "Class IIa"
+      },
+      "rank": 2,
+      "rootId": "class-iia",
+      "criterionIds": ["c-r11a", "c-r11b", "c-3.3a"]
+    },
+    {
+      "id": "I",
+      "label": {
+        "uk": "Клас I",
+        "en": "Class I"
+      },
+      "rank": 1,
+      "rootId": "class-i",
+      "criterionIds": ["c-r11c", "c-3.3a"]
+    }
+  ],
+  "criteria": [
+    {
+      "source": "mdr",
+      "section": "art-51",
+      "quote": "Devices shall be divided into classes I, IIa, IIb and III, taking into account the intended purpose of the devices and their inherent risks. Classification shall be carried out in accordance with Annex VIII.",
+      "sha256": "8c79563e0606d3fd59bf802c949c325bf16be6b941bb9e07f9d3f85f9bfc13fb",
+      "start": 40,
+      "end": 247,
+      "id": "c-art51"
+    },
+    {
+      "source": "mdr",
+      "section": "annex-viii-ch2",
+      "quote": "Application of the classification rules shall be governed by the intended purpose of the devices.",
+      "sha256": "2a492dd28b44f7046f2eb9dbed3b8af780c9f248ab70ca795472d3106ca8aa5a",
+      "start": 35,
+      "end": 132,
+      "id": "c-3.1"
+    },
+    {
+      "source": "mdr",
+      "section": "annex-viii-ch2",
+      "quote": "Software, which drives a device or influences the use of a device, shall fall within the same class as the device.",
+      "sha256": "2a492dd28b44f7046f2eb9dbed3b8af780c9f248ab70ca795472d3106ca8aa5a",
+      "start": 425,
+      "end": 539,
+      "id": "c-3.3a"
+    },
+    {
+      "source": "mdr",
+      "section": "annex-viii-ch2",
+      "quote": "If the software is independent of any other device, it shall be classified in its own right.",
+      "sha256": "2a492dd28b44f7046f2eb9dbed3b8af780c9f248ab70ca795472d3106ca8aa5a",
+      "start": 540,
+      "end": 632,
+      "id": "c-3.3b"
+    },
+    {
+      "source": "mdr",
+      "section": "annex-viii-ch2",
+      "quote": "If several rules, or if, within the same rule, several sub-rules, apply to the same device based on the device’s intended purpose, the strictest rule and sub-rule resulting in the higher classification shall apply.",
+      "sha256": "2a492dd28b44f7046f2eb9dbed3b8af780c9f248ab70ca795472d3106ca8aa5a",
+      "start": 825,
+      "end": 1039,
+      "id": "c-3.5"
+    },
+    {
+      "source": "mdr",
+      "section": "annex-viii-rule-11",
+      "quote": "Software intended to provide information which is used to take decisions with diagnosis or therapeutic purposes is classified as class IIa, except if such decisions have an impact that may cause:",
+      "sha256": "510d927f64f8f80ef430fc62df63fad52931ae21e755bd04f1af398ff95eda49",
+      "start": 13,
+      "end": 208,
+      "id": "c-r11a"
+    },
+    {
+      "source": "mdr",
+      "section": "annex-viii-rule-11",
+      "quote": "death or an irreversible deterioration of a person’s state of health, in which case it is in class III; or",
+      "sha256": "510d927f64f8f80ef430fc62df63fad52931ae21e755bd04f1af398ff95eda49",
+      "start": 211,
+      "end": 317,
+      "id": "c-r11a-iii"
+    },
+    {
+      "source": "mdr",
+      "section": "annex-viii-rule-11",
+      "quote": "a serious deterioration of a person’s state of health or a surgical intervention, in which case it is classified as class IIb.",
+      "sha256": "510d927f64f8f80ef430fc62df63fad52931ae21e755bd04f1af398ff95eda49",
+      "start": 320,
+      "end": 446,
+      "id": "c-r11a-iib"
+    },
+    {
+      "source": "mdr",
+      "section": "annex-viii-rule-11",
+      "quote": "Software intended to monitor physiological processes is classified as class IIa, except if it is intended for monitoring of vital physiological parameters, where the nature of variations of those parameters is such that it could result in immediate danger to the patient, in which case it is classified as class IIb.",
+      "sha256": "510d927f64f8f80ef430fc62df63fad52931ae21e755bd04f1af398ff95eda49",
+      "start": 447,
+      "end": 763,
+      "id": "c-r11b"
+    },
+    {
+      "source": "mdr",
+      "section": "annex-viii-rule-11",
+      "quote": "All other software is classified as class I.",
+      "sha256": "510d927f64f8f80ef430fc62df63fad52931ae21e755bd04f1af398ff95eda49",
+      "start": 764,
+      "end": 808,
+      "id": "c-r11c"
+    },
+    {
+      "source": "mdcg-2019-11",
+      "section": "sec-4.2.1",
+      "quote": "is at a higher risk class where such decisions, if based on incorrect information from the MDSW, are reasonably likely to have an impact that may cause:",
+      "sha256": "af5f0dc9ab0ef6fd67d4c1280dc605518b36e108a54ce9d9dcaaf8a59aa38437",
+      "start": 2629,
+      "end": 2781,
+      "id": "c-mdcg-incorrect"
+    },
+    {
+      "source": "mdcg-2019-11",
+      "section": "sec-4.1",
+      "quote": "Therefore, MDSW that both achieves its own intended purpose and also drives or influences the use of a (hardware) device for a medical purpose is classified on its own, based on the intended purpose achieved. In such a case, however, the risk class shall not be lower than the risk class of the hardware medical device.",
+      "sha256": "e407811772da9b5b7155eb48781ad81cd8cf614a1ef0ff29fa168c07ce95b04b",
+      "start": 913,
+      "end": 1232,
+      "id": "c-mdcg-floor"
+    },
+    {
+      "source": "mdcg-2019-11",
+      "section": "sec-4.2.1",
+      "quote": "Sub-rule 11b) should therefore be considered as a specific rule for MDSW intended only for monitoring purposes.",
+      "sha256": "af5f0dc9ab0ef6fd67d4c1280dc605518b36e108a54ce9d9dcaaf8a59aa38437",
+      "start": 4509,
+      "end": 4620,
+      "id": "c-mdcg-11b"
+    },
+    {
+      "source": "mdcg-2019-11",
+      "section": "sec-4.2.1",
+      "quote": "Sub-rule 11c) implies that all other MDSW is classified as class I.",
+      "sha256": "af5f0dc9ab0ef6fd67d4c1280dc605518b36e108a54ce9d9dcaaf8a59aa38437",
+      "start": 5167,
+      "end": 5234,
+      "id": "c-mdcg-11c"
+    },
+    {
+      "source": "mdr",
+      "section": "art-123",
+      "quote": "It shall apply from 26 May 2021.",
+      "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+      "start": 200,
+      "end": 232,
+      "id": "c-mdr-apply"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "covered",
+      "label": {
+        "uk": "Підпадає під MDR як ПЗ (кваліфікація)",
+        "en": "Covered by the MDR as software (qualification)"
+      },
+      "prov": {
+        "criterionIds": ["c-art51", "c-3.1"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "result",
+      "rule": "eu-mdr-qualification",
+      "in": ["mdsw", "device-software"]
+    },
+    {
+      "id": "decision",
+      "label": {
+        "uk": "Інформація для діагностичних чи лікувальних рішень",
+        "en": "Information for diagnostic or therapeutic decisions"
+      },
+      "prov": {
+        "criterionIds": ["c-r11a"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "decisionInfo",
+      "op": "isTrue",
+      "values": []
+    },
+    {
+      "id": "impact-death",
+      "label": {
+        "uk": "Вплив: смерть або незворотне погіршення",
+        "en": "Impact: death or irreversible deterioration"
+      },
+      "prov": {
+        "criterionIds": ["c-r11a-iii", "c-mdcg-incorrect"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "decisionImpact",
+      "op": "equals",
+      "values": ["death-or-irreversible"]
+    },
+    {
+      "id": "impact-serious",
+      "label": {
+        "uk": "Вплив: серйозне погіршення або операція",
+        "en": "Impact: serious deterioration or surgery"
+      },
+      "prov": {
+        "criterionIds": ["c-r11a-iib", "c-mdcg-incorrect"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "decisionImpact",
+      "op": "equals",
+      "values": ["serious-or-surgery"]
+    },
+    {
+      "id": "monitor",
+      "label": {
+        "uk": "Моніторинг фізіологічних процесів",
+        "en": "Monitoring of physiological processes"
+      },
+      "prov": {
+        "criterionIds": ["c-r11b", "c-mdcg-11b"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "monitorsPhysiological",
+      "op": "isTrue",
+      "values": []
+    },
+    {
+      "id": "vital",
+      "label": {
+        "uk": "Життєві параметри з безпосередньою небезпекою",
+        "en": "Vital parameters with immediate danger"
+      },
+      "prov": {
+        "criterionIds": ["c-r11b"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "vitalImmediateDanger",
+      "op": "isTrue",
+      "values": []
+    },
+    {
+      "id": "drives",
+      "label": {
+        "uk": "Керує апаратом чи впливає на його використання",
+        "en": "Drives or influences a device"
+      },
+      "prov": {
+        "criterionIds": ["c-3.3a"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "drivesDevice",
+      "op": "isTrue",
+      "values": []
+    },
+    {
+      "id": "dev-i",
+      "label": {
+        "uk": "Апарат класу I",
+        "en": "Device of class I"
+      },
+      "prov": {
+        "criterionIds": ["c-3.3a"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "drivenDeviceClass",
+      "op": "equals",
+      "values": ["I"]
+    },
+    {
+      "id": "dev-iia",
+      "label": {
+        "uk": "Апарат класу IIa",
+        "en": "Device of class IIa"
+      },
+      "prov": {
+        "criterionIds": ["c-3.3a"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "drivenDeviceClass",
+      "op": "equals",
+      "values": ["IIa"]
+    },
+    {
+      "id": "dev-iib",
+      "label": {
+        "uk": "Апарат класу IIb",
+        "en": "Device of class IIb"
+      },
+      "prov": {
+        "criterionIds": ["c-3.3a"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "drivenDeviceClass",
+      "op": "equals",
+      "values": ["IIb"]
+    },
+    {
+      "id": "dev-iii",
+      "label": {
+        "uk": "Апарат класу III",
+        "en": "Device of class III"
+      },
+      "prov": {
+        "criterionIds": ["c-3.3a"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "drivenDeviceClass",
+      "op": "equals",
+      "values": ["III"]
+    },
+    {
+      "id": "r11a-iii",
+      "label": {
+        "uk": "11a: рішення з можливою смертю чи незворотним погіршенням",
+        "en": "11a: decisions that may cause death or irreversible deterioration"
+      },
+      "prov": {
+        "criterionIds": ["c-r11a-iii"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "all",
+      "childIds": ["decision", "impact-death"]
+    },
+    {
+      "id": "r11a-iib",
+      "label": {
+        "uk": "11a: рішення з можливим серйозним погіршенням чи операцією",
+        "en": "11a: decisions that may cause serious deterioration or surgery"
+      },
+      "prov": {
+        "criterionIds": ["c-r11a-iib"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "all",
+      "childIds": ["decision", "impact-serious"]
+    },
+    {
+      "id": "r11b-iib",
+      "label": {
+        "uk": "11b: моніторинг життєвих параметрів з безпосередньою небезпекою",
+        "en": "11b: monitoring vital parameters with immediate danger"
+      },
+      "prov": {
+        "criterionIds": ["c-r11b"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "all",
+      "childIds": ["monitor", "vital"]
+    },
+    {
+      "id": "not-decision",
+      "label": {
+        "uk": "Без інформації для рішень",
+        "en": "No information for decisions"
+      },
+      "prov": {
+        "criterionIds": [],
+        "basis": "structural"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "not",
+      "childIds": ["decision"]
+    },
+    {
+      "id": "not-monitor",
+      "label": {
+        "uk": "Без моніторингу",
+        "en": "No monitoring"
+      },
+      "prov": {
+        "criterionIds": [],
+        "basis": "structural"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "not",
+      "childIds": ["monitor"]
+    },
+    {
+      "id": "r11c-i",
+      "label": {
+        "uk": "11c: усе інше ПЗ",
+        "en": "11c: all other software"
+      },
+      "prov": {
+        "criterionIds": ["c-r11c", "c-mdcg-11c"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "all",
+      "childIds": ["not-decision", "not-monitor"]
+    },
+    {
+      "id": "r33-i",
+      "label": {
+        "uk": "Правило 3.3: керує виробом класу I",
+        "en": "Rule 3.3: drives a class I device"
+      },
+      "prov": {
+        "criterionIds": ["c-3.3a", "c-mdcg-floor"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "all",
+      "childIds": ["drives", "dev-i"]
+    },
+    {
+      "id": "r33-iia",
+      "label": {
+        "uk": "Правило 3.3: керує виробом класу IIa",
+        "en": "Rule 3.3: drives a class IIa device"
+      },
+      "prov": {
+        "criterionIds": ["c-3.3a", "c-mdcg-floor"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "all",
+      "childIds": ["drives", "dev-iia"]
+    },
+    {
+      "id": "r33-iib",
+      "label": {
+        "uk": "Правило 3.3: керує виробом класу IIb",
+        "en": "Rule 3.3: drives a class IIb device"
+      },
+      "prov": {
+        "criterionIds": ["c-3.3a", "c-mdcg-floor"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "all",
+      "childIds": ["drives", "dev-iib"]
+    },
+    {
+      "id": "r33-iii",
+      "label": {
+        "uk": "Правило 3.3: керує виробом класу III",
+        "en": "Rule 3.3: drives a class III device"
+      },
+      "prov": {
+        "criterionIds": ["c-3.3a", "c-mdcg-floor"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "all",
+      "childIds": ["drives", "dev-iii"]
+    },
+    {
+      "id": "class-iii",
+      "label": {
+        "uk": "Клас III",
+        "en": "Class III"
+      },
+      "prov": {
+        "criterionIds": ["c-3.5"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "any",
+      "childIds": ["r11a-iii", "r33-iii"]
+    },
+    {
+      "id": "class-iib",
+      "label": {
+        "uk": "Клас IIb",
+        "en": "Class IIb"
+      },
+      "prov": {
+        "criterionIds": ["c-3.5"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "any",
+      "childIds": ["r11a-iib", "r11b-iib", "r33-iib"]
+    },
+    {
+      "id": "class-iia",
+      "label": {
+        "uk": "Клас IIa",
+        "en": "Class IIa"
+      },
+      "prov": {
+        "criterionIds": ["c-r11a", "c-r11b", "c-3.5"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "any",
+      "childIds": ["decision", "monitor", "r33-iia"]
+    },
+    {
+      "id": "class-i",
+      "label": {
+        "uk": "Клас I",
+        "en": "Class I"
+      },
+      "prov": {
+        "criterionIds": ["c-r11c", "c-3.3b"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "any",
+      "childIds": ["r11c-i", "r33-i"]
+    }
+  ],
+  "metadata": {
+    "authoredBy": "manual-reference",
+    "revision": 1,
+    "parentRevision": 0,
+    "irHash": "fabcc5af88a3b13b84001f3f291e2265e8d2730d20bf815033396d0b34fc6ac8",
+    "status": "draft",
+    "approval": {
+      "by": "",
+      "at": "",
+      "note": ""
+    }
+  }
+}

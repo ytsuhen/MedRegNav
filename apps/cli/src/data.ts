@@ -6,7 +6,13 @@ import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from "
 import { dirname, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
+  type AttributeRegistry,
+  AttributeRegistrySchema,
   citedText,
+  type DeviceIr,
+  DeviceIrSchema,
+  type Example,
+  ExamplesFileSchema,
   type Outline,
   OutlineSchema,
   type SectionLookup,
@@ -93,3 +99,32 @@ export function dataJsonFiles(dir = DATA_DIR): string[] {
 }
 
 export const repoPath = (path: string) => relative(REPO_ROOT, path);
+
+export const RULES_DIR = join(DATA_DIR, "rules");
+export const EXAMPLES_DIR = join(DATA_DIR, "examples");
+
+export function readRegistry(): AttributeRegistry {
+  return AttributeRegistrySchema.parse(readJson(join(DATA_DIR, "attributes.json")));
+}
+
+const jsonFilesIn = (dir: string) =>
+  existsSync(dir)
+    ? readdirSync(dir)
+        .filter((f) => f.endsWith(".json"))
+        .sort()
+        .map((f) => join(dir, f))
+    : [];
+
+/** The rule files as parsed JSON (unvalidated: validateRules reports problems). */
+export function readRuleFiles(): { path: string; json: unknown }[] {
+  return jsonFilesIn(RULES_DIR).map((path) => ({ path, json: readJson(path) }));
+}
+
+/** The rules, parsed (throws on a schema error; run validateRules for a full report). */
+export function readRules(): DeviceIr[] {
+  return readRuleFiles().map(({ json }) => DeviceIrSchema.parse(json));
+}
+
+export function readExamples(): Example[] {
+  return jsonFilesIn(EXAMPLES_DIR).flatMap((path) => ExamplesFileSchema.parse(readJson(path)).examples);
+}

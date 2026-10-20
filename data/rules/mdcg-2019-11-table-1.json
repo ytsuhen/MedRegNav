@@ -1,0 +1,441 @@
+{
+  "id": "mdcg-2019-11-table-1",
+  "title": {
+    "uk": "Перехресна перевірка: таблиця IMDRF (MDCG 2019-11, додаток III)",
+    "en": "Cross-check: the IMDRF table (MDCG 2019-11, Annex III)"
+  },
+  "summary": {
+    "uk": "Ілюстративна таблиця MDCG: стан ситуації × значущість інформації → клас за підправилом 11a. Має збігатися з відповіддю про вплив рішень; клас I таблиця не охоплює.",
+    "en": "MDCG's illustrative table: state of the situation × significance of the information → class under sub-rule 11a. It should agree with the answer on the impact of decisions; it does not cover class I."
+  },
+  "market": "EU",
+  "role": "cross-check",
+  "scopeId": "scope",
+  "resolution": "exclusive",
+  "resolutionCriterionIds": [],
+  "crossCheck": {
+    "attr": "decisionImpact",
+    "map": {
+      "death-or-irreversible": "III",
+      "serious-or-surgery": "IIb",
+      "other": "IIa"
+    },
+    "criterionIds": ["t-note"]
+  },
+  "outcomes": [
+    {
+      "id": "III",
+      "label": {
+        "uk": "Клас III",
+        "en": "Class III"
+      },
+      "rank": 3,
+      "rootId": "cell-critical-treat-or-diagnose",
+      "criterionIds": ["t-critical", "t-columns"]
+    },
+    {
+      "id": "IIb",
+      "label": {
+        "uk": "Клас IIb",
+        "en": "Class IIb"
+      },
+      "rank": 2,
+      "rootId": "t-iib",
+      "criterionIds": ["t-critical", "t-serious", "t-columns"]
+    },
+    {
+      "id": "IIa",
+      "label": {
+        "uk": "Клас IIa",
+        "en": "Class IIa"
+      },
+      "rank": 1,
+      "rootId": "t-iia",
+      "criterionIds": ["t-critical", "t-serious", "t-non-serious", "t-columns", "t-no-class-i"]
+    }
+  ],
+  "criteria": [
+    {
+      "source": "mdcg-2019-11",
+      "section": "annex-iii",
+      "quote": "The table below, which is intended for illustrative purposes only, may provide operators placing MDSW on the EU market with some useful indicative orientation on the risk class applicable to their products as a result of the application of Rule 11 a of the MDR.",
+      "sha256": "c9e3b74c5153a50bde2a4ef407c3672d836839f317f9b000ba46018dffa6fa56",
+      "start": 94,
+      "end": 355,
+      "id": "t-intro"
+    },
+    {
+      "source": "mdcg-2019-11",
+      "section": "annex-iii",
+      "quote": "Note: MDR 2017/745 Sub-rule 11(a), point i., referring above to MDR class III, aligns with IMDRF risk category IV. Sub-rule 11(a), point ii.,, referring above to MDR class IIb, aligns with IMDRF risk category III products mentioned in section 7.2 of the mentioned IMDRF document. The IMDRF risk category II and IMDRF risk category I products are classified as MDR class IIa as per Rule 11.",
+      "sha256": "c9e3b74c5153a50bde2a4ef407c3672d836839f317f9b000ba46018dffa6fa56",
+      "start": 356,
+      "end": 745,
+      "id": "t-note"
+    },
+    {
+      "source": "mdcg-2019-11",
+      "section": "annex-iii",
+      "quote": "This table does not take into account MDSW which is Class I.",
+      "sha256": "c9e3b74c5153a50bde2a4ef407c3672d836839f317f9b000ba46018dffa6fa56",
+      "start": 746,
+      "end": 806,
+      "id": "t-no-class-i"
+    },
+    {
+      "source": "mdcg-2019-11",
+      "section": "annex-iii",
+      "quote": "High Medium Low Treat or diagnose ~ IMDRF 5.1.1 Drives clinical management ~ IMDRF 5.1.2 Informs clinical management (everything else)",
+      "sha256": "c9e3b74c5153a50bde2a4ef407c3672d836839f317f9b000ba46018dffa6fa56",
+      "start": 962,
+      "end": 1096,
+      "id": "t-columns"
+    },
+    {
+      "source": "mdcg-2019-11",
+      "section": "annex-iii",
+      "quote": "Critical situation or patient condition Class III Class IIb Class IIa",
+      "sha256": "c9e3b74c5153a50bde2a4ef407c3672d836839f317f9b000ba46018dffa6fa56",
+      "start": 1097,
+      "end": 1166,
+      "id": "t-critical"
+    },
+    {
+      "source": "mdcg-2019-11",
+      "section": "annex-iii",
+      "quote": "Serious situation or patient condition Class IIb Class IIa Class IIa",
+      "sha256": "c9e3b74c5153a50bde2a4ef407c3672d836839f317f9b000ba46018dffa6fa56",
+      "start": 1167,
+      "end": 1235,
+      "id": "t-serious"
+    },
+    {
+      "source": "mdcg-2019-11",
+      "section": "annex-iii",
+      "quote": "Non-serious situation or patient condition Class IIa Class IIa Class IIa",
+      "sha256": "c9e3b74c5153a50bde2a4ef407c3672d836839f317f9b000ba46018dffa6fa56",
+      "start": 1236,
+      "end": 1308,
+      "id": "t-non-serious"
+    },
+    {
+      "source": "mdr",
+      "section": "annex-viii-rule-11",
+      "quote": "Software intended to provide information which is used to take decisions with diagnosis or therapeutic purposes is classified as class IIa",
+      "sha256": "510d927f64f8f80ef430fc62df63fad52931ae21e755bd04f1af398ff95eda49",
+      "start": 13,
+      "end": 151,
+      "id": "t-11a"
+    },
+    {
+      "source": "mdcg-2019-11",
+      "section": "annex-iii",
+      "quote": "may provide operators placing MDSW on the EU market with some useful indicative orientation on the risk class",
+      "sha256": "c9e3b74c5153a50bde2a4ef407c3672d836839f317f9b000ba46018dffa6fa56",
+      "start": 161,
+      "end": 270,
+      "id": "t-covered"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "covered",
+      "label": {
+        "uk": "Підпадає під MDR як ПЗ (кваліфікація)",
+        "en": "Covered by the MDR as software (qualification)"
+      },
+      "prov": {
+        "criterionIds": ["t-covered"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "result",
+      "rule": "eu-mdr-qualification",
+      "in": ["mdsw", "device-software"]
+    },
+    {
+      "id": "rule-11a",
+      "label": {
+        "uk": "Підправило 11a: інформація для рішень",
+        "en": "Sub-rule 11a: information for decisions"
+      },
+      "prov": {
+        "criterionIds": ["t-intro", "t-11a"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "decisionInfo",
+      "op": "isTrue",
+      "values": []
+    },
+    {
+      "id": "sit-critical",
+      "label": {
+        "uk": "Критична ситуація",
+        "en": "Critical situation"
+      },
+      "prov": {
+        "criterionIds": ["t-critical"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "imdrfSituation",
+      "op": "equals",
+      "values": ["critical"]
+    },
+    {
+      "id": "sit-serious",
+      "label": {
+        "uk": "Серйозна ситуація",
+        "en": "Serious situation"
+      },
+      "prov": {
+        "criterionIds": ["t-serious"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "imdrfSituation",
+      "op": "equals",
+      "values": ["serious"]
+    },
+    {
+      "id": "sit-non-serious",
+      "label": {
+        "uk": "Несерйозна ситуація",
+        "en": "Non-serious situation"
+      },
+      "prov": {
+        "criterionIds": ["t-non-serious"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "imdrfSituation",
+      "op": "equals",
+      "values": ["non-serious"]
+    },
+    {
+      "id": "sig-treat-or-diagnose",
+      "label": {
+        "uk": "Лікувати чи діагностувати",
+        "en": "Treat or diagnose"
+      },
+      "prov": {
+        "criterionIds": ["t-columns"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "imdrfSignificance",
+      "op": "equals",
+      "values": ["treat-or-diagnose"]
+    },
+    {
+      "id": "sig-drive",
+      "label": {
+        "uk": "Керувати клінічним веденням",
+        "en": "Drive clinical management"
+      },
+      "prov": {
+        "criterionIds": ["t-columns"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "imdrfSignificance",
+      "op": "equals",
+      "values": ["drive"]
+    },
+    {
+      "id": "sig-inform",
+      "label": {
+        "uk": "Інформувати клінічне ведення",
+        "en": "Inform clinical management"
+      },
+      "prov": {
+        "criterionIds": ["t-columns"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "imdrfSignificance",
+      "op": "equals",
+      "values": ["inform"]
+    },
+    {
+      "id": "cell-critical-treat-or-diagnose",
+      "label": {
+        "uk": "critical × treat-or-diagnose",
+        "en": "critical × treat-or-diagnose"
+      },
+      "prov": {
+        "criterionIds": ["t-critical"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "all",
+      "childIds": ["sit-critical", "sig-treat-or-diagnose"]
+    },
+    {
+      "id": "cell-critical-drive",
+      "label": {
+        "uk": "critical × drive",
+        "en": "critical × drive"
+      },
+      "prov": {
+        "criterionIds": ["t-critical"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "all",
+      "childIds": ["sit-critical", "sig-drive"]
+    },
+    {
+      "id": "cell-critical-inform",
+      "label": {
+        "uk": "critical × inform",
+        "en": "critical × inform"
+      },
+      "prov": {
+        "criterionIds": ["t-critical"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "all",
+      "childIds": ["sit-critical", "sig-inform"]
+    },
+    {
+      "id": "cell-serious-treat-or-diagnose",
+      "label": {
+        "uk": "serious × treat-or-diagnose",
+        "en": "serious × treat-or-diagnose"
+      },
+      "prov": {
+        "criterionIds": ["t-serious"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "all",
+      "childIds": ["sit-serious", "sig-treat-or-diagnose"]
+    },
+    {
+      "id": "cell-serious-drive",
+      "label": {
+        "uk": "serious × drive",
+        "en": "serious × drive"
+      },
+      "prov": {
+        "criterionIds": ["t-serious"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "all",
+      "childIds": ["sit-serious", "sig-drive"]
+    },
+    {
+      "id": "cell-serious-inform",
+      "label": {
+        "uk": "serious × inform",
+        "en": "serious × inform"
+      },
+      "prov": {
+        "criterionIds": ["t-serious"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "all",
+      "childIds": ["sit-serious", "sig-inform"]
+    },
+    {
+      "id": "t-iib",
+      "label": {
+        "uk": "Клас IIb за таблицею",
+        "en": "Class IIb by the table"
+      },
+      "prov": {
+        "criterionIds": ["t-critical", "t-serious"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "any",
+      "childIds": ["cell-critical-drive", "cell-serious-treat-or-diagnose"]
+    },
+    {
+      "id": "t-iia",
+      "label": {
+        "uk": "Клас IIa за таблицею",
+        "en": "Class IIa by the table"
+      },
+      "prov": {
+        "criterionIds": ["t-critical", "t-serious", "t-non-serious"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "any",
+      "childIds": ["cell-critical-inform", "cell-serious-drive", "cell-serious-inform", "sit-non-serious"]
+    },
+    {
+      "id": "scope",
+      "label": {
+        "uk": "ПЗ під MDR з інформацією для рішень (11a)",
+        "en": "Software under the MDR providing information for decisions (11a)"
+      },
+      "prov": {
+        "criterionIds": ["t-intro"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "all",
+      "childIds": ["covered", "rule-11a"]
+    }
+  ],
+  "metadata": {
+    "authoredBy": "manual-reference",
+    "revision": 1,
+    "parentRevision": 0,
+    "irHash": "296d6e29769ed08c33c804830bb97a0293e3e0c549d4ce6896c14924899b789c",
+    "status": "draft",
+    "approval": {
+      "by": "",
+      "at": "",
+      "note": ""
+    }
+  }
+}

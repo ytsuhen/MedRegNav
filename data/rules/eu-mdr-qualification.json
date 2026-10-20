@@ -1,0 +1,526 @@
+{
+  "id": "eu-mdr-qualification",
+  "title": {
+    "uk": "Чи є ПЗ медвиробом (кваліфікація)",
+    "en": "Is the software a medical device (qualification)"
+  },
+  "summary": {
+    "uk": "Кроки рішень MDCG 2019-11 rev.1 (рис. 1) і визначення ст. 2(1) MDR. ПЗ з власним медичним призначенням для окремих пацієнтів — MDSW, навіть якщо воно ще й керує апаратом (примітка 2 розд. 3.2); ПЗ, що лише керує виробом, чи аксесуар — у складі виробу.",
+    "en": "MDCG 2019-11 rev.1 decision steps (Figure 1) and the Article 2(1) MDR definition. Software with its own medical purpose for individual patients is MDSW even if it also drives hardware (Note 2 of section 3.2); software that only drives a device, or an accessory, goes with the device."
+  },
+  "market": "EU",
+  "role": "primary",
+  "effective": {
+    "from": "2021-05-26",
+    "criterionIds": ["c-mdr-apply"]
+  },
+  "resolution": "exclusive",
+  "resolutionCriterionIds": [],
+  "outcomes": [
+    {
+      "id": "mdsw",
+      "label": {
+        "uk": "Медичне ПЗ (MDSW)",
+        "en": "Medical device software (MDSW)"
+      },
+      "rank": 5,
+      "rootId": "o-mdsw",
+      "criterionIds": ["q-step5", "q-note2", "q-mdsw"]
+    },
+    {
+      "id": "device-software",
+      "label": {
+        "uk": "ПЗ у складі виробу чи аксесуар",
+        "en": "Part of a device or an accessory"
+      },
+      "rank": 4,
+      "rootId": "o-device-software",
+      "criterionIds": ["q-step2b", "q-covered"]
+    },
+    {
+      "id": "annex-xvi",
+      "label": {
+        "uk": "Продукт додатка XVI (поза демо)",
+        "en": "Annex XVI product (outside this demo)"
+      },
+      "rank": 3,
+      "rootId": "o-annex-xvi",
+      "criterionIds": ["q-step2a", "q-art1-2"]
+    },
+    {
+      "id": "not-device",
+      "label": {
+        "uk": "Не медвиріб",
+        "en": "Not a medical device"
+      },
+      "rank": 2,
+      "rootId": "o-not-device",
+      "criterionIds": ["q-non-medical", "q-first-fulfil"]
+    },
+    {
+      "id": "not-software",
+      "label": {
+        "uk": "Не ПЗ (поза настановою)",
+        "en": "Not software (outside the guidance)"
+      },
+      "rank": 1,
+      "rootId": "o-not-software",
+      "criterionIds": ["q-step1"]
+    }
+  ],
+  "criteria": [
+    {
+      "source": "mdcg-2019-11",
+      "section": "figure-1",
+      "quote": "Decision step 1: if the product is software according to Section 2 (Definitions and Abbreviations) of this guidance, then it may be a MDSW, proceed to decision step 2; if the product is not software according to the definition of this guidance, then it is not covered by this guidance but may still be covered by the Medical Devices Regulations.",
+      "sha256": "59616e47334d93781ca1e8053552dbe0f8308d91fa706328654c12931a2489fe",
+      "start": 94,
+      "end": 439,
+      "id": "q-step1"
+    },
+    {
+      "source": "mdcg-2019-11",
+      "section": "sec-2",
+      "quote": "For the purpose of this guidance, “software” is defined as a set of instructions that processes input data and creates output data.",
+      "sha256": "b7d0bcaa90e9bc419528248ad9ced394a56827f7b63a2c99c89f90430d887607",
+      "start": 7323,
+      "end": 7454,
+      "id": "q-software"
+    },
+    {
+      "source": "mdcg-2019-11",
+      "section": "figure-1",
+      "quote": "Decision step 2: if the product is an MDR Annex XVI device, or is an accessory for a medical device",
+      "sha256": "59616e47334d93781ca1e8053552dbe0f8308d91fa706328654c12931a2489fe",
+      "start": 440,
+      "end": 539,
+      "id": "q-step2a"
+    },
+    {
+      "source": "mdcg-2019-11",
+      "section": "figure-1",
+      "quote": "or is software driving or influencing the use of a medical device, then it must be considered as part of that device in its regulatory process or independently if it is an accessory. If it is not, proceed to decision step 3.",
+      "sha256": "59616e47334d93781ca1e8053552dbe0f8308d91fa706328654c12931a2489fe",
+      "start": 544,
+      "end": 768,
+      "id": "q-step2b"
+    },
+    {
+      "source": "mdcg-2019-11",
+      "section": "figure-1",
+      "quote": "Decision step 3: if the software does perform an action on data, or performs an action beyond storage, archival, communication",
+      "sha256": "59616e47334d93781ca1e8053552dbe0f8308d91fa706328654c12931a2489fe",
+      "start": 769,
+      "end": 895,
+      "id": "q-step3a"
+    },
+    {
+      "source": "mdcg-2019-11",
+      "section": "figure-1",
+      "quote": "simple search, lossless compression (i.e. using a compression procedure that allows the exact reconstruction of the original data) then it may be a MDSW",
+      "sha256": "59616e47334d93781ca1e8053552dbe0f8308d91fa706328654c12931a2489fe",
+      "start": 900,
+      "end": 1052,
+      "id": "q-step3b"
+    },
+    {
+      "source": "mdcg-2019-11",
+      "section": "figure-1",
+      "quote": "Decision step 4: is the action for the benefit of individual patients?",
+      "sha256": "59616e47334d93781ca1e8053552dbe0f8308d91fa706328654c12931a2489fe",
+      "start": 1141,
+      "end": 1211,
+      "id": "q-step4"
+    },
+    {
+      "source": "mdcg-2019-11",
+      "section": "figure-1",
+      "quote": "Decision step 5: Is the software medical device software (MDSW) according to the definition of this guidance?",
+      "sha256": "59616e47334d93781ca1e8053552dbe0f8308d91fa706328654c12931a2489fe",
+      "start": 1860,
+      "end": 1969,
+      "id": "q-step5"
+    },
+    {
+      "source": "mdcg-2019-11",
+      "section": "sec-2",
+      "quote": "MDSW is software that is intended to be used, alone or in combination, for a purpose as specified in the definition of a “medical device” in the medical devices regulation",
+      "sha256": "b7d0bcaa90e9bc419528248ad9ced394a56827f7b63a2c99c89f90430d887607",
+      "start": 9827,
+      "end": 9998,
+      "id": "q-mdsw"
+    },
+    {
+      "source": "mdr",
+      "section": "art-2",
+      "quote": "’medical device’ means any instrument, apparatus, appliance, software, implant, reagent, material or other article intended by the manufacturer to be used, alone or in combination, for human beings for one or more of the following specific medical purposes:",
+      "sha256": "d49b89fe6cae84b2723ab5fad6aa8312aea8e5096c014abd5db62b0073342721",
+      "start": 96,
+      "end": 353,
+      "id": "q-art2-1"
+    },
+    {
+      "source": "mdr",
+      "section": "art-2",
+      "quote": "’accessory for a medical device’ means an article which, whilst not being itself a medical device, is intended by its manufacturer to be used together with one or several particular medical device(s)",
+      "sha256": "d49b89fe6cae84b2723ab5fad6aa8312aea8e5096c014abd5db62b0073342721",
+      "start": 1311,
+      "end": 1510,
+      "id": "q-art2-2"
+    },
+    {
+      "source": "mdr",
+      "section": "art-1",
+      "quote": "to the groups of products without an intended medical purpose that are listed in Annex XVI",
+      "sha256": "2d04b493b2e117fd9d051e9521709f14f46bea84cafa1e90890b3dde0723ccb4",
+      "start": 496,
+      "end": 586,
+      "id": "q-art1-2"
+    },
+    {
+      "source": "mdcg-2019-11",
+      "section": "sec-3.1",
+      "quote": "In order to be qualified as MDSW, the product must first fulfil the definition of software according to this guidance and the definition of a medical device according to Article 2(1) of Regulation (EU) 2017/745 - MDR.",
+      "sha256": "c552c82349ea237f952d12598bb5f5f8ab27939c11374d993df25011e091f38f",
+      "start": 391,
+      "end": 608,
+      "id": "q-first-fulfil"
+    },
+    {
+      "source": "mdcg-2019-11",
+      "section": "sec-3.2",
+      "quote": "Note 2: If the software has a medical purpose and also drives or influences a (hardware) medical device or its use, then it is qualified as a MDSW.",
+      "sha256": "f82f9b7edda2f67f2067fd87248f2c5a7b89130255e59336e68adebb8af0f656",
+      "start": 3115,
+      "end": 3262,
+      "id": "q-note2"
+    },
+    {
+      "source": "mdcg-2019-11",
+      "section": "sec-3.3",
+      "quote": "Note: Software that is driving or influencing the use of a medical device is covered by the medical devices regulations either as a part/component of a device or as an accessory for a medical device.",
+      "sha256": "d029a31e693c1426195e2e9be9d152e5a885af734f987d99a2e5c7f40dc103b7",
+      "start": 644,
+      "end": 843,
+      "id": "q-covered"
+    },
+    {
+      "source": "mdcg-2019-11",
+      "section": "sec-3.1",
+      "quote": "In addition, software only intended for non-medical purposes (excluding MDR Annex XVI devices), such as invoicing, staff planning, e-mailing, web or voice messaging, data parsing, word processing, and back-up, wellness or fitness apps, do not qualify as MDSW.",
+      "sha256": "c552c82349ea237f952d12598bb5f5f8ab27939c11374d993df25011e091f38f",
+      "start": 3281,
+      "end": 3540,
+      "id": "q-non-medical"
+    },
+    {
+      "source": "mdr",
+      "section": "art-123",
+      "quote": "It shall apply from 26 May 2021.",
+      "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+      "start": 200,
+      "end": 232,
+      "id": "c-mdr-apply"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "software",
+      "label": {
+        "uk": "Продукт — ПЗ",
+        "en": "The product is software"
+      },
+      "prov": {
+        "criterionIds": ["q-step1", "q-software"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "isSoftware",
+      "op": "isTrue",
+      "values": []
+    },
+    {
+      "id": "acts",
+      "label": {
+        "uk": "Дія над даними понад зберігання й передавання",
+        "en": "Action on data beyond storage and communication"
+      },
+      "prov": {
+        "criterionIds": ["q-step3a", "q-step3b"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "actsOnData",
+      "op": "isTrue",
+      "values": []
+    },
+    {
+      "id": "individual",
+      "label": {
+        "uk": "На користь окремих пацієнтів",
+        "en": "For the benefit of individual patients"
+      },
+      "prov": {
+        "criterionIds": ["q-step4"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "individualPatients",
+      "op": "isTrue",
+      "values": []
+    },
+    {
+      "id": "medical",
+      "label": {
+        "uk": "Медичне призначення за ст. 2(1)",
+        "en": "Medical purpose under Article 2(1)"
+      },
+      "prov": {
+        "criterionIds": ["q-step5", "q-mdsw", "q-art2-1"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "medicalPurpose",
+      "op": "isTrue",
+      "values": []
+    },
+    {
+      "id": "drives",
+      "label": {
+        "uk": "Керує апаратним медвиробом чи впливає на його використання",
+        "en": "Drives or influences a hardware medical device"
+      },
+      "prov": {
+        "criterionIds": ["q-step2b"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "drivesDevice",
+      "op": "isTrue",
+      "values": []
+    },
+    {
+      "id": "accessory",
+      "label": {
+        "uk": "Аксесуар медвиробу",
+        "en": "Accessory for a medical device"
+      },
+      "prov": {
+        "criterionIds": ["q-step2a", "q-art2-2"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "accessory",
+      "op": "isTrue",
+      "values": []
+    },
+    {
+      "id": "annex-xvi",
+      "label": {
+        "uk": "Продукт додатка XVI",
+        "en": "Annex XVI product"
+      },
+      "prov": {
+        "criterionIds": ["q-step2a", "q-art1-2"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "annexXvi",
+      "op": "isTrue",
+      "values": []
+    },
+    {
+      "id": "steps-3-5",
+      "label": {
+        "uk": "Кроки 3–5: дія над даними, для окремих пацієнтів, медичне призначення",
+        "en": "Steps 3–5: action on data, for individual patients, medical purpose"
+      },
+      "prov": {
+        "criterionIds": ["q-step3a", "q-step4", "q-step5", "q-first-fulfil"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "all",
+      "childIds": ["acts", "individual", "medical"]
+    },
+    {
+      "id": "not-steps-3-5",
+      "label": {
+        "uk": "Кроки 3–5 не виконано",
+        "en": "Steps 3–5 not met"
+      },
+      "prov": {
+        "criterionIds": [],
+        "basis": "structural"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "not",
+      "childIds": ["steps-3-5"]
+    },
+    {
+      "id": "with-device",
+      "label": {
+        "uk": "Крок 2: керує виробом або аксесуар",
+        "en": "Step 2: drives a device or is an accessory"
+      },
+      "prov": {
+        "criterionIds": ["q-step2a", "q-step2b"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "any",
+      "childIds": ["drives", "accessory"]
+    },
+    {
+      "id": "not-with-device",
+      "label": {
+        "uk": "Не керує виробом і не аксесуар",
+        "en": "Neither drives a device nor an accessory"
+      },
+      "prov": {
+        "criterionIds": [],
+        "basis": "structural"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "not",
+      "childIds": ["with-device"]
+    },
+    {
+      "id": "not-annex-xvi",
+      "label": {
+        "uk": "Не продукт додатка XVI",
+        "en": "Not an Annex XVI product"
+      },
+      "prov": {
+        "criterionIds": [],
+        "basis": "structural"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "not",
+      "childIds": ["annex-xvi"]
+    },
+    {
+      "id": "o-not-software",
+      "label": {
+        "uk": "Не ПЗ",
+        "en": "Not software"
+      },
+      "prov": {
+        "criterionIds": ["q-step1"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "not",
+      "childIds": ["software"]
+    },
+    {
+      "id": "o-mdsw",
+      "label": {
+        "uk": "ПЗ з медичним призначенням для окремих пацієнтів",
+        "en": "Software with a medical purpose for individual patients"
+      },
+      "prov": {
+        "criterionIds": ["q-step5", "q-note2"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "all",
+      "childIds": ["software", "steps-3-5"]
+    },
+    {
+      "id": "o-annex-xvi",
+      "label": {
+        "uk": "ПЗ — продукт додатка XVI",
+        "en": "Software that is an Annex XVI product"
+      },
+      "prov": {
+        "criterionIds": ["q-step2a", "q-art1-2"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "all",
+      "childIds": ["software", "not-steps-3-5", "annex-xvi"]
+    },
+    {
+      "id": "o-device-software",
+      "label": {
+        "uk": "ПЗ у складі виробу чи аксесуар",
+        "en": "Software as part of a device or an accessory"
+      },
+      "prov": {
+        "criterionIds": ["q-step2b", "q-covered"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "all",
+      "childIds": ["software", "not-steps-3-5", "not-annex-xvi", "with-device"]
+    },
+    {
+      "id": "o-not-device",
+      "label": {
+        "uk": "ПЗ без медичного призначення для окремих пацієнтів",
+        "en": "Software without a medical purpose for individual patients"
+      },
+      "prov": {
+        "criterionIds": ["q-non-medical", "q-first-fulfil"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "all",
+      "childIds": ["software", "not-steps-3-5", "not-annex-xvi", "not-with-device"]
+    }
+  ],
+  "metadata": {
+    "authoredBy": "manual-reference",
+    "revision": 1,
+    "parentRevision": 0,
+    "irHash": "c63b575232625bc6c2940fcc55197046450ef5ca8d5f6594469767b8afd0f983",
+    "status": "draft",
+    "approval": {
+      "by": "",
+      "at": "",
+      "note": ""
+    }
+  }
+}

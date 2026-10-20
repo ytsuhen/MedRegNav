@@ -32,6 +32,10 @@ importers:
       parse5:
         specifier: 8.0.1
         version: 8.0.1
+    devDependencies:
+      fast-check:
+        specifier: 4.10.2
+        version: 4.10.2
 
   packages/core:
     dependencies:

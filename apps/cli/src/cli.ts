@@ -2,6 +2,7 @@
 import { argv, exit, stdout } from "node:process";
 import { pathToFileURL } from "node:url";
 import { check, cite } from "./commands/cite.ts";
+import { evalCommand, rules } from "./commands/rules.ts";
 import { extract, quote, sections } from "./commands/sources.ts";
 
 export interface Out {
@@ -46,9 +47,19 @@ export const COMMANDS: Record<string, Command> = {
     summary: "pin citations in data files: sha256 + offsets from each quote",
     run: cite,
   },
+  rules: {
+    usage: "rules [--rehash]",
+    summary: "validate data/rules against the schema, each other and the attribute registry",
+    run: rules,
+  },
+  eval: {
+    usage: "eval <example-id|profile.json> [--asof YYYY-MM-DD]",
+    summary: "evaluate a device profile: every rule's result, its support and the decisive unknowns",
+    run: evalCommand,
+  },
   check: {
     usage: "check",
-    summary: "every data check: originals, text, sections, citations",
+    summary: "every data check: originals, text, sections, citations, rules, reference examples",
     run: check,
   },
 };

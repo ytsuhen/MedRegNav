@@ -1,0 +1,257 @@
+{
+  "id": "eu-mdr-notified-body",
+  "title": {
+    "uk": "Участь нотифікованого органу (ст. 52 MDR)",
+    "en": "Notified body involvement (Article 52 MDR)"
+  },
+  "summary": {
+    "uk": "Для класів IIa, IIb, III оцінку відповідності проводить нотифікований орган; для класу I — самодекларація, а для класу I з функцією вимірювання нотифікований орган перевіряє лише метрологію.",
+    "en": "For classes IIa, IIb and III a notified body takes part in the conformity assessment; class I is self-declared, and for class I with a measuring function a notified body assesses the metrology only."
+  },
+  "market": "EU",
+  "role": "primary",
+  "effective": {
+    "from": "2021-05-26",
+    "criterionIds": ["c-mdr-apply"]
+  },
+  "scopeId": "classified",
+  "resolution": "exclusive",
+  "resolutionCriterionIds": [],
+  "outcomes": [
+    {
+      "id": "full",
+      "label": {
+        "uk": "Так: нотифікований орган",
+        "en": "Yes: a notified body"
+      },
+      "rank": 3,
+      "rootId": "class-iia-plus",
+      "criterionIds": ["nb-iii", "nb-iib", "nb-iia"]
+    },
+    {
+      "id": "limited",
+      "label": {
+        "uk": "Обмежено: лише метрологічні аспекти",
+        "en": "Limited: metrological aspects only"
+      },
+      "rank": 2,
+      "rootId": "o-limited",
+      "criterionIds": ["nb-limited"]
+    },
+    {
+      "id": "none",
+      "label": {
+        "uk": "Ні: самодекларація виробника",
+        "en": "No: the manufacturer's self-declaration"
+      },
+      "rank": 1,
+      "rootId": "o-none",
+      "criterionIds": ["nb-i"]
+    }
+  ],
+  "criteria": [
+    {
+      "source": "mdr",
+      "section": "art-52",
+      "quote": "Manufacturers of class III devices, other than custom-made or investigational devices, shall be subject to a conformity assessment as specified in Annex IX.",
+      "sha256": "3c60ee5b21009be048ae7992d592229168eac2900d35e28d08e615f9c87c9974",
+      "start": 515,
+      "end": 671,
+      "id": "nb-iii"
+    },
+    {
+      "source": "mdr",
+      "section": "art-52",
+      "quote": "Manufacturers of class IIb devices, other than custom-made or investigational devices, shall be subject to a conformity assessment as specified in Chapters I and III of Annex IX",
+      "sha256": "3c60ee5b21009be048ae7992d592229168eac2900d35e28d08e615f9c87c9974",
+      "start": 838,
+      "end": 1015,
+      "id": "nb-iib"
+    },
+    {
+      "source": "mdr",
+      "section": "art-52",
+      "quote": "Manufacturers of class IIa devices, other than custom-made or investigational devices, shall be subject to a conformity assessment as specified in Chapters I and III of Annex IX",
+      "sha256": "3c60ee5b21009be048ae7992d592229168eac2900d35e28d08e615f9c87c9974",
+      "start": 2715,
+      "end": 2892,
+      "id": "nb-iia"
+    },
+    {
+      "source": "mdr",
+      "section": "art-52",
+      "quote": "Manufacturers of class I devices, other than custom-made or investigational devices, shall declare the conformity of their products by issuing the EU declaration of conformity referred to in Article 19 after drawing up the technical documentation set out in Annexes II and III.",
+      "sha256": "3c60ee5b21009be048ae7992d592229168eac2900d35e28d08e615f9c87c9974",
+      "start": 3394,
+      "end": 3671,
+      "id": "nb-i"
+    },
+    {
+      "source": "mdr",
+      "section": "art-52",
+      "quote": "If those devices are placed on the market in sterile condition, have a measuring function or are reusable surgical instruments, the manufacturer shall apply the procedures set out in Chapters I and III of Annex IX, or in Part A of Annex XI.",
+      "sha256": "3c60ee5b21009be048ae7992d592229168eac2900d35e28d08e615f9c87c9974",
+      "start": 3672,
+      "end": 3912,
+      "id": "nb-i-measuring"
+    },
+    {
+      "source": "mdr",
+      "section": "art-52",
+      "quote": "in the case of devices with a measuring function, to the aspects relating to the conformity of the devices with the metrological requirements;",
+      "sha256": "3c60ee5b21009be048ae7992d592229168eac2900d35e28d08e615f9c87c9974",
+      "start": 4157,
+      "end": 4299,
+      "id": "nb-limited"
+    },
+    {
+      "source": "mdcg-2021-24",
+      "section": "sec-2.1-2.6",
+      "quote": "The higher the class of the device, the greater the involvement of a notified body in conformity assessment.",
+      "sha256": "2d9ace73cc96e23bafe3f0fb8315a6d74563ec934cf26ca15da8a41f37c53dd8",
+      "start": 1672,
+      "end": 1780,
+      "id": "nb-mdcg"
+    },
+    {
+      "source": "mdr",
+      "section": "art-123",
+      "quote": "It shall apply from 26 May 2021.",
+      "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+      "start": 200,
+      "end": 232,
+      "id": "c-mdr-apply"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "classified",
+      "label": {
+        "uk": "Виріб має клас за MDR",
+        "en": "The device has an MDR class"
+      },
+      "prov": {
+        "criterionIds": ["nb-mdcg"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "result",
+      "rule": "eu-mdr-classification",
+      "in": ["I", "IIa", "IIb", "III"]
+    },
+    {
+      "id": "class-iia-plus",
+      "label": {
+        "uk": "Клас IIa, IIb або III",
+        "en": "Class IIa, IIb or III"
+      },
+      "prov": {
+        "criterionIds": ["nb-iii", "nb-iib", "nb-iia"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "result",
+      "rule": "eu-mdr-classification",
+      "in": ["IIa", "IIb", "III"]
+    },
+    {
+      "id": "class-i",
+      "label": {
+        "uk": "Клас I",
+        "en": "Class I"
+      },
+      "prov": {
+        "criterionIds": ["nb-i"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "result",
+      "rule": "eu-mdr-classification",
+      "in": ["I"]
+    },
+    {
+      "id": "measuring",
+      "label": {
+        "uk": "Функція вимірювання",
+        "en": "Measuring function"
+      },
+      "prov": {
+        "criterionIds": ["nb-i-measuring"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "measuringFunction",
+      "op": "isTrue",
+      "values": []
+    },
+    {
+      "id": "not-measuring",
+      "label": {
+        "uk": "Без функції вимірювання",
+        "en": "No measuring function"
+      },
+      "prov": {
+        "criterionIds": [],
+        "basis": "structural"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "not",
+      "childIds": ["measuring"]
+    },
+    {
+      "id": "o-limited",
+      "label": {
+        "uk": "Клас I з функцією вимірювання",
+        "en": "Class I with a measuring function"
+      },
+      "prov": {
+        "criterionIds": ["nb-i-measuring", "nb-limited"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "all",
+      "childIds": ["class-i", "measuring"]
+    },
+    {
+      "id": "o-none",
+      "label": {
+        "uk": "Клас I без функції вимірювання",
+        "en": "Class I without a measuring function"
+      },
+      "prov": {
+        "criterionIds": ["nb-i"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "all",
+      "childIds": ["class-i", "not-measuring"]
+    }
+  ],
+  "metadata": {
+    "authoredBy": "manual-reference",
+    "revision": 1,
+    "parentRevision": 0,
+    "irHash": "8bd7d252a6e6631d0351c335d515f9ed0799d169730194368efaec3d12c2d3d8",
+    "status": "draft",
+    "approval": {
+      "by": "",
+      "at": "",
+      "note": ""
+    }
+  }
+}

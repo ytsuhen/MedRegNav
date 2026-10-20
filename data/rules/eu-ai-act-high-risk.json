@@ -1,0 +1,319 @@
+{
+  "id": "eu-ai-act-high-risk",
+  "title": {
+    "uk": "Високоризикова AI-система (ст. 6(1) AI Act)",
+    "en": "High-risk AI system (Article 6(1) AI Act)"
+  },
+  "summary": {
+    "uk": "AI-система, що є медвиробом або компонентом його безпеки, високоризикова, якщо виріб проходить оцінку відповідності з нотифікованим органом. Вимоги розділу 2 глави III (ст. 9–15) діють для таких систем з 2 серпня 2028 року.",
+    "en": "An AI system that is a medical device or a safety component of one is high-risk when the device undergoes a conformity assessment with a notified body. Chapter III Section 2 (Articles 9–15) applies to such systems from 2 August 2028."
+  },
+  "market": "EU",
+  "role": "primary",
+  "effective": {
+    "from": "2028-08-02",
+    "criterionIds": ["ai-113"]
+  },
+  "scopeId": "scope",
+  "resolution": "exclusive",
+  "resolutionCriterionIds": [],
+  "outcomes": [
+    {
+      "id": "high-risk",
+      "label": {
+        "uk": "Високоризикова (ст. 6(1))",
+        "en": "High-risk (Article 6(1))"
+      },
+      "rank": 2,
+      "rootId": "o-high-risk",
+      "criterionIds": ["ai-6-1", "ai-6-1a", "ai-6-1b"]
+    },
+    {
+      "id": "not-high-risk",
+      "label": {
+        "uk": "Не високоризикова за ст. 6(1)",
+        "en": "Not high-risk under Article 6(1)"
+      },
+      "rank": 1,
+      "rootId": "o-not-high-risk",
+      "criterionIds": ["ai-6-p1a", "ai-6-1b"]
+    }
+  ],
+  "criteria": [
+    {
+      "source": "ai-act",
+      "section": "art-3",
+      "quote": "’AI system’ means a machine-based system that is designed to operate with varying levels of autonomy and that may exhibit adaptiveness after deployment, and that, for explicit or implicit objectives, infers, from the input it receives, how to generate outputs such as predictions, content, recommendations, or decisions that can influence physical or virtual environments;",
+      "sha256": "10b75b77fc61805672f5ff0a2d4d047b7712de2c379cbf7e03371941e7860356",
+      "start": 96,
+      "end": 468,
+      "id": "ai-def"
+    },
+    {
+      "source": "ai-act",
+      "section": "art-6",
+      "quote": "that AI system shall be considered to be high-risk where both of the following conditions are fulfilled:",
+      "sha256": "90222d70d647ea74780e7450dbcdee87d2530b68c83b6eb7af480ab460bfbab1",
+      "start": 205,
+      "end": 309,
+      "id": "ai-6-1"
+    },
+    {
+      "source": "ai-act",
+      "section": "art-6",
+      "quote": "the AI system is intended to be used as a safety component of a product, or the AI system is itself a product, covered by the Union harmonisation legislation listed in Annex I;",
+      "sha256": "90222d70d647ea74780e7450dbcdee87d2530b68c83b6eb7af480ab460bfbab1",
+      "start": 314,
+      "end": 490,
+      "id": "ai-6-1a"
+    },
+    {
+      "source": "ai-act",
+      "section": "art-6",
+      "quote": "the product whose safety component pursuant to point (a) is the AI system, or the AI system itself as a product, is required to undergo a third-party conformity assessment, with a view to the placing on the market or the putting into service of that product pursuant to the Union harmonisation legislation listed in Annex I.",
+      "sha256": "90222d70d647ea74780e7450dbcdee87d2530b68c83b6eb7af480ab460bfbab1",
+      "start": 495,
+      "end": 819,
+      "id": "ai-6-1b"
+    },
+    {
+      "source": "ai-act",
+      "section": "art-6",
+      "quote": "AI systems that are solely used for non-safety related aspects of user assistance, performance optimisation, service efficiency, automation or convenience or quality control shall not qualify as safety components.",
+      "sha256": "90222d70d647ea74780e7450dbcdee87d2530b68c83b6eb7af480ab460bfbab1",
+      "start": 900,
+      "end": 1113,
+      "id": "ai-6-p1a"
+    },
+    {
+      "source": "ai-act",
+      "section": "art-6",
+      "quote": "Notwithstanding paragraph 1a, AI systems the failure or malfunctioning of which would endanger health and safety shall qualify as safety components.",
+      "sha256": "90222d70d647ea74780e7450dbcdee87d2530b68c83b6eb7af480ab460bfbab1",
+      "start": 1118,
+      "end": 1266,
+      "id": "ai-6-p1b"
+    },
+    {
+      "source": "ai-act",
+      "section": "annex-i",
+      "quote": "11. Regulation (EU) 2017/745 of the European Parliament and of the Council of 5 April 2017 on medical devices",
+      "sha256": "6a890bbadaf8f69a14c059d8d323a03bc460eed177f111e40a373f000cacddcf",
+      "start": 2053,
+      "end": 2162,
+      "id": "ai-annex-i"
+    },
+    {
+      "source": "ai-act",
+      "section": "annex-i",
+      "quote": "Section A. List of Union harmonisation legislation based on the New Legislative Framework",
+      "sha256": "6a890bbadaf8f69a14c059d8d323a03bc460eed177f111e40a373f000cacddcf",
+      "start": 48,
+      "end": 137,
+      "id": "ai-annex-i-a"
+    },
+    {
+      "source": "ai-act",
+      "section": "art-113",
+      "quote": "2 August 2028 as regards AI systems classified as high-risk pursuant to Article 6(1) and Annex I;",
+      "sha256": "dfa244ae47cf67b619e4e2b9b034bc97a997f9ac8427ec4e59915cedf2d21865",
+      "start": 787,
+      "end": 884,
+      "id": "ai-113"
+    },
+    {
+      "source": "mdcg-2025-6",
+      "section": "q2",
+      "quote": "A MDAI is considered a high-risk AI system under Article 6(1) AIA if it meets both of the following conditions:",
+      "sha256": "8fef9b58b9bfc4ab23d5368bf470168ca004a99293da7fb19014ba89dc0cf709",
+      "start": 99,
+      "end": 210,
+      "id": "ai-mdcg-q2"
+    },
+    {
+      "source": "mdcg-2025-6",
+      "section": "q2",
+      "quote": "the MDAI is subject to a third-party conformity assessment by a notified body in accordance with the MDR/IVDR (See table 1 below).",
+      "sha256": "8fef9b58b9bfc4ab23d5368bf470168ca004a99293da7fb19014ba89dc0cf709",
+      "start": 300,
+      "end": 430,
+      "id": "ai-mdcg-q2-nb"
+    },
+    {
+      "source": "mdcg-2025-6",
+      "section": "q2",
+      "quote": "MDR Class I (sterile, measuring, reusable surgical)",
+      "sha256": "8fef9b58b9bfc4ab23d5368bf470168ca004a99293da7fb19014ba89dc0cf709",
+      "start": 1713,
+      "end": 1764,
+      "id": "ai-mdcg-q2-im"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "ai",
+      "label": {
+        "uk": "AI-система за ст. 3(1)",
+        "en": "AI system under Article 3(1)"
+      },
+      "prov": {
+        "criterionIds": ["ai-def"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "isAiSystem",
+      "op": "isTrue",
+      "values": []
+    },
+    {
+      "id": "covered",
+      "label": {
+        "uk": "Виріб підпадає під MDR (додаток I, розділ A)",
+        "en": "The device is covered by the MDR (Annex I, Section A)"
+      },
+      "prov": {
+        "criterionIds": ["ai-annex-i", "ai-annex-i-a"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "result",
+      "rule": "eu-mdr-classification",
+      "in": ["I", "IIa", "IIb", "III"]
+    },
+    {
+      "id": "scope",
+      "label": {
+        "uk": "AI-система у виробі за MDR",
+        "en": "An AI system in a device under the MDR"
+      },
+      "prov": {
+        "criterionIds": ["ai-6-1a", "ai-annex-i"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "all",
+      "childIds": ["ai", "covered"]
+    },
+    {
+      "id": "product-or-safety",
+      "label": {
+        "uk": "AI — сам виріб або компонент безпеки",
+        "en": "The AI is the device itself or a safety component"
+      },
+      "prov": {
+        "criterionIds": ["ai-6-1a", "ai-6-p1b"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "aiRole",
+      "op": "in",
+      "values": ["device", "safety-component"]
+    },
+    {
+      "id": "non-safety",
+      "label": {
+        "uk": "AI лише для небезпекових аспектів",
+        "en": "The AI serves non-safety aspects only"
+      },
+      "prov": {
+        "criterionIds": ["ai-6-p1a"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "aiRole",
+      "op": "equals",
+      "values": ["other-component"]
+    },
+    {
+      "id": "third-party",
+      "label": {
+        "uk": "Оцінка відповідності з нотифікованим органом",
+        "en": "Third-party conformity assessment"
+      },
+      "prov": {
+        "criterionIds": ["ai-6-1b", "ai-mdcg-q2-nb", "ai-mdcg-q2-im"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "result",
+      "rule": "eu-mdr-notified-body",
+      "in": ["full", "limited"]
+    },
+    {
+      "id": "self-declared",
+      "label": {
+        "uk": "Без нотифікованого органу",
+        "en": "No notified body"
+      },
+      "prov": {
+        "criterionIds": ["ai-6-1b"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "result",
+      "rule": "eu-mdr-notified-body",
+      "in": ["none"]
+    },
+    {
+      "id": "o-high-risk",
+      "label": {
+        "uk": "Обидві умови ст. 6(1)",
+        "en": "Both conditions of Article 6(1)"
+      },
+      "prov": {
+        "criterionIds": ["ai-6-1", "ai-mdcg-q2"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "all",
+      "childIds": ["product-or-safety", "third-party"]
+    },
+    {
+      "id": "o-not-high-risk",
+      "label": {
+        "uk": "Хоча б одна умова ст. 6(1) не виконана",
+        "en": "A condition of Article 6(1) fails"
+      },
+      "prov": {
+        "criterionIds": ["ai-6-p1a", "ai-6-1b"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "any",
+      "childIds": ["non-safety", "self-declared"]
+    }
+  ],
+  "metadata": {
+    "authoredBy": "manual-reference",
+    "revision": 1,
+    "parentRevision": 0,
+    "irHash": "baf00ead1e77041d50e2c7d344614e255bda123539e3dc61b9dae9a6d46485af",
+    "status": "draft",
+    "approval": {
+      "by": "",
+      "at": "",
+      "note": ""
+    }
+  }
+}
