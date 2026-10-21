@@ -1,0 +1,34 @@
+{
+  "name": "@mrn/web",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "license": "Apache-2.0",
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.web.json"
+  },
+  "dependencies": {
+    "@fontsource-variable/literata": "5.3.0",
+    "@fontsource/arsenal": "5.3.0",
+    "@mrn/core": "workspace:*",
+    "@xyflow/react": "12.12.0",
+    "d3-hierarchy": "3.1.2",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@mrn/cli": "workspace:*",
+    "@tailwindcss/vite": "4.3.3",
+    "@testing-library/dom": "10.4.2",
+    "@testing-library/react": "16.3.3",
+    "@types/d3-hierarchy": "3.1.7",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.2",
+    "fast-check": "4.10.2",
+    "happy-dom": "21.0.3",
+    "playwright-core": "1.56.1",
+    "tailwindcss": "4.3.3",
+    "vite": "8.3.4"
+  }
+}

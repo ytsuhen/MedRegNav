@@ -1,0 +1,21 @@
+{
+  "markets": [
+    {
+      "market": "EU",
+      "status": "modelled",
+      "device": { "qualification": "eu-mdr-qualification", "ladder": "eu-mdr-classification" },
+      "branches": [
+        {
+          "id": "class",
+          "rules": ["eu-mdr-qualification", "eu-mdr-classification", "eu-mdr-notified-body", "mdcg-2019-11-table-1"]
+        },
+        { "id": "market", "rules": [] },
+        { "id": "qms", "rules": [] },
+        { "id": "clinical", "rules": [] },
+        { "id": "cyber", "rules": [] },
+        { "id": "ai", "rules": ["eu-ai-act-high-risk"] }
+      ]
+    },
+    { "market": "US", "status": "next-stage" }
+  ]
+}

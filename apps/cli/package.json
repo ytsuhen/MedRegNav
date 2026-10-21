@@ -4,6 +4,10 @@
   "private": true,
   "type": "module",
   "license": "Apache-2.0",
+  "exports": {
+    "./snapshot": "./src/snapshot.ts",
+    "./data": "./src/data.ts"
+  },
   "scripts": {
     "typecheck": "tsc --noEmit -p tsconfig.json"
   },

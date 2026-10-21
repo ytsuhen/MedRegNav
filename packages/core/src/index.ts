@@ -37,6 +37,7 @@ export {
   type Truth,
   withRevision,
 } from "./ir/evaluate.ts";
+export { witnesses } from "./ir/explain.ts";
 export {
   type Criterion,
   CriterionSchema,
@@ -75,6 +76,24 @@ export {
   StandardsFileSchema,
   timingOf,
 } from "./obligations.ts";
+export {
+  type MarketView,
+  MarketViewSchema,
+  type ModelledMarket,
+  modelledMarket,
+  type Presentation,
+  PresentationSchema,
+  presentationIssues,
+} from "./presentation.ts";
+export {
+  citedSectionKeys,
+  type SectionInfo,
+  type SectionText,
+  type SectionTexts,
+  type SourceInfo,
+  sectionKey,
+  type WebSnapshot,
+} from "./snapshot.ts";
 export {
   CITATION_KEYS,
   type Citation,

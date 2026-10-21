@@ -7,6 +7,7 @@ import {
   checkCitation,
   findCitations,
   obligationIssues,
+  presentationIssues,
   profileIssues,
   runExample,
   type SectionLookup,
@@ -21,6 +22,7 @@ import {
   readMeta,
   readObligations,
   readOutline,
+  readPresentation,
   readRegistry,
   readRuleFiles,
   readRules,
@@ -123,6 +125,13 @@ export function checkExamples(): Issue[] {
 export function checkObligations(): Issue[] {
   return obligationIssues(readObligations(), readRegistry(), readRules(), readStandards()).map((message) => ({
     where: "data/obligations",
+    message,
+  }));
+}
+
+export function checkPresentation(): Issue[] {
+  return presentationIssues(readPresentation(), readRules()).map((message) => ({
+    where: "data/navigator.json",
     message,
   }));
 }

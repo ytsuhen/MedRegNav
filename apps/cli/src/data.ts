@@ -18,6 +18,8 @@ import {
   ObligationsFileSchema,
   type Outline,
   OutlineSchema,
+  type Presentation,
+  PresentationSchema,
   type SectionLookup,
   type SourceMeta,
   SourceMetaSchema,
@@ -142,6 +144,11 @@ export function readObligations(): Obligation[] {
 
 export function readStandards(): Standard[] {
   return StandardsFileSchema.parse(readJson(join(DATA_DIR, "standards.json"))).standards;
+}
+
+/** How the main screen presents each market (data/navigator.json). */
+export function readPresentation(): Presentation {
+  return PresentationSchema.parse(readJson(join(DATA_DIR, "navigator.json")));
 }
 
 /** Everything the navigator needs, from data/. */

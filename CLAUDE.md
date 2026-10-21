@@ -38,7 +38,7 @@ TypeScript (strict, ESM), Node ≥ 22.18, pnpm 10.28 workspaces. `zod` v4 (сх�
 packages/core/  чистий код без I/O (lint забороняє node:*): text/ source/ attributes/ ir/ obligations/ analysis/
 apps/cli/       `pnpm mrn …`: ingest джерел, цитати, перевірка даних, оцінка профілю, аналіз, знімок даних для web
 apps/web/       React SPA (статична, рушій працює в браузері); e2e/ — Playwright у передвстановленому Chromium
-data/           sources/ attributes.json rules/ obligations/ standards.json examples/ proposals/
+data/           sources/ attributes.json rules/ obligations/ standards.json examples/ navigator.json (що де на екрані)
 docs/           SPEC, ARCHITECTURE, DECISIONS, screens/
 ```
 
@@ -48,7 +48,8 @@ docs/           SPEC, ARCHITECTURE, DECISIONS, screens/
   зеленим перед кожним комітом.
 - `pnpm mrn help` — CLI: `extract`, `sections`, `cite`, `quote`, `check`, `eval`, `coverage`, `mcdc`, `whatif`, `snapshot`.
 - `pnpm dev` — web локально; `pnpm build:web` — статична збірка (GitHub Pages).
-- `pnpm e2e` — Playwright у `/opt/pw-browsers` (браузери не завантажувати); не входить у `verify`.
+- `pnpm e2e` — Playwright у `/opt/pw-browsers` (браузери не завантажувати); не входить у `verify`. Скріншоти README:
+  `MRN_DOCS_SCREENS=docs/screens pnpm e2e apps/web/e2e/screens.e2e.ts`.
 - `pnpm format` — Biome з автовиправленнями.
 
 ## Відомі пастки
@@ -60,3 +61,6 @@ docs/           SPEC, ARCHITECTURE, DECISIONS, screens/
 - `health.ec.europa.eu` інколи відповідає `429` → повторити через паузу.
 - Консолідований текст містить маркери змін (`►M1`, `◄`, `▼B`): екстрактор їх прибирає (D-рішення в DECISIONS).
 - `pdftotext` інших версій дає інший текст → `text.txt` комітимо, його sha256 — у `meta.json`; CI PDF не перевитягує.
+- React Flow пропускає клік крізь вузол, який не можна виділити чи перетягнути: вузлам з кнопками —
+  `style.pointerEvents = "all"` (U10). happy-dom цього не бачить, тож кліки по мапі перевіряє e2e.
+- UI не знає id правил: що показати у вузлі пристрою й на гілках, задає `data/navigator.json` (U4).

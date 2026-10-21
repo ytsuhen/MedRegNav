@@ -113,7 +113,7 @@ export function evaluateCondition(c: Condition, profile: Profile, results: Resul
   }
   const parts = ("all" in c ? c.all : c.any).map((p) => evaluateCondition(p, profile, results));
   const isAll = "all" in c;
-  const truth = parts.map((p) => p.truth).reduce<Truth>(isAll ? and3 : or3, isAll ? true : false);
+  const truth = parts.map((p) => p.truth).reduce<Truth>(isAll ? and3 : or3, isAll);
   const pick =
     truth === null
       ? parts.filter((p) => p.truth === null)

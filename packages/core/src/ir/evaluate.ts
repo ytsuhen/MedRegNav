@@ -56,7 +56,7 @@ export function isInForce(ir: DeviceIr, asOf?: string): boolean {
 }
 
 /** Evaluates one rule; `results` must hold every rule it reads. Assumes a valid IR (validateIr). */
-export function evaluateRule(ir: DeviceIr, profile: Profile, results: Results = {}, asOf?: string): RuleResult {
+export function evaluateRule(ir: DeviceIr, profile: Profile, results: Results = {}): RuleResult {
   const byId = new Map(ir.nodes.map((n) => [n.id, n]));
   const truth = new Map<string, Truth>();
   const node = (id: string): IrNode => {
@@ -229,7 +229,7 @@ export function ruleOrder(rules: readonly DeviceIr[]): DeviceIr[] {
 export function evaluateRules(rules: readonly DeviceIr[], profile: Profile, asOf?: string): Record<string, RuleResult> {
   const results: Record<string, RuleResult> = {};
   for (const ir of ruleOrder(rules)) {
-    results[ir.id] = { ...evaluateRule(ir, profile, results, asOf), inForce: isInForce(ir, asOf) };
+    results[ir.id] = { ...evaluateRule(ir, profile, results), inForce: isInForce(ir, asOf) };
   }
   return results;
 }

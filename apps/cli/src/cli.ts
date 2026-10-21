@@ -5,6 +5,7 @@ import { check, cite } from "./commands/cite.ts";
 import { obligationsCommand } from "./commands/obligations.ts";
 import { evalCommand, rules } from "./commands/rules.ts";
 import { extract, quote, sections } from "./commands/sources.ts";
+import { snapshotCommand } from "./snapshot.ts";
 
 export interface Out {
   write(text: string): unknown;
@@ -62,6 +63,11 @@ export const COMMANDS: Record<string, Command> = {
     usage: "obligations <example-id|profile.json> [--asof YYYY-MM-DD] [--proposals]",
     summary: "the obligations catalogue for a device: what applies, from when, how, with citations",
     run: obligationsCommand,
+  },
+  snapshot: {
+    usage: "snapshot [--out <dir>]",
+    summary: "the web app's data: model, presentation, examples and the cited sections' texts",
+    run: snapshotCommand,
   },
   check: {
     usage: "check",

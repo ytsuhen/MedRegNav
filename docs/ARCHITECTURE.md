@@ -8,13 +8,14 @@ and why is in [SPEC.md](SPEC.md); decisions and divergences from the brief are i
 | Package | Path | Role | Depends on |
 |---|---|---|---|
 | `@mrn/core` | `packages/core` | Pure logic, no I/O: text normalisation, hashing, source sections and citations, attribute registry, DeviceIr (schema, validation, three-valued evaluation, decisive unknowns, cross-checks), reference examples | `zod` (dev: `fast-check`) |
-| `@mrn/cli` | `apps/cli` | `pnpm mrn …`: owns all file I/O; source extraction, citation pinning, data checks | `@mrn/core`, `parse5` |
+| `@mrn/cli` | `apps/cli` | `pnpm mrn …`: owns all file I/O; source extraction, citation pinning, data checks, the web snapshot | `@mrn/core`, `parse5` |
+| `@mrn/web` | `apps/web` | The static SPA: React 19, Vite 8, Tailwind 4, `@xyflow/react` + `d3-hierarchy`; the engine runs in the browser | `@mrn/core` (build: `@mrn/cli` for the snapshot) |
 
 Packages export their TypeScript sources directly (`"exports": "./src/index.ts"`); there is no build step for them.
 Code runs through `tsx` (CLI) and `vitest` (tests); `tsc --noEmit` only type-checks. CI
 (`.github/workflows/verify.yml`) runs `pnpm install --frozen-lockfile` and `pnpm verify` on Node 22.
 
-**No I/O in core.** Biome's `noNodejsModules` is an error for `packages/core/src/**` (and later `apps/web/src/**`), and
+**No I/O in core.** Biome's `noNodejsModules` is an error for `packages/core/src/**` and `apps/web/src/**`, and
 `packages/core/tsconfig.json` type-checks `src` without `@types/node`. Tests may use Node.
 
 ## Module map
@@ -29,18 +30,22 @@ Code runs through `tsx` (CLI) and `vitest` (tests); `tsc --noEmit` only type-che
 | `core/src/model/text.ts` | `TextSchema` (`{ uk, en }`), `IdSchema`, `IsoDateSchema`, `LANGS` |
 | `core/src/attributes.ts` | `AttributeSchema`, `AttributeRegistrySchema`, `domain(attribute)`, `profileIssues(registry, profile)`; types `Attribute`, `AttributeRegistry`, `Profile`, `AttributeValue` |
 | `core/src/ir/schema.ts` | `DeviceIrSchema`, `NodeSchema`, `OutcomeSchema`, `CriterionSchema`, `isGate`, `GATE_KINDS`, `NO_OUTCOME`; types `DeviceIr`, `IrNode`, `Outcome`, `Criterion` (adapted from vlk-engine `ir/schema.ts`) |
-| `core/src/ir/evaluate.ts` | `evaluateRule(ir, profile, results?, asOf?)`, `evaluateRules(rules, profile, asOf?)`, `ruleOrder`, `withRevision(rules, hypothetical)`, `resultIn`, `possibleWithScope`, `isInForce`, `descendants`, `and3`/`or3`/`not3`; types `RuleResult`, `Results`, `Truth` (adapted from vlk-engine `ir/oracle.ts`) |
+| `core/src/ir/evaluate.ts` | `evaluateRule(ir, profile, results?)`, `evaluateRules(rules, profile, asOf?)`, `ruleOrder`, `withRevision(rules, hypothetical)`, `resultIn`, `possibleWithScope`, `isInForce`, `descendants`, `and3`/`or3`/`not3`; types `RuleResult`, `Results`, `Truth` (adapted from vlk-engine `ir/oracle.ts`) |
 | `core/src/ir/validate.ts` | `validateRules(inputs, registry)` → `IrIssue[]`, `irHash(ir)` (adapted from vlk-engine `ir/validate.ts`) |
 | `core/src/ir/decisive.ts` | `decisiveUnknowns(registry, profile, signature, candidates)`, `ruleSignature(rules, asOf?)`, `attributesRead(rules)` (idea from vlk-engine `fhir/decisive.ts`) |
 | `core/src/ir/crosscheck.ts` | `crossCheck(ir, result, profile)` → `CrossCheckResult` |
+| `core/src/ir/explain.ts` | `witnesses(ir, truth, rootId)` → the node ids that explain a node's value (the same child choices as the attribute support), depth-first |
 | `core/src/examples.ts` | `ExampleSchema`, `ExamplesFileSchema`, `runExample(rules, example, asOf?)` |
 | `core/src/obligations.ts` | `ObligationSchema`, `ObligationsFileSchema`, `StandardSchema`, `StandardsFileSchema`, `ConditionSchema`, `BRANCHES`, `evaluateCondition`, `evaluateObligations(obligations, profile, results, asOf)`, `timingOf`, `conditionAttributes`, `obligationIssues`; types `Obligation`, `ObligationResult`, `Condition`, `Standard`, `Branch` |
 | `core/src/navigator.ts` | `navigate(model, profile, { asOf, proposals? })` → `Navigation` (results, cross-checks, obligations, questions, guidance questions, proposal scenario); types `NavigatorModel`, `Scenario` |
+| `core/src/presentation.ts` | `PresentationSchema`, `MarketViewSchema`, `presentationIssues(presentation, rules)`, `modelledMarket(presentation, market)`; types `Presentation`, `MarketView`, `ModelledMarket` |
+| `core/src/snapshot.ts` | `citedSectionKeys(value)`, `sectionKey(source, section)`; types `WebSnapshot`, `SourceInfo`, `SectionInfo`, `SectionText`, `SectionTexts` |
 | `cli/src/cli.ts` | `runCli(args, out?)` → exit code, `COMMANDS` |
 | `cli/src/data.ts` | `REPO_ROOT`, `DATA_DIR`, `SOURCES_DIR`, `sourceIds()`, `readMeta`, `readTextLines`, `readOutline`, `readSections`, `sectionLookup()`, `dataJsonFiles()`, `readJson`, `writeJson` (Biome-formats data files), `sha256OfBytes` |
 | `cli/src/sources/html.ts` | `htmlToLines(html)`, `cleanLine(text)` |
 | `cli/src/sources/pdf.ts` | `pdftotext(path)`, `pdftotextVersion()`, `cleanPdfText(raw)` → `{ lines, pageStarts }` |
-| `cli/src/checks.ts` | `checkSources(ids?)`, `checkCitations(files?, lookup?)` → `Issue[]` (shared by `pnpm mrn check` and the tests) |
+| `cli/src/checks.ts` | `checkSources(ids?)`, `checkCitations(files?, lookup?)`, `checkRules()`, `checkExamples()`, `checkObligations()`, `checkPresentation()` → `Issue[]` (shared by `pnpm mrn check` and the tests) |
+| `cli/src/snapshot.ts` | `buildSnapshot()` → `{ snapshot, sections }` (the web build's data); `snapshotCommand` (`pnpm mrn snapshot --out <dir>`) |
 | `cli/src/commands/sources.ts` | `extract`, `sections`, `quote` |
 | `cli/src/commands/cite.ts` | `cite`, `check` |
 | `cli/src/commands/rules.ts` | `rules` (`--rehash`), `evalCommand` (`pnpm mrn eval`) |
@@ -169,3 +174,42 @@ rules and the obligations (signature: per primary rule scope + possible outcomes
 reading order (rule attributes, then obligation attributes); `guidanceQuestions` are those that only the cross-check rules
 need. With `proposals`, every hypothetical rule replaces the rule it revises (`withRevision`) and the same scenario is
 evaluated again (`proposal`).
+
+## Presentation
+
+`data/navigator.json` (`PresentationSchema`): `{ markets: [...] }`. A modelled market names the rule whose result is the
+device node's qualification line (`device.qualification`), the rule whose outcomes form the class ladder
+(`device.ladder`; outcome ids are shown as the class names) and, for each of the six branches in display order (the first
+half on the left), the rules whose results sit on it next to the branch's obligations. A market with
+`"status": "next-stage"` (the US) gets a placeholder. `presentationIssues` checks that every non-hypothetical rule of a
+market stands on exactly one branch.
+
+## Web app
+
+`apps/web` is a static SPA; the engine (`@mrn/core`) runs in the browser, nothing is sent anywhere.
+
+| Module | Role |
+|---|---|
+| `vite.config.ts` | `webConfig({ outDir? })`; plugin `mrnData()` serves `virtual:mrn/snapshot` (the model, presentation, examples, sources' metadata, cited sections' locators) and `virtual:mrn/sections` (the cited sections' texts, a lazy chunk) from `buildSnapshot()`; in development a change under `data/` reloads the page. `base: "./"`: the build works under any sub-path |
+| `src/state.tsx` | `AppProvider` / `useApp()`: language, market, view, as-of date, answers, example, expanded branch, card selection, proposals, attribute editor, hover; mirrored in the URL hash |
+| `src/lib/route.ts` | `encodeRoute`, `parseRoute`, `encodeProfile`, `parseProfile`: `#m=EU&v=map&d=…&x=<example>&p=attr.value_…&b=<branch>&s=o.<obligation>\|r.<rule>\|x&w=1&l=en` |
+| `src/data.tsx` | `DataProvider`, `useSnapshot()`, `useSections()` (lazy), `useScreen()`: `navigate()` + `buildView()` memoised per state |
+| `src/lib/view.ts` | `buildView(snapshot, market, navigation, profile)` → `ScreenView`: device (qualification, ladder steps value/possible/excluded, the proposal's steps), branches (state open / in-force / upcoming / none, leaves, counts, support, questions — each question once on the map), chips (shown / folded), leaves by key |
+| `src/lib/layout.ts` | `layoutMap(input)` → positions: device centred, branches by side, the expanded branch's leaves beyond it; `d3-hierarchy` tidy trees per side with measured heights |
+| `src/lib/quotes.ts` | `verifyQuote`, `sectionSha256`, `quoteView(citation, section, context, format)` (window + display reflow), `reflow`, `hostOf` |
+| `src/lib/dates.ts` | `todayIso`, `toDays` / `fromDays`, `formatDate(iso, lang)`, `keyDates(model)`, `sliderRange` |
+| `src/components/MapView.tsx` | React Flow canvas: device node (label with the class ladder and its first question), branch nodes (inline question), leaf nodes, ink edges (solid / dashed / dotted, marker underlay on hover); viewport fitted to the width |
+| `src/components/DeviceChips.tsx` | Preset picker, attribute chips by group (answered, decisive unknown, folded rest), the attribute editor with the concept's quote |
+| `src/components/Card.tsx` | The margin note: obligation (how to comply, depends on, legal basis, guidance), rule (result, questions, what decided it, why not stricter), device (the example's quote and our reading, the map's legend) |
+| `src/components/Checklist.tsx` | The same content as a document: rule results, open questions with inline answers, each branch's obligations |
+| `src/components/Explain.tsx`, `Quote.tsx`, `Shell.tsx`, `ui.tsx` | Witness lists; quotes with context and the browser's check; banner, masthead (market, as-of slider with key dates, proposals, view, language), next-stage placeholder, footer; shared controls |
+| `src/i18n/dict.ts` | Every UI string in Ukrainian and English, with plural forms |
+
+Tests: `apps/web/test` (vitest; components under happy-dom) — view model, layout (no overlap, property-based), route,
+dates, every citation verified and marked in the browser's form, i18n (same keys, no Cyrillic in components, the banner
+word for word), the app and the map in a DOM. `apps/web/e2e` (`pnpm e2e`, not in `verify`): the static build served
+under `/MedRegNav/` in the preinstalled Chromium — offline, no console errors, inline answers, verified quotes, the as-of
+step into 2 August 2028, the checklist, a phone viewport; `screens.e2e.ts` writes the README's screenshots
+(`MRN_DOCS_SCREENS=docs/screens pnpm e2e apps/web/e2e/screens.e2e.ts`). `e2e/peek.ts` is a developer aid, not a test:
+`pnpm build:web && pnpm exec tsx apps/web/e2e/peek.ts <outDir> 1440x900 '<hash>'…` saves screenshots of URL states
+(`PEEK_DARK=1`, `PEEK_FULL=0`, `PEEK_SCALE=2`).
