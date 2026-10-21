@@ -1,0 +1,63 @@
+# The static demo on GitHub Pages: pnpm verify, then the static build (the data snapshot is built from data/ by the
+# same builder as `pnpm mrn snapshot`), uploaded as the Pages artifact on every run. It is deployed only when Pages is
+# enabled for the repository (Settings → Pages → Source: GitHub Actions); until then the deploy job is skipped and the
+# artifact can be downloaded from the run. The build uses relative asset URLs, so it works under /MedRegNav/.
+name: pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      pages: read
+    env:
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
+    outputs:
+      enabled: ${{ steps.pages.outcome == 'success' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Enable pnpm 10.28.0 (packageManager)
+        run: corepack enable && corepack prepare pnpm@10.28.0 --activate
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm verify
+      - run: pnpm build:web
+      - name: Is GitHub Pages enabled?
+        id: pages
+        uses: actions/configure-pages@v5
+        continue-on-error: true
+      - name: Upload the site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: apps/web/dist
+
+  deploy:
+    needs: build
+    if: needs.build.outputs.enabled == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
