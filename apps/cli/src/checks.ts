@@ -13,6 +13,7 @@ import {
   type SectionLookup,
   sliceSections,
   validateRules,
+  whatIfIssues,
 } from "@mrn/core";
 import {
   dataJsonFiles,
@@ -29,6 +30,7 @@ import {
   readSections,
   readStandards,
   readTextLines,
+  readWhatIf,
   repoPath,
   sectionLookup,
   sha256OfBytes,
@@ -132,6 +134,13 @@ export function checkObligations(): Issue[] {
 export function checkPresentation(): Issue[] {
   return presentationIssues(readPresentation(), readRules()).map((message) => ({
     where: "data/navigator.json",
+    message,
+  }));
+}
+
+export function checkWhatIf(): Issue[] {
+  return whatIfIssues(readWhatIf(), readRules(), readExamples()).map((message) => ({
+    where: "data/whatif.json",
     message,
   }));
 }

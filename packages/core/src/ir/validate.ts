@@ -135,6 +135,17 @@ function validateRule(ir: DeviceIr, registry: AttributeRegistry, rules: Map<stri
   if (ir.effective) cite(ir.effective.criterionIds, "effective");
   if (ir.scopeId && !byId.has(ir.scopeId)) add("missing-node", `unknown scope node ${ir.scopeId}`);
   if (ir.role === "hypothetical" && !ir.revises) add("schema", "a hypothetical rule names the rule it revises");
+  if (ir.revises) {
+    const revised = rules.get(ir.revises);
+    if (!revised) add("unknown-rule", `revises unknown rule ${ir.revises}`);
+    else
+      for (const o of revised.outcomes)
+        if (!ir.outcomes.some((x) => x.id === o.id))
+          add(
+            "unknown-outcome",
+            `a revision keeps the outcomes of ${ir.revises} (rules read them): ${o.id} is missing`,
+          );
+  }
   if (ir.role === "primary" && !ir.effective) add("schema", "a primary rule needs effective dates");
   if (ir.crossCheck) {
     cite(ir.crossCheck.criterionIds, "crossCheck");

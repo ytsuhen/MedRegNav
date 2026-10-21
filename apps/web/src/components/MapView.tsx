@@ -43,7 +43,7 @@ type BranchNodeT = Node<{ branch: BranchView; expanded: boolean }, "branch">;
 type LeafNodeT = Node<{ leaf: LeafView; side: "left" | "right" }, "leaf">;
 type MapNode = DeviceNodeT | BranchNodeT | LeafNodeT;
 type EdgeState = LeafState | "none";
-type InkEdgeT = Edge<{ state: EdgeState; target: string; support: readonly string[] }, "ink">;
+type InkEdgeT = Edge<{ state: EdgeState; target: string; support: readonly string[]; proposal: boolean }, "ink">;
 
 const branchKey = (id: string) => `b.${id}`;
 
@@ -131,11 +131,22 @@ function DeviceNode({ data }: NodeProps<DeviceNodeT>) {
         </p>
       ) : null}
       {first ? <InlineQuestion question={first} more={device.questions.length - 1} /> : null}
+      {!first && device.proposalQuestions[0] ? (
+        <InlineQuestion question={device.proposalQuestions[0]} more={device.proposalQuestions.length - 1} proposal />
+      ) : null}
     </div>
   );
 }
 
-function InlineQuestion({ question, more }: { question: DecisiveUnknown; more: number }) {
+function InlineQuestion({
+  question,
+  more,
+  proposal = false,
+}: {
+  question: DecisiveUnknown;
+  more: number;
+  proposal?: boolean;
+}) {
   const snapshot = useSnapshot();
   const { t, state, answer } = useApp();
   const ask = useAsk();
@@ -147,7 +158,7 @@ function InlineQuestion({ question, more }: { question: DecisiveUnknown; more: n
     </button>
   );
   return (
-    <div className="branch-question" data-testid="branch-question">
+    <div className="branch-question" data-testid="branch-question" data-proposal={proposal || undefined}>
       <p>
         <span className="branch-decides">{t("branch.decides")}</span> {tx(a.question, state.lang)}
       </p>
@@ -184,6 +195,7 @@ function BranchNode({ data }: NodeProps<BranchNodeT>) {
           .filter(Boolean)
           .join(", ");
   const first = branch.questions[0];
+  const changes = branch.proposalChanges > 0 ? t("proposal.branch", { n: branch.proposalChanges }) : null;
   return (
     <div
       className="node-branch"
@@ -220,11 +232,25 @@ function BranchNode({ data }: NodeProps<BranchNodeT>) {
             <span className="branch-label">{t(`branch.${branch.id}`)}</span>
           </span>
           <span className="branch-status">{status}</span>
+          {changes ? <span className="branch-proposal">{changes}</span> : null}
         </button>
       </div>
       {branch.state === "open" && first ? <InlineQuestion question={first} more={branch.questions.length - 1} /> : null}
     </div>
   );
+}
+
+/** What the proposal would make of a leaf, in words ("under the proposal: Class IIa", "… would not apply"). */
+export function proposalWords(leaf: LeafView, t: ReturnType<typeof useApp>["t"], lang: "uk" | "en"): string | null {
+  const p = leaf.proposal;
+  if (!p) return null;
+  const what =
+    leaf.kind === "rule" && p.state !== "none" && p.outcomes.length > 0
+      ? p.outcomes.map((o) => tx(o, lang)).join(", ")
+      : p.state === "upcoming" && leaf.from
+        ? t("proposal.state.upcoming", { date: formatDate(leaf.from, lang) })
+        : t(`proposal.state.${p.state === "upcoming" ? "in-force" : p.state}`);
+  return t("proposal.leaf", { what });
 }
 
 function leafMeta(leaf: LeafView, t: ReturnType<typeof useApp>["t"], lang: "uk" | "en"): string | null {
@@ -254,10 +280,12 @@ function LeafNode({ data }: NodeProps<LeafNodeT>) {
     state.selection.kind !== "device" &&
     state.selection.kind === leaf.kind &&
     state.selection.id === leaf.id;
-  const meta = leafMeta(leaf, t, state.lang);
+  const meta = leaf.state === "none" ? null : leafMeta(leaf, t, state.lang);
+  const proposal = proposalWords(leaf, t, state.lang);
   return (
     <div
       className="node-leaf"
+      data-proposal={proposal ? "changed" : undefined}
       data-side={side}
       data-state={leaf.state}
       data-kind={leaf.kind}
@@ -280,6 +308,7 @@ function LeafNode({ data }: NodeProps<LeafNodeT>) {
         <span className="leaf-text">
           <span className="leaf-title">{tx(leaf.title, state.lang)}</span>
           {meta ? <span className="leaf-meta">{meta}</span> : null}
+          {proposal ? <span className="leaf-proposal">{proposal}</span> : null}
         </span>
       </button>
     </div>
@@ -291,7 +320,12 @@ function InkEdge({ sourceX, sourceY, targetX, targetY, sourcePosition, targetPos
   const [path] = getBezierPath({ sourceX, sourceY, sourcePosition, targetX, targetY, targetPosition, curvature: 0.4 });
   const marked = data ? isMarked(state.hover, data.target, data.support) : false;
   return (
-    <g className="ink-edge" data-state={data?.state} data-marked={marked || undefined}>
+    <g
+      className="ink-edge"
+      data-state={data?.state}
+      data-marked={marked || undefined}
+      data-proposal={data?.proposal || undefined}
+    >
       {marked ? <path d={path} className="ink-edge-marker" /> : null}
       <path d={path} className="ink-edge-line" />
     </g>
@@ -347,11 +381,16 @@ function specs(screen: Screen, expanded: string | null, name: string, lang: "uk"
   return out;
 }
 
-function edgeState(screen: Screen, nodeId: string): { state: EdgeState; support: readonly string[] } {
+function edgeState(
+  screen: Screen,
+  nodeId: string,
+): { state: EdgeState; support: readonly string[]; proposal: boolean } {
   const b = screen.view.branches.find((x) => branchKey(x.id) === nodeId);
-  if (b) return { state: b.state, support: b.support };
+  if (b) return { state: b.state, support: b.support, proposal: false };
   const l = screen.view.leaves.get(nodeId);
-  return l ? { state: l.state, support: l.support } : { state: "none", support: [] };
+  return l
+    ? { state: l.state, support: l.support, proposal: l.proposal !== null }
+    : { state: "none", support: [], proposal: false };
 }
 
 function MapCanvas({ screen }: { screen: Screen }) {
@@ -414,7 +453,7 @@ function MapCanvas({ screen }: { screen: Screen }) {
     () =>
       layout.nodes.flatMap((p) => {
         if (!p.parent) return [];
-        const { state: s, support } = edgeState(screen, p.id);
+        const { state: s, support, proposal } = edgeState(screen, p.id);
         return [
           {
             id: `${p.parent}->${p.id}`,
@@ -423,7 +462,7 @@ function MapCanvas({ screen }: { screen: Screen }) {
             sourceHandle: p.parent === DEVICE_ID ? p.side : "out",
             targetHandle: "in",
             type: "ink",
-            data: { state: s, target: p.id, support },
+            data: { state: s, target: p.id, support, proposal },
           } as InkEdgeT,
         ];
       }),

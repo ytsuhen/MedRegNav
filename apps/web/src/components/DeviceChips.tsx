@@ -22,6 +22,8 @@ function Chip({ chip }: { chip: ChipView }) {
       className="chip"
       data-known={chip.value !== null || undefined}
       data-for-check={chip.forCheck || undefined}
+      data-for-proposal={chip.forProposal || undefined}
+      title={chip.forProposal ? t("proposal.chip") : undefined}
       data-marked={marked || undefined}
       data-testid={`chip-${a.id}`}
       aria-expanded={open}

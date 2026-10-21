@@ -375,6 +375,18 @@
       "sha256": "510d927f64f8f80ef430fc62df63fad52931ae21e755bd04f1af398ff95eda49"
     },
     {
+      "id": "annex-viii-rule-13",
+      "title": "Rule 13",
+      "kind": "rule",
+      "ref": "Annex VIII, Chapter III, Section 6.5 (Rule 13)",
+      "lines": [
+        4487,
+        4489
+      ],
+      "raw": "6.5. Rule 13\nAll other active devices are classified as class I.",
+      "sha256": "327416f68c0e6a20149edbf9370ebe2f5da18268a17878efbfe7cf3a66edbe0e"
+    },
+    {
       "id": "annex-ix",
       "title": "Conformity assessment based on a quality management system and on assessment of technical documentation",
       "kind": "annex",

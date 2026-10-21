@@ -399,6 +399,18 @@
       }
     },
     {
+      "id": "annex-viii-rule-13",
+      "title": "Rule 13",
+      "kind": "rule",
+      "ref": "Annex VIII, Chapter III, Section 6.5 (Rule 13)",
+      "start": {
+        "line": "6.5. Rule 13"
+      },
+      "end": {
+        "line": "7. SPECIAL RULES"
+      }
+    },
+    {
       "id": "annex-ix",
       "title": "Conformity assessment based on a quality management system and on assessment of technical documentation",
       "kind": "annex",

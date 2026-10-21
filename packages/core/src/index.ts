@@ -1,6 +1,35 @@
 // @mrn/core: pure logic, no I/O. Callers pass file contents as strings or parsed JSON.
 
 export {
+  type CoverageFailure,
+  type CoverageResult,
+  type RuleCoverage,
+  ruleCoverage,
+} from "./analysis/coverage.ts";
+export { type Changes, diffRules, type IrDiff } from "./analysis/diff.ts";
+export { type McdcLeaf, type McdcPair, mcdcPairs, type RuleMcdc } from "./analysis/mcdc.ts";
+export {
+  analysisOrder,
+  dependencies,
+  directAttributes,
+  explanationNodes,
+  type ResultShape,
+  shapeKey,
+  standIn,
+} from "./analysis/space.ts";
+export {
+  type ExampleTransition,
+  impliedAnswers,
+  type TransitionMatrix,
+  type WhatIfFile,
+  WhatIfFileSchema,
+  type WhatIfProposal,
+  type WhatIfResult,
+  whatIf,
+  whatIfIssues,
+} from "./analysis/whatif.ts";
+
+export {
   ATTRIBUTE_GROUPS,
   type Attribute,
   type AttributeRegistry,

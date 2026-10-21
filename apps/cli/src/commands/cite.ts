@@ -16,6 +16,7 @@ import {
   checkPresentation,
   checkRules,
   checkSources,
+  checkWhatIf,
   type Issue,
 } from "../checks.ts";
 import type { Out } from "../cli.ts";
@@ -78,6 +79,7 @@ export async function check(_args: string[], out: Out): Promise<number> {
     ["examples", () => checkExamples()],
     ["obligations", () => checkObligations()],
     ["presentation", () => checkPresentation()],
+    ["what-if", () => checkWhatIf()],
   ];
   let total = 0;
   for (const [name, run] of groups) {

@@ -1,0 +1,704 @@
+{
+  "id": "eu-mdr-classification-com-2025-1023",
+  "title": {
+    "uk": "Клас за проєктом COM(2025) 1023 (нове правило 11)",
+    "en": "Class under proposal COM(2025) 1023 (new Rule 11)"
+  },
+  "summary": {
+    "uk": "Проєкт Комісії (16.12.2025, процедура 2025/0404(COD)), не чинне право: правило 11 замінено одним абзацом про ПЗ, вихід якого дає клінічну користь; клас залежить від стану ситуації (критична, серйозна, несерйозна) і того, для чого вихід (лікувати чи діагностувати, керувати чи інформувати клінічне ведення). Правила застосування 3.3 і 3.5 не змінюються; ПЗ без клінічної користі підпадає під правило 13. Прочитання абзаців — DECISIONS I9, I10.",
+    "en": "A Commission proposal (16 Dec 2025, procedure 2025/0404(COD)), not the law: Rule 11 is replaced by one paragraph on software whose output confers a clinical benefit; the class depends on the state of the situation (critical, serious, non-serious) and what the output is for (to treat or diagnose, to drive or to inform clinical management). Implementing rules 3.3 and 3.5 are unchanged; software without a clinical-benefit output falls under Rule 13. How the indents are read: DECISIONS I9, I10."
+  },
+  "market": "EU",
+  "role": "hypothetical",
+  "revises": "eu-mdr-classification",
+  "scopeId": "covered",
+  "resolution": "highest-rank",
+  "resolutionCriterionIds": ["c-3.5"],
+  "outcomes": [
+    {
+      "id": "III",
+      "label": {
+        "uk": "Клас III",
+        "en": "Class III"
+      },
+      "rank": 4,
+      "rootId": "class-iii",
+      "criterionIds": ["p-iii", "c-3.3a"]
+    },
+    {
+      "id": "IIb",
+      "label": {
+        "uk": "Клас IIb",
+        "en": "Class IIb"
+      },
+      "rank": 3,
+      "rootId": "class-iib",
+      "criterionIds": ["p-iib", "c-3.3a"]
+    },
+    {
+      "id": "IIa",
+      "label": {
+        "uk": "Клас IIa",
+        "en": "Class IIa"
+      },
+      "rank": 2,
+      "rootId": "class-iia",
+      "criterionIds": ["p-iia", "c-3.3a"]
+    },
+    {
+      "id": "I",
+      "label": {
+        "uk": "Клас I",
+        "en": "Class I"
+      },
+      "rank": 1,
+      "rootId": "class-i",
+      "criterionIds": ["p-intro", "p-replace", "c-r13", "c-3.3a"]
+    }
+  ],
+  "criteria": [
+    {
+      "source": "mdr",
+      "section": "art-51",
+      "quote": "Devices shall be divided into classes I, IIa, IIb and III, taking into account the intended purpose of the devices and their inherent risks. Classification shall be carried out in accordance with Annex VIII.",
+      "sha256": "8c79563e0606d3fd59bf802c949c325bf16be6b941bb9e07f9d3f85f9bfc13fb",
+      "start": 40,
+      "end": 247,
+      "id": "c-art51"
+    },
+    {
+      "source": "mdr",
+      "section": "annex-viii-ch2",
+      "quote": "Application of the classification rules shall be governed by the intended purpose of the devices.",
+      "sha256": "2a492dd28b44f7046f2eb9dbed3b8af780c9f248ab70ca795472d3106ca8aa5a",
+      "start": 35,
+      "end": 132,
+      "id": "c-3.1"
+    },
+    {
+      "source": "mdr",
+      "section": "annex-viii-ch2",
+      "quote": "Software, which drives a device or influences the use of a device, shall fall within the same class as the device.",
+      "sha256": "2a492dd28b44f7046f2eb9dbed3b8af780c9f248ab70ca795472d3106ca8aa5a",
+      "start": 425,
+      "end": 539,
+      "id": "c-3.3a"
+    },
+    {
+      "source": "mdr",
+      "section": "annex-viii-ch2",
+      "quote": "If several rules, or if, within the same rule, several sub-rules, apply to the same device based on the device’s intended purpose, the strictest rule and sub-rule resulting in the higher classification shall apply.",
+      "sha256": "2a492dd28b44f7046f2eb9dbed3b8af780c9f248ab70ca795472d3106ca8aa5a",
+      "start": 825,
+      "end": 1039,
+      "id": "c-3.5"
+    },
+    {
+      "source": "mdcg-2019-11",
+      "section": "sec-4.1",
+      "quote": "Therefore, MDSW that both achieves its own intended purpose and also drives or influences the use of a (hardware) device for a medical purpose is classified on its own, based on the intended purpose achieved. In such a case, however, the risk class shall not be lower than the risk class of the hardware medical device.",
+      "sha256": "e407811772da9b5b7155eb48781ad81cd8cf614a1ef0ff29fa168c07ce95b04b",
+      "start": 913,
+      "end": 1232,
+      "id": "c-mdcg-floor"
+    },
+    {
+      "source": "com-2025-1023-annexes",
+      "section": "annex-i-6",
+      "quote": "Section 6.3 is replaced by the following:",
+      "sha256": "2e12c6b4311f9cb71d1d449c20a4a5d04130570ebc25ae6fcc2c7e0dde43c78c",
+      "start": 2738,
+      "end": 2779,
+      "id": "p-replace"
+    },
+    {
+      "source": "com-2025-1023-annexes",
+      "section": "annex-i-6",
+      "quote": "Software which is intended to generate an output that confers a clinical benefit and is used for diagnosis, treatment, prevention, monitoring, prediction, prognosis, compensation or alleviation of a disease or condition is classified as class I, unless the output is intended for a disease or condition:",
+      "sha256": "2e12c6b4311f9cb71d1d449c20a4a5d04130570ebc25ae6fcc2c7e0dde43c78c",
+      "start": 2792,
+      "end": 3095,
+      "id": "p-intro"
+    },
+    {
+      "source": "com-2025-1023-annexes",
+      "section": "annex-i-6",
+      "quote": "in a critical situation with a risk of causing death or an irreversible deterioration of a person’s state of health, in which case it is classified as class III;",
+      "sha256": "2e12c6b4311f9cb71d1d449c20a4a5d04130570ebc25ae6fcc2c7e0dde43c78c",
+      "start": 3097,
+      "end": 3258,
+      "id": "p-iii"
+    },
+    {
+      "source": "com-2025-1023-annexes",
+      "section": "annex-i-6",
+      "quote": "in a serious situation with a risk of causing a serious deterioration of a person’s state of health or a surgical intervention, or to drive clinical management in a critical situation in which cases it is classified as class IIb;",
+      "sha256": "2e12c6b4311f9cb71d1d449c20a4a5d04130570ebc25ae6fcc2c7e0dde43c78c",
+      "start": 3260,
+      "end": 3489,
+      "id": "p-iib"
+    },
+    {
+      "source": "com-2025-1023-annexes",
+      "section": "annex-i-6",
+      "quote": "in a non-serious situation, or to drive clinical management in a serious situation or to inform clinical management in a critical or serious situation in which cases it is classified as class IIa.",
+      "sha256": "2e12c6b4311f9cb71d1d449c20a4a5d04130570ebc25ae6fcc2c7e0dde43c78c",
+      "start": 3491,
+      "end": 3687,
+      "id": "p-iia"
+    },
+    {
+      "source": "mdr",
+      "section": "annex-viii-rule-13",
+      "quote": "All other active devices are classified as class I.",
+      "sha256": "327416f68c0e6a20149edbf9370ebe2f5da18268a17878efbfe7cf3a66edbe0e",
+      "start": 13,
+      "end": 64,
+      "id": "c-r13"
+    },
+    {
+      "source": "mdr",
+      "section": "art-2",
+      "quote": "Software shall also be deemed to be an active device",
+      "sha256": "d49b89fe6cae84b2723ab5fad6aa8312aea8e5096c014abd5db62b0073342721",
+      "start": 2883,
+      "end": 2935,
+      "id": "c-active-sw"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "covered",
+      "label": {
+        "uk": "Підпадає під MDR як ПЗ (кваліфікація)",
+        "en": "Covered by the MDR as software (qualification)"
+      },
+      "prov": {
+        "criterionIds": ["c-art51", "c-3.1"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "result",
+      "rule": "eu-mdr-qualification",
+      "in": ["mdsw", "device-software"]
+    },
+    {
+      "id": "benefit",
+      "label": {
+        "uk": "Вихід ПЗ дає клінічну користь (діагностика, лікування, профілактика, моніторинг, прогноз…)",
+        "en": "The output confers a clinical benefit (diagnosis, treatment, prevention, monitoring, prediction…)"
+      },
+      "prov": {
+        "criterionIds": ["p-intro"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "clinicalBenefitOutput",
+      "op": "isTrue",
+      "values": []
+    },
+    {
+      "id": "sit-critical",
+      "label": {
+        "uk": "Критична ситуація",
+        "en": "Critical situation"
+      },
+      "prov": {
+        "criterionIds": ["p-iii", "p-iib"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "imdrfSituation",
+      "op": "equals",
+      "values": ["critical"]
+    },
+    {
+      "id": "sit-serious",
+      "label": {
+        "uk": "Серйозна ситуація",
+        "en": "Serious situation"
+      },
+      "prov": {
+        "criterionIds": ["p-iib", "p-iia"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "imdrfSituation",
+      "op": "equals",
+      "values": ["serious"]
+    },
+    {
+      "id": "sit-non-serious",
+      "label": {
+        "uk": "Несерйозна ситуація",
+        "en": "Non-serious situation"
+      },
+      "prov": {
+        "criterionIds": ["p-iia"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "imdrfSituation",
+      "op": "equals",
+      "values": ["non-serious"]
+    },
+    {
+      "id": "sig-treat",
+      "label": {
+        "uk": "Вихід — щоб лікувати чи діагностувати",
+        "en": "The output is to treat or diagnose"
+      },
+      "prov": {
+        "criterionIds": ["p-iii", "p-iib", "p-iia"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "imdrfSignificance",
+      "op": "equals",
+      "values": ["treat-or-diagnose"]
+    },
+    {
+      "id": "sig-drive",
+      "label": {
+        "uk": "Вихід керує клінічним веденням",
+        "en": "The output drives clinical management"
+      },
+      "prov": {
+        "criterionIds": ["p-iib", "p-iia"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "imdrfSignificance",
+      "op": "equals",
+      "values": ["drive"]
+    },
+    {
+      "id": "sig-inform",
+      "label": {
+        "uk": "Вихід інформує клінічне ведення",
+        "en": "The output informs clinical management"
+      },
+      "prov": {
+        "criterionIds": ["p-iia"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "imdrfSignificance",
+      "op": "equals",
+      "values": ["inform"]
+    },
+    {
+      "id": "critical-or-serious",
+      "label": {
+        "uk": "Критична або серйозна ситуація",
+        "en": "Critical or serious situation"
+      },
+      "prov": {
+        "criterionIds": [],
+        "basis": "structural"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "any",
+      "childIds": ["sit-critical", "sit-serious"]
+    },
+    {
+      "id": "drive-or-inform",
+      "label": {
+        "uk": "Вихід лише керує чи інформує",
+        "en": "The output only drives or informs"
+      },
+      "prov": {
+        "criterionIds": [],
+        "basis": "structural"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "any",
+      "childIds": ["sig-drive", "sig-inform"]
+    },
+    {
+      "id": "p-iii",
+      "label": {
+        "uk": "Проєкт, абзац 1: критична ситуація з ризиком смерті чи незворотного погіршення",
+        "en": "Proposal, indent 1: critical situation with a risk of death or irreversible deterioration"
+      },
+      "prov": {
+        "criterionIds": ["p-iii"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "all",
+      "childIds": ["benefit", "sit-critical", "sig-treat"]
+    },
+    {
+      "id": "p-iib-serious",
+      "label": {
+        "uk": "Проєкт, абзац 2: серйозна ситуація з ризиком серйозного погіршення чи операції",
+        "en": "Proposal, indent 2: serious situation with a risk of serious deterioration or surgery"
+      },
+      "prov": {
+        "criterionIds": ["p-iib"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "all",
+      "childIds": ["benefit", "sit-serious", "sig-treat"]
+    },
+    {
+      "id": "p-iib-drive",
+      "label": {
+        "uk": "Проєкт, абзац 2: керує клінічним веденням у критичній ситуації",
+        "en": "Proposal, indent 2: drives clinical management in a critical situation"
+      },
+      "prov": {
+        "criterionIds": ["p-iib"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "all",
+      "childIds": ["benefit", "sit-critical", "sig-drive"]
+    },
+    {
+      "id": "p-iia-non-serious",
+      "label": {
+        "uk": "Проєкт, абзац 3: несерйозна ситуація",
+        "en": "Proposal, indent 3: non-serious situation"
+      },
+      "prov": {
+        "criterionIds": ["p-iia"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "all",
+      "childIds": ["benefit", "sit-non-serious", "sig-treat"]
+    },
+    {
+      "id": "p-iia-drive",
+      "label": {
+        "uk": "Проєкт, абзац 3: керує клінічним веденням у серйозній ситуації",
+        "en": "Proposal, indent 3: drives clinical management in a serious situation"
+      },
+      "prov": {
+        "criterionIds": ["p-iia"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "all",
+      "childIds": ["benefit", "sit-serious", "sig-drive"]
+    },
+    {
+      "id": "p-iia-inform",
+      "label": {
+        "uk": "Проєкт, абзац 3: інформує клінічне ведення в критичній чи серйозній ситуації",
+        "en": "Proposal, indent 3: informs clinical management in a critical or serious situation"
+      },
+      "prov": {
+        "criterionIds": ["p-iia"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "all",
+      "childIds": ["benefit", "critical-or-serious", "sig-inform"]
+    },
+    {
+      "id": "p-i",
+      "label": {
+        "uk": "Проєкт: клас I — несерйозна ситуація, вихід лише керує чи інформує",
+        "en": "Proposal: class I — non-serious situation, the output only drives or informs"
+      },
+      "prov": {
+        "criterionIds": ["p-intro"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "all",
+      "childIds": ["benefit", "sit-non-serious", "drive-or-inform"]
+    },
+    {
+      "id": "r13-i",
+      "label": {
+        "uk": "Без клінічної користі: не нове правило 11, а правило 13 (усі інші активні вироби)",
+        "en": "No clinical-benefit output: not the new Rule 11 but Rule 13 (all other active devices)"
+      },
+      "prov": {
+        "criterionIds": ["c-r13", "c-active-sw"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "not",
+      "childIds": ["benefit"]
+    },
+    {
+      "id": "drives",
+      "label": {
+        "uk": "Керує апаратом чи впливає на його використання",
+        "en": "Drives or influences a device"
+      },
+      "prov": {
+        "criterionIds": ["c-3.3a"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "drivesDevice",
+      "op": "isTrue",
+      "values": []
+    },
+    {
+      "id": "dev-i",
+      "label": {
+        "uk": "Апарат класу I",
+        "en": "Device of class I"
+      },
+      "prov": {
+        "criterionIds": ["c-3.3a"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "drivenDeviceClass",
+      "op": "equals",
+      "values": ["I"]
+    },
+    {
+      "id": "dev-iia",
+      "label": {
+        "uk": "Апарат класу IIa",
+        "en": "Device of class IIa"
+      },
+      "prov": {
+        "criterionIds": ["c-3.3a"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "drivenDeviceClass",
+      "op": "equals",
+      "values": ["IIa"]
+    },
+    {
+      "id": "dev-iib",
+      "label": {
+        "uk": "Апарат класу IIb",
+        "en": "Device of class IIb"
+      },
+      "prov": {
+        "criterionIds": ["c-3.3a"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "drivenDeviceClass",
+      "op": "equals",
+      "values": ["IIb"]
+    },
+    {
+      "id": "dev-iii",
+      "label": {
+        "uk": "Апарат класу III",
+        "en": "Device of class III"
+      },
+      "prov": {
+        "criterionIds": ["c-3.3a"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "attr",
+      "attr": "drivenDeviceClass",
+      "op": "equals",
+      "values": ["III"]
+    },
+    {
+      "id": "r33-i",
+      "label": {
+        "uk": "Правило 3.3: керує виробом класу I",
+        "en": "Rule 3.3: drives a class I device"
+      },
+      "prov": {
+        "criterionIds": ["c-3.3a", "c-mdcg-floor"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "all",
+      "childIds": ["drives", "dev-i"]
+    },
+    {
+      "id": "r33-iia",
+      "label": {
+        "uk": "Правило 3.3: керує виробом класу IIa",
+        "en": "Rule 3.3: drives a class IIa device"
+      },
+      "prov": {
+        "criterionIds": ["c-3.3a", "c-mdcg-floor"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "all",
+      "childIds": ["drives", "dev-iia"]
+    },
+    {
+      "id": "r33-iib",
+      "label": {
+        "uk": "Правило 3.3: керує виробом класу IIb",
+        "en": "Rule 3.3: drives a class IIb device"
+      },
+      "prov": {
+        "criterionIds": ["c-3.3a", "c-mdcg-floor"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "all",
+      "childIds": ["drives", "dev-iib"]
+    },
+    {
+      "id": "r33-iii",
+      "label": {
+        "uk": "Правило 3.3: керує виробом класу III",
+        "en": "Rule 3.3: drives a class III device"
+      },
+      "prov": {
+        "criterionIds": ["c-3.3a", "c-mdcg-floor"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "all",
+      "childIds": ["drives", "dev-iii"]
+    },
+    {
+      "id": "class-iii",
+      "label": {
+        "uk": "Клас III",
+        "en": "Class III"
+      },
+      "prov": {
+        "criterionIds": ["c-3.5"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "any",
+      "childIds": ["p-iii", "r33-iii"]
+    },
+    {
+      "id": "class-iib",
+      "label": {
+        "uk": "Клас IIb",
+        "en": "Class IIb"
+      },
+      "prov": {
+        "criterionIds": ["c-3.5"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "any",
+      "childIds": ["p-iib-serious", "p-iib-drive", "r33-iib"]
+    },
+    {
+      "id": "class-iia",
+      "label": {
+        "uk": "Клас IIa",
+        "en": "Class IIa"
+      },
+      "prov": {
+        "criterionIds": ["c-3.5"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "any",
+      "childIds": ["p-iia-non-serious", "p-iia-drive", "p-iia-inform", "r33-iia"]
+    },
+    {
+      "id": "class-i",
+      "label": {
+        "uk": "Клас I",
+        "en": "Class I"
+      },
+      "prov": {
+        "criterionIds": ["p-intro", "c-r13"],
+        "basis": "explicit"
+      },
+      "review": {
+        "status": "draft"
+      },
+      "kind": "any",
+      "childIds": ["p-i", "r13-i", "r33-i"]
+    }
+  ],
+  "metadata": {
+    "authoredBy": "manual-reference",
+    "revision": 2,
+    "parentRevision": 1,
+    "irHash": "0f7d07093ef7c6707b5ba310409c3992ff92a81b20c3ec96e9506c8daec6dd14",
+    "status": "draft",
+    "approval": {
+      "by": "",
+      "at": "",
+      "note": ""
+    }
+  }
+}

@@ -55,8 +55,16 @@ export function isInForce(ir: DeviceIr, asOf?: string): boolean {
   return asOf >= ir.effective.from && (ir.effective.until === undefined || asOf < ir.effective.until);
 }
 
-/** Evaluates one rule; `results` must hold every rule it reads. Assumes a valid IR (validateIr). */
-export function evaluateRule(ir: DeviceIr, profile: Profile, results: Results = {}): RuleResult {
+/**
+ * Evaluates one rule; `results` must hold every rule it reads. Assumes a valid IR (validateIr). `support: false`
+ * skips the attributes that explain the result (the analyses enumerate inputs and need only truth values).
+ */
+export function evaluateRule(
+  ir: DeviceIr,
+  profile: Profile,
+  results: Results = {},
+  options: { support?: boolean } = {},
+): RuleResult {
   const byId = new Map(ir.nodes.map((n) => [n.id, n]));
   const truth = new Map<string, Truth>();
   const node = (id: string): IrNode => {
@@ -125,6 +133,20 @@ export function evaluateRule(ir: DeviceIr, profile: Profile, results: Results = 
           ? "determined"
           : "undetermined";
 
+  if (options.support === false) {
+    return {
+      ruleId: ir.id,
+      inForce: false,
+      scope,
+      nodes: Object.fromEntries(truth),
+      outcomes,
+      possible,
+      value: status === "determined" ? (possible[0] ?? null) : null,
+      status,
+      support: [],
+      nodeSupport: {},
+    };
+  }
   const nodeSupport = supports(ir, node, truth, results);
   const support = new Set<string>();
   const add = (id: string | undefined) => {

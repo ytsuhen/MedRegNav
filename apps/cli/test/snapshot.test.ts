@@ -9,7 +9,7 @@ const { snapshot, sections } = buildSnapshot();
 
 describe("the web snapshot", () => {
   it("has the texts of exactly the cited sections, with their locators and sources", () => {
-    const keys = citedSectionKeys({ model: snapshot.model, examples: snapshot.examples });
+    const keys = citedSectionKeys({ model: snapshot.model, examples: snapshot.examples, file: snapshot.whatIf.file });
     expect(Object.keys(sections).sort()).toEqual(keys);
     expect(Object.keys(snapshot.sections).sort()).toEqual(keys);
     for (const key of keys) expect(snapshot.sources[key.split("/")[0] ?? ""]).toBeDefined();
@@ -21,7 +21,7 @@ describe("the web snapshot", () => {
       const s = sections[`${source}/${section}`];
       return s ? { sha256: s.sha256, text: citedText(s.raw) } : undefined;
     };
-    const all = findCitations({ model: snapshot.model, examples: snapshot.examples });
+    const all = findCitations({ model: snapshot.model, examples: snapshot.examples, file: snapshot.whatIf.file });
     expect(all.length).toBeGreaterThan(200);
     for (const { path, value } of all) expect([path, checkCitation(value, lookup)]).toEqual([path, []]);
   });

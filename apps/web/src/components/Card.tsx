@@ -7,6 +7,7 @@ import { formatDate } from "../lib/dates.ts";
 import type { LeafView } from "../lib/view.ts";
 import { useApp } from "../state.tsx";
 import { RuleExplanation } from "./Explain.tsx";
+import { ProposalSection } from "./Proposal.tsx";
 import { Quote, Quotes } from "./Quote.tsx";
 import { ExternalLink, tx, valueLabel } from "./ui.tsx";
 
@@ -219,6 +220,7 @@ function RuleCard({ screen, id }: { screen: Screen; id: string }) {
       ) : null}
       <p className="card-summary">{tx(rule.summary, state.lang)}</p>
       <RuleExplanation rule={rule} result={result} />
+      {state.proposals ? <ProposalSection rule={rule} screen={screen} /> : null}
       <p className="card-footnote">
         {t("rule.draft", { revision: rule.metadata.revision })}
         {rule.effective ? ` ${t("rule.from", { date: formatDate(rule.effective.from, state.lang) })}.` : ""}

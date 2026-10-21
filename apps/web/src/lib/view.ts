@@ -37,6 +37,8 @@ export interface LeafView {
   until: string | null;
   support: string[];
   check: CrossCheckResult | null;
+  /** Under the proposed revisions, when they change this leaf: a rule's outcomes, an obligation's state. */
+  proposal: { outcomes: Text[]; state: LeafState } | null;
 }
 
 export type BranchState = "open" | "in-force" | "upcoming" | "none";
@@ -45,9 +47,9 @@ export interface BranchView {
   id: Branch;
   side: "left" | "right";
   state: BranchState;
-  /** Leaves that apply or may apply (everything but "none"). */
+  /** Leaves that apply or may apply, and with proposals on those that would apply under the proposal. */
   leaves: LeafView[];
-  /** Leaves that do not apply. */
+  /** Leaves that do not apply (nor would under the proposal). */
   hidden: LeafView[];
   /** Obligations that apply, and those that depend on an answer. */
   counts: { applies: number; open: number };
@@ -59,6 +61,8 @@ export interface BranchView {
    * earlier branch shows; the map shows the first.
    */
   questions: DecisiveUnknown[];
+  /** Leaves the proposed revisions would change (0 with proposals off). */
+  proposalChanges: number;
 }
 
 export type StepState = "value" | "possible" | "excluded";
@@ -77,6 +81,8 @@ export interface DeviceView {
   support: string[];
   /** Questions that would change the qualification or the class. */
   questions: DecisiveUnknown[];
+  /** With proposals on: questions only the proposed class needs. */
+  proposalQuestions: DecisiveUnknown[];
 }
 
 export interface ChipView {
@@ -86,6 +92,8 @@ export interface ChipView {
   decisive: boolean;
   /** Unanswered, and only a guidance cross-check needs it. */
   forCheck: boolean;
+  /** Unanswered, and only the proposed revisions need it. */
+  forProposal: boolean;
 }
 
 export interface ScreenView {
@@ -126,8 +134,12 @@ function ruleLeaf(rule: DeviceIr, result: RuleResult, check: CrossCheckResult | 
     until: rule.effective?.until ?? null,
     support: result.support,
     check,
+    proposal: null,
   };
 }
+
+const sameLeaf = (a: { outcomes: Text[]; state: LeafState }, b: { outcomes: Text[]; state: LeafState }) =>
+  a.state === b.state && a.outcomes.map((o) => o.en).join("|") === b.outcomes.map((o) => o.en).join("|");
 
 function ladderStep(id: string, result: RuleResult | undefined): StepState {
   if (!result || result.status === "not-applicable") return "excluded";
@@ -165,14 +177,23 @@ export function buildView(
   const branches = market.branches.map((b, i): BranchView => {
     const ruleLeaves = b.rules.map((id) => {
       const check = nav.crossChecks.find((c) => c.ruleId === id) ?? null;
-      return ruleLeaf(rule(id), result(id), check, nav.asOf);
+      const leaf = ruleLeaf(rule(id), result(id), check, nav.asOf);
+      const proposed = nav.proposal?.results[id];
+      if (proposed) {
+        const revision = model.rules.find((r) => r.revises === id) ?? rule(id);
+        const pCheck = nav.proposal?.crossChecks.find((c) => c.ruleId === id) ?? null;
+        const p = ruleLeaf(revision, proposed, pCheck, nav.asOf);
+        const shown = { outcomes: p.outcomes, state: p.state };
+        if (!sameLeaf(leaf, shown)) leaf.proposal = shown;
+      }
+      return leaf;
     });
     const obligationLeaves = model.obligations
       .filter((o) => o.branch === b.id)
       .map((o): LeafView => {
         const r = nav.obligations.find((x) => x.id === o.id);
         const state: LeafState = !r || r.applies === false ? "none" : r.applies === null ? "open" : r.timing;
-        return {
+        const leaf: LeafView = {
           key: leafKey("obligation", o.id),
           kind: "obligation",
           id: o.id,
@@ -184,13 +205,22 @@ export function buildView(
           until: o.effective.until ?? null,
           support: r?.support ?? [],
           check: null,
+          proposal: null,
         };
+        const p = nav.proposal?.obligations.find((x) => x.id === o.id);
+        if (p) {
+          const pState: LeafState = p.applies === false ? "none" : p.applies === null ? "open" : p.timing;
+          if (pState !== state) leaf.proposal = { outcomes: [], state: pState };
+        }
+        return leaf;
       });
     const all = [...ruleLeaves, ...obligationLeaves];
     for (const l of all) leaves.set(l.key, l);
-    const shown = all.filter((l) => l.state !== "none");
-    const required = shown.filter((l) => !l.optional);
-    const has = (state: LeafState) => shown.some((l) => l.state === state);
+    // Shown: what applies or may apply, and (proposals on) what would apply under the proposal.
+    const current = all.filter((l) => l.state !== "none");
+    const shown = all.filter((l) => l.state !== "none" || (l.proposal !== null && l.proposal.state !== "none"));
+    const required = current.filter((l) => !l.optional);
+    const has = (state: LeafState) => current.some((l) => l.state === state);
     const state: BranchState = required.some((l) => l.state === "open")
       ? "open"
       : has("in-force")
@@ -199,7 +229,7 @@ export function buildView(
           ? "upcoming"
           : "none";
     const openSupport = new Set(required.filter((l) => l.state === "open").flatMap((l) => l.support));
-    const upcoming = shown.filter((l) => l.state === "upcoming").map((l) => l.from ?? "");
+    const upcoming = current.filter((l) => l.state === "upcoming").map((l) => l.from ?? "");
     const questions = nav.questions.filter(
       (q) => openSupport.has(q.attr) && !askedAtDevice.has(q.attr) && !shownQuestions.has(q.attr),
     );
@@ -209,14 +239,15 @@ export function buildView(
       side: i < Math.ceil(market.branches.length / 2) ? "left" : "right",
       state,
       leaves: shown,
-      hidden: all.filter((l) => l.state === "none"),
+      hidden: all.filter((l) => !shown.includes(l)),
       counts: {
         applies: obligationLeaves.filter((l) => l.state === "in-force" || l.state === "upcoming").length,
         open: obligationLeaves.filter((l) => l.state === "open").length,
       },
       from: state === "upcoming" ? ([...upcoming].sort()[0] ?? null) : null,
-      support: [...new Set(shown.flatMap((l) => l.support))],
+      support: [...new Set(current.flatMap((l) => l.support))],
       questions,
+      proposalChanges: all.filter((l) => l.proposal !== null).length,
     };
   });
 
@@ -245,9 +276,13 @@ export function buildView(
     },
     support: [...new Set([...qualResult.support, ...ladderResult.support])],
     questions: deviceQuestions,
+    proposalQuestions: (nav.proposal?.questions ?? []).filter(
+      (q) => q.affects.includes(ladderRule.id) && !askedAtDevice.has(q.attr),
+    ),
   };
 
   const forCheck = new Set(nav.guidanceQuestions.map((q) => q.attr));
+  const forProposal = new Set((nav.proposal?.questions ?? []).map((q) => q.attr));
   const chips: ChipView[] = model.registry.attributes.map((attribute) => {
     const v = profile[attribute.id];
     const value = v === undefined ? null : v;
@@ -256,9 +291,10 @@ export function buildView(
       value,
       decisive: value === null && decisive.has(attribute.id),
       forCheck: value === null && forCheck.has(attribute.id),
+      forProposal: value === null && !decisive.has(attribute.id) && forProposal.has(attribute.id),
     };
   });
-  const shownChip = (c: ChipView) => c.value !== null || c.decisive || c.forCheck;
+  const shownChip = (c: ChipView) => c.value !== null || c.decisive || c.forCheck || c.forProposal;
   return {
     device,
     branches,

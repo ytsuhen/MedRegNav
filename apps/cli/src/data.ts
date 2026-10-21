@@ -26,6 +26,8 @@ import {
   type SourceSection,
   type Standard,
   StandardsFileSchema,
+  type WhatIfFile,
+  WhatIfFileSchema,
 } from "@mrn/core";
 
 export const REPO_ROOT = join(dirname(fileURLToPath(import.meta.url)), "../../..");
@@ -149,6 +151,11 @@ export function readStandards(): Standard[] {
 /** How the main screen presents each market (data/navigator.json). */
 export function readPresentation(): Presentation {
   return PresentationSchema.parse(readJson(join(DATA_DIR, "navigator.json")));
+}
+
+/** Proposed revisions to compare ("what if", data/whatif.json). */
+export function readWhatIf(): WhatIfFile {
+  return WhatIfFileSchema.parse(readJson(join(DATA_DIR, "whatif.json")));
 }
 
 /** Everything the navigator needs, from data/. */

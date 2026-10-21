@@ -1,0 +1,74 @@
+{
+  "proposals": [
+    {
+      "revision": "eu-mdr-classification-com-2025-1023",
+      "base": "stroke-image-analysis",
+      "constraints": [
+        {
+          "when": {
+            "attr": "decisionInfo",
+            "isTrue": true
+          },
+          "require": {
+            "attr": "clinicalBenefitOutput",
+            "isTrue": true
+          },
+          "why": {
+            "uk": "ПЗ, що дає інформацію для діагностичних чи лікувальних рішень, генерує вихід, який використовують для діагностики чи лікування, — саме ним відкривається нове правило 11.",
+            "en": "Software that provides information for diagnostic or therapeutic decisions generates an output used for diagnosis or treatment — the very words that open the new Rule 11."
+          },
+          "citations": [
+            {
+              "source": "mdr",
+              "section": "annex-viii-rule-11",
+              "quote": "Software intended to provide information which is used to take decisions with diagnosis or therapeutic purposes",
+              "sha256": "510d927f64f8f80ef430fc62df63fad52931ae21e755bd04f1af398ff95eda49",
+              "start": 13,
+              "end": 124
+            },
+            {
+              "source": "com-2025-1023-annexes",
+              "section": "annex-i-6",
+              "quote": "Software which is intended to generate an output that confers a clinical benefit and is used for diagnosis, treatment, prevention, monitoring",
+              "sha256": "2e12c6b4311f9cb71d1d449c20a4a5d04130570ebc25ae6fcc2c7e0dde43c78c",
+              "start": 2792,
+              "end": 2933
+            }
+          ]
+        },
+        {
+          "when": {
+            "attr": "monitorsPhysiological",
+            "isTrue": true
+          },
+          "require": {
+            "attr": "clinicalBenefitOutput",
+            "isTrue": true
+          },
+          "why": {
+            "uk": "ПЗ для моніторингу фізіологічних процесів генерує вихід, який використовують для моніторингу; нове правило 11 прямо називає моніторинг.",
+            "en": "Software that monitors physiological processes generates an output used for monitoring; the new Rule 11 names monitoring explicitly."
+          },
+          "citations": [
+            {
+              "source": "mdr",
+              "section": "annex-viii-rule-11",
+              "quote": "Software intended to monitor physiological processes is classified as class IIa",
+              "sha256": "510d927f64f8f80ef430fc62df63fad52931ae21e755bd04f1af398ff95eda49",
+              "start": 447,
+              "end": 526
+            },
+            {
+              "source": "com-2025-1023-annexes",
+              "section": "annex-i-6",
+              "quote": "is used for diagnosis, treatment, prevention, monitoring, prediction, prognosis, compensation or alleviation of a disease or condition",
+              "sha256": "2e12c6b4311f9cb71d1d449c20a4a5d04130570ebc25ae6fcc2c7e0dde43c78c",
+              "start": 2877,
+              "end": 3011
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

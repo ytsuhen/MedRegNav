@@ -1,6 +1,7 @@
 // `pnpm mrn <command>`: the command line. All file I/O lives in apps/; @mrn/core stays pure.
 import { argv, exit, stdout } from "node:process";
 import { pathToFileURL } from "node:url";
+import { coverageCommand, mcdcCommand, whatifCommand } from "./commands/analysis.ts";
 import { check, cite } from "./commands/cite.ts";
 import { obligationsCommand } from "./commands/obligations.ts";
 import { evalCommand, rules } from "./commands/rules.ts";
@@ -63,6 +64,21 @@ export const COMMANDS: Record<string, Command> = {
     usage: "obligations <example-id|profile.json> [--asof YYYY-MM-DD] [--proposals]",
     summary: "the obligations catalogue for a device: what applies, from when, how, with citations",
     run: obligationsCommand,
+  },
+  coverage: {
+    usage: "coverage",
+    summary: "every rule on every combination of its inputs (attributes incl. unknown, results of the rules it reads)",
+    run: coverageCommand,
+  },
+  mcdc: {
+    usage: "mcdc",
+    summary: "MC/DC: per leaf, a pair of real inputs where the leaf alone changes the outcome",
+    run: mcdcCommand,
+  },
+  whatif: {
+    usage: "whatif",
+    summary: "proposed revisions (data/whatif.json): diff, cohort transition matrix, reference examples",
+    run: whatifCommand,
   },
   snapshot: {
     usage: "snapshot [--out <dir>]",

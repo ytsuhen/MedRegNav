@@ -2,6 +2,7 @@
 // presentation, the reference examples (presets), the sources' metadata and, for every cited section, its locator.
 // The cited sections' texts travel separately and load on demand, so the first screen does not wait for them; the
 // browser re-checks every quote against the section's sha256 before showing it.
+import type { WhatIfFile, WhatIfResult } from "./analysis/whatif.ts";
 import type { Example } from "./examples.ts";
 import type { NavigatorModel } from "./navigator.ts";
 import type { Presentation } from "./presentation.ts";
@@ -22,6 +23,8 @@ export interface WebSnapshot {
   model: NavigatorModel;
   presentation: Presentation;
   examples: Example[];
+  /** Proposed revisions: their configuration (cohort constraints, cited) and the precomputed comparison. */
+  whatIf: { file: WhatIfFile; results: WhatIfResult[] };
   sources: Record<string, SourceInfo>;
   /** Cited sections by `sectionKey`. */
   sections: Record<string, SectionInfo>;

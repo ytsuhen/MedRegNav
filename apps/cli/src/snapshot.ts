@@ -3,9 +3,18 @@
 // (apps/web/vite.config.ts); `pnpm mrn snapshot --out <dir>` writes the same two files for inspection.
 import { mkdirSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
-import { citedSectionKeys, type SectionTexts, type SourceInfo, sectionKey, type WebSnapshot } from "@mrn/core";
+import { citedSectionKeys, type SectionTexts, type SourceInfo, sectionKey, type WebSnapshot, whatIf } from "@mrn/core";
 import type { Out } from "./cli.ts";
-import { REPO_ROOT, readExamples, readMeta, readModel, readPresentation, readSections, sourceIds } from "./data.ts";
+import {
+  REPO_ROOT,
+  readExamples,
+  readMeta,
+  readModel,
+  readPresentation,
+  readSections,
+  readWhatIf,
+  sourceIds,
+} from "./data.ts";
 
 export interface BuiltSnapshot {
   snapshot: WebSnapshot;
@@ -16,7 +25,9 @@ export function buildSnapshot(): BuiltSnapshot {
   const model = readModel();
   const presentation = readPresentation();
   const examples = readExamples();
-  const keys = new Set(citedSectionKeys({ model, examples }));
+  const file = readWhatIf();
+  const results = file.proposals.map((p) => whatIf(model.rules, model.registry, p, examples));
+  const keys = new Set(citedSectionKeys({ model, examples, file }));
   const sources: Record<string, SourceInfo> = {};
   const index: WebSnapshot["sections"] = {};
   const sections: SectionTexts = {};
@@ -33,7 +44,7 @@ export function buildSnapshot(): BuiltSnapshot {
   }
   const missing = [...keys].filter((k) => !(k in sections));
   if (missing.length > 0) throw new Error(`cited sections not found: ${missing.join(", ")}`);
-  return { snapshot: { model, presentation, examples, sources, sections: index }, sections };
+  return { snapshot: { model, presentation, examples, whatIf: { file, results }, sources, sections: index }, sections };
 }
 
 /** `snapshot [--out <dir>]`: writes snapshot.json and sections.json (default apps/web/dist-snapshot). */
