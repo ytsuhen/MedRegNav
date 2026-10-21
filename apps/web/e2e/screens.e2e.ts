@@ -1,4 +1,5 @@
-// The README's screenshots, taken from the static build (Ukrainian unless noted, 1440 × 900, as of 21 Oct 2026).
+// The README's screenshots, taken from the static build (Ukrainian unless noted, 1440 × 900 unless noted, as of
+// 21 Oct 2026).
 // Opt-in, because it writes files:
 //   MRN_DOCS_SCREENS=docs/screens pnpm e2e apps/web/e2e/screens.e2e.ts
 import { mkdirSync, mkdtempSync, rmSync } from "node:fs";
@@ -14,6 +15,9 @@ const out = process.env.MRN_DOCS_SCREENS ? resolve(process.env.MRN_DOCS_SCREENS)
 const DATE = "d=2026-10-21";
 const AI_PROFILE =
   "p=isSoftware.y_medicalPurpose.y_actsOnData.y_individualPatients.y_drivesDevice.n_accessory.n_annexXvi.n_decisionInfo.y_decisionImpact.other_monitorsPhysiological.n_isAiSystem.y_aiRole.device_manufacturerOutsideEu.n_interactsWithPersons.n";
+// IIb under Rule 11 (monitoring vital parameters, immediate danger); I under COM(2025) 1023 (non-serious, informs).
+const INFORMS =
+  "p=isSoftware.y_medicalPurpose.y_actsOnData.y_individualPatients.y_drivesDevice.n_decisionInfo.y_decisionImpact.other_monitorsPhysiological.y_vitalImmediateDanger.y_imdrfSituation.non-serious_imdrfSignificance.inform_clinicalBenefitOutput.y_manufacturerOutsideEu.n_isAiSystem.n";
 
 describe.skipIf(!out)("README screenshots", () => {
   let dir = "";
@@ -85,6 +89,20 @@ describe.skipIf(!out)("README screenshots", () => {
     const phone = await open(`x=heartbeat-app&${DATE}`, { width: 390, height: 844 });
     await shot(phone, "06-phone");
     await phone.context().close();
+  });
+
+  it("proposed changes: the class under COM(2025) 1023 in red pen, the card's comparison", async () => {
+    const page = await open(`${INFORMS}&${DATE}&b=class&s=r.eu-mdr-classification&w=1`, { height: 1200 });
+    // Scroll the card alone (the page keeps its banner) to what would change: the requirements and the cohort.
+    await page
+      .getByTestId("card")
+      .locator(".proposal-changes")
+      .evaluate((list) => {
+        const card = list.closest<HTMLElement>(".card");
+        if (card) card.scrollTop = (list as HTMLElement).offsetTop - 64;
+      });
+    await shot(page, "08-proposal");
+    await page.context().close();
   });
 
   it("the dark scheme, in English", async () => {

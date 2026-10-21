@@ -585,6 +585,8 @@
   .map-canvas {
     position: relative;
     width: 100%;
+    /* React Flow's own (unlayered) stylesheet paints the attribution white, which shows as a grey box when dark. */
+    --xy-attribution-background-color: transparent;
   }
   .map-canvas .react-flow {
     background: transparent;
@@ -656,6 +658,7 @@
     font-variation-settings: "opsz" 48;
   }
   .ladder-step {
+    position: relative;
     padding: 0 7px 3px;
     border-radius: 3px;
   }
@@ -1168,6 +1171,172 @@
     font-size: 14px;
     background: linear-gradient(transparent 12%, var(--color-marker) 12%, var(--color-marker) 90%, transparent 90%);
     color: var(--color-on-marker);
+  }
+
+  /* ── red pen: proposed changes (the "proposed changes" switch) ─────────── */
+  /* The class ladder: the class under the proposal circled (dashed: still depends on an answer), a class the proposal
+     would rule out struck through. Only when the proposal changes the ladder; the words are in .ladder-proposal. */
+  .ladder[data-proposal] .ladder-steps {
+    gap: 7px;
+  }
+  .ladder[data-proposal] .ladder-step:is([data-proposal="value"], [data-proposal="possible"])::after {
+    content: "";
+    position: absolute;
+    inset: 1px -3px -1px;
+    border: 2px solid var(--color-redpen);
+    border-radius: 50%;
+    transform: rotate(-5deg);
+    pointer-events: none;
+  }
+  .ladder[data-proposal] .ladder-step[data-proposal="possible"]::after {
+    border-style: dashed;
+  }
+  .ladder[data-proposal]
+    .ladder-step:is([data-state="value"], [data-state="possible"])[data-proposal="excluded"]::before {
+    content: "";
+    position: absolute;
+    left: 1px;
+    right: 1px;
+    top: 50%;
+    height: 2.5px;
+    border-radius: 2px;
+    background: var(--color-redpen);
+    transform: rotate(-14deg);
+    pointer-events: none;
+  }
+  .leaf-proposal,
+  .branch-proposal,
+  .check-proposal {
+    display: block;
+    color: var(--color-redpen);
+    font-style: italic;
+  }
+  .leaf-proposal,
+  .branch-proposal {
+    margin-top: 1px;
+    font-size: 13.5px;
+    line-height: 1.3;
+  }
+  .check-proposal {
+    margin: -4px 0 6px;
+  }
+  .node-leaf[data-proposal] .leaf-mark,
+  .check-item[data-proposal] > .leaf-mark {
+    box-shadow:
+      0 0 0 2px var(--color-paper),
+      0 0 0 3.5px var(--color-redpen);
+  }
+  /* After the state rules: the edge keeps its ink, pencil or dots, in red. */
+  .ink-edge[data-proposal] .ink-edge-line {
+    stroke: var(--color-redpen);
+  }
+  .node-device .branch-question[data-proposal] {
+    border-top-color: var(--color-redpen);
+  }
+  .branch-question[data-proposal] .branch-decides {
+    color: var(--color-redpen);
+  }
+  .branch-question[data-proposal] .quick {
+    border-color: var(--color-redpen);
+  }
+  .chip[data-for-proposal]:not([data-known]) {
+    border-color: var(--color-redpen);
+    color: var(--color-redpen);
+  }
+  /* The highlighter wins over the red pen, as over every other chip state (red on yellow is unreadable when dark). */
+  .chip[data-for-proposal][data-marked] {
+    border-color: var(--color-on-marker);
+    color: var(--color-on-marker);
+  }
+  .chip-tag {
+    margin-left: 0.4em;
+    font-size: 12.5px;
+    font-style: italic;
+  }
+
+  /* The card's (and the checklist's) section "if the proposal were adopted": a red line in the margin. */
+  .proposal {
+    margin-top: 24px;
+    padding: 1px 0 2px 14px;
+    border-left: 2.5px solid var(--color-redpen);
+  }
+  .proposal > :first-child {
+    margin-top: 0;
+    color: var(--color-redpen);
+  }
+  .proposal .card-result {
+    color: var(--color-redpen);
+  }
+  .card-body :is(h4, h5),
+  .check-body :is(h5, h6) {
+    margin: 18px 0 6px;
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .check-body :is(h5, h6) {
+    margin-top: 12px;
+  }
+  .matrix {
+    margin: 8px 0 4px;
+    border-collapse: collapse;
+    font-size: 14.5px;
+    font-variant-numeric: tabular-nums;
+  }
+  .matrix caption {
+    caption-side: top;
+    padding-bottom: 4px;
+    text-align: left;
+    font-size: 13.5px;
+    color: var(--color-graphite);
+  }
+  .matrix th,
+  .matrix td {
+    padding: 2px 9px 3px;
+    border: 1px solid var(--color-rule);
+    text-align: center;
+  }
+  .matrix th {
+    font-family: var(--font-law);
+    font-weight: 500;
+  }
+  .matrix thead th:first-child {
+    font: 12.5px / 1.25 var(--font-ui);
+    color: var(--color-graphite);
+    text-align: left;
+  }
+  .matrix td[data-empty] {
+    color: var(--color-faint);
+  }
+  .matrix td[data-changed] {
+    color: var(--color-redpen);
+    font-weight: 700;
+  }
+  .proposal-changes,
+  .proposal-examples {
+    display: grid;
+    gap: 6px;
+    margin: 4px 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 14.5px;
+  }
+  .proposal-change {
+    color: var(--color-redpen);
+  }
+  .proposal-examples li:not([data-changed]) .proposal-change {
+    color: var(--color-graphite);
+  }
+  .proposal-implied {
+    display: block;
+    font-size: 13px;
+    color: var(--color-graphite);
+  }
+  .constraint {
+    margin: 10px 0 14px;
+  }
+  .constraint > p {
+    margin: 0 0 4px;
+    font-size: 14.5px;
   }
 
   /* ── checklist ─────────────────────────────────────────────────────────── */

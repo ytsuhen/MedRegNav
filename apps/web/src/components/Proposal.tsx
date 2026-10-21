@@ -1,25 +1,54 @@
-// "If the proposal were adopted", in red pen, on the card of a rule that a proposed revision would replace: the
-// device's result under the proposal and what decided it (the proposal's own words quoted), what would change in its
-// requirements, and the comparison precomputed at build time — the synthetic cohort's transition matrix with its
-// coherence conditions, and the MDCG examples.
+// "If the proposal were adopted", in red pen, on the card of a rule that a proposed revision would replace (and under
+// that rule's result in the checklist): the device's result under the proposal and what decided it (the proposal's
+// own words quoted), what would change in its requirements, and the comparison precomputed at build time — the
+// synthetic cohort's transition matrix with its coherence conditions, and the MDCG examples. Also the words for what
+// the proposal would make of one leaf, shared by the map and the checklist.
 import { type DeviceIr, NO_OUTCOME, type RuleResult } from "@mrn/core";
+import { useId } from "react";
 import { type Screen, useSnapshot } from "../data.tsx";
 import { formatDate } from "../lib/dates.ts";
-import type { LeafState } from "../lib/view.ts";
+import type { LeafState, LeafView } from "../lib/view.ts";
 import { useApp } from "../state.tsx";
-import { QuestionList } from "./Card.tsx";
-import { RuleExplanation } from "./Explain.tsx";
+import { Heading, type HeadingLevel, RuleExplanation } from "./Explain.tsx";
+import { QuestionList } from "./Questions.tsx";
 import { Quotes } from "./Quote.tsx";
 import { tx } from "./ui.tsx";
 
 const show = (id: string) => (id === NO_OUTCOME ? "—" : id);
 
-export function ProposalSection({ rule, screen }: { rule: DeviceIr; screen: Screen }) {
+/** What the proposal would make of a leaf, in words ("under the proposal: Class IIa", "… would not apply"). */
+export function proposalWords(leaf: LeafView, t: ReturnType<typeof useApp>["t"], lang: "uk" | "en"): string | null {
+  const p = leaf.proposal;
+  if (!p) return null;
+  const what =
+    leaf.kind === "rule" && p.state !== "none" && p.outcomes.length > 0
+      ? p.outcomes.map((o) => tx(o, lang)).join(", ")
+      : p.state === "upcoming" && leaf.from
+        ? t("proposal.state.upcoming", { date: formatDate(leaf.from, lang) })
+        : t(`proposal.state.${p.state === "upcoming" ? "in-force" : p.state}`);
+  return t("proposal.leaf", { what });
+}
+
+export function ProposalSection({
+  rule,
+  screen,
+  level = 3,
+  fold = false,
+}: {
+  rule: DeviceIr;
+  screen: Screen;
+  /** The level of the section's heading; its parts are one level below. */
+  level?: Exclude<HeadingLevel, 6>;
+  /** Fold "what decided it" away (the checklist, where the rule's own explanation is folded too). */
+  fold?: boolean;
+}) {
   const snapshot = useSnapshot();
   const { t, state } = useApp();
+  const headingId = useId();
   const revision = snapshot.model.rules.find((r) => r.revises === rule.id);
   const result: RuleResult | undefined = screen.nav.proposal?.results[rule.id];
   if (!revision || !result) return null;
+  const sub = (level + 1) as HeadingLevel;
   const labels = (ids: readonly string[]) =>
     ids.map((o) => revision.outcomes.find((x) => x.id === o)?.label[state.lang] ?? o).join(", ");
   const nowWords = (s: LeafState) => t(`proposal.now.${s}`);
@@ -32,8 +61,10 @@ export function ProposalSection({ rule, screen }: { rule: DeviceIr; screen: Scre
   const comparison = snapshot.whatIf.results.find((w) => w.revises === rule.id);
   const config = snapshot.whatIf.file.proposals.find((p) => p.revision === revision.id);
   return (
-    <section className="proposal" data-testid="proposal" aria-labelledby="proposal-heading">
-      <h3 id="proposal-heading">{t("proposal.heading")}</h3>
+    <section className="proposal" data-testid="proposal" aria-labelledby={headingId}>
+      <Heading level={level} id={headingId}>
+        {t("proposal.heading")}
+      </Heading>
       <p className="card-footnote">{t("proposal.title", { title: tx(revision.title, state.lang) })}</p>
       <p className="card-result">
         {result.status === "not-applicable"
@@ -44,12 +75,21 @@ export function ProposalSection({ rule, screen }: { rule: DeviceIr; screen: Scre
       </p>
       {questions.length > 0 ? (
         <>
-          <h4>{t("proposal.questions")}</h4>
+          <Heading level={sub}>{t("proposal.questions")}</Heading>
           <QuestionList questions={questions} />
         </>
       ) : null}
-      <RuleExplanation rule={revision} result={result} />
-      <h4>{t("proposal.changes")}</h4>
+      {fold ? (
+        result.status !== "undetermined" ? (
+          <details className="check-quotes">
+            <summary>{t("rule.decided")}</summary>
+            <RuleExplanation rule={revision} result={result} level={sub} />
+          </details>
+        ) : null
+      ) : (
+        <RuleExplanation rule={revision} result={result} level={sub} />
+      )}
+      <Heading level={sub}>{t("proposal.changes")}</Heading>
       {changed.length === 0 ? (
         <p>{t("proposal.changes.none")}</p>
       ) : (
@@ -69,7 +109,7 @@ export function ProposalSection({ rule, screen }: { rule: DeviceIr; screen: Scre
       )}
       {comparison ? (
         <>
-          <h4>{t("proposal.cohort")}</h4>
+          <Heading level={sub}>{t("proposal.cohort")}</Heading>
           <p>
             {t("proposal.cohort.summary", {
               n: comparison.matrix.cohort,
@@ -99,7 +139,12 @@ export function ProposalSection({ rule, screen }: { rule: DeviceIr; screen: Scre
                     {comparison.matrix.outcomes.map((to) => {
                       const n = comparison.matrix.cells[from]?.[to];
                       return (
-                        <td key={to} data-diagonal={from === to || undefined} data-empty={!n || undefined}>
+                        <td
+                          key={to}
+                          data-diagonal={from === to || undefined}
+                          data-changed={(from !== to && n !== undefined) || undefined}
+                          data-empty={!n || undefined}
+                        >
                           {n ?? "·"}
                         </td>
                       );
@@ -120,7 +165,7 @@ export function ProposalSection({ rule, screen }: { rule: DeviceIr; screen: Scre
               ))}
             </details>
           ) : null}
-          <h4>{t("proposal.examples")}</h4>
+          <Heading level={sub}>{t("proposal.examples")}</Heading>
           <ul className="proposal-examples">
             {comparison.examples
               .filter((e) => !(e.from.length === 1 && e.from[0] === NO_OUTCOME))
@@ -134,8 +179,7 @@ export function ProposalSection({ rule, screen }: { rule: DeviceIr; screen: Scre
                       {fmt(e.from)} → {fmt(e.to)}
                     </span>
                     {e.implied.length > 0 ? (
-                      <span className="card-footnote">
-                        {" "}
+                      <span className="proposal-implied">
                         {t("proposal.examples.implied", {
                           list: e.implied
                             .map(

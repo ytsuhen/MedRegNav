@@ -1,9 +1,10 @@
 // "What if" a proposed revision were adopted: the revision in place of the rule it revises, compared on a synthetic
 // cohort and on the reference examples. The cohort (`data/whatif.json`) is every complete combination of the answers
 // either version reads, starting from a reference example's other answers, keeping those that no guidance
-// cross-check contradicts and that meet the stated coherence constraints (each cited); an answer that changes neither
-// result is not varied, so every kept combination is a distinct situation. The transition matrix counts, per class
-// under the rule in force, the class under the proposal.
+// cross-check contradicts and that meet the stated coherence constraints (each cited). A situation is the pair of
+// results together with the answers that decide them (the support of each result: what the card shows as "what
+// decided it" and "why not stricter"); combinations that differ only in other answers are one situation. The
+// transition matrix counts situations: per class under the rule in force, the class under the proposal.
 import { z } from "zod";
 import type { AttributeRegistry, AttributeValue, Profile } from "../attributes.ts";
 import type { Example } from "../examples.ts";
@@ -148,6 +149,8 @@ export function whatIf(
     valid: boolean;
     from: string;
     to: string;
+    /** The situation: both results and the answers that decide them (the attributes behind either result). */
+    situation: string;
   }
   const points = new Map<string, Point>();
   const keyOfCombo = (combo: readonly AttributeValue[]) => JSON.stringify(combo);
@@ -164,33 +167,31 @@ export function whatIf(
         evaluateCondition(c.require, profile, now).truth !== true,
     );
     const then = evaluateRules(proposed, profile);
+    const from = keyOf(now[revisedId]);
+    const to = keyOf(then[revisedId]);
+    // The support of a result is a certificate: changing answers outside it cannot change that result.
+    const decisive = [...new Set([...(now[revisedId]?.support ?? []), ...(then[revisedId]?.support ?? [])])]
+      .filter((a) => dims.includes(a))
+      .sort();
     points.set(keyOfCombo(combo), {
       valid: !contradicted && !incoherent,
-      from: keyOf(now[revisedId]),
-      to: keyOf(then[revisedId]),
+      from,
+      to,
+      situation: JSON.stringify([from, to, decisive.map((a) => [a, profile[a] ?? null])]),
     });
   }
 
+  // Combinations that differ only in answers neither result depends on are one situation.
   const cells: Record<string, Record<string, number>> = {};
-  let cohort = 0;
-  for (const combo of product<AttributeValue>(domains)) {
-    const point = points.get(keyOfCombo(combo));
-    if (!point?.valid) continue;
-    // An answer that changes neither result is kept at its first value only.
-    const free = dims.some((_, i) => {
-      const first = domains[i]?.[0];
-      if (combo[i] === first || first === undefined) return false;
-      const variant = [...combo];
-      variant[i] = first;
-      const other = points.get(keyOfCombo(variant));
-      return other?.valid === true && other.from === point.from && other.to === point.to;
-    });
-    if (free) continue;
-    cohort++;
+  const counted = new Set<string>();
+  for (const point of points.values()) {
+    if (!point.valid || counted.has(point.situation)) continue;
+    counted.add(point.situation);
     const row = cells[point.from] ?? {};
     cells[point.from] = row;
     row[point.to] = (row[point.to] ?? 0) + 1;
   }
+  const cohort = counted.size;
 
   const ranked = [...revised.outcomes].sort((a, b) => a.rank - b.rank).map((o) => o.id);
   const seen = new Set(Object.entries(cells).flatMap(([from, row]) => [from, ...Object.keys(row)]));

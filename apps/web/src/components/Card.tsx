@@ -1,83 +1,15 @@
 // The margin note beside the map: for a requirement, how to comply (requirement → document or evidence → standard →
 // who → from when) with its legal basis quoted; for a rule result, what decided it; by default, the example the
 // device came from (quoted from the guidance, with how we read it) and how to read the map.
-import type { DecisiveUnknown, Example, Profile } from "@mrn/core";
 import { type Screen, useScreen, useSnapshot } from "../data.tsx";
 import { formatDate } from "../lib/dates.ts";
 import type { LeafView } from "../lib/view.ts";
 import { useApp } from "../state.tsx";
 import { RuleExplanation } from "./Explain.tsx";
 import { ProposalSection } from "./Proposal.tsx";
+import { QuestionList, SupportList } from "./Questions.tsx";
 import { Quote, Quotes } from "./Quote.tsx";
-import { ExternalLink, tx, valueLabel } from "./ui.tsx";
-
-/** Opens the attribute's editor above the map and brings it into view. */
-export function useAsk(): (attr: string) => void {
-  const { dispatch } = useApp();
-  return (attr) => {
-    dispatch({ type: "edit", attr });
-    requestAnimationFrame(() => {
-      const editor = document.getElementById("attribute-editor");
-      editor?.scrollIntoView({ block: "nearest", behavior: "smooth" });
-      editor?.querySelector<HTMLInputElement>("input:checked, input")?.focus({ preventScroll: true });
-    });
-  };
-}
-
-export function QuestionList({ questions }: { questions: readonly DecisiveUnknown[] }) {
-  const snapshot = useSnapshot();
-  const { state } = useApp();
-  const ask = useAsk();
-  if (questions.length === 0) return null;
-  return (
-    <ul className="question-list">
-      {questions.map((q) => {
-        const a = snapshot.model.registry.attributes.find((x) => x.id === q.attr);
-        return a ? (
-          <li key={q.attr}>
-            <button type="button" className="question-button" onClick={() => ask(q.attr)}>
-              {tx(a.question, state.lang)}
-            </button>
-          </li>
-        ) : null;
-      })}
-    </ul>
-  );
-}
-
-/** The attributes behind a result, as small chips linked to the map's highlighting. */
-export function SupportList({ support, profile }: { support: readonly string[]; profile: Profile }) {
-  const snapshot = useSnapshot();
-  const { state, t, hover } = useApp();
-  const ask = useAsk();
-  const attributes = support.flatMap((id) => snapshot.model.registry.attributes.find((a) => a.id === id) ?? []);
-  if (attributes.length === 0) return null;
-  return (
-    <ul className="support-list">
-      {attributes.map((a) => {
-        const v = profile[a.id] ?? null;
-        const value = valueLabel(a, v, state.lang, t);
-        return (
-          <li key={a.id}>
-            <button
-              type="button"
-              className="chip chip-small"
-              data-known={v !== null || undefined}
-              data-marked={(state.hover?.kind === "attr" && state.hover.id === a.id) || undefined}
-              onMouseEnter={() => hover({ kind: "attr", id: a.id })}
-              onMouseLeave={() => hover(null)}
-              onFocus={() => hover({ kind: "attr", id: a.id })}
-              onBlur={() => hover(null)}
-              onClick={() => ask(a.id)}
-            >
-              {t("chip.text", { label: tx(a.label, state.lang), value })}
-            </button>
-          </li>
-        );
-      })}
-    </ul>
-  );
-}
+import { ExternalLink, sameProfile, tx } from "./ui.tsx";
 
 function statusLine(leaf: LeafView, t: ReturnType<typeof useApp>["t"], lang: "uk" | "en"): string {
   const date = (d: string | null) => (d ? formatDate(d, lang) : "");
@@ -227,25 +159,6 @@ function RuleCard({ screen, id }: { screen: Screen; id: string }) {
       </p>
     </article>
   );
-}
-
-function sameProfile(a: Profile, b: Profile): boolean {
-  const known = (p: Profile) =>
-    Object.entries(p)
-      .filter(([, v]) => v !== null && v !== undefined)
-      .sort(([x], [y]) => x.localeCompare(y));
-  return JSON.stringify(known(a)) === JSON.stringify(known(b));
-}
-
-export function deviceName(
-  example: Example | undefined,
-  profile: Profile,
-  t: ReturnType<typeof useApp>["t"],
-  lang: "uk" | "en",
-) {
-  if (!example) return t("device.custom");
-  const name = tx(example.title, lang);
-  return sameProfile(example.profile, profile) ? name : t("device.modified", { name });
 }
 
 function Legend() {

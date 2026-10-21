@@ -1,13 +1,13 @@
 // The device's description as attribute chips above the map: answered ones in ink, unanswered ones that would change
-// something in pencil (dashed, "don't know"), the rest folded away. A chip opens its editor (the question, how to
+// something in pencil (dashed, "don't know"; in red pen, and saying so, when only the proposal needs them), the rest
+// folded away. A chip opens its editor (the question, how to
 // answer it, the concept's source); hovering a chip marks the branches it causes on the map.
 import type { AttributeValue } from "@mrn/core";
 import { useSnapshot } from "../data.tsx";
 import type { ChipView, ScreenView } from "../lib/view.ts";
 import { useApp } from "../state.tsx";
-import { deviceName } from "./Card.tsx";
 import { Quote } from "./Quote.tsx";
-import { AnswerControl, tx, valueLabel } from "./ui.tsx";
+import { AnswerControl, deviceName, tx, valueLabel } from "./ui.tsx";
 
 function Chip({ chip }: { chip: ChipView }) {
   const { state, t, dispatch, hover } = useApp();
@@ -28,7 +28,12 @@ function Chip({ chip }: { chip: ChipView }) {
       data-testid={`chip-${a.id}`}
       aria-expanded={open}
       aria-controls={open ? "attribute-editor" : undefined}
-      aria-label={t("chip.aria", { label: tx(a.label, state.lang), value })}
+      aria-label={[
+        t("chip.aria", { label: tx(a.label, state.lang), value }),
+        chip.forProposal ? t("proposal.chip") : "",
+      ]
+        .filter(Boolean)
+        .join(". ")}
       onClick={() => dispatch({ type: "edit", attr: open ? null : a.id })}
       onMouseEnter={() => hover({ kind: "attr", id: a.id })}
       onMouseLeave={() => hover(null)}
@@ -37,6 +42,7 @@ function Chip({ chip }: { chip: ChipView }) {
     >
       <span className="chip-label">{tx(a.label, state.lang)}</span>
       <span className="chip-value">{value}</span>
+      {chip.forProposal ? <span className="chip-tag">{t("proposal.chip.tag")}</span> : null}
     </button>
   );
 }

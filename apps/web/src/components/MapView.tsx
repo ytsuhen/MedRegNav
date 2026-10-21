@@ -24,8 +24,9 @@ import { formatDate } from "../lib/dates.ts";
 import { type Layout, layoutMap } from "../lib/layout.ts";
 import type { BranchView, DeviceView, LeafState, LeafView } from "../lib/view.ts";
 import { type Hover, useApp } from "../state.tsx";
-import { deviceName, useAsk } from "./Card.tsx";
-import { tx } from "./ui.tsx";
+import { proposalWords } from "./Proposal.tsx";
+import { useAsk } from "./Questions.tsx";
+import { deviceName, tx } from "./ui.tsx";
 
 const SIZE = {
   device: { width: 284, height: 190 },
@@ -98,6 +99,7 @@ function DeviceNode({ data }: NodeProps<DeviceNodeT>) {
         type="button"
         className="ladder nopan"
         data-testid="ladder"
+        data-proposal={proposal ? "changed" : undefined}
         aria-label={
           status === "not-applicable"
             ? t("ladder.aria.none")
@@ -160,7 +162,8 @@ function InlineQuestion({
   return (
     <div className="branch-question" data-testid="branch-question" data-proposal={proposal || undefined}>
       <p>
-        <span className="branch-decides">{t("branch.decides")}</span> {tx(a.question, state.lang)}
+        <span className="branch-decides">{t(proposal ? "proposal.decides" : "branch.decides")}</span>{" "}
+        {tx(a.question, state.lang)}
       </p>
       <div className="quick-answers">
         {a.type === "boolean" ? (
@@ -238,19 +241,6 @@ function BranchNode({ data }: NodeProps<BranchNodeT>) {
       {branch.state === "open" && first ? <InlineQuestion question={first} more={branch.questions.length - 1} /> : null}
     </div>
   );
-}
-
-/** What the proposal would make of a leaf, in words ("under the proposal: Class IIa", "… would not apply"). */
-export function proposalWords(leaf: LeafView, t: ReturnType<typeof useApp>["t"], lang: "uk" | "en"): string | null {
-  const p = leaf.proposal;
-  if (!p) return null;
-  const what =
-    leaf.kind === "rule" && p.state !== "none" && p.outcomes.length > 0
-      ? p.outcomes.map((o) => tx(o, lang)).join(", ")
-      : p.state === "upcoming" && leaf.from
-        ? t("proposal.state.upcoming", { date: formatDate(leaf.from, lang) })
-        : t(`proposal.state.${p.state === "upcoming" ? "in-force" : p.state}`);
-  return t("proposal.leaf", { what });
 }
 
 function leafMeta(leaf: LeafView, t: ReturnType<typeof useApp>["t"], lang: "uk" | "en"): string | null {

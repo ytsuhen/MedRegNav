@@ -1,7 +1,8 @@
 // The static build in the preinstalled Chromium, served under a sub-path as GitHub Pages serves it (/MedRegNav/):
 // it works offline (no request leaves the site), always shows the banner, opens the first preset, settles a pencil
 // branch from its inline question, shows a requirement's card with a quote verified in the browser, moves the AI
-// Act requirements into force with the as-of control, and offers the checklist (the default on a phone).
+// Act requirements into force with the as-of control, puts the proposed changes in red pen, and offers the checklist
+// (the default on a phone).
 import { mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -13,6 +14,10 @@ import { chromiumPath, type StaticServer, serveDirectory } from "./browser.ts";
 
 const AI =
   "x=ai-class-iia&p=isSoftware.y_medicalPurpose.y_actsOnData.y_individualPatients.y_drivesDevice.n_accessory.n_annexXvi.n_decisionInfo.y_decisionImpact.other_monitorsPhysiological.n_isAiSystem.y_aiRole.device_manufacturerOutsideEu.n_interactsWithPersons.n";
+// IIb under Rule 11 (monitoring vital parameters, immediate danger); I under COM(2025) 1023 (a non-serious situation,
+// the output informs — IMDRF I, which the MDCG cross-check agrees with).
+const INFORMS =
+  "p=isSoftware.y_medicalPurpose.y_actsOnData.y_individualPatients.y_drivesDevice.n_decisionInfo.y_decisionImpact.other_monitorsPhysiological.y_vitalImmediateDanger.y_imdrfSituation.non-serious_imdrfSignificance.inform_clinicalBenefitOutput.y_manufacturerOutsideEu.n_isAiSystem.n";
 
 describe("the static build in Chromium", () => {
   let dir = "";
@@ -80,6 +85,24 @@ describe("the static build in Chromium", () => {
     await page.getByRole("button", { name: "Наступна ключова дата" }).click();
     await expect.poll(() => state("branch-ai")).toBe("in-force");
     expect(await page.getByTestId("asof").textContent()).toContain("02.08.2028");
+  });
+
+  it("shows in red pen what the proposed Rule 11 would change", async () => {
+    await go(`${INFORMS}&b=market`);
+    expect(await page.getByTestId("ladder").getAttribute("data-proposal")).toBeNull();
+    // The switch's label, as a person clicks it (the drawn track lies over the invisible checkbox).
+    await page.getByTestId("proposals").click();
+    expect(await page.getByRole("switch", { name: "Проєкти змін" }).isChecked()).toBe(true);
+    expect(await page.getByTestId("ladder-proposal").textContent()).toBe("За проєктом: I");
+    expect(await page.getByTestId("ladder").getAttribute("data-proposal")).toBe("changed");
+    expect(await page.getByTestId("leaf-o.route-iib").locator(".leaf-proposal").textContent()).toBe(
+      "за проєктом: не застосовувалося б",
+    );
+    expect(page.url()).toContain("w=1");
+    await page.getByTestId("ladder").click();
+    const section = page.getByTestId("card").getByTestId("proposal");
+    await section.getByTestId("transition-matrix").waitFor();
+    await expect.poll(() => section.getByTestId("quote").first().getAttribute("data-verified")).toBe("true");
   });
 
   it("switches to the checklist and to English", async () => {

@@ -2,6 +2,7 @@
 // each with its truth value in words and, the first time a criterion appears, its verbatim quote. Shared by the card
 // and the checklist.
 import { type Criterion, type DeviceIr, type RuleResult, witnesses } from "@mrn/core";
+import type { ReactNode } from "react";
 import { useApp } from "../state.tsx";
 import { Quote } from "./Quote.tsx";
 import { tx } from "./ui.tsx";
@@ -70,15 +71,26 @@ export function WitnessList({ rows, quotes = true }: { rows: WitnessRow[]; quote
   );
 }
 
+export type HeadingLevel = 3 | 4 | 5 | 6;
+
+/** A heading at the level the surrounding document needs (the card, the proposal section, the checklist). */
+export function Heading({ level, id, children }: { level: HeadingLevel; id?: string; children: ReactNode }) {
+  const Tag = `h${level}` as const;
+  return <Tag id={id}>{children}</Tag>;
+}
+
 /** The whole explanation of a rule result: what decided it and, for a "strictest wins" rule, why not stricter. */
 export function RuleExplanation({
   rule,
   result,
   quotes = true,
+  level = 3,
 }: {
   rule: DeviceIr;
   result: RuleResult;
   quotes?: boolean;
+  /** The level of the "what decided it" headings. */
+  level?: HeadingLevel;
 }) {
   const { t, state } = useApp();
   const shown = new Set<string>();
@@ -101,14 +113,14 @@ export function RuleExplanation({
     <div className="explain">
       {decided.length > 0 ? (
         <section>
-          <h3>{t("rule.decided")}</h3>
+          <Heading level={level}>{t("rule.decided")}</Heading>
           <WitnessList rows={decided} quotes={quotes} />
           {quotes ? resolution.map((c) => <Quote key={c.id} citation={c} context={70} />) : null}
         </section>
       ) : null}
       {stricter.length > 0 ? (
         <section>
-          <h3>{t("rule.stricter")}</h3>
+          <Heading level={level}>{t("rule.stricter")}</Heading>
           {stricter.map(({ outcome, rows }) => (
             <div key={outcome.id} className="stricter">
               <p className="stricter-label">{tx(outcome.label, state.lang)}</p>

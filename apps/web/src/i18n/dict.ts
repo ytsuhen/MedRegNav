@@ -135,6 +135,7 @@ const uk = {
   "cross.questions": "Відповіді для перевірки",
 
   "proposal.leaf": "за проєктом: {what}",
+  "proposal.decides": "Що вирішить за проєктом:",
   "proposal.state.none": "не застосовувалося б",
   "proposal.state.open": "залежало б від відповіді",
   "proposal.state.in-force": "застосовувалося б",
@@ -157,13 +158,14 @@ const uk = {
   "proposal.cohort.summary":
     "{n} різних ситуацій (комбінацій відповідей); клас змінюється в {changed}: вищий у {up}, нижчий у {down}.",
   "proposal.cohort.note":
-    "Не оцінка ринку: це всі комбінації відповідей, які не суперечать перехресній перевірці MDCG і умовам узгодженості; відповідь, що не змінює жодного з двох результатів, не перебирається.",
+    "Не оцінка ринку: це всі комбінації відповідей, які не суперечать перехресній перевірці MDCG і умовам узгодженості. Ситуація — обидва класи разом із відповідями, що їх вирішили; комбінації, що різняться лише іншими відповідями, — одна ситуація.",
   "proposal.matrix.caption": "Рядки: клас за чинним правилом; стовпці: клас за проєктом",
   "proposal.matrix.corner": "Чинне ↓ / проєкт →",
   "proposal.constraints": "Умови узгодженості ({n})",
   "proposal.examples": "Приклади MDCG за проєктом",
   "proposal.examples.implied": "з виведеною відповіддю: {list}",
   "proposal.chip": "Потрібно лише для проєкту змін",
+  "proposal.chip.tag": "для проєкту",
 
   "example.heading": "Приклад із настанови",
   "example.reading": "Як ми прочитали приклад",
@@ -338,6 +340,7 @@ const en: Record<MessageKey, string> = {
   "cross.questions": "Answers for the check",
 
   "proposal.leaf": "under the proposal: {what}",
+  "proposal.decides": "What decides it under the proposal:",
   "proposal.state.none": "would not apply",
   "proposal.state.open": "would depend on an answer",
   "proposal.state.in-force": "would apply",
@@ -359,13 +362,14 @@ const en: Record<MessageKey, string> = {
   "proposal.cohort.summary":
     "{n} distinct situations (answer combinations); the class changes in {changed}: higher in {up}, lower in {down}.",
   "proposal.cohort.note":
-    "Not a market estimate: every combination of answers that neither the MDCG cross-check nor the coherence conditions contradict; an answer that changes neither result is not varied.",
+    "Not a market estimate: every combination of answers that neither the MDCG cross-check nor the coherence conditions contradict. A situation is both classes with the answers that decided them; combinations that differ only in other answers are one situation.",
   "proposal.matrix.caption": "Rows: the class under the rule in force; columns: under the proposal",
   "proposal.matrix.corner": "In force ↓ / proposal →",
   "proposal.constraints": "Coherence conditions ({n})",
   "proposal.examples": "MDCG examples under the proposal",
   "proposal.examples.implied": "with an implied answer: {list}",
   "proposal.chip": "Needed only for the proposed change",
+  "proposal.chip.tag": "for the proposal",
 
   "example.heading": "Example from the guidance",
   "example.reading": "How we read the example",

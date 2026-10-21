@@ -1,11 +1,33 @@
-// Small shared pieces: picking a data text in the current language, the segmented radio group used for the market,
-// view and language switches, and the answer control used by the attribute editor and the map's inline questions.
-import { type Attribute, type AttributeValue, domain, type Text } from "@mrn/core";
+// Small shared pieces: picking a data text in the current language, the device's name, the segmented radio group used
+// for the market, view and language switches, and the answer control used by the attribute editor and the map's
+// inline questions.
+import { type Attribute, type AttributeValue, domain, type Example, type Profile, type Text } from "@mrn/core";
 import { type ReactNode, useId } from "react";
 import type { Lang } from "../i18n/dict.ts";
 import { useApp } from "../state.tsx";
 
 export const tx = (text: Text, lang: Lang): string => text[lang];
+
+/** The same known answers (unknown and missing alike). */
+export function sameProfile(a: Profile, b: Profile): boolean {
+  const known = (p: Profile) =>
+    Object.entries(p)
+      .filter(([, v]) => v !== null && v !== undefined)
+      .sort(([x], [y]) => x.localeCompare(y));
+  return JSON.stringify(known(a)) === JSON.stringify(known(b));
+}
+
+/** The example's title ("… (modified)" once the answers differ), or "your software". */
+export function deviceName(
+  example: Example | undefined,
+  profile: Profile,
+  t: ReturnType<typeof useApp>["t"],
+  lang: Lang,
+): string {
+  if (!example) return t("device.custom");
+  const name = tx(example.title, lang);
+  return sameProfile(example.profile, profile) ? name : t("device.modified", { name });
+}
 
 /** The words for an attribute's value ("так", an enum value's label, "не знаю"). */
 export function valueLabel(

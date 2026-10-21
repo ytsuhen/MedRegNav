@@ -39,6 +39,7 @@ packages/core/  чистий код без I/O (lint забороняє node:*):
 apps/cli/       `pnpm mrn …`: ingest джерел, цитати, перевірка даних, оцінка профілю, аналіз, знімок даних для web
 apps/web/       React SPA (статична, рушій працює в браузері); e2e/ — Playwright у передвстановленому Chromium
 data/           sources/ attributes.json rules/ obligations/ standards.json examples/ navigator.json (що де на екрані)
+                whatif.json (проєкти змін для «що як»: базовий приклад когорти, умови узгодженості з цитатами)
 docs/           SPEC, ARCHITECTURE, DECISIONS, screens/
 ```
 
@@ -48,8 +49,11 @@ docs/           SPEC, ARCHITECTURE, DECISIONS, screens/
   зеленим перед кожним комітом.
 - `pnpm mrn help` — CLI: `extract`, `sections`, `cite`, `quote`, `check`, `eval`, `coverage`, `mcdc`, `whatif`, `snapshot`.
 - `pnpm dev` — web локально; `pnpm build:web` — статична збірка (GitHub Pages).
-- `pnpm e2e` — Playwright у `/opt/pw-browsers` (браузери не завантажувати); не входить у `verify`. Скріншоти README:
+- `pnpm e2e` — Playwright у передвстановленому Chromium (`MRN_CHROMIUM`, `PLAYWRIGHT_BROWSERS_PATH` або
+  `/opt/pw-browsers`; тести браузер не завантажують); не входить у `verify`. Скріншоти README:
   `MRN_DOCS_SCREENS=docs/screens pnpm e2e apps/web/e2e/screens.e2e.ts`.
+- `pnpm mrn coverage | mcdc | whatif` — аналізи правил (покриття, MC/DC, «що як»); числа в SPEC §6 і README
+  закріплено в `apps/cli/test/analysis.test.ts`: змінили правила — оновіть і документи.
 - `pnpm format` — Biome з автовиправленнями.
 
 ## Відомі пастки
@@ -64,3 +68,8 @@ docs/           SPEC, ARCHITECTURE, DECISIONS, screens/
 - React Flow пропускає клік крізь вузол, який не можна виділити чи перетягнути: вузлам з кнопками —
   `style.pointerEvents = "all"` (U10). happy-dom цього не бачить, тож кліки по мапі перевіряє e2e.
 - UI не знає id правил: що показати у вузлі пристрою й на гілках, задає `data/navigator.json` (U4).
+- Стилі `@xyflow/react/dist/base.css` не в шарі (`@layer`), тож перемагають наші правила з `@layer components` за
+  будь-якої специфічності. Перевизначати їх змінними `--xy-*` (наприклад, фон атрибуції).
+- Chromium у WSL без sudo: новіші збірки Playwright розпаковуються в `chrome-linux64` (e2e шукає обидві теки), а
+  бракує `libnss3`/`libnspr4` — їх можна витягти `apt-get download` + `dpkg -x` у локальну теку й задати
+  `LD_LIBRARY_PATH`.

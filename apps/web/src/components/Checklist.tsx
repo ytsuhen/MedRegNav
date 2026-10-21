@@ -1,6 +1,7 @@
 // The checklist: everything the map shows, as a plain document for phones and screen readers. Rule results with what
 // decided them, the open questions with their answers inline, then each branch's requirements with how to comply and
-// their quotes. Built from the same screen view as the map.
+// their quotes; with proposals on, what the proposal would change, in red pen, and the proposal's section under the
+// result of the rule it would replace. Built from the same screen view as the map.
 import type { AttributeValue } from "@mrn/core";
 import type { Screen } from "../data.tsx";
 import { useSnapshot } from "../data.tsx";
@@ -8,8 +9,19 @@ import { formatDate } from "../lib/dates.ts";
 import type { BranchView, LeafView } from "../lib/view.ts";
 import { useApp } from "../state.tsx";
 import { RuleExplanation } from "./Explain.tsx";
+import { ProposalSection, proposalWords } from "./Proposal.tsx";
 import { Quotes } from "./Quote.tsx";
 import { AnswerControl, tx } from "./ui.tsx";
+
+function ProposalLine({ leaf }: { leaf: LeafView }) {
+  const { t, state } = useApp();
+  const words = proposalWords(leaf, t, state.lang);
+  return words ? (
+    <p className="check-proposal" data-testid={`proposal-${leaf.key}`}>
+      {words}
+    </p>
+  ) : null;
+}
 
 function statusWords(leaf: LeafView, t: ReturnType<typeof useApp>["t"], lang: "uk" | "en"): string {
   const date = (d: string | null) => (d ? formatDate(d, lang) : "");
@@ -27,11 +39,17 @@ function ObligationItem({ leaf }: { leaf: LeafView }) {
   if (!o) return null;
   const standards = o.how.standards.flatMap((s) => snapshot.model.standards.find((x) => x.id === s) ?? []);
   return (
-    <li className="check-item" data-state={leaf.state} data-testid={`check-${leaf.key}`}>
+    <li
+      className="check-item"
+      data-state={leaf.state}
+      data-proposal={leaf.proposal ? "changed" : undefined}
+      data-testid={`check-${leaf.key}`}
+    >
       <span className="leaf-mark" aria-hidden="true" />
       <div className="check-body">
         <h4 className="check-title">{tx(o.title, state.lang)}</h4>
         <p className="check-status">{statusWords(leaf, t, state.lang)}</p>
+        <ProposalLine leaf={leaf} />
         <p>{tx(o.summary, state.lang)}</p>
         <dl className="how how-compact">
           <dt>{t("card.deliverable")}</dt>
@@ -112,7 +130,13 @@ export function Checklist({ screen }: { screen: Screen }) {
                         ? l.outcomes.map((o) => tx(o, state.lang)).join(", ")
                         : t("ladder.oneOf", { list: l.outcomes.map((o) => tx(o, state.lang)).join(", ") });
             return (
-              <li key={l.key} className="check-item" data-state={l.state} data-testid={`check-${l.key}`}>
+              <li
+                key={l.key}
+                className="check-item"
+                data-state={l.state}
+                data-proposal={l.proposal ? "changed" : undefined}
+                data-testid={`check-${l.key}`}
+              >
                 <span className="leaf-mark" aria-hidden="true" />
                 <div className="check-body">
                   <h4 className="check-title">{tx(rule.title, state.lang)}</h4>
@@ -122,12 +146,14 @@ export function Checklist({ screen }: { screen: Screen }) {
                       ? `. ${t("rule.upcoming", { date: formatDate(rule.effective.from, state.lang) })}`
                       : ""}
                   </p>
+                  <ProposalLine leaf={l} />
                   {result.status !== "undetermined" ? (
                     <details className="check-quotes">
                       <summary>{t("rule.decided")}</summary>
-                      <RuleExplanation rule={rule} result={result} />
+                      <RuleExplanation rule={rule} result={result} level={5} />
                     </details>
                   ) : null}
+                  {state.proposals ? <ProposalSection rule={rule} screen={screen} level={5} fold /> : null}
                 </div>
               </li>
             );

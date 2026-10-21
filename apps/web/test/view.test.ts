@@ -103,6 +103,63 @@ describe("the branches", () => {
   });
 });
 
+describe("proposed changes", () => {
+  // Monitoring vital parameters whose variations could put the patient in immediate danger: IIb under Rule 11 (11b);
+  // a non-serious situation where the output informs (IMDRF I, which the MDCG cross-check agrees with): I under the
+  // proposal.
+  const informs = {
+    ...example("heartbeat-app"),
+    decisionImpact: "other",
+    monitorsPhysiological: true,
+    vitalImmediateDanger: true,
+    imdrfSituation: "non-serious",
+    imdrfSignificance: "inform",
+    clinicalBenefitOutput: true,
+    manufacturerOutsideEu: false,
+    isAiSystem: false,
+  };
+
+  it("are absent with the switch off", () => {
+    const s = screen(informs);
+    expect(s.nav.crossChecks.map((c) => c.status)).toEqual(["consistent"]);
+    expect(s.view.device.ladder.steps.every((x) => x.proposal === null)).toBe(true);
+    expect([...s.view.leaves.values()].every((l) => l.proposal === null)).toBe(true);
+    expect(s.view.branches.every((b) => b.proposalChanges === 0)).toBe(true);
+  });
+
+  it("mark the class under the proposal on the ladder and the leaves it would change", () => {
+    const s = screen(informs, "2026-10-21", true);
+    expect(s.view.device.ladder.steps.map((x) => [x.id, x.state, x.proposal])).toEqual([
+      ["I", "excluded", "value"],
+      ["IIa", "excluded", "excluded"],
+      ["IIb", "value", "excluded"],
+      ["III", "excluded", "excluded"],
+    ]);
+    const cls = s.view.leaves.get("r.eu-mdr-classification");
+    expect([cls?.outcomes.map((o) => o.en), cls?.proposal?.outcomes.map((o) => o.en)]).toEqual([
+      ["Class IIb"],
+      ["Class I"],
+    ]);
+    expect(s.view.leaves.get("o.route-iib")?.proposal).toEqual({ outcomes: [], state: "none" });
+    expect(branch(s, "market").proposalChanges).toBeGreaterThan(0);
+    // A requirement that does not apply now but would under the proposal stays on the map.
+    expect(branch(s, "market").leaves.some((l) => l.state === "none" && l.proposal?.state !== "none")).toBe(true);
+  });
+
+  it("ask, in pencil, what only the proposal needs", () => {
+    const s = screen(example("heartbeat-app"), "2026-10-21", true);
+    expect(s.view.device.proposalQuestions.map((q) => q.attr)).toContain("clinicalBenefitOutput");
+    const chip = s.view.chips.groups.flatMap((g) => g.chips).find((c) => c.attribute.id === "clinicalBenefitOutput");
+    expect([chip?.value, chip?.forProposal]).toEqual([null, true]);
+  });
+
+  it("do not call a chip proposal-only when the guidance cross-check needs it too", () => {
+    const s = screen({ ...example("heartbeat-app"), imdrfSituation: null }, "2026-10-21", true);
+    const chip = s.view.chips.groups.flatMap((g) => g.chips).find((c) => c.attribute.id === "imdrfSituation");
+    expect([chip?.forCheck, chip?.forProposal]).toEqual([true, false]);
+  });
+});
+
 describe("the chips", () => {
   it("show the answers and the unanswered questions that matter, and fold the rest away", () => {
     const s = screen(example("heartbeat-app"));

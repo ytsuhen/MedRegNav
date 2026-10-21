@@ -11,7 +11,10 @@ export function chromiumPath(): string {
   if (process.env.MRN_CHROMIUM) return process.env.MRN_CHROMIUM;
   const root = process.env.PLAYWRIGHT_BROWSERS_PATH ?? "/opt/pw-browsers";
   const dir = existsSync(root) ? readdirSync(root).find((d) => /^chromium-\d+$/.test(d)) : undefined;
-  const exe = dir ? join(root, dir, "chrome-linux", "chrome") : "";
+  // Older Playwright builds unpack into chrome-linux, newer ones into chrome-linux64.
+  const exe = dir
+    ? (["chrome-linux", "chrome-linux64"].map((sub) => join(root, dir, sub, "chrome")).find((p) => existsSync(p)) ?? "")
+    : "";
   if (!exe || !existsSync(exe)) {
     throw new Error(`no Chromium under ${root}: set MRN_CHROMIUM or PLAYWRIGHT_BROWSERS_PATH`);
   }

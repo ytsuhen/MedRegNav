@@ -56,7 +56,7 @@ export async function mcdcCommand(_args: string[], out: Out): Promise<number> {
         ...Object.entries(l.pair.dependencies).map(([k, v]) => `${k}=${show(v)}`),
       ].join(" ");
       out.write(
-        `${head} ${l.pair.values[0]} → ${l.pair.values[1]}: ${show(l.pair.outcomes[0])} → ${show(l.pair.outcomes[1])}  [${context}]\n`,
+        `${head} ${show(l.pair.values[0])} → ${show(l.pair.values[1])}: ${show(l.pair.outcomes[0])} → ${show(l.pair.outcomes[1])}  [${context}]\n`,
       );
     }
     out.write("\n");

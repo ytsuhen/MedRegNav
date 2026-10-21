@@ -286,12 +286,13 @@ export function buildView(
   const chips: ChipView[] = model.registry.attributes.map((attribute) => {
     const v = profile[attribute.id];
     const value = v === undefined ? null : v;
+    const needed = decisive.has(attribute.id) || forCheck.has(attribute.id);
     return {
       attribute,
       value,
       decisive: value === null && decisive.has(attribute.id),
       forCheck: value === null && forCheck.has(attribute.id),
-      forProposal: value === null && !decisive.has(attribute.id) && forProposal.has(attribute.id),
+      forProposal: value === null && !needed && forProposal.has(attribute.id),
     };
   });
   const shownChip = (c: ChipView) => c.value !== null || c.decisive || c.forCheck || c.forProposal;
