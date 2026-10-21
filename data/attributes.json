@@ -925,6 +925,33 @@
           "end": 227
         }
       ]
+    },
+    {
+      "id": "soldSeparately",
+      "type": "boolean",
+      "group": "market",
+      "label": {
+        "uk": "ПЗ на ринку окремо",
+        "en": "Software sold on its own"
+      },
+      "question": {
+        "uk": "Чи це ПЗ доступне на ринку саме по собі, окремо від апаратного виробу, яким воно керує?",
+        "en": "Is the software commercially available on its own, apart from the hardware device it drives?"
+      },
+      "help": {
+        "uk": "Власний UDI на рівні ПЗ потрібен лише ПЗ, яке є на ринку саме по собі, і ПЗ, що саме є виробом (MDR, додаток VI, частина C, 6.5.1). Вбудоване ПЗ, що лише керує апаратом, окремого UDI на рівні ПЗ не має: UDI присвоюють самому апарату (ст. 27(3)).",
+        "en": "Only software that is commercially available on its own and software that is a device in itself get a UDI at the software level (MDR Annex VI, Part C, 6.5.1). Embedded software that only drives hardware has no software-level UDI of its own: the UDI is assigned to the hardware device (Article 27(3))."
+      },
+      "citations": [
+        {
+          "source": "mdr",
+          "section": "annex-vi-c-6.5",
+          "quote": "Only software which is commercially available on its own and software which constitutes a device in itself shall be subject to that requirement.",
+          "sha256": "55c9de3ebf1c8644febe0db4c0d8befbefd75327dddcd0717603a6aaed84aa73",
+          "start": 115,
+          "end": 259
+        }
+      ]
     }
   ]
 }

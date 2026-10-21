@@ -15,18 +15,14 @@
     {
       "id": "iso-14971",
       "number": "ISO 14971",
-      "edition": "2019 (3rd edition)",
+      "edition": "2019 (3rd edition; confirmed 2025)",
       "title": "Medical devices — Application of risk management to medical devices",
       "purpose": {
         "uk": "Процес управління ризиками медвиробу протягом усього життєвого циклу.",
         "en": "The risk management process for a medical device over its whole life cycle."
       },
       "link": "https://www.iso.org/standard/72704.html",
-      "checkedAt": "2026-10-21",
-      "note": {
-        "uk": "Редакцію перевірено за національними каталогами стандартів; сторінку ISO в цій сесії не відкрито.",
-        "en": "Edition checked against national standards catalogues; the ISO page itself was not opened in this session."
-      }
+      "checkedAt": "2026-10-21"
     },
     {
       "id": "iec-62304",

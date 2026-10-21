@@ -5,8 +5,8 @@
     "en": "MDR class (Annex VIII, Rule 11)"
   },
   "summary": {
-    "uk": "Правило 11 (підправила 11a, 11b, 11c) і правила застосування 3.3 (ПЗ, що керує виробом, — класу цього виробу) та 3.5 (діє найсуворіше правило). Інші правила для активних виробів (9, 10, 12, 13, 15, 22) у демо не закодовано.",
-    "en": "Rule 11 (sub-rules 11a, 11b, 11c) with implementing rules 3.3 (software that drives a device takes its class) and 3.5 (the strictest rule applies). The other rules for active devices (9, 10, 12, 13, 15, 22) are not encoded in this demo."
+    "uk": "Правило 11 (підправила 11a, 11b, 11c) і правила застосування 3.3 (ПЗ, що керує виробом, — класу цього виробу) та 3.5 (діє найсуворіше правило). Інші правила, які MDCG 2019-11 радить розглянути для ПЗ (9, 10, 12, 13, 15, 22), у демо не закодовано, а вони можуть дати вищий клас (правило 3.5).",
+    "en": "Rule 11 (sub-rules 11a, 11b, 11c) with implementing rules 3.3 (software that drives a device takes its class) and 3.5 (the strictest rule applies). The other rules MDCG 2019-11 says to consider for software (9, 10, 12, 13, 15, 22) are not encoded in this demo, and they may give a higher class (implementing rule 3.5)."
   },
   "market": "EU",
   "role": "primary",
@@ -623,7 +623,7 @@
     "authoredBy": "manual-reference",
     "revision": 1,
     "parentRevision": 0,
-    "irHash": "fabcc5af88a3b13b84001f3f291e2265e8d2730d20bf815033396d0b34fc6ac8",
+    "irHash": "47f4bf6b47d778c43d72e6795c85018ec820f3c21924ce4d49894295d1af286d",
     "status": "draft",
     "approval": {
       "by": "",

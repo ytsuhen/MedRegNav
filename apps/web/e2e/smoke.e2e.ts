@@ -14,10 +14,10 @@ import { chromiumPath, type StaticServer, serveDirectory } from "./browser.ts";
 
 const AI =
   "x=ai-class-iia&p=isSoftware.y_medicalPurpose.y_actsOnData.y_individualPatients.y_drivesDevice.n_accessory.n_annexXvi.n_decisionInfo.y_decisionImpact.other_monitorsPhysiological.n_isAiSystem.y_aiRole.device_manufacturerOutsideEu.n_interactsWithPersons.n";
-// IIb under Rule 11 (monitoring vital parameters, immediate danger); I under COM(2025) 1023 (a non-serious situation,
-// the output informs — IMDRF I, which the MDCG cross-check agrees with).
+// IIa under Rule 11 (decision information, no serious impact); I under COM(2025) 1023 (a non-serious situation, the
+// output informs — IMDRF I, which the MDCG cross-check agrees with).
 const INFORMS =
-  "p=isSoftware.y_medicalPurpose.y_actsOnData.y_individualPatients.y_drivesDevice.n_decisionInfo.y_decisionImpact.other_monitorsPhysiological.y_vitalImmediateDanger.y_imdrfSituation.non-serious_imdrfSignificance.inform_clinicalBenefitOutput.y_manufacturerOutsideEu.n_isAiSystem.n";
+  "p=isSoftware.y_medicalPurpose.y_actsOnData.y_individualPatients.y_drivesDevice.n_decisionInfo.y_decisionImpact.other_monitorsPhysiological.n_imdrfSituation.non-serious_imdrfSignificance.inform_clinicalBenefitOutput.y_manufacturerOutsideEu.n_isAiSystem.n";
 
 describe("the static build in Chromium", () => {
   let dir = "";
@@ -95,7 +95,7 @@ describe("the static build in Chromium", () => {
     expect(await page.getByRole("switch", { name: "Проєкти змін" }).isChecked()).toBe(true);
     expect(await page.getByTestId("ladder-proposal").textContent()).toBe("За проєктом: I");
     expect(await page.getByTestId("ladder").getAttribute("data-proposal")).toBe("changed");
-    expect(await page.getByTestId("leaf-o.route-iib").locator(".leaf-proposal").textContent()).toBe(
+    expect(await page.getByTestId("leaf-o.route-iia").locator(".leaf-proposal").textContent()).toBe(
       "за проєктом: не застосовувалося б",
     );
     expect(page.url()).toContain("w=1");

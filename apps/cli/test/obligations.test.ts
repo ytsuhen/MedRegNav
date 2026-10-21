@@ -104,6 +104,30 @@ describe("the full list for every class", () => {
     expect(nav.obligations.find((o) => o.id === "authorised-representative")?.applies).toBe(null);
   });
 
+  it("gives a software-level UDI only to software sold on its own or a device in itself (Annex VI C 6.5.1)", () => {
+    // Embedded software that only drives a class IIa device: part of that device, class IIa by rule 3.3.
+    const driver: Profile = {
+      isSoftware: true,
+      actsOnData: false,
+      medicalPurpose: false,
+      drivesDevice: true,
+      accessory: false,
+      annexXvi: false,
+      drivenDeviceClass: "IIa",
+      ...known,
+    };
+    const udi = (p: Profile) =>
+      navigate(model, p, { asOf: "2026-10-21" }).obligations.find((o) => o.id === "udi-assign");
+    expect(navigate(model, driver, { asOf: "2026-10-21" }).results["eu-mdr-qualification"]?.value).toBe(
+      "device-software",
+    );
+    expect(udi(driver)?.applies).toBe(null);
+    expect(navigate(model, driver, { asOf: "2026-10-21" }).questions.map((q) => q.attr)).toContain("soldSeparately");
+    expect(udi({ ...driver, soldSeparately: false })?.applies).toBe(false);
+    expect(udi({ ...driver, soldSeparately: true })?.applies).toBe(true);
+    expect(udi({ ...profileOf("heartbeat-app"), ...known })?.applies).toBe(true);
+  });
+
   it("gives nothing to a product that is not a medical device", () => {
     const nav = navigate(model, { ...profileOf("lab-performance-metrics"), ...known }, { asOf: "2026-10-21" });
     expect(applying(nav.obligations)).toEqual([]);
@@ -141,5 +165,11 @@ describe("dates: the as-of slider", () => {
     expect(status("2026-05-28", "eudamed-actor")).toBe("true/in-force");
     expect(status("2023-05-25", "udi-carrier-iia-iib")).toBe("true/upcoming");
     expect(status("2023-05-26", "udi-carrier-iia-iib")).toBe("true/in-force");
+  });
+
+  it("the SSCP (Article 32) is tied to Eudamed, so it applies from 28 May 2026 (Article 123(3)(d))", () => {
+    const iii = { ...profileOf("stroke-image-analysis"), ...known };
+    const sscp = (asOf: string) => navigate(model, iii, { asOf }).obligations.find((o) => o.id === "sscp")?.timing;
+    expect([sscp("2026-05-27"), sscp("2026-05-28")]).toEqual(["upcoming", "in-force"]);
   });
 });

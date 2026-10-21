@@ -529,8 +529,28 @@
         "en": "The UDI is assigned at the system level of the software; a change of performance, safety, intended use or interpretation of data needs a new UDI-DI, minor revisions a new UDI-PI."
       },
       "when": {
-        "result": "eu-mdr-classification",
-        "in": ["I", "IIa", "IIb", "III"]
+        "all": [
+          {
+            "result": "eu-mdr-classification",
+            "in": ["I", "IIa", "IIb", "III"]
+          },
+          {
+            "any": [
+              {
+                "result": "eu-mdr-qualification",
+                "in": ["mdsw"]
+              },
+              {
+                "attr": "accessory",
+                "isTrue": true
+              },
+              {
+                "attr": "soldSeparately",
+                "isTrue": true
+              }
+            ]
+          }
+        ]
       },
       "effective": {
         "from": "2021-05-26",
@@ -564,6 +584,14 @@
           "sha256": "df3e1d7177d7a5d0e7626f3a051acdc18f5932d4bf2da3fe8bfe2acabab7316c",
           "start": 2495,
           "end": 2792
+        },
+        {
+          "source": "mdr",
+          "section": "annex-vi-c-6.5",
+          "quote": "Only software which is commercially available on its own and software which constitutes a device in itself shall be subject to that requirement.",
+          "sha256": "55c9de3ebf1c8644febe0db4c0d8befbefd75327dddcd0717603a6aaed84aa73",
+          "start": 115,
+          "end": 259
         },
         {
           "source": "mdr",
@@ -603,8 +631,28 @@
         "en": "For software the UDI is shown on a readily accessible screen in plain text (an 'about' window or the start-up screen); software without a user interface transmits it through an API."
       },
       "when": {
-        "result": "eu-mdr-classification",
-        "in": ["III"]
+        "all": [
+          {
+            "result": "eu-mdr-classification",
+            "in": ["III"]
+          },
+          {
+            "any": [
+              {
+                "result": "eu-mdr-qualification",
+                "in": ["mdsw"]
+              },
+              {
+                "attr": "accessory",
+                "isTrue": true
+              },
+              {
+                "attr": "soldSeparately",
+                "isTrue": true
+              }
+            ]
+          }
+        ]
       },
       "effective": {
         "from": "2021-05-26",
@@ -642,6 +690,14 @@
         {
           "source": "mdr",
           "section": "annex-vi-c-6.5",
+          "quote": "Only software which is commercially available on its own and software which constitutes a device in itself shall be subject to that requirement.",
+          "sha256": "55c9de3ebf1c8644febe0db4c0d8befbefd75327dddcd0717603a6aaed84aa73",
+          "start": 115,
+          "end": 259
+        },
+        {
+          "source": "mdr",
+          "section": "annex-vi-c-6.5",
           "quote": "the UDI shall be provided on a readily accessible screen for the user in an easily-readable plain-text format, such as an ’about’ file, or included on the start-up screen;",
           "sha256": "55c9de3ebf1c8644febe0db4c0d8befbefd75327dddcd0717603a6aaed84aa73",
           "start": 1470,
@@ -669,8 +725,28 @@
         "en": "For software the UDI is shown on a readily accessible screen in plain text (an 'about' window or the start-up screen); software without a user interface transmits it through an API."
       },
       "when": {
-        "result": "eu-mdr-classification",
-        "in": ["IIa", "IIb"]
+        "all": [
+          {
+            "result": "eu-mdr-classification",
+            "in": ["IIa", "IIb"]
+          },
+          {
+            "any": [
+              {
+                "result": "eu-mdr-qualification",
+                "in": ["mdsw"]
+              },
+              {
+                "attr": "accessory",
+                "isTrue": true
+              },
+              {
+                "attr": "soldSeparately",
+                "isTrue": true
+              }
+            ]
+          }
+        ]
       },
       "effective": {
         "from": "2023-05-26",
@@ -708,6 +784,14 @@
         {
           "source": "mdr",
           "section": "annex-vi-c-6.5",
+          "quote": "Only software which is commercially available on its own and software which constitutes a device in itself shall be subject to that requirement.",
+          "sha256": "55c9de3ebf1c8644febe0db4c0d8befbefd75327dddcd0717603a6aaed84aa73",
+          "start": 115,
+          "end": 259
+        },
+        {
+          "source": "mdr",
+          "section": "annex-vi-c-6.5",
           "quote": "the UDI shall be provided on a readily accessible screen for the user in an easily-readable plain-text format, such as an ’about’ file, or included on the start-up screen;",
           "sha256": "55c9de3ebf1c8644febe0db4c0d8befbefd75327dddcd0717603a6aaed84aa73",
           "start": 1470,
@@ -735,8 +819,28 @@
         "en": "For software the UDI is shown on a readily accessible screen in plain text (an 'about' window or the start-up screen); software without a user interface transmits it through an API."
       },
       "when": {
-        "result": "eu-mdr-classification",
-        "in": ["I"]
+        "all": [
+          {
+            "result": "eu-mdr-classification",
+            "in": ["I"]
+          },
+          {
+            "any": [
+              {
+                "result": "eu-mdr-qualification",
+                "in": ["mdsw"]
+              },
+              {
+                "attr": "accessory",
+                "isTrue": true
+              },
+              {
+                "attr": "soldSeparately",
+                "isTrue": true
+              }
+            ]
+          }
+        ]
       },
       "effective": {
         "from": "2025-05-26",
@@ -770,6 +874,14 @@
           "sha256": "df3e1d7177d7a5d0e7626f3a051acdc18f5932d4bf2da3fe8bfe2acabab7316c",
           "start": 3087,
           "end": 3181
+        },
+        {
+          "source": "mdr",
+          "section": "annex-vi-c-6.5",
+          "quote": "Only software which is commercially available on its own and software which constitutes a device in itself shall be subject to that requirement.",
+          "sha256": "55c9de3ebf1c8644febe0db4c0d8befbefd75327dddcd0717603a6aaed84aa73",
+          "start": 115,
+          "end": 259
         },
         {
           "source": "mdr",
@@ -1649,8 +1761,8 @@
         "en": "Reporting serious incidents and trends"
       },
       "summary": {
-        "uk": "Повідомляти компетентні органи про серйозні інциденти й коригувальні дії з безпеки (не пізніше 15 днів) і про статистично значуще зростання інцидентів.",
-        "en": "Report serious incidents and field safety corrective actions to the competent authorities (no later than 15 days) and any statistically significant increase in incidents."
+        "uk": "Повідомляти компетентні органи про серйозні інциденти й коригувальні дії з безпеки та про статистично значуще зростання інцидентів. Статті 87 і 88 MDR (строк 15 днів, звіти про тренди через EUDAMED) застосуються через 6 місяців після повідомлення Комісії, що модуль vigilance EUDAMED працює; станом на 21.10.2026 його не опубліковано. Доти діють положення директив щодо інформації про звітування vigilance (ст. 123(3)(d)); їхнього тексту в демо немає.",
+        "en": "Report serious incidents and field safety corrective actions to the competent authorities, and any statistically significant increase in incidents. MDR Articles 87 and 88 (15 days, trend reports through Eudamed) will apply 6 months after the Commission's notice that the Eudamed vigilance module is functional; it had not been published on 21 October 2026. Until then the Directives' provisions on information on vigilance reporting continue to apply (Article 123(3)(d)); their text is not in this demo."
       },
       "when": {
         "result": "eu-mdr-classification",
@@ -1666,6 +1778,22 @@
             "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
             "start": 200,
             "end": 232
+          },
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "Articles 87 and 88,",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 1572,
+            "end": 1591
+          },
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "the corresponding provisions of Directives 90/385/EEC and 93/42/EEC regarding information on vigilance reporting, clinical investigations, registration of devices and economic operators, and certificate notifications shall continue to apply.",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 1906,
+            "end": 2147
           }
         ]
       },
@@ -1867,23 +1995,39 @@
         "en": "Summary of safety and clinical performance (class III)"
       },
       "summary": {
-        "uk": "Для класу III — резюме безпеки й клінічної продуктивності, зрозуміле користувачу, валідоване нотифікованим органом і опубліковане в EUDAMED.",
-        "en": "For class III, a summary of safety and clinical performance clear to the intended user, validated by the notified body and published in Eudamed."
+        "uk": "Для класу III — резюме безпеки й клінічної продуктивності, зрозуміле користувачу, валідоване нотифікованим органом і опубліковане в EUDAMED. Стаття 32 — серед положень, пов'язаних з електронними системами EUDAMED, тож застосовується з 28 травня 2026 року (ст. 123(3)(d)).",
+        "en": "For class III, a summary of safety and clinical performance clear to the intended user, validated by the notified body and published in Eudamed. Article 32 is among the provisions tied to the Eudamed electronic systems, so it applies from 28 May 2026 (Article 123(3)(d))."
       },
       "when": {
         "result": "eu-mdr-classification",
         "in": ["III"]
       },
       "effective": {
-        "from": "2021-05-26",
+        "from": "2026-05-28",
         "citations": [
+          {
+            "source": "ec-eudamed-actor",
+            "section": "news-first-modules",
+            "quote": "The first four modules of EUDAMED became mandatory since 28 May 2026",
+            "sha256": "3bd5ed7839c14057693766d8ef05b9eb1f57ace5031e1efa54fc6fdb39f949d7",
+            "start": 0,
+            "end": 68
+          },
           {
             "source": "mdr",
             "section": "art-123",
-            "quote": "It shall apply from 26 May 2021.",
+            "quote": "the obligations and requirements that relate to any of the electronic systems referred to in Article 33(2) shall apply from the date corresponding to 6 months from the date of publication of the notice referred to in Article 34(3)",
             "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
-            "start": 200,
-            "end": 232
+            "start": 737,
+            "end": 967
+          },
+          {
+            "source": "mdr",
+            "section": "art-123",
+            "quote": "Article 32,",
+            "sha256": "494e9c79115878e16a26c2f3734d2ebf6f85d3f7bcb794555cad2876d57667e6",
+            "start": 1193,
+            "end": 1204
           }
         ]
       },
@@ -1906,6 +2050,14 @@
           "sha256": "bd003eb1769a682f3608da5ab58e5a3d4df50e44e6164f555c875399dff3885d",
           "start": 57,
           "end": 235
+        },
+        {
+          "source": "decision-2025-2371",
+          "section": "art-1",
+          "quote": "the electronic system on notified bodies and certificates referred to in Article 57 of Regulation (EU) 2017/745",
+          "sha256": "4ce35cfb952483fee672d4bb831c5b07dce224f61b2d37a513e65a004c649d5f",
+          "start": 618,
+          "end": 729
         }
       ]
     },

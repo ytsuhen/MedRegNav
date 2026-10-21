@@ -22,15 +22,14 @@ function renderWith(children: React.ReactNode, initial: Partial<AppState>) {
   );
 }
 
-// IIb under Rule 11 (monitoring vital parameters, immediate danger); I under the proposal (a non-serious situation, the
+// IIa under Rule 11 (decision information, no serious impact); I under the proposal (a non-serious situation, the
 // output informs — IMDRF I, which the MDCG cross-check agrees with).
 const informs = {
   example: null,
   profile: {
     ...example("heartbeat-app"),
     decisionImpact: "other",
-    monitorsPhysiological: true,
-    vitalImmediateDanger: true,
+    monitorsPhysiological: false,
     imdrfSituation: "non-serious",
     imdrfSignificance: "inform",
     clinicalBenefitOutput: true,
@@ -57,11 +56,11 @@ describe("the proposals switch", () => {
     const steps = [...screen.getByTestId("ladder").querySelectorAll<HTMLElement>(".ladder-step")];
     expect(steps.map((s) => [s.textContent, s.dataset.state, s.dataset.proposal])).toEqual([
       ["I", "excluded", "value"],
-      ["IIa", "excluded", "excluded"],
-      ["IIb", "value", "excluded"],
+      ["IIa", "value", "excluded"],
+      ["IIb", "excluded", "excluded"],
       ["III", "excluded", "excluded"],
     ]);
-    const leaf = screen.getByTestId("leaf-o.route-iib");
+    const leaf = screen.getByTestId("leaf-o.route-iia");
     expect(leaf.dataset.proposal).toBe("changed");
     expect(leaf.querySelector(".leaf-proposal")?.textContent).toBe("за проєктом: не застосовувалося б");
     expect(within(screen.getByTestId("branch-market")).getByText(/проєкт змінює \d+ пункт/)).toBeTruthy();
@@ -88,7 +87,7 @@ describe("the class card under the proposal", () => {
       .filter((n) => !Number.isNaN(n));
     expect(cells.reduce((a, b) => a + b, 0)).toBe(162);
     expect(matrix.querySelectorAll("td[data-changed]").length).toBeGreaterThan(0);
-    expect(section.textContent).toContain("Оцінка відповідності для класу IIb");
+    expect(section.textContent).toContain("Оцінка відповідності для класу IIa");
   });
 
   it("is absent with the switch off", () => {
@@ -101,8 +100,8 @@ describe("the checklist under the proposal", () => {
   it("marks the results and requirements the proposal would change and shows the proposal's section", () => {
     renderWith(<App />, { ...informs, view: "checklist", proposals: true });
     expect(screen.getByTestId("proposal-r.eu-mdr-classification").textContent).toBe("за проєктом: Клас I");
-    expect(screen.getByTestId("check-o.route-iib").dataset.proposal).toBe("changed");
-    expect(screen.getByTestId("proposal-o.route-iib").textContent).toBe("за проєктом: не застосовувалося б");
+    expect(screen.getByTestId("check-o.route-iia").dataset.proposal).toBe("changed");
+    expect(screen.getByTestId("proposal-o.route-iia").textContent).toBe("за проєктом: не застосовувалося б");
     const section = within(screen.getByTestId("check-r.eu-mdr-classification")).getByTestId("proposal");
     expect(within(section).getByRole("heading", { level: 5 }).textContent).toBe("Якби проєкт ухвалили");
     expect(within(section).getByTestId("transition-matrix")).toBeTruthy();

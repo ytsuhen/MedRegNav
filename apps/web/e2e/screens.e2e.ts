@@ -15,9 +15,9 @@ const out = process.env.MRN_DOCS_SCREENS ? resolve(process.env.MRN_DOCS_SCREENS)
 const DATE = "d=2026-10-21";
 const AI_PROFILE =
   "p=isSoftware.y_medicalPurpose.y_actsOnData.y_individualPatients.y_drivesDevice.n_accessory.n_annexXvi.n_decisionInfo.y_decisionImpact.other_monitorsPhysiological.n_isAiSystem.y_aiRole.device_manufacturerOutsideEu.n_interactsWithPersons.n";
-// IIb under Rule 11 (monitoring vital parameters, immediate danger); I under COM(2025) 1023 (non-serious, informs).
+// IIa under Rule 11 (decision information, no serious impact); I under COM(2025) 1023 (non-serious, informs).
 const INFORMS =
-  "p=isSoftware.y_medicalPurpose.y_actsOnData.y_individualPatients.y_drivesDevice.n_decisionInfo.y_decisionImpact.other_monitorsPhysiological.y_vitalImmediateDanger.y_imdrfSituation.non-serious_imdrfSignificance.inform_clinicalBenefitOutput.y_manufacturerOutsideEu.n_isAiSystem.n";
+  "p=isSoftware.y_medicalPurpose.y_actsOnData.y_individualPatients.y_drivesDevice.n_decisionInfo.y_decisionImpact.other_monitorsPhysiological.n_imdrfSituation.non-serious_imdrfSignificance.inform_clinicalBenefitOutput.y_manufacturerOutsideEu.n_isAiSystem.n";
 
 describe.skipIf(!out)("README screenshots", () => {
   let dir = "";

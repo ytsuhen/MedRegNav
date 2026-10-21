@@ -104,14 +104,12 @@ describe("the branches", () => {
 });
 
 describe("proposed changes", () => {
-  // Monitoring vital parameters whose variations could put the patient in immediate danger: IIb under Rule 11 (11b);
-  // a non-serious situation where the output informs (IMDRF I, which the MDCG cross-check agrees with): I under the
-  // proposal.
+  // Decision information without a serious impact: IIa under Rule 11 (11a); a non-serious situation where the output
+  // informs (IMDRF I, which the MDCG cross-check agrees with): I under the proposal.
   const informs = {
     ...example("heartbeat-app"),
     decisionImpact: "other",
-    monitorsPhysiological: true,
-    vitalImmediateDanger: true,
+    monitorsPhysiological: false,
     imdrfSituation: "non-serious",
     imdrfSignificance: "inform",
     clinicalBenefitOutput: true,
@@ -131,16 +129,16 @@ describe("proposed changes", () => {
     const s = screen(informs, "2026-10-21", true);
     expect(s.view.device.ladder.steps.map((x) => [x.id, x.state, x.proposal])).toEqual([
       ["I", "excluded", "value"],
-      ["IIa", "excluded", "excluded"],
-      ["IIb", "value", "excluded"],
+      ["IIa", "value", "excluded"],
+      ["IIb", "excluded", "excluded"],
       ["III", "excluded", "excluded"],
     ]);
     const cls = s.view.leaves.get("r.eu-mdr-classification");
     expect([cls?.outcomes.map((o) => o.en), cls?.proposal?.outcomes.map((o) => o.en)]).toEqual([
-      ["Class IIb"],
+      ["Class IIa"],
       ["Class I"],
     ]);
-    expect(s.view.leaves.get("o.route-iib")?.proposal).toEqual({ outcomes: [], state: "none" });
+    expect(s.view.leaves.get("o.route-iia")?.proposal).toEqual({ outcomes: [], state: "none" });
     expect(branch(s, "market").proposalChanges).toBeGreaterThan(0);
     // A requirement that does not apply now but would under the proposal stays on the map.
     expect(branch(s, "market").leaves.some((l) => l.state === "none" && l.proposal?.state !== "none")).toBe(true);

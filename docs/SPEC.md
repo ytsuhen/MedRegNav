@@ -34,12 +34,13 @@
 |---|---|---|
 | `mdr` | Regulation (EU) 2017/745, консолідований текст | 02017R0745-20260719 (M1–M8) |
 | `ai-act` | Regulation (EU) 2024/1689, консолідований текст | 02024R1689-20260727 (M1 = 2026/1744) |
-| `reg-2026-1744` | Regulation (EU) 2026/1744 (Digital Omnibus on AI), OJ | OJ L 2026/1744, 24.7.2026 |
 | `mdcg-2019-11` | MDCG 2019-11 rev.1, qualification and classification of software | червень 2025 |
 | `mdcg-2021-24` | MDCG 2021-24 rev.1, classification of medical devices | квітень 2026 |
 | `mdcg-2025-6` | MDCG 2025-6 / AIB 2025-1, interplay MDR/IVDR and AI Act | червень 2025 |
 | `mdcg-2020-1` | MDCG 2020-1, clinical evaluation of medical device software | березень 2020 |
-| `com-2025-1023` | COM(2025) 1023, пропозиція змін MDR/IVDR (2025/0404(COD)) | 16.12.2025 |
+| `com-2025-1023`, `com-2025-1023-annexes` | COM(2025) 1023, пропозиція змін MDR/IVDR (2025/0404(COD)), і додатки до неї | 16.12.2025 |
+| `decision-2025-2371` | Commission Decision (EU) 2025/2371: функціональні модулі EUDAMED | OJ L 2025/2371, 27.11.2025 |
+| `ec-eudamed-actor` | Сторінка Єврокомісії про модуль Actor registration EUDAMED (дата обов'язкового використання) | станом на 20.10.2026 |
 
 **Цитата** = `{ source, section, sha256, start, end, quote }`: `sha256` — нормалізованого тексту секції, `start`/`end` —
 зсуви в ньому, `quote` — дослівний фрагмент. Нормалізація — як у VLK Engine (NFC, пробіли, апострофи, тире, невидимі
