@@ -1,5 +1,5 @@
-// The frame around the work: the disclaimer banner (always visible), the masthead with the market, date, proposals,
-// view and language controls, the placeholder for a market that is not modelled yet, and the footer with the
+// The frame around the work: the disclaimer banner (always visible), the masthead with the video guide and the market,
+// date, proposals, view and language controls, the placeholder for a market that is not modelled yet, and the footer with the
 // sources' editions and licences.
 import { useEffect, useId, useMemo, useState } from "react";
 import { useSnapshot } from "../data.tsx";
@@ -7,6 +7,7 @@ import { formatDate, fromDays, keyDates, sliderRange, toDays } from "../lib/date
 import type { View } from "../lib/route.ts";
 import { useApp } from "../state.tsx";
 import { ExternalLink, Segmented } from "./ui.tsx";
+import { VideoGuide } from "./VideoGuide.tsx";
 
 const REPOSITORY = "https://github.com/ytsuhen/MedRegNav";
 
@@ -143,6 +144,7 @@ export function Masthead({ view }: { view: View }) {
       <div className="masthead-title">
         <h1>{t("app.title")}</h1>
         <p className="lede">{t("app.lede")}</p>
+        <VideoGuide />
       </div>
       <div className="masthead-controls">
         <Segmented

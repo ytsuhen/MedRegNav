@@ -83,6 +83,32 @@ describe("the app", () => {
     await act(async () => fireEvent.click(screen.getByText("Back to the EU")));
     expect(screen.queryByTestId("next-stage")).toBeNull();
   });
+
+  it("opens the video guide with its chapters, and closing it removes the player", async () => {
+    renderWith(<App />, { ...heartbeat, view: "checklist" });
+    expect(screen.queryByTestId("video-dialog")).toBeNull();
+    await act(async () => fireEvent.click(screen.getByTestId("video-open")));
+    const dialog = screen.getByTestId("video-dialog");
+    expect(dialog.querySelector("video")?.getAttribute("src")).toBe("video/medregnav-guide.mp4");
+    expect(
+      within(dialog)
+        .getAllByRole("listitem")
+        .map((li) => li.textContent),
+    ).toEqual([
+      "0:00 Що це",
+      "0:53 Опишіть програму",
+      "2:32 Мапа",
+      "3:45 Чому цей клас",
+      "4:56 Що робити",
+      "6:02 Станом на дату",
+      "6:42 Проєкти змін",
+      "7:56 Чекліст, телефон, мови",
+      "8:22 Під капотом",
+      "9:23 Межі й де знайти",
+    ]);
+    await act(async () => dialog.dispatchEvent(new Event("close")));
+    expect(screen.queryByTestId("video-dialog")).toBeNull();
+  });
 });
 
 describe("the card", () => {

@@ -203,6 +203,25 @@ const uk = {
     "Американського треку в демо ще немає. Жодного правила FDA тут не закодовано й не процитовано, тож і відповідей немає.",
   "us.back": "Повернутися до ЄС",
 
+  "video.open": "Відеопосібник",
+  "video.length": "{min} хв",
+  "video.title": "Відеопосібник: як читати демо",
+  "video.note":
+    "Озвучка англійською, субтитри українською. Ті самі екрани демо: що воно відповідає, як читати мапу й картки і наскільки йому довіряти.",
+  "video.chapters": "Розділи",
+  "video.close": "Закрити",
+  "video.unsupported": "Браузер не відтворює це відео.",
+  "video.ch1": "Що це",
+  "video.ch2": "Опишіть програму",
+  "video.ch3": "Мапа",
+  "video.ch4": "Чому цей клас",
+  "video.ch5": "Що робити",
+  "video.ch6": "Станом на дату",
+  "video.ch7": "Проєкти змін",
+  "video.ch8": "Чекліст, телефон, мови",
+  "video.ch9": "Під капотом",
+  "video.ch10": "Межі й де знайти",
+
   "footer.texts":
     "Тексти законодавства й настанов: © Європейський Союз, повторне використання дозволено (рішення Комісії 2011/833/ЄС; CC BY 4.0). Змінено лише форму: пробіли нормалізовано, маркери консолідації прибрано.",
   "footer.code": "Код: Apache-2.0. Шрифти Literata і Arsenal: SIL Open Font License 1.1.",
@@ -405,6 +424,25 @@ const en: Record<MessageKey, string> = {
   "us.heading": "US: the next stage",
   "us.body": "The US track is not in this demo yet. No FDA rule is encoded or quoted here, so there are no answers.",
   "us.back": "Back to the EU",
+
+  "video.open": "Video guide",
+  "video.length": "{min} min",
+  "video.title": "Video guide: how to read the demo",
+  "video.note":
+    "English voice, Ukrainian subtitles. The demo's own screens: what it answers, how to read the map and the cards, and how far to trust it.",
+  "video.chapters": "Chapters",
+  "video.close": "Close",
+  "video.unsupported": "Your browser cannot play this video.",
+  "video.ch1": "What this is",
+  "video.ch2": "Describe the software",
+  "video.ch3": "The map",
+  "video.ch4": "Why this class",
+  "video.ch5": "What to do",
+  "video.ch6": "As of a date",
+  "video.ch7": "Proposed changes",
+  "video.ch8": "Checklist, phone, languages",
+  "video.ch9": "Under the hood",
+  "video.ch10": "Limits and where to find it",
 
   "footer.texts":
     "Legislation and guidance texts: © European Union, reuse authorised (Commission Decision 2011/833/EU; CC BY 4.0). Only the form is changed: whitespace normalised, consolidation markers removed.",
