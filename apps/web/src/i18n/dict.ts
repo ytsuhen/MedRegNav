@@ -195,6 +195,7 @@ const uk = {
   "guided.obligation.true": "тепер застосовується",
   "guided.obligation.false": "тепер не застосовується",
   "guided.obligation.null": "тепер залежить від відповіді",
+  "guided.quote": "Дослівна цитата, перевірена в браузері",
   "guided.rest.heading": "Решта відповідей з опису",
   "guided.rest.body":
     "Поодинці жодна з цих відповідей нічого не змінювала, тож прогін їх не питав; разом вони звужують результат.",
@@ -467,6 +468,7 @@ const en: Record<MessageKey, string> = {
   "guided.obligation.true": "now applies",
   "guided.obligation.false": "no longer applies",
   "guided.obligation.null": "now depends on an answer",
+  "guided.quote": "The verbatim quote, checked in your browser",
   "guided.rest.heading": "The description's other answers",
   "guided.rest.body":
     "Alone, none of these answers changed anything, so the run did not ask them; together they narrow the result.",

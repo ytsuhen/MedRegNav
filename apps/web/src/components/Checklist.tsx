@@ -1,7 +1,7 @@
 // The checklist: everything the map shows, as a plain document for phones and screen readers. Rule results with what
 // decided them, the open questions with their answers inline, then each branch's requirements with how to comply and
 // their quotes; with proposals on, what the proposal would change, in red pen, and the proposal's section under the
-// result of the rule it would replace. Built from the same screen view as the map.
+// result of the rule it would replace. Built from the same screen view as the map; an island over the sea (U12).
 import type { AttributeValue } from "@mrn/core";
 import type { Screen } from "../data.tsx";
 import { useSnapshot } from "../data.tsx";
@@ -109,7 +109,7 @@ export function Checklist({ screen }: { screen: Screen }) {
   const ruleLeaves = screen.view.branches.flatMap((b) => [...b.leaves, ...b.hidden].filter((l) => l.kind === "rule"));
   const questions = screen.nav.questions;
   return (
-    <section className="checklist" aria-label={t("checklist.label")} data-testid="checklist">
+    <section className="checklist island" aria-label={t("checklist.label")} data-testid="checklist">
       <section className="check-results" aria-labelledby="check-results">
         <h3 id="check-results">{t("checklist.results")}</h3>
         <ul className="check-list">

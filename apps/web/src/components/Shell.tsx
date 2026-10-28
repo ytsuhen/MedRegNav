@@ -141,7 +141,7 @@ function ProposalsToggle() {
 export function Masthead({ view }: { view: View }) {
   const { state, t, dispatch } = useApp();
   return (
-    <header className="masthead sea-band" data-waves="river">
+    <header className="masthead sea-band">
       <HexWaves water="river" />
       <div className="masthead-title">
         <h1>{t("app.title")}</h1>

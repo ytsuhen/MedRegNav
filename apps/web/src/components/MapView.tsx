@@ -2,7 +2,9 @@
 // expanded branch. Positions come from lib/layout.ts (d3-hierarchy) with the heights React Flow measures, so the
 // layout needs no coordinates by hand; React Flow draws the nodes and edges and lets the map be dragged or pinched.
 // Ink is settled, pencil (dashed) waits for an answer, dotted applies from a later date, the highlighter links causes
-// and effects on hover.
+// and effects on hover; the legend stands on the map. The nodes are islands over the sea (U12), the lines lie on a thin
+// strip of paper; the device is marked for the sea to whirl round (`data-whirl`) and the lines for it to flow along
+// (`data-flow`).
 import type { AttributeValue, DecisiveUnknown } from "@mrn/core";
 import {
   applyNodeChanges,
@@ -30,7 +32,7 @@ import { deviceName, tx } from "./ui.tsx";
 
 const SIZE = {
   device: { width: 284, height: 190 },
-  branchWidth: 212,
+  branchWidth: 228,
   leafWidth: 252,
   gapX: [54, 36] as [number, number],
   gapY: [22, 8] as [number, number],
@@ -88,6 +90,7 @@ function DeviceNode({ data }: NodeProps<DeviceNodeT>) {
       data-status={status}
       data-marked={isMarked(state.hover, DEVICE_ID, device.support) || undefined}
       data-testid="device-node"
+      data-whirl
     >
       <Handle type="source" position={Position.Left} id="left" isConnectable={false} />
       <Handle type="source" position={Position.Right} id="right" isConnectable={false} />
@@ -322,8 +325,9 @@ function InkEdge({ sourceX, sourceY, targetX, targetY, sourcePosition, targetPos
       data-marked={marked || undefined}
       data-proposal={data?.proposal || undefined}
     >
+      <path d={path} className="ink-edge-casing" />
       {marked ? <path d={path} className="ink-edge-marker" /> : null}
-      <path d={path} className="ink-edge-line" />
+      <path d={path} className="ink-edge-line" data-flow />
     </g>
   );
 }
@@ -533,10 +537,56 @@ function MapCanvas({ screen }: { screen: Screen }) {
   );
 }
 
+/** How to read the map, on the map itself: it stays in view whatever the margin shows. */
+function MapLegend() {
+  const { t } = useApp();
+  const snapshot = useSnapshot();
+  const proposals = snapshot.model.rules.some((r) => r.role === "hypothetical");
+  const line = (kind: string) => (
+    <svg className={`legend-line legend-${kind}`} viewBox="0 0 40 10" aria-hidden="true">
+      <path d="M2 5 H38" />
+    </svg>
+  );
+  return (
+    <section className="map-legend island" aria-labelledby="legend-heading" data-testid="map-legend">
+      <h3 id="legend-heading" className="map-legend-title">
+        {t("legend.heading")}
+      </h3>
+      <ul>
+        <li>
+          {line("ink")}
+          {t("legend.ink")}
+        </li>
+        <li>
+          {line("pencil")}
+          {t("legend.pencil")}
+        </li>
+        <li>
+          {line("dotted")}
+          {t("legend.dotted")}
+        </li>
+        <li>
+          <span className="legend-marker" aria-hidden="true">
+            Aa
+          </span>
+          {t("legend.marker")}
+        </li>
+        {proposals ? (
+          <li>
+            {line("redpen")}
+            {t("legend.redpen")}
+          </li>
+        ) : null}
+      </ul>
+    </section>
+  );
+}
+
 export function MapView({ screen }: { screen: Screen }) {
   const { t } = useApp();
   return (
     <section className="map" aria-label={t("map.label")} data-testid="map">
+      <MapLegend />
       <ReactFlowProvider>
         <MapCanvas screen={screen} />
       </ReactFlowProvider>

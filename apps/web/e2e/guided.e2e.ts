@@ -1,7 +1,8 @@
 // The guided run (DECISIONS U13) in the preinstalled Chromium, on the three descriptions the demo is shown with: the
 // heartbeat app (it reaches class IIb from the description alone), a blank sheet (every question asked in the card)
 // and a wearable recorder's link with most answers unknown. Each question comes once; the step is in the link; the
-// keys work; the card is a live region; it works on a phone and in the checklist; a step shimmers what it changed.
+// keys work; the card is a live region between the description and the map, brought to the top when the run starts;
+// it works on a phone and in the checklist; a step shimmers what it changed.
 import { mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -91,6 +92,10 @@ describe("the guided run in Chromium", () => {
     const page = await open(`x=heartbeat-app&${DATE}`);
     await start(page);
     expect(await card(page).getByTestId("guided-blank").getAttribute("aria-live")).toBe("polite");
+    // Started with a press, the card comes to the top of the window, with the map right under it.
+    const top = await card(page).evaluate((el) => el.getBoundingClientRect().top);
+    expect(top).toBeGreaterThanOrEqual(0);
+    expect(top).toBeLessThan(20);
     expect(await page.getByTestId("ladder").getAttribute("aria-label")).toBe(
       "Можливі класи: I, IIa, IIb, III. Відкрити пояснення",
     );
@@ -158,10 +163,11 @@ describe("the guided run in Chromium", () => {
     expect(await card(page).getByTestId("guided-play").getAttribute("aria-pressed")).toBe("true");
     await page.keyboard.press(" ");
     expect(await card(page).getByTestId("guided-play").getAttribute("aria-pressed")).toBe("false");
-    // The link opens the same step, paused.
+    // The link opens the same step, paused, and leaves the page at its top, with the banner.
     const again = await open(new URL(page.url()).hash.slice(1));
     expect(await again.getByTestId("guided").getByTestId("guided-position").textContent()).toMatch(/^Крок 1 з \d+$/);
     expect(await again.getByTestId("guided-play").getAttribute("aria-pressed")).toBe("false");
+    expect(await again.evaluate(() => window.scrollY)).toBe(0);
     await again.context().close();
     await page.context().close();
   });
@@ -175,16 +181,19 @@ describe("the guided run in Chromium", () => {
     await page.context().close();
   });
 
-  it("works on a phone, in the checklist, above the chips", async () => {
+  it("works on a phone, in the checklist, between the description and the checklist", async () => {
     const page = await open(`x=heartbeat-app&${DATE}`, { width: 390, height: 844 });
     await page.getByTestId("checklist").waitFor();
     await start(page);
-    const above = await page.evaluate(() => {
-      const guided = document.querySelector("[data-testid=guided]");
-      const chips = document.querySelector("[data-testid=device-chips]");
-      return !!guided && !!chips && !!(guided.compareDocumentPosition(chips) & Node.DOCUMENT_POSITION_FOLLOWING);
+    const between = await page.evaluate(() => {
+      const [chips, guided, list] = ["device-chips", "guided", "checklist"].map((id) =>
+        document.querySelector(`[data-testid=${id}]`),
+      );
+      const before = (a: Element | null | undefined, b: Element | null | undefined) =>
+        !!a && !!b && !!(a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING);
+      return before(chips, guided) && before(guided, list);
     });
-    expect(above).toBe(true);
+    expect(between).toBe(true);
     for (let i = 0; i < 6; i++) await card(page).getByTestId("guided-next").click();
     expect(await page.getByTestId("check-r.eu-mdr-classification").textContent()).toContain("Клас IIb");
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);

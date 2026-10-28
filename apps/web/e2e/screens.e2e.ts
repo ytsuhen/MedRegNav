@@ -117,17 +117,25 @@ describe.skipIf(!out)("README screenshots", () => {
   });
 
   it("the guided run: a step on the map, the summary, and a step on a phone", async () => {
-    // Step 7 of the heartbeat app: "drives a device: no" settles class IIb; the card quotes Annex VIII 3.3.
+    // The card at the top of the window, as after a press on the run's button, with the map under it.
+    const toCard = (page: Page) =>
+      page
+        .getByTestId("guided")
+        .evaluate((card) => window.scrollTo(0, card.getBoundingClientRect().top + scrollY - 12));
+    // Step 7 of the heartbeat app: "drives a device: no" settles class IIb; the card quotes Annex VIII 3.3, unfolded.
     const step = await open(`${HEARTBEAT_RUN}&${DATE}&g=7`);
     await step.locator('[data-testid=guided] [data-testid=quote][data-verified="true"]').waitFor({ state: "attached" });
+    await step.locator(".guided-quote > summary").click();
+    await toCard(step);
     await shot(step, "09-guided-step");
     await step.context().close();
     const summary = await open(`${HEARTBEAT_RUN}&${GIVEN}&${DATE}&g=99`, { height: 1500 });
     await summary.getByTestId("guided-acts").waitFor();
+    await toCard(summary);
     await shot(summary, "10-guided-summary");
     await summary.context().close();
     const phone = await open(`${HEARTBEAT_RUN}&${DATE}&g=6&v=checklist`, { width: 390, height: 844 });
-    await phone.getByTestId("guided").evaluate((card) => window.scrollTo(0, (card as HTMLElement).offsetTop - 12));
+    await toCard(phone);
     await shot(phone, "11-guided-phone");
     await phone.context().close();
   });

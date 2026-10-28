@@ -1,13 +1,12 @@
 // The margin note beside the map: for a requirement, how to comply (requirement → document or evidence → standard →
 // who → from when) with its legal basis quoted; for a rule result, what decided it; by default, the example the
-// device came from (quoted from the guidance, with how we read it) and how to read the map. While the guided run is
-// on (a wide screen), its card heads the margin instead of the example.
+// device came from (quoted from the guidance, with how we read it) and how to use the map (its legend stands on the
+// map itself). The margin is an island over the sea (U12).
 import { type Screen, useScreen, useSnapshot } from "../data.tsx";
 import { formatDate } from "../lib/dates.ts";
 import type { LeafView } from "../lib/view.ts";
 import { useApp } from "../state.tsx";
 import { RuleExplanation } from "./Explain.tsx";
-import { GuidedCard } from "./Guided.tsx";
 import { ProposalSection } from "./Proposal.tsx";
 import { QuestionList, SupportList } from "./Questions.tsx";
 import { Quote, Quotes } from "./Quote.tsx";
@@ -163,49 +162,6 @@ function RuleCard({ screen, id }: { screen: Screen; id: string }) {
   );
 }
 
-function Legend() {
-  const { t } = useApp();
-  const snapshot = useSnapshot();
-  const proposals = snapshot.model.rules.some((r) => r.role === "hypothetical");
-  const line = (kind: string) => (
-    <svg className={`legend-line legend-${kind}`} viewBox="0 0 40 10" aria-hidden="true">
-      <path d="M2 5 H38" />
-    </svg>
-  );
-  return (
-    <section className="legend" aria-labelledby="legend-heading">
-      <h3 id="legend-heading">{t("legend.heading")}</h3>
-      <ul>
-        <li>
-          {line("ink")}
-          {t("legend.ink")}
-        </li>
-        <li>
-          {line("pencil")}
-          {t("legend.pencil")}
-        </li>
-        <li>
-          {line("dotted")}
-          {t("legend.dotted")}
-        </li>
-        <li>
-          <span className="legend-marker" aria-hidden="true">
-            Aa
-          </span>
-          {t("legend.marker")}
-        </li>
-        {proposals ? (
-          <li>
-            {line("redpen")}
-            {t("legend.redpen")}
-          </li>
-        ) : null}
-      </ul>
-      <p className="card-footnote">{t("help.text")}</p>
-    </section>
-  );
-}
-
 function DeviceCard({ screen }: { screen: Screen }) {
   const snapshot = useSnapshot();
   const { state, t, described } = useApp();
@@ -238,32 +194,29 @@ function DeviceCard({ screen }: { screen: Screen }) {
       ) : (
         <p className="card-summary">{t("app.lede")}</p>
       )}
-      <Legend />
+      <p className="card-footnote">{t("help.text")}</p>
     </article>
   );
 }
 
-/** The margin; with `guided` (the run is on, on a wide screen) the run's card heads it, in place of the device's. */
-export function Card({ guided = false }: { guided?: boolean }) {
+export function Card() {
   const screen = useScreen();
   const { state, t, select } = useApp();
   if (!screen) return null;
   const sel = state.selection;
   const sheet = sel !== null && sel.kind !== "device";
-  const run = guided && state.guided !== null;
   return (
-    <aside className="card" aria-label={t("card.label")} data-testid="card" data-sheet={sheet || undefined}>
+    <aside className="card island" aria-label={t("card.label")} data-testid="card" data-sheet={sheet || undefined}>
       {sheet ? (
         <button type="button" className="card-close" onClick={() => select(null)}>
           {t("card.close")}
         </button>
       ) : null}
-      {run ? <GuidedCard screen={screen} /> : null}
       {sel?.kind === "obligation" ? (
         <ObligationCard key={sel.id} screen={screen} id={sel.id} />
       ) : sel?.kind === "rule" ? (
         <RuleCard key={sel.id} screen={screen} id={sel.id} />
-      ) : run ? null : (
+      ) : (
         <DeviceCard screen={screen} />
       )}
     </aside>

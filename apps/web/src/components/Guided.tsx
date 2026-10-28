@@ -2,9 +2,9 @@
 // playback — a step every four seconds, paused at a question the description leaves open, ←/→ and space, and the
 // sheen on what each step changed (the answer's chip, the branches, the rules). The card shows the question from the
 // attribute registry and its answer, what changed (possible results, how many requirements apply), and the node that
-// decided it with its verbatim quote, checked in the browser like every other quote. The summary lists every rule's
-// result, what is still unknown, and the acts to comply with: the requirements that apply, by act and article from
-// their own quotes. Nothing here is new legal text.
+// decided it with its verbatim quote (folded, checked in the browser like every other quote). The summary lists every
+// rule's result, what is still unknown, and the acts to comply with: the requirements that apply, by act and article
+// from their own quotes. Nothing here is new legal text.
 import {
   type DeviceIr,
   type GuidedStep,
@@ -14,11 +14,11 @@ import {
   settledLeaves,
   stepChanges,
 } from "@mrn/core";
-import { useEffect, useMemo, useRef } from "react";
+import { type ReactNode, useEffect, useMemo, useRef } from "react";
 import { type Screen, useSnapshot } from "../data.tsx";
 import { formatDate } from "../lib/dates.ts";
 import { actsOf, lastReachable, presentedRules, stepAt } from "../lib/guided.ts";
-import { sheenKeys } from "../lib/sheen.ts";
+import { reducedMotion, sheenKeys } from "../lib/sheen.ts";
 import { changedKeys, type ScreenView } from "../lib/view.ts";
 import { useApp } from "../state.tsx";
 import { Quote } from "./Quote.tsx";
@@ -142,7 +142,9 @@ function Decided({ before, after, screen }: { before: Navigation; after: Navigat
           })}{" "}
           <span className="guided-rule-of">({tx(rule.title, state.lang)})</span>
         </p>
-        <Quote citation={criterion} context={120} />
+        <FoldedQuote>
+          <Quote citation={criterion} context={120} />
+        </FoldedQuote>
       </section>
     );
   }
@@ -165,8 +167,21 @@ function Decided({ before, after, screen }: { before: Navigation; after: Navigat
           ),
         })}
       </p>
-      <Quote citation={citation} context={120} />
+      <FoldedQuote>
+        <Quote citation={citation} context={120} />
+      </FoldedQuote>
     </section>
+  );
+}
+
+/** The verbatim quote behind a disclosure, so the card stays short; the browser checks it all the same. */
+function FoldedQuote({ children }: { children: ReactNode }) {
+  const { t } = useApp();
+  return (
+    <details className="guided-quote">
+      <summary>{t("guided.quote")}</summary>
+      {children}
+    </details>
   );
 }
 
@@ -181,8 +196,8 @@ function StepView({ step, screen }: { step: GuidedStep; screen: Screen }) {
   const waiting = step.source === "pending";
   const value = (v: typeof step.value) => (attribute ? valueLabel(attribute, v, state.lang, t) : "");
   return (
-    <>
-      <div className="guided-live" aria-live="polite" data-testid="guided-step">
+    <div className="guided-cols" aria-live="polite" data-testid="guided-step">
+      <div className="guided-main">
         {step.source === "rest" ? (
           <>
             <h3 className="guided-question">{t("guided.rest.heading")}</h3>
@@ -217,27 +232,29 @@ function StepView({ step, screen }: { step: GuidedStep; screen: Screen }) {
             </p>
           </>
         ) : null}
-        {waiting ? null : (
+        {attribute && step.source !== "target" ? (
+          <div className="guided-ask" data-testid="guided-ask">
+            {waiting ? null : <p className="guided-note">{t("guided.change")}</p>}
+            <AnswerControl
+              attribute={attribute}
+              value={waiting ? undefined : step.value}
+              onChange={(next) => answer(attribute.id, next)}
+              compact={attribute.type === "boolean"}
+            />
+            {waiting ? <p className="guided-note">{t("guided.changes.waiting")}</p> : null}
+          </div>
+        ) : null}
+      </div>
+      {waiting ? null : (
+        <div className="guided-side">
           <section className="guided-section">
             <h3>{t("guided.changes")}</h3>
             <Changes before={before} after={screen.nav} screen={screen} />
           </section>
-        )}
-      </div>
-      {attribute && step.source !== "target" ? (
-        <div className="guided-ask" data-testid="guided-ask">
-          {waiting ? null : <p className="guided-note">{t("guided.change")}</p>}
-          <AnswerControl
-            attribute={attribute}
-            value={waiting ? undefined : step.value}
-            onChange={(next) => answer(attribute.id, next)}
-            compact={attribute.type === "boolean"}
-          />
-          {waiting ? <p className="guided-note">{t("guided.changes.waiting")}</p> : null}
+          <Decided before={before} after={screen.nav} screen={screen} />
         </div>
-      ) : null}
-      {waiting ? null : <Decided before={before} after={screen.nav} screen={screen} />}
-    </>
+      )}
+    </div>
   );
 }
 
@@ -250,48 +267,50 @@ function Summary({ screen }: { screen: Screen }) {
   const count = (source: GuidedStep["source"]) => g.run.steps.filter((s) => s.source === source).length;
   const date = (d: string) => formatDate(d, state.lang);
   return (
-    <div className="guided-live" aria-live="polite" data-testid="guided-summary">
-      <h3 className="guided-question">{t("guided.summary.heading")}</h3>
-      <p className="guided-note">
-        {t("guided.summary.lead", {
-          n: g.run.steps.length,
-          target: count("target"),
-          given: count("answer"),
-          unknown: count("unknown"),
-        })}
-      </p>
-      <section className="guided-section">
-        <h3>{t("guided.summary.results")}</h3>
-        <ul className="guided-results" data-testid="guided-results">
-          {presentedRules(screen.market).map((id) => {
-            const rule = snapshot.model.rules.find((r) => r.id === id);
-            const result = screen.nav.results[id];
-            if (!rule || !result) return null;
-            return (
-              <li key={id}>
-                <span className="guided-rule">{tx(rule.title, state.lang)}</span>:{" "}
-                <strong>
-                  {ruleWords(rule, result, screen.view.leaves.get(`r.${id}`)?.check ?? null, t, state.lang)}
-                </strong>
-              </li>
-            );
+    <div className="guided-cols" aria-live="polite" data-testid="guided-summary">
+      <div className="guided-main">
+        <h3 className="guided-question">{t("guided.summary.heading")}</h3>
+        <p className="guided-note">
+          {t("guided.summary.lead", {
+            n: g.run.steps.length,
+            target: count("target"),
+            given: count("answer"),
+            unknown: count("unknown"),
           })}
-        </ul>
-      </section>
-      <section className="guided-section">
-        <h3>{t("guided.summary.unknown")}</h3>
-        {screen.nav.questions.length === 0 ? (
-          <p className="guided-note">{t("guided.summary.unknown.none")}</p>
-        ) : (
-          <ul className="guided-unknown" data-testid="guided-unknown">
-            {screen.nav.questions.map((q) => {
-              const a = snapshot.model.registry.attributes.find((x) => x.id === q.attr);
-              return a ? <li key={q.attr}>{tx(a.question, state.lang)}</li> : null;
+        </p>
+        <section className="guided-section">
+          <h3>{t("guided.summary.results")}</h3>
+          <ul className="guided-results" data-testid="guided-results">
+            {presentedRules(screen.market).map((id) => {
+              const rule = snapshot.model.rules.find((r) => r.id === id);
+              const result = screen.nav.results[id];
+              if (!rule || !result) return null;
+              return (
+                <li key={id}>
+                  <span className="guided-rule">{tx(rule.title, state.lang)}</span>:{" "}
+                  <strong>
+                    {ruleWords(rule, result, screen.view.leaves.get(`r.${id}`)?.check ?? null, t, state.lang)}
+                  </strong>
+                </li>
+              );
             })}
           </ul>
-        )}
-      </section>
-      <section className="guided-section">
+        </section>
+        <section className="guided-section">
+          <h3>{t("guided.summary.unknown")}</h3>
+          {screen.nav.questions.length === 0 ? (
+            <p className="guided-note">{t("guided.summary.unknown.none")}</p>
+          ) : (
+            <ul className="guided-unknown" data-testid="guided-unknown">
+              {screen.nav.questions.map((q) => {
+                const a = snapshot.model.registry.attributes.find((x) => x.id === q.attr);
+                return a ? <li key={q.attr}>{tx(a.question, state.lang)}</li> : null;
+              })}
+            </ul>
+          )}
+        </section>
+      </div>
+      <section className="guided-side guided-section">
         <h3>{t("guided.summary.acts")}</h3>
         <p className="guided-note">{t("guided.summary.acts.lead", { date: date(asOf) })}</p>
         {acts.length === 0 ? <p className="guided-note">{t("guided.summary.acts.none")}</p> : null}
@@ -336,8 +355,19 @@ function Summary({ screen }: { screen: Screen }) {
   );
 }
 
+/**
+ * The run's card, between the description and the map: a head row (where the run is, the controls), the track, then
+ * the step in two columns — the question and its answer; what changed and what decided it — or the blank sheet, or the
+ * summary. When the run is started with a press, the page brings the card to the top, so the map shows right under it;
+ * a link that opens the run leaves the page at its top, with the banner.
+ */
 export function GuidedCard({ screen }: { screen: Screen }) {
   const { state, t, dispatch } = useApp();
+  const card = useRef<HTMLElement>(null);
+  useEffect(() => {
+    if (navigator.userActivation && !navigator.userActivation.isActive) return;
+    card.current?.scrollIntoView?.({ block: "start", behavior: reducedMotion() ? "auto" : "smooth" });
+  }, []);
   const g = state.guided;
   if (!g) return null;
   const n = g.run.steps.length;
@@ -347,7 +377,7 @@ export function GuidedCard({ screen }: { screen: Screen }) {
   const position = g.at === 0 ? t("guided.begin") : g.at > n ? t("guided.end") : t("guided.step", { k: g.at, n });
   const go = (at: number) => dispatch({ type: "guided-go", at });
   return (
-    <section className="guided" aria-labelledby="guided-heading" data-testid="guided" data-at={g.at}>
+    <section ref={card} className="guided island" aria-labelledby="guided-heading" data-testid="guided" data-at={g.at}>
       <div className="guided-head">
         <h2 id="guided-heading" className="guided-title">
           {t("guided.heading")}
@@ -356,6 +386,7 @@ export function GuidedCard({ screen }: { screen: Screen }) {
           {position}
           {waiting ? <span className="guided-waiting"> · {t("guided.waiting")}</span> : null}
         </p>
+        <GuidedControls go={go} reach={reach} />
       </div>
       <div
         className="guided-track"
@@ -374,60 +405,71 @@ export function GuidedCard({ screen }: { screen: Screen }) {
         })}
       </div>
       {g.at === 0 ? (
-        <div className="guided-live" aria-live="polite" data-testid="guided-blank">
-          <h3 className="guided-question">{t("guided.blank.heading")}</h3>
-          <p className="guided-note">{t("guided.blank.body")}</p>
+        <div className="guided-cols" aria-live="polite" data-testid="guided-blank">
+          <div className="guided-main">
+            <h3 className="guided-question">{t("guided.blank.heading")}</h3>
+            <p className="guided-note">{t("guided.blank.body")}</p>
+          </div>
         </div>
       ) : g.at > n ? (
         <Summary screen={screen} />
       ) : step ? (
         <StepView key={g.at} step={step} screen={screen} />
       ) : null}
-      <div className="guided-controls">
-        <button
-          type="button"
-          className="button button-quiet"
-          data-testid="guided-back"
-          disabled={g.at === 0}
-          onClick={() => go(g.at - 1)}
-        >
-          ← {t("guided.back")}
-        </button>
-        {g.at > n ? (
-          <button
-            type="button"
-            className="button"
-            data-testid="guided-again"
-            onClick={() => {
-              go(0);
-              dispatch({ type: "guided-play", on: true });
-            }}
-          >
-            {t("guided.summary.again")}
-          </button>
-        ) : (
-          <button
-            type="button"
-            className="button"
-            data-testid="guided-play"
-            aria-pressed={g.playing}
-            onClick={() => dispatch({ type: "guided-play", on: !g.playing })}
-          >
-            {g.playing ? `❚❚ ${t("guided.pause")}` : `▶ ${t("guided.play")}`}
-          </button>
-        )}
-        <button
-          type="button"
-          className="button button-quiet"
-          data-testid="guided-next"
-          disabled={g.at >= reach}
-          onClick={() => go(g.at + 1)}
-        >
-          {t("guided.next")} →
-        </button>
-      </div>
       <p className="guided-keys">{t("guided.keys")}</p>
     </section>
+  );
+}
+
+function GuidedControls({ go, reach }: { go: (at: number) => void; reach: number }) {
+  const { state, t, dispatch } = useApp();
+  const g = state.guided;
+  if (!g) return null;
+  const n = g.run.steps.length;
+  return (
+    <div className="guided-controls">
+      <button
+        type="button"
+        className="button button-quiet"
+        data-testid="guided-back"
+        disabled={g.at === 0}
+        onClick={() => go(g.at - 1)}
+      >
+        ← {t("guided.back")}
+      </button>
+      {g.at > n ? (
+        <button
+          type="button"
+          className="button"
+          data-testid="guided-again"
+          onClick={() => {
+            go(0);
+            dispatch({ type: "guided-play", on: true });
+          }}
+        >
+          {t("guided.summary.again")}
+        </button>
+      ) : (
+        <button
+          type="button"
+          className="button"
+          data-testid="guided-play"
+          aria-pressed={g.playing}
+          onClick={() => dispatch({ type: "guided-play", on: !g.playing })}
+        >
+          {g.playing ? `❚❚ ${t("guided.pause")}` : `▶ ${t("guided.play")}`}
+        </button>
+      )}
+      <button
+        type="button"
+        className="button button-quiet"
+        data-testid="guided-next"
+        disabled={g.at >= reach}
+        onClick={() => go(g.at + 1)}
+      >
+        {t("guided.next")} →
+      </button>
+    </div>
   );
 }
 

@@ -17,7 +17,8 @@
  *   marker     the highlighter, an amber fill behind ink only: the quoted words, and cause ↔ effect on hover
  *   red pen    proposed amendments only (the "proposed changes" switch; the demos' --fail)
  *   accent     what can be pressed: buttons, links, the focus ring — never a state
- *   sea        the masthead, a deep-sea band with the hexagon waves in both schemes
+ *   sea        the hexagon water (U12): the masthead's river, a deep band in both schemes; under the work area the sea,
+ *              shallow and light or deep, after the scheme. Text stands on islands (sheets) over the water
  *   iris       the brief violet-into-teal sheen on an action (U12): feedback only, it carries no meaning
  * Three voices: Source Serif 4 is the law's (verbatim quotes, source references, the class numerals); IBM Plex Sans is
  * ours; JetBrains Mono sets hashes and ids. Every token is light-dark(): the page follows the system's colour scheme.
@@ -47,6 +48,8 @@
   --color-on-accent: light-dark(#ffffff, #041716);
   --color-iris-violet: light-dark(#7c3aed, #b18cff);
   --color-iris-teal: light-dark(#0e9f84, #4fe3c1);
+  --color-island-edge: light-dark(rgb(13 42 38 / 0.1), rgb(143 170 163 / 0.18));
+  --color-shade: light-dark(rgb(13 42 38 / 0.34), rgb(0 0 0 / 0.62));
 
   --color-sea-deep: #041716;
   --color-sea: #0c433c;
@@ -116,9 +119,8 @@
     border-bottom: 1.5px dashed var(--color-graphite);
     font-size: 14.5px;
   }
-  /* Two dark bands over water in both schemes (U12): the masthead over the river, the description of the software over
-     the calm sea, the hexagon waves behind their content. Their controls keep their own rules: the tokens are
-     re-pointed to the sea's light-on-dark values here. */
+  /* The masthead: a dark band over the river in both schemes (U12), the hexagon waves behind its content. Its controls
+     keep their own rules: the tokens are re-pointed to the sea's light-on-dark values here. */
   .sea-band {
     --color-paper: var(--color-sea-deep);
     --color-sheet: #0a2622;
@@ -176,18 +178,44 @@
     align-items: center;
     gap: 12px 22px;
   }
+  /* Under the masthead the work area floats on the sea (U12): the water fills it behind the islands. */
   .workspace {
+    position: relative;
+    isolation: isolate;
     flex: 1;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 380px;
-    border-top: 1px solid var(--color-rule);
+    grid-template-columns: minmax(0, 1fr) 396px;
   }
   .workspace[data-view="checklist"] {
     grid-template-columns: minmax(0, 1fr);
   }
+  .page-sea {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: clip;
+    pointer-events: none;
+  }
+  /* One screen of water that stays in view as the page scrolls; lib/waves.ts keeps its hexagons fixed to the page. */
+  .page-sea-canvas {
+    position: sticky;
+    top: 0;
+    display: block;
+    width: 100%;
+    height: 100lvh;
+  }
   .work {
+    position: relative;
+    z-index: 1;
     min-width: 0;
     padding: 18px 24px 36px;
+  }
+  /* An island: a sheet over the water wherever there is text to read (U12); the water shows between the islands. */
+  .island {
+    background: var(--color-sheet);
+    border: 1px solid var(--color-island-edge);
+    border-radius: 14px;
+    box-shadow: 0 14px 34px -20px var(--color-shade);
   }
   .workspace[data-view="checklist"] .work {
     max-width: 920px;
@@ -567,12 +595,9 @@
   }
 
   /* ── device: chips and the attribute editor ────────────────────────────── */
-  /* The description of the software: a panel over the calm sea (U12), like the chat of the CQL demo. */
+  /* The description of the software: the first island under the masthead (U12). */
   .device {
     padding: 16px 18px 18px;
-    border: 1px solid #1d3f39;
-    border-radius: 14px;
-    box-shadow: 0 12px 32px -18px rgb(4 23 22 / 0.55);
   }
   .device-bar {
     display: flex;
@@ -668,13 +693,6 @@
   .chip-small {
     font-size: 13.5px;
     padding: 1px 9px 2px;
-  }
-  /* Over the water, text stands on a solid ground wherever it can: a chip in pencil keeps the band's sheet. */
-  .sea-band .chip:not([data-known]) {
-    background: var(--color-sheet);
-  }
-  .sea-band .chip[data-marked] {
-    background: var(--color-marker);
   }
   .support-list,
   .question-list {
@@ -786,8 +804,8 @@
   .map-canvas {
     position: relative;
     width: 100%;
-    /* React Flow's own (unlayered) stylesheet paints the attribution white, which shows as a grey box when dark. */
-    --xy-attribution-background-color: transparent;
+    /* React Flow's own (unlayered) stylesheet paints the attribution: here a small island like the nodes. */
+    --xy-attribution-background-color: var(--color-sheet);
   }
   .map-canvas .react-flow {
     background: transparent;
@@ -796,7 +814,6 @@
     cursor: grab;
   }
   .map-canvas .react-flow__attribution {
-    background: transparent;
     font-size: 11px;
   }
   .map-canvas .react-flow__attribution a {
@@ -824,6 +841,7 @@
     border-radius: 12px;
     outline: 1px solid var(--color-ink);
     outline-offset: -7px;
+    box-shadow: 0 14px 34px -20px var(--color-shade);
     text-align: center;
   }
   .device-node-name {
@@ -895,8 +913,14 @@
     box-shadow: 0 0 0 7px var(--color-marker);
   }
 
+  /* A branch and a leaf are islands over the water, as the device is; the lines run between them and go under. */
   .node-branch {
-    width: 212px;
+    width: 228px;
+    padding: 2px 10px 8px;
+    background: var(--color-sheet);
+    border: 1px solid var(--color-island-edge);
+    border-radius: 10px;
+    box-shadow: 0 10px 26px -18px var(--color-shade);
   }
   .node-branch[data-side="left"] {
     text-align: right;
@@ -916,7 +940,7 @@
     display: block;
     width: 100%;
     padding: 6px 4px 7px;
-    background: var(--color-paper);
+    background: transparent;
     border: 0;
     border-bottom: 2px solid var(--color-ink);
     color: inherit;
@@ -1022,6 +1046,10 @@
 
   .node-leaf {
     width: 252px;
+    background: var(--color-sheet);
+    border: 1px solid var(--color-island-edge);
+    border-radius: 8px;
+    box-shadow: 0 8px 22px -16px var(--color-shade);
     animation: leaf-in 0.2s ease-out;
   }
   .node-leaf[data-side="left"] {
@@ -1049,7 +1077,7 @@
     text-align: right;
   }
   .leaf-button:hover {
-    background: var(--color-sheet);
+    background: var(--color-sheet-2);
   }
   .leaf-mark {
     flex: none;
@@ -1111,6 +1139,12 @@
     -webkit-box-decoration-break: clone;
   }
 
+  /* Under every line a thin strip of paper, so each kind of line keeps its contrast over any water (U12). */
+  .ink-edge-casing {
+    fill: none;
+    stroke: var(--color-paper);
+    stroke-width: 4.5;
+  }
   .ink-edge-line {
     fill: none;
     stroke: var(--color-ink);
@@ -1137,15 +1171,16 @@
     opacity: 0.9;
   }
 
-  /* ── card (the margin note) ────────────────────────────────────────────── */
+  /* ── card (the margin note): an island beside the map ──────────────────── */
   .card {
     position: sticky;
-    top: 0;
+    top: 12px;
+    z-index: 1;
     align-self: start;
-    max-height: 100vh;
+    max-height: calc(100vh - 24px);
     overflow: auto;
-    padding: 22px 26px 40px;
-    border-left: 1px solid var(--color-rule);
+    margin: 18px 20px 24px 0;
+    padding: 20px 22px 32px;
   }
   .card-close {
     float: right;
@@ -1329,22 +1364,41 @@
     font-weight: 600;
   }
 
-  .legend ul {
-    margin: 6px 0 0;
+  /* How to read the map: a strip at the map's top edge, an island like the nodes, in view whatever the margin shows. */
+  .map-legend {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 18px;
+    width: fit-content;
+    max-width: 100%;
+    padding: 6px 14px 7px;
+    border-radius: 10px;
+    font-size: 13.5px;
+  }
+  .map-legend-title {
+    margin: 0;
+    font-size: 13.5px;
+    font-weight: 600;
+  }
+  .map-legend ul {
+    flex: 1 1 0;
+    min-width: 16rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px 16px;
+    margin: 0;
     padding: 0;
     list-style: none;
-    display: grid;
-    gap: 6px;
   }
-  .legend li {
-    display: flex;
+  .map-legend li {
+    display: inline-flex;
     align-items: center;
-    gap: 10px;
-    font-size: 14.5px;
+    gap: 7px;
   }
   .legend-line {
     flex: none;
-    width: 40px;
+    width: 32px;
     height: 10px;
   }
   .legend-line path {
@@ -1367,9 +1421,9 @@
   }
   .legend-marker {
     flex: none;
-    width: 40px;
+    width: 32px;
     text-align: center;
-    font-size: 14px;
+    font-size: 13.5px;
     background: linear-gradient(transparent 12%, var(--color-marker) 12%, var(--color-marker) 90%, transparent 90%);
     color: var(--color-on-marker);
   }
@@ -1558,22 +1612,18 @@
     height: 11px;
     fill: currentColor;
   }
+  /* The run's card: an island between the description and the map; the page scrolls it to the top on start. */
   .guided {
-    margin: 0 0 18px;
-    padding: 14px 18px 14px;
-    background: var(--color-sheet);
+    margin: 18px 0 0;
+    padding: 12px 18px 12px;
     border: 1.5px solid var(--color-accent);
-    border-radius: 12px;
-  }
-  .card .guided {
-    margin: 0 0 24px;
+    scroll-margin-top: 12px;
   }
   .guided-head {
     display: flex;
     flex-wrap: wrap;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 2px 16px;
+    align-items: center;
+    gap: 6px 16px;
   }
   .guided-title {
     margin: 0;
@@ -1597,6 +1647,29 @@
     display: flex;
     gap: 3px;
     margin: 10px 0 12px;
+  }
+  /* The step in two columns: the question and its answer; what changed and what decided it (one column on phones). */
+  .guided-cols {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 10px 26px;
+  }
+  .guided-main:only-child {
+    grid-column: 1 / -1;
+  }
+  .guided-side {
+    padding-left: 24px;
+    border-left: 1px solid var(--color-rule);
+  }
+  .guided-quote {
+    margin-top: 4px;
+  }
+  .guided-quote summary {
+    font-size: 13.5px;
+    color: var(--color-graphite);
+  }
+  .guided-quote .quote {
+    margin: 6px 0 2px;
   }
   .guided-seg {
     flex: 1;
@@ -1643,6 +1716,10 @@
   .guided-decided p {
     margin: 0;
   }
+  .guided-side > h3:first-child,
+  .guided-side > :first-child > h3:first-child {
+    margin-top: 0;
+  }
   .guided-changes,
   .guided-results,
   .guided-unknown,
@@ -1679,7 +1756,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    margin-top: 14px;
+    margin-left: auto;
   }
   .guided-controls .button {
     margin-top: 0;
@@ -1722,10 +1799,14 @@
 
   /* ── checklist ─────────────────────────────────────────────────────────── */
   .checklist {
-    margin-top: 22px;
+    margin-top: 18px;
+    padding: 14px 22px 16px;
+  }
+  .checklist > section + section {
+    margin-top: 26px;
   }
   .checklist > section > h3 {
-    margin: 26px 0 8px;
+    margin: 0 0 8px;
     padding-bottom: 4px;
     border-bottom: 2px solid var(--color-ink);
     font-size: 20px;
@@ -1845,16 +1926,17 @@
     grid-template-columns: minmax(0, 1fr);
   }
   .card {
-    position: static;
+    position: relative;
+    top: auto;
     max-height: none;
-    border-left: 0;
-    border-top: 1px solid var(--color-rule);
+    margin: 0 24px 28px;
   }
   .card[data-sheet] {
     position: fixed;
     inset: auto 0 0 0;
     z-index: 50;
     max-height: 80vh;
+    margin: 0;
     background: var(--color-sheet);
     border-top: 2px solid var(--color-ink);
     border-radius: 14px 14px 0 0;
@@ -1879,6 +1961,25 @@
   .device {
     padding: 14px 14px 16px;
     border-radius: 12px;
+  }
+  .card {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+  .guided {
+    padding: 12px 14px;
+  }
+  .guided-cols {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .guided-side {
+    padding: 10px 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--color-rule);
+  }
+  .checklist {
+    padding-left: 14px;
+    padding-right: 14px;
   }
   .chip-group {
     grid-template-columns: minmax(0, 1fr);

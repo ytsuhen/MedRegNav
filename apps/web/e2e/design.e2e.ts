@@ -1,8 +1,8 @@
 // The look of DECISIONS U12 in the preinstalled Chromium: the three voices are the bundled fonts, the waves draw — the
-// river in the masthead, the sea behind the description of the software, none over the map and the cards — (on a 2D
-// canvas without a graphics card, in WebGL2 when a software one is allowed), a press shimmers and the
-// shimmer leaves nothing behind, reduced motion has no shimmer, and the map's labels stay inside their nodes on a
-// desktop and on a phone.
+// river in the masthead, the sea under the work area that stays in view as the page scrolls, none inside the islands —
+// (on a 2D canvas without a graphics card, in WebGL2 when a software one is allowed, where the sea whirls round the
+// device and flows along the map's lines), the legend stays on the map, a press shimmers and the shimmer leaves nothing
+// behind, reduced motion has no shimmer, and the map's labels stay inside their nodes on a desktop and on a phone.
 import { mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -82,21 +82,49 @@ describe("the look in Chromium", () => {
     await page.context().close();
   });
 
-  it("draws the river in the masthead and the sea behind the description on a 2D canvas without a graphics card", async () => {
+  it("draws the river in the masthead and the sea under the work area on a 2D canvas without a graphics card", async () => {
     const page = await open("x=heartbeat-app", { motion: true });
     for (const id of ["waves-river", "waves-sea"])
       await expect.poll(() => page.getByTestId(id).getAttribute("data-renderer")).toBe("2d");
-    expect(await page.locator("[data-testid=device-chips] [data-testid=waves-sea]").count()).toBe(1);
     expect(await page.locator("header.masthead [data-testid=waves-river]").count()).toBe(1);
-    // The map and the cards stay plain.
-    expect(await page.locator("[data-testid=map] canvas, [data-testid=card] canvas").count()).toBe(0);
+    expect(await page.locator("main.workspace > .page-sea > [data-testid=waves-sea]").count()).toBe(1);
+    // Text stands on islands: no water inside the description, the map or the card.
+    expect(await page.locator(".island canvas, [data-testid=map] canvas, [data-testid=card] canvas").count()).toBe(0);
     await page.context().close();
+    // One screen of water that stays in view as a long page scrolls.
+    const long = await open("x=heartbeat-app&v=checklist", { motion: true });
+    const sea = await long.evaluate(() => {
+      window.scrollTo(0, 600);
+      const box = document.querySelector("[data-testid=waves-sea]")?.getBoundingClientRect();
+      return { top: box?.top, height: box?.height, page: document.documentElement.scrollHeight };
+    });
+    expect(sea.page).toBeGreaterThan(2 * 900);
+    expect(sea).toMatchObject({ top: 0, height: 900 });
+    await long.context().close();
   });
 
-  it("draws them in WebGL2 when a software graphics card is allowed", async () => {
+  it("draws them in WebGL2 when a software graphics card is allowed: the sea whirls round the device, flows along the lines", async () => {
     const page = await open("x=heartbeat-app", { motion: true, anyGl: true, on: softwareGl });
     for (const id of ["waves-river", "waves-sea"])
       await expect.poll(() => page.getByTestId(id).getAttribute("data-renderer")).toBe("webgl2");
+    const sea = page.getByTestId("waves-sea");
+    await expect.poll(() => sea.getAttribute("data-whirl")).toBe("on");
+    // The six lines from the device to the branches, each in a few segments.
+    expect(Number(await sea.getAttribute("data-flow"))).toBeGreaterThanOrEqual(12);
+    await page.context().close();
+  });
+
+  it("keeps the legend on the map, beside a requirement's card and while the guided run is on", async () => {
+    const page = await open("x=heartbeat-app&b=market&s=o.route-iib");
+    const legend = page.getByTestId("map-legend");
+    expect(await legend.isVisible()).toBe(true);
+    expect(await page.locator("[data-testid=card] [data-testid=map-legend]").count()).toBe(0);
+    await page.getByTestId("guided-start").click();
+    await page.getByTestId("guided").waitFor();
+    // The run's card stands between the description and the map; the legend stays in view under it.
+    const top = await legend.evaluate((el) => el.getBoundingClientRect().top);
+    expect(top).toBeGreaterThan(0);
+    expect(top).toBeLessThan(900 - 100);
     await page.context().close();
   });
 
