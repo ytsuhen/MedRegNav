@@ -2,11 +2,27 @@
 // for the market, view and language switches, and the answer control used by the attribute editor and the map's
 // inline questions.
 import { type Attribute, type AttributeValue, domain, type Example, type Profile, type Text } from "@mrn/core";
-import { type ReactNode, useId } from "react";
+import { Fragment, type ReactNode, useId } from "react";
 import type { Lang } from "../i18n/dict.ts";
 import { useApp } from "../state.tsx";
 
 export const tx = (text: Text, lang: Lang): string => text[lang];
+
+/**
+ * A message whose placeholders in `parts` become elements (a hash set in mono, say): the message is translated with
+ * a marker in their place and split around the markers, so word order stays the dictionary's.
+ */
+export function rich(
+  t: ReturnType<typeof useApp>["t"],
+  key: Parameters<ReturnType<typeof useApp>["t"]>[0],
+  parts: Record<string, ReactNode>,
+  vars: Record<string, string | number> = {},
+): ReactNode[] {
+  const marked = Object.fromEntries(Object.keys(parts).map((name) => [name, `\u0000${name}\u0000`]));
+  return t(key, { ...vars, ...marked })
+    .split("\u0000")
+    .map((piece, i) => (i % 2 === 1 && piece in parts ? <Fragment key={piece}>{parts[piece]}</Fragment> : piece));
+}
 
 /** The same known answers (unknown and missing alike). */
 export function sameProfile(a: Profile, b: Profile): boolean {

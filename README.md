@@ -149,4 +149,6 @@ sha256, витягнутий текст):
 Код — Apache-2.0 ([LICENSE](LICENSE)). Тексти законодавства ЄС і настанов MDCG у `data/sources/` — © European Union;
 повторне використання дозволено за рішенням Комісії 2011/833/ЄС, вміст сайтів Єврокомісії — за CC BY 4.0. Зміни:
 витягнуто текст, нормалізовано пробіли й символи, прибрано службові маркери консолідації; оригінали збережено без змін.
-Шрифти Literata й Arsenal — SIL Open Font License 1.1; React Flow — MIT.
+Шрифти IBM Plex Sans, Source Serif 4 і JetBrains Mono — SIL Open Font License 1.1; React Flow — MIT. Вигляд (палітра
+«море», шестикутники-хвилі в шапці) — як в інших демо автора: [CQL demo](https://ytsuhen.github.io/CQL-Demo-Yevenko/) і
+[First Visit](https://ytsuhen.github.io/Pub-demos/first-visit/).

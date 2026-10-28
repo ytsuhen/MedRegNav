@@ -30,7 +30,7 @@ import { deviceName, tx } from "./ui.tsx";
 
 const SIZE = {
   device: { width: 284, height: 190 },
-  branchWidth: 196,
+  branchWidth: 212,
   leafWidth: 252,
   gapX: [54, 36] as [number, number],
   gapY: [22, 8] as [number, number],

@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useSections, useSnapshot } from "../data.tsx";
 import { hostOf, quoteView } from "../lib/quotes.ts";
 import { useApp } from "../state.tsx";
-import { ExternalLink } from "./ui.tsx";
+import { ExternalLink, rich } from "./ui.tsx";
 
 export function Quote({ citation, context = 240 }: { citation: Citation; context?: number }) {
   const { t } = useApp();
@@ -52,10 +52,10 @@ export function Quote({ citation, context = 240 }: { citation: Citation; context
         {view ? (
           <span className={view.verified ? "quote-check" : "quote-check quote-fail"}>
             {view.verified
-              ? t("quote.verified", {
-                  hash: citation.sha256.slice(0, 12),
-                  start: citation.start,
-                  end: citation.end,
+              ? rich(t, "quote.verified", {
+                  hash: <code>{citation.sha256.slice(0, 12)}</code>,
+                  start: <code>{citation.start}</code>,
+                  end: <code>{citation.end}</code>,
                 })
               : t("quote.failed")}
           </span>

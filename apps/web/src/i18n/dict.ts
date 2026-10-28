@@ -224,7 +224,7 @@ const uk = {
 
   "footer.texts":
     "Тексти законодавства й настанов: © Європейський Союз, повторне використання дозволено (рішення Комісії 2011/833/ЄС; CC BY 4.0). Змінено лише форму: пробіли нормалізовано, маркери консолідації прибрано.",
-  "footer.code": "Код: Apache-2.0. Шрифти Literata і Arsenal: SIL Open Font License 1.1.",
+  "footer.code": "Код: Apache-2.0. Шрифти IBM Plex Sans, Source Serif 4 і JetBrains Mono: SIL Open Font License 1.1.",
   "footer.sources": "Джерела й редакції ({n})",
   "footer.retrieved": "завантажено {date}",
   "footer.repo": "Код і дані на GitHub",
@@ -446,7 +446,7 @@ const en: Record<MessageKey, string> = {
 
   "footer.texts":
     "Legislation and guidance texts: © European Union, reuse authorised (Commission Decision 2011/833/EU; CC BY 4.0). Only the form is changed: whitespace normalised, consolidation markers removed.",
-  "footer.code": "Code: Apache-2.0. Fonts Literata and Arsenal: SIL Open Font License 1.1.",
+  "footer.code": "Code: Apache-2.0. Fonts IBM Plex Sans, Source Serif 4 and JetBrains Mono: SIL Open Font License 1.1.",
   "footer.sources": "Sources and editions ({n})",
   "footer.retrieved": "retrieved {date}",
   "footer.repo": "Code and data on GitHub",

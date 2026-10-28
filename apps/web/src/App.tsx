@@ -1,11 +1,14 @@
 // The page: banner, masthead, then either the work area (the device's chips above the map or the checklist, with the
-// card beside the map) or the placeholder of a market that is not modelled yet.
+// card beside the map) or the placeholder of a market that is not modelled yet. Whatever is pressed shimmers for a
+// moment (lib/sheen.ts).
+import { useEffect } from "react";
 import { Card } from "./components/Card.tsx";
 import { Checklist } from "./components/Checklist.tsx";
 import { DeviceChips } from "./components/DeviceChips.tsx";
 import { MapView } from "./components/MapView.tsx";
 import { Banner, Footer, Masthead, NextStage, useNarrow } from "./components/Shell.tsx";
 import { useScreen } from "./data.tsx";
+import { installSheen } from "./lib/sheen.ts";
 import { useApp } from "./state.tsx";
 
 export function App() {
@@ -13,6 +16,7 @@ export function App() {
   const { state } = useApp();
   const narrow = useNarrow();
   const view = state.view ?? (narrow ? "checklist" : "map");
+  useEffect(() => installSheen(document), []);
   return (
     <div className="app">
       <Banner />
