@@ -45,9 +45,14 @@ const MAX_LINES = 32;
 const WAVE_CELL = 4;
 /** How far along a line the wave map keeps (px): four to a step of its green channel. */
 const WAVE_REACH = 1020;
-/** A pigeon sprinkle on the river: a new one every 1.6–2.8 s, each shifting its colour for 10–14 s (ms). */
+/**
+ * A pigeon sprinkle on the river: a new one every 1.6–2.8 s, each shifting its colour for 10–14 s (ms), at most this
+ * opaque: over the dark river about a third as bright as the nearly opaque hexagon it once was, so it glows softly
+ * instead of catching the eye (Andrii asked for it two thirds fainter).
+ */
 const SPRINKLE_EVERY = [1600, 2800] as const;
 const SPRINKLE_LIFE = [10000, 14000] as const;
+const SPRINKLE_ALPHA = 0.37;
 
 type RGB = readonly [number, number, number];
 
@@ -66,7 +71,7 @@ export interface Palette {
   teal: RGB;
   /**
    * A pigeon's neck for the lines' twinkle and sprinkles: a magenta violet and a green, and how opaque the twinkle gets
-   * (soft; a sprinkle, which keeps off the text, goes nearly opaque).
+   * (soft; a sprinkle has SPRINKLE_ALPHA).
    */
   pigeon: readonly [RGB, RGB];
   pigeonAlpha: number;
@@ -212,7 +217,7 @@ function glowOf(l: Light, now: number, p: Palette): Glow {
   const age = Math.min(1, (now - l.born) / l.life);
   if (l.kind === "sprinkle") {
     const green = smoothstep(0.3, 0.45, age) - smoothstep(0.55, 0.7, age);
-    // Full strength for most of its life, nearly opaque: a jewel of a hexagon (it keeps off the text).
+    // Full strength for most of its life, and soft even then (SPRINKLE_ALPHA).
     return {
       x: l.x,
       y: l.y,
@@ -220,7 +225,7 @@ function glowOf(l: Light, now: number, p: Palette): Glow {
       power: Math.min(1, Math.sin(Math.PI * age) ** 0.6 * 1.3),
       ring: 0,
       rgb: mixRgb(p.pigeon[0], p.pigeon[1], green),
-      alpha: Math.min(1, p.pigeonAlpha + 0.55),
+      alpha: SPRINKLE_ALPHA,
     };
   }
   const power = age < 0.12 ? age / 0.12 : (1 - (age - 0.12) / 0.88) ** 1.6;
