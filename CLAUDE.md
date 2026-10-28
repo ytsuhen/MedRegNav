@@ -73,3 +73,5 @@ docs/           SPEC, ARCHITECTURE, DECISIONS, screens/
 - Chromium у WSL без sudo: новіші збірки Playwright розпаковуються в `chrome-linux64` (e2e шукає обидві теки), а
   бракує `libnss3`/`libnspr4` — їх можна витягти `apt-get download` + `dpkg -x` у локальну теку й задати
   `LD_LIBRARY_PATH`.
+- Рух хвиль в e2e міряти лише на годиннику сторінки (`open(…, { clock: true })` і `tick` у
+  `apps/web/e2e/design.e2e.ts`). На реальному часі під навантаженням кадри розходяться, і тести руху падають.
