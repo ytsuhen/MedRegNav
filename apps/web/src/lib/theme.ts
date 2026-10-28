@@ -1,7 +1,8 @@
-// The colour scheme: the system's until the reader picks light or dark with the masthead's switch, then theirs,
-// remembered in this browser (not in the link: it is how the reader likes to look at the page, not what they described).
-// The choice sits on the root as `data-theme`, where the stylesheet's light-dark() tokens and the sea's water read it.
-import { useEffect, useState } from "react";
+// How the page looks, as the reader likes it, remembered in this browser (not in the link: it is not what they
+// described): the colour scheme — the system's until they pick light or dark with the masthead's switch — and the
+// hexagon waves, on unless they pick the plain look. The choices sit on the root as `data-theme` and `data-waves`,
+// where the stylesheet's light-dark() tokens, the sea's water and the waves read them.
+import { useEffect, useState, useSyncExternalStore } from "react";
 
 export type Theme = "light" | "dark";
 
@@ -33,6 +34,44 @@ export function isDark(): boolean {
 export function applyStoredTheme(): void {
   const theme = storedTheme();
   if (theme) document.documentElement.dataset.theme = theme;
+  if (storedWaves() === false) document.documentElement.dataset.waves = "off";
+}
+
+const WAVES = "mrn.waves";
+
+/** The reader's choice of the waves, if they made one. */
+export function storedWaves(): boolean | null {
+  try {
+    const value = window.localStorage.getItem(WAVES);
+    return value === "on" ? true : value === "off" ? false : null;
+  } catch {
+    return null;
+  }
+}
+
+/** Are the waves on: off only by the reader's choice of the plain look. */
+export function wavesOn(): boolean {
+  return document.documentElement.dataset.waves !== "off";
+}
+
+const watchWaves = (change: () => void) => {
+  const watch = new MutationObserver(change);
+  watch.observe(document.documentElement, { attributes: true, attributeFilter: ["data-waves"] });
+  return () => watch.disconnect();
+};
+
+/** Whether the waves are on, and a way to turn them on or off (remembered); every user of it follows the root. */
+export function useWaves(): [boolean, (on: boolean) => void] {
+  const on = useSyncExternalStore(watchWaves, wavesOn, () => true);
+  const choose = (next: boolean) => {
+    document.documentElement.dataset.waves = next ? "on" : "off";
+    try {
+      window.localStorage.setItem(WAVES, next ? "on" : "off");
+    } catch {
+      // private mode: the choice lasts until the page is closed
+    }
+  };
+  return [on, choose];
 }
 
 /** The scheme the page shows, and a way to choose one (remembered). Until a choice, it follows the system. */

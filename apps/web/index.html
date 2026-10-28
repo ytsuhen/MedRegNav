@@ -14,10 +14,11 @@
     />
     <title>Навігатор регуляторики медвиробів</title>
     <script>
-      // The reader's light or dark (lib/theme.ts), before the first paint: the app's bundle comes later.
+      // The reader's light or dark and plain look (lib/theme.ts), before the first paint: the app's bundle comes later.
       try {
         const theme = localStorage.getItem("mrn.theme");
         if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
+        if (localStorage.getItem("mrn.waves") === "off") document.documentElement.dataset.waves = "off";
       } catch {
         // no storage: the system's scheme
       }

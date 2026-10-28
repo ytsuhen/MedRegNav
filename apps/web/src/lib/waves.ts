@@ -1,13 +1,14 @@
 // Hexagon waves (DECISIONS U12): fields of small hexagons whose brightness follows ripples of smooth value noise under
 // slower drifting gusts, as in the author's First Visit and CQL demos. Two kinds of water:
 // - the sea under everything below the masthead: calm, light and shallow in the light scheme, deep in the dark one. It
-//   turns only right round the device in the middle of the map, in a slow whirlpool, and from the device little pigeon
-//   wavelets glide slowly along the lines to the branches and on, fainter, from the open branch to its requirements:
-//   pairs of crests in the colours of a pigeon's neck, a magenta violet and a green. The water scrolls with the page;
+//   turns only right round the device in the middle of the map, in a slow whirlpool, and the lines from the device to
+//   the branches, and on, fainter, from the open branch to its requirements, twinkle softly where they lie: here and
+//   there a few hexagons along a line take a pigeon's colours, a magenta violet or a green, and fade, nothing running
+//   along. The water scrolls with the page;
 // - the river behind the masthead: slow ripples drawn out along a current that carries them left to right, sprinkled
 //   here and there, away from the text, with a pigeon hexagon whose colour shifts very slowly.
 // An action casts a short light on the field around where it happened, as a decision lights the hexagons round itself
-// in the CQL demo's chat. Lights, wavelets and sprinkles are feedback and ornament: they carry no meaning.
+// in the CQL demo's chat. Lights, the lines' twinkle and sprinkles are feedback and ornament: they carry no meaning.
 // Drawn on the graphics card (WebGL2, one instanced draw call a frame). Without a real graphics card the river goes on
 // a 2D canvas whose frame rate backs off to a tenth of the page's time, and the sea is drawn once and stands still.
 // Idle while off screen or in a hidden tab; one static frame and no light when reduced motion is requested.
@@ -18,7 +19,7 @@
 const R = 7;
 const STEP_X = Math.sqrt(3) * R;
 const STEP_Y = 1.5 * R;
-/** The most lights a frame draws: the bursts of actions and the river's sprinkles (the wavelets come from a map). */
+/** The most lights a frame draws: the bursts of actions and the river's sprinkles (the lines' twinkle has its map). */
 const MAX_LIGHTS = 16;
 /** How long a light cast by an action lasts (ms). */
 const BURST_MS = 1500;
@@ -26,23 +27,24 @@ const BURST_MS = 1500;
 const WHIRL_SPEED = (2 * Math.PI) / 45;
 const WHIRL_EDGE = 80;
 /**
- * The wavelets: every 10–14 s each line from the device to a branch sends a pair of crests out, at this speed (px/s), the
- * crests this far apart and reaching about this far either side of the line (px). From an open branch they carry on to
- * its requirements as one crest, this much fainter.
+ * The lines' twinkle: about this far either side of a line (px); a hexagon's spark, a noise this fine (per px) changing
+ * this fast (per s), lit where it passes these levels. A lit hexagon takes the pigeon's own colour; how soft the
+ * twinkle is lies in how rare its sparks are and how opaque: at most this far toward the pigeon's opacity. A line to
+ * requirements has this strength: toward that much of the opacity, its sparks beginning higher by the rest of it
+ * times TWINKLE_RARER, so fewer.
  */
-const WAVE_SPEED = 16;
-const WAVE_EVERY = 10;
-const WAVE_LENGTH = 20;
 const WAVE_HALF = 15;
-const WAVE_CRESTS = 2;
-const WAVE_ONWARD = 0.6;
-/** The most lines that carry wavelets (six to the branches, the rest on to requirements) and the cell of their map (px). */
+const TWINKLE_SCALE = 0.09;
+const TWINKLE_RATE = 0.25;
+const TWINKLE_LEVELS = [0.6, 0.86] as const;
+const TWINKLE_STRENGTH = 0.6;
+const TWINKLE_RARER = 0.25;
+const WAVE_ONWARD = 0.8;
+/** The most lines that twinkle (six to the branches, the rest on to requirements) and the cell of their map (px). */
 const MAX_LINES = 32;
 const WAVE_CELL = 4;
 /** How far along a line the wave map keeps (px): four to a step of its green channel. */
 const WAVE_REACH = 1020;
-/** The crest's way across the branch, from the line that comes in to the lines that go on (s). */
-const WAVE_ACROSS = 0.8;
 /** A pigeon sprinkle on the river: a new one every 1.6–2.8 s, each shifting its colour for 10–14 s (ms). */
 const SPRINKLE_EVERY = [1600, 2800] as const;
 const SPRINKLE_LIFE = [10000, 14000] as const;
@@ -63,8 +65,8 @@ export interface Palette {
   violet: RGB;
   teal: RGB;
   /**
-   * A pigeon's neck for the wavelets and sprinkles: a magenta violet and a green, and how opaque the wavelets get (soft;
-   * a sprinkle, which keeps off the text, goes nearly opaque).
+   * A pigeon's neck for the lines' twinkle and sprinkles: a magenta violet and a green, and how opaque the twinkle gets
+   * (soft; a sprinkle, which keeps off the text, goes nearly opaque).
    */
   pigeon: readonly [RGB, RGB];
   pigeonAlpha: number;
@@ -72,7 +74,7 @@ export interface Palette {
   name: string;
 }
 
-/** The deep sea (the CQL demo's): the masthead's river in both schemes, the page's sea in the dark one. */
+/** The deep sea (the CQL demo's): the masthead's river in both schemes; as DEEP_SEA, the page's sea in the dark one. */
 export const DEEP: Palette = {
   base: [7, 89, 74],
   crest: [63, 181, 154],
@@ -84,9 +86,15 @@ export const DEEP: Palette = {
     [205, 118, 255],
     [96, 232, 146],
   ],
-  pigeonAlpha: 0.5,
+  pigeonAlpha: 0.4,
   name: "deep",
 };
+
+/**
+ * The page's sea in the dark scheme: the deep water, its lines twinkling in a violet with more red in it than the
+ * river's sprinkles, since the dark teal page under a faint violet pulls it towards blue.
+ */
+export const DEEP_SEA: Palette = { ...DEEP, pigeon: [[226, 104, 255], DEEP.pigeon[1]] };
 
 /** Shallow water on the light page: pale teal hexagons over the paper, quieter than the deep sea. */
 export const SHALLOW: Palette = {
@@ -100,7 +108,7 @@ export const SHALLOW: Palette = {
     [136, 44, 214],
     [8, 128, 66],
   ],
-  pigeonAlpha: 0.55,
+  pigeonAlpha: 0.45,
   name: "shallow",
 };
 
@@ -149,7 +157,7 @@ export interface Geometry {
   /** The device the whirlpool turns round: its centre and half-diagonal. */
   whirl: { x: number; y: number; r: number } | null;
   /**
-   * The lines the wavelets run along, as x, y pairs outwards: first those from the device, then those that carry one of
+   * The lines that twinkle, as x, y pairs outwards: first those from the device, then those that carry one of
    * them on (`from`: its index), from a branch to its requirements.
    */
   lines: { points: number[]; from?: number }[];
@@ -212,7 +220,7 @@ function glowOf(l: Light, now: number, p: Palette): Glow {
       power: Math.min(1, Math.sin(Math.PI * age) ** 0.6 * 1.3),
       ring: 0,
       rgb: mixRgb(p.pigeon[0], p.pigeon[1], green),
-      alpha: Math.min(1, p.pigeonAlpha + 0.45),
+      alpha: Math.min(1, p.pigeonAlpha + 0.55),
     };
   }
   const power = age < 0.12 ? age / 0.12 : (1 - (age - 0.12) / 0.88) ** 1.6;
@@ -228,22 +236,20 @@ function glowOf(l: Light, now: number, p: Palette): Glow {
   };
 }
 
-/**
- * The lines the wavelets run along, as a small RGBA map over their bounding box, and per line its wave's family (the
- * line from the device it began on), where on the family's path it starts and ends, and how strong the wave is on it.
- */
+/** The lines that twinkle, as a small RGBA map over their bounding box, and per line its length and strength. */
 interface WaveMap {
   rect: [number, number, number, number];
   cols: number;
   rows: number;
   data: Uint8Array;
-  lines: { family: number; start: number; end: number; strength: number }[];
+  lines: { length: number; strength: number }[];
 }
 
 /**
  * Per cell: how near the nearest line is (red: 1 on it, fading over WAVE_HALF), how far along that line (green: px / 4,
- * up to WAVE_REACH) and which line (blue: its index × 8). Per line: where on its family's path from the device it
- * starts — a line that carries another on starts where that one ended, plus a short way across the branch.
+ * up to WAVE_REACH) and which line (blue: its index × 8). Per line: its length (the twinkle fades in from its start and
+ * out before its end) and strength: full on a line from the device, fainter on one that carries another on, from a
+ * branch to its requirements.
  */
 export function waveMap(lines: Geometry["lines"]): WaveMap | null {
   const kept = lines.slice(0, MAX_LINES);
@@ -258,22 +264,10 @@ export function waveMap(lines: Geometry["lines"]): WaveMap | null {
       );
     return out;
   });
-  // Families, starts and strengths: a line from the device begins its own family; one that carries another on joins it.
-  const info: WaveMap["lines"] = [];
-  let families = 0;
-  kept.forEach((l, i) => {
+  const info = kept.map((l, i) => {
     const steps = along[i] ?? [0];
-    const length = steps[steps.length - 1] ?? 0;
-    const parent = l.from !== undefined && l.from < i ? info[l.from] : undefined;
-    const before = l.from !== undefined ? shown[l.from] : undefined;
-    if (!parent || !before) {
-      info.push({ family: families++, start: 0, end: length, strength: 1 });
-      return;
-    }
-    // Under the branch's island the crest takes a short moment, not the island's whole width: it comes out on the far
-    // side right after it went in.
-    const start = parent.end + WAVE_ACROSS * WAVE_SPEED;
-    info.push({ family: parent.family, start, end: start + length, strength: WAVE_ONWARD });
+    const onward = l.from !== undefined && l.from < i;
+    return { length: steps[steps.length - 1] ?? 0, strength: onward ? WAVE_ONWARD : 1 };
   });
   const reach = 2 * WAVE_HALF;
   const boxes = shown.map((pts) => {
@@ -384,7 +378,7 @@ function noise(x: number, y: number, z: number): number {
   );
 }
 
-/** The water at a point of the page and a time (without the whirlpool and the wavelets: the 2D painter's). */
+/** The water at a point of the page and a time (without the whirlpool and the lines' twinkle: the 2D painter's). */
 function waterAt(m: Motion, px: number, py: number, t: number) {
   const n1 = noise(px * m.one.sx - t * m.one.drift, py * m.one.sy, t * m.one.change);
   const n2 = noise(px * m.two.sx - t * m.two.drift + 31.7, py * m.two.sy - 12.3, t * m.two.change);
@@ -422,7 +416,7 @@ const f = (n: number) => (Number.isInteger(n) ? n.toFixed(1) : String(n));
 /** Uniform vectors the vertex shader needs, with room to spare: lights (3 each), noise tables, wave lines, the rest. */
 const UNIFORM_VECTORS = 3 * MAX_LIGHTS + 128 + MAX_LINES + 24;
 
-/** The vertex shader: the water of `waterAt` (with the whirlpool and the wavelets when `map` is set), the lights. */
+/** The vertex shader: the water of `waterAt` (with the whirlpool and the lines' twinkle for a map), the lights. */
 function vertexShader(m: Motion, map: boolean): string {
   const octave = (o: Motion["one"], at: string, dx: string, dy: string) =>
     `vec3(${at}.x * ${f(o.sx)} - uT * ${f(o.drift)}${dx}, ${at}.y * ${f(o.sy)}${dy}, uT * ${f(o.change)})`;
@@ -448,7 +442,7 @@ ${
     ? `uniform vec4 uWhirl;
 uniform vec4 uWaveRect;
 uniform float uWaveOn;
-uniform vec4 uWaveLine[${MAX_LINES}];
+uniform vec2 uWaveLine[${MAX_LINES}];
 uniform sampler2D uWave;
 uniform vec3 uPigeonA;
 uniform vec3 uPigeonB;
@@ -489,7 +483,7 @@ ${
     line = clamp(int(W.b * 255.0 / 8.0 + 0.5), 0, ${MAX_LINES - 1});
   }
   // A calm whirlpool right round the device and nowhere else: the water there turns as one, fading out over a ring
-  // ${WHIRL_EDGE} px wide beyond the device's corners into the still sea, and quieter where the wavelets run.
+  // ${WHIRL_EDGE} px wide beyond the device's corners into the still sea, and quieter by the lines, where they twinkle.
   vec2 d = P - uWhirl.xy;
   float r = length(d);
   float s = uWhirl.w * (1.0 - smoothstep(uWhirl.z, uWhirl.z + ${f(WHIRL_EDGE)}, r)) * (1.0 - 0.7 * near);
@@ -513,31 +507,19 @@ ${
   float a = (0.1 + 0.2 * li + 0.22 * glint) * uDim;
 ${
   map
-    ? `  // The wavelets: every few seconds each line from the device sends ${WAVE_CRESTS} crests out (each family of lines out of step with
-  // the others), and the lines from an open branch carry them on to its requirements as one fainter crest (fainter in
-  // its opacity, the same pigeon colours). On each crest the pigeon's violet runs along the line and its green at the
-  // flanks, the other way round on the next crest.
+    ? `  // The lines twinkle where they lie, all along them and nothing running: a hexagon by a line now and then
+  // takes the pigeon's violet or green and fades over a few seconds. The pigeon's own colours as soon as it is lit;
+  // soft in how rare the sparks are and how opaque, softer still on the lines to requirements: a glimmer, not a flash.
   if (near > 0.02) {
-    vec4 Ln = uWaveLine[line];
-    float along = Ln.y + own;
-    float family = Ln.x;
-    float period = ${f(WAVE_EVERY)} + mod(family, 3.0) * 2.0;
-    float crests = Ln.w < 0.99 ? 1.0 : ${f(WAVE_CRESTS)};
-    // Where the crests are, by the time they took to come this far along the path: 0 at the first, 1 at the next…
-    float x = mod(uT + family * 2.3 - along / ${f(WAVE_SPEED)} + ${f(0.5 * (WAVE_LENGTH / WAVE_SPEED))}, period) * ${f(WAVE_SPEED / WAVE_LENGTH)} - 0.5;
-    if (x > -0.5 && x < crests - 0.5) {
-      float n = floor(x + 0.5);
-      // A broad crest (about a row of hexagons wide), so rows hand it on smoothly as it runs.
-      float crest = pow(max(0.0, cos(3.14159 * (x - n))), 2.0) * (1.0 - 0.3 * n);
-      // In from the line's start, out before its end; the map keeps the way along a line up to ${WAVE_REACH} px.
-      float ends = smoothstep(Ln.y, Ln.y + 14.0, along) * (1.0 - smoothstep(Ln.z - 22.0, Ln.z, along));
-      // Never all the way to the pigeon's colours: a soft shimmer over the water, not a flash.
-      float k = 0.85 * crest * ends * step(own, ${f(WAVE_REACH - 6)}) * smoothstep(0.05, 0.6, near);
-      float flank = 1.0 - smoothstep(0.35, 0.85, near);
-      float green = mod(n, 2.0) < 0.5 ? flank : 1.0 - flank;
-      rgb += (mix(uPigeonA, uPigeonB, smoothstep(0.15, 0.85, green)) - rgb) * k;
-      a += (uPigeonAlpha * Ln.w - a) * k;
-    }
+    vec2 Ln = uWaveLine[line];
+    float spark = 0.5 + 0.5 * noise(vec3(P.x * ${f(TWINKLE_SCALE)} + float(line) * 7.3, P.y * ${f(TWINKLE_SCALE)}, uT * ${f(TWINKLE_RATE)}));
+    // In from the line's start, out before its end; the map keeps the way along a line up to ${WAVE_REACH} px.
+    float ends = smoothstep(0.0, 12.0, own) * (1.0 - smoothstep(Ln.x - 16.0, Ln.x, own));
+    float lit = smoothstep(${f(TWINKLE_LEVELS[0])} + ${f(TWINKLE_RARER)} * (1.0 - Ln.y), ${f(TWINKLE_LEVELS[1])}, spark) * ends * step(own, ${f(WAVE_REACH - 6)}) * smoothstep(0.1, 0.7, near);
+    // Violet or green, one or the other: halfway between the two is a muddy blue-grey (the noise mostly sits near 0).
+    float hue = smoothstep(-0.06, 0.06, noise(vec3(P.x * 0.05 + 11.0, P.y * 0.05, uT * 0.12)));
+    rgb += (mix(uPigeonA, uPigeonB, hue) - rgb) * smoothstep(0.0, 0.3, lit);
+    a += max(0.0, uPigeonAlpha * Ln.y - a) * ${f(TWINKLE_STRENGTH)} * lit;
   }`
     : ""
 }
@@ -625,7 +607,7 @@ function webgl(canvas: HTMLCanvasElement, motion: Motion, map: boolean, anyGl: b
   const LA = new Float32Array(MAX_LIGHTS * 4);
   const LC = new Float32Array(MAX_LIGHTS * 4);
   const LO = new Float32Array(MAX_LIGHTS);
-  const waveLines = new Float32Array(MAX_LINES * 4);
+  const waveLines = new Float32Array(MAX_LINES * 2);
   const uploadWaves = () => {
     if (!map) return;
     g.activeTexture(g.TEXTURE0);
@@ -736,7 +718,7 @@ function webgl(canvas: HTMLCanvasElement, motion: Motion, map: boolean, anyGl: b
       waves = waveMap(next.lines);
       waveLines.fill(0);
       waves?.lines.forEach((l, i) => {
-        waveLines.set([l.family, l.start, l.end, l.strength], 4 * i);
+        waveLines.set([l.length, l.strength], 2 * i);
       });
       if (!lost) uploadWaves();
     },
@@ -754,9 +736,9 @@ function webgl(canvas: HTMLCanvasElement, motion: Motion, map: boolean, anyGl: b
         g.uniform4f(u.uWhirl ?? null, whirl?.x ?? 0, whirl?.y ?? 0, Math.max(1, whirl?.r ?? 1), whirl ? 1 : 0);
         const rect = waves?.rect ?? [0, 0, 1, 1];
         g.uniform4f(u.uWaveRect ?? null, rect[0], rect[1], rect[2], rect[3]);
-        // Still water has no wavelets (reduced motion, or the first frame before the clock runs).
+        // Still water does not twinkle (reduced motion, or the first frame before the clock runs).
         g.uniform1f(u.uWaveOn ?? null, waves && t > 0 ? 1 : 0);
-        g.uniform4fv(u.uWaveLine ?? null, waveLines);
+        g.uniform2fv(u.uWaveLine ?? null, waveLines);
         g.uniform3f(u.uPigeonA ?? null, ...palette.pigeon[0]);
         g.uniform3f(u.uPigeonB ?? null, ...palette.pigeon[1]);
         g.uniform1f(u.uPigeonAlpha ?? null, palette.pigeonAlpha);
@@ -855,7 +837,7 @@ export interface WavesOptions {
   palette?: () => Palette;
   /** The canvas's top-left corner in page coordinates, so the water scrolls with the page (default: it does not). */
   origin?: () => { x: number; y: number };
-  /** The map seen from the water (the sea): a whirlpool round the device, wavelets along the lines to the branches. */
+  /** The map seen from the water (the sea): a whirlpool round the device, the twinkle along the map's lines. */
   geometry?: () => Geometry;
   /** A cheap mark of where the map is, read each frame: when it changes, the geometry is read again at once. */
   geometryKey?: () => string;
@@ -926,7 +908,7 @@ export function startWaves(
     if (key === geometryRead) return;
     geometryRead = key;
     painter.geometry?.(g);
-    // For tests: where the whirlpool turns (page px: centre and radius) and how many lines carry wavelets.
+    // For tests: where the whirlpool turns (page px: centre and radius) and how many lines twinkle.
     canvas.dataset.whirlpool = g.whirl ? [g.whirl.x, g.whirl.y, g.whirl.r].map(Math.round).join(" ") : "off";
     // …from the device, and on from the open branch.
     const kept = g.lines.slice(0, MAX_LINES);

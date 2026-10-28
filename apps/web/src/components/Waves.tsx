@@ -9,11 +9,11 @@
 //   anywhere in the work area lights the water round it.
 // WebGL2 first; if the graphics card is missing or software-only, a fresh canvas (key) takes the 2D painter, because a
 // canvas once asked for WebGL cannot draw in 2D. `window.__wavesAnyGL = true` (as in the other demos) lets a test use a
-// software WebGL.
+// software WebGL. In the plain look (the masthead's «Без хвиль», lib/theme.ts) there is no canvas at all.
 import { useEffect, useRef, useState } from "react";
 import { addLightSink } from "../lib/sheen.ts";
-import { isDark } from "../lib/theme.ts";
-import { type Box, DEEP, type Geometry, type Renderer, SHALLOW, startWaves, type WaterKind } from "../lib/waves.ts";
+import { isDark, useWaves } from "../lib/theme.ts";
+import { type Box, DEEP_SEA, type Geometry, type Renderer, SHALLOW, startWaves, type WaterKind } from "../lib/waves.ts";
 
 /** The map seen from the water, in page coordinates. */
 function mapGeometry(): Geometry {
@@ -80,9 +80,11 @@ function textBoxes(host: Element, canvas: HTMLCanvasElement): Box[] {
 export function HexWaves({ water }: { water: WaterKind }) {
   const canvas = useRef<HTMLCanvasElement>(null);
   const [mode, setMode] = useState<Renderer | null>("webgl2");
+  // The plain look (lib/theme.ts): no canvas at all, nothing drawn.
+  const [on] = useWaves();
   useEffect(() => {
     const el = canvas.current;
-    if (!el || !mode) return;
+    if (!el || !mode || !on) return;
     const sea = water === "sea";
     // The river fills the masthead; the sea's canvas is its own size (the window's height).
     const host = sea ? el : el.parentElement;
@@ -98,7 +100,7 @@ export function HexWaves({ water }: { water: WaterKind }) {
             water,
             anyGl,
             // The sea follows the page's scheme: shallow and light, or deep.
-            palette: () => (isDark() ? DEEP : SHALLOW),
+            palette: () => (isDark() ? DEEP_SEA : SHALLOW),
             origin: () => {
               const box = el.getBoundingClientRect();
               return { x: box.left + window.scrollX, y: box.top + window.scrollY };
@@ -123,8 +125,8 @@ export function HexWaves({ water }: { water: WaterKind }) {
       remove();
       waves.stop();
     };
-  }, [mode, water]);
-  if (!mode) return null;
+  }, [mode, water, on]);
+  if (!mode || !on) return null;
   const testId = `waves-${water}`;
   return water === "sea" ? (
     <div className="page-sea" aria-hidden="true">

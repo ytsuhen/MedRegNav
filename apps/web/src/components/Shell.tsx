@@ -1,11 +1,11 @@
 // The frame around the work: the disclaimer banner (always visible), the masthead (a dark band with the river's
-// hexagon waves) with the video guide and the market, date, proposals, view, language and theme controls, the
+// hexagon waves) with the video guide and the market, language, date, proposals, view, theme and waves controls, the
 // placeholder for a market that is not modelled yet, and the footer with the sources' editions and licences.
 import { useEffect, useId, useMemo, useState } from "react";
 import { useSnapshot } from "../data.tsx";
 import { formatDate, fromDays, keyDates, sliderRange, toDays } from "../lib/dates.ts";
 import type { View } from "../lib/route.ts";
-import { useTheme } from "../lib/theme.ts";
+import { useTheme, useWaves } from "../lib/theme.ts";
 import { useApp } from "../state.tsx";
 import { ExternalLink, Segmented } from "./ui.tsx";
 import { VideoGuide } from "./VideoGuide.tsx";
@@ -160,6 +160,16 @@ export function Masthead({ view }: { view: View }) {
           ]}
           onChange={(market) => dispatch({ type: "market", market })}
         />
+        <Segmented
+          legend={t("lang.legend")}
+          testId="lang"
+          value={state.lang}
+          options={[
+            { value: "uk", label: t("lang.uk") },
+            { value: "en", label: t("lang.en") },
+          ]}
+          onChange={(lang) => dispatch({ type: "lang", lang })}
+        />
         {state.market === "EU" ? <AsOfSlider /> : null}
         {state.market === "EU" ? <ProposalsToggle /> : null}
         {state.market === "EU" ? (
@@ -174,19 +184,28 @@ export function Masthead({ view }: { view: View }) {
             onChange={(v) => dispatch({ type: "view", view: v })}
           />
         ) : null}
-        <Segmented
-          legend={t("lang.legend")}
-          testId="lang"
-          value={state.lang}
-          options={[
-            { value: "uk", label: t("lang.uk") },
-            { value: "en", label: t("lang.en") },
-          ]}
-          onChange={(lang) => dispatch({ type: "lang", lang })}
-        />
         <ThemeSwitch />
+        <WavesSwitch />
       </div>
     </header>
+  );
+}
+
+/** The hexagon waves or the plain look, with either theme (lib/theme.ts). */
+function WavesSwitch() {
+  const { t } = useApp();
+  const [on, setOn] = useWaves();
+  return (
+    <Segmented
+      legend={t("waves.legend")}
+      testId="waves"
+      value={on ? "on" : "off"}
+      options={[
+        { value: "on", label: t("waves.on") },
+        { value: "off", label: t("waves.off") },
+      ]}
+      onChange={(v) => setOn(v === "on")}
+    />
   );
 }
 

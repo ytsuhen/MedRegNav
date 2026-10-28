@@ -1,6 +1,6 @@
-// The sea's map of the map's lines (lib/waves.ts): a wave that reaches a branch carries on along the lines from it,
-// fainter and right after; each line keeps its own way along, so a long line is not cut short; a drag of the whole
-// map moves the map of the lines instead of building it again.
+// The sea's map of the map's lines (lib/waves.ts), along which the water twinkles: the lines from a branch to its
+// requirements carry on the line to that branch, fainter; each line keeps its own way along, so a long line is not cut
+// short; a drag of the whole map moves the map of the lines instead of building it again.
 import { describe, expect, it } from "vitest";
 import { movedBy, waveMap } from "../src/lib/waves.ts";
 
@@ -8,21 +8,18 @@ describe("the sea's map of the lines", () => {
   const toBranch = { points: [0, 0, 50, 0, 100, 0] };
   const toRequirement = { points: [120, 0, 170, 0, 220, 0], from: 0 };
 
-  it("carries a wave on from the line to a branch along the lines from it, fainter and right after", () => {
+  it("carries the line to a branch on along the lines from it, fainter", () => {
     const map = waveMap([toBranch, toRequirement]);
     const [root, onward] = map?.lines ?? [];
-    expect(root).toEqual({ family: 0, start: 0, end: 100, strength: 1 });
-    // The same family, starting where the line to the branch ends, plus well under a second across it.
-    expect(onward?.family).toBe(0);
+    expect(root).toEqual({ length: 100, strength: 1 });
+    expect(onward?.length).toBeCloseTo(100);
     expect(onward?.strength).toBeLessThan(1);
-    expect(onward?.start).toBeGreaterThan(100);
-    expect(onward?.start).toBeLessThan(100 + 16);
-    expect((onward?.end ?? 0) - (onward?.start ?? 0)).toBeCloseTo(100);
+    expect(onward?.strength).toBeGreaterThan(0);
   });
 
-  it("gives each line from the device its own family", () => {
+  it("keeps every line from the device at full strength", () => {
     const map = waveMap([toBranch, { points: [0, 40, 100, 40] }, toRequirement]);
-    expect(map?.lines.map((l) => l.family)).toEqual([0, 1, 0]);
+    expect(map?.lines.map((l) => l.strength === 1)).toEqual([true, true, false]);
   });
 
   it("keeps a long line's way along to its end", () => {
