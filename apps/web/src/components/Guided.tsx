@@ -290,29 +290,33 @@ function Summary({ screen }: { screen: Screen }) {
             <section key={act.source} className="guided-act">
               <h4 lang="en">{act.title}</h4>
               <ul>
-                {act.articles.map((article) => (
-                  <li key={article.section}>
-                    <span className="guided-ref" lang="en">
-                      {article.ref}
-                    </span>
-                    <ul>
-                      {article.items.map((item) => (
-                        <li key={item.id} data-timing={item.timing}>
-                          {tx(item.title, state.lang)}{" "}
-                          <span className="guided-date">
-                            (
-                            {item.timing === "upcoming"
-                              ? t("timing.upcoming", { date: date(item.from) })
-                              : item.timing === "expired" && item.until
-                                ? t("timing.expired", { date: date(item.until) })
-                                : t("timing.in-force", { date: date(item.from) })}
-                            )
-                          </span>
-                        </li>
+                {act.articles.map((article) => {
+                  // The article's requirements, one line per date: "in force since …: A; B".
+                  const when = (item: (typeof article.items)[number]) =>
+                    item.timing === "upcoming"
+                      ? t("timing.upcoming", { date: date(item.from) })
+                      : item.timing === "expired" && item.until
+                        ? t("timing.expired", { date: date(item.until) })
+                        : t("timing.in-force", { date: date(item.from) });
+                  const lines = new Map<string, { timing: string; titles: string[] }>();
+                  for (const item of article.items) {
+                    const line = lines.get(when(item)) ?? { timing: item.timing, titles: [] };
+                    line.titles.push(tx(item.title, state.lang));
+                    lines.set(when(item), line);
+                  }
+                  return (
+                    <li key={article.section}>
+                      <span className="guided-ref" lang="en">
+                        {article.ref}
+                      </span>
+                      {[...lines].map(([words, line]) => (
+                        <p key={words} className="guided-items" data-timing={line.timing}>
+                          <span className="guided-date">{words}:</span> {line.titles.join("; ")}
+                        </p>
                       ))}
-                    </ul>
-                  </li>
-                ))}
+                    </li>
+                  );
+                })}
               </ul>
             </section>
           ))}

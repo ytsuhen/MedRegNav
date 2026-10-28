@@ -1690,9 +1690,17 @@
     font-family: var(--font-law);
     font-style: italic;
   }
+  .guided-items {
+    margin: 1px 0 0;
+  }
   .guided-date {
     font-size: 13.5px;
     color: var(--color-graphite);
+  }
+  /* From a later date: dotted, as on the map (U1). */
+  .guided-items[data-timing="upcoming"] .guided-date {
+    text-decoration: underline dotted;
+    text-underline-offset: 3px;
   }
 
   /* ── checklist ─────────────────────────────────────────────────────────── */

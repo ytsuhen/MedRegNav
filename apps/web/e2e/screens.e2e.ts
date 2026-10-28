@@ -1,5 +1,5 @@
 // The README's screenshots, taken from the static build (Ukrainian unless noted, 1440 × 900 unless noted, as of
-// 21 Oct 2026).
+// 21 Oct 2026), in the look of DECISIONS U12, with the guided run of U13.
 // Opt-in, because it writes files:
 //   MRN_DOCS_SCREENS=docs/screens pnpm e2e apps/web/e2e/screens.e2e.ts
 import { mkdirSync, mkdtempSync, rmSync } from "node:fs";
@@ -18,6 +18,10 @@ const AI_PROFILE =
 // IIa under Rule 11 (decision information, no serious impact); I under COM(2025) 1023 (non-serious, informs).
 const INFORMS =
   "p=isSoftware.y_medicalPurpose.y_actsOnData.y_individualPatients.y_drivesDevice.n_decisionInfo.y_decisionImpact.other_monitorsPhysiological.n_imdrfSituation.non-serious_imdrfSignificance.inform_clinicalBenefitOutput.y_manufacturerOutsideEu.n_isAiSystem.n";
+// The guided run on the heartbeat app (DECISIONS U13): its description, and the answers given on the way to the end.
+const HEARTBEAT_RUN =
+  "x=heartbeat-app&gt=isSoftware.y_medicalPurpose.y_actsOnData.y_individualPatients.y_drivesDevice.n_decisionInfo.y_decisionImpact.serious-or-surgery_monitorsPhysiological.n_imdrfSituation.critical_imdrfSignificance.drive";
+const GIVEN = "ga=isAiSystem.y_aiRole.device_manufacturerOutsideEu.n_interactsWithPersons.n";
 
 describe.skipIf(!out)("README screenshots", () => {
   let dir = "";
@@ -110,5 +114,21 @@ describe.skipIf(!out)("README screenshots", () => {
     await page.locator('[data-testid=quote][data-verified="true"]').first().waitFor({ state: "attached" });
     await shot(page, "07-dark-en");
     await page.context().close();
+  });
+
+  it("the guided run: a step on the map, the summary, and a step on a phone", async () => {
+    // Step 7 of the heartbeat app: "drives a device: no" settles class IIb; the card quotes Annex VIII 3.3.
+    const step = await open(`${HEARTBEAT_RUN}&${DATE}&g=7`);
+    await step.locator('[data-testid=guided] [data-testid=quote][data-verified="true"]').waitFor({ state: "attached" });
+    await shot(step, "09-guided-step");
+    await step.context().close();
+    const summary = await open(`${HEARTBEAT_RUN}&${GIVEN}&${DATE}&g=99`, { height: 1500 });
+    await summary.getByTestId("guided-acts").waitFor();
+    await shot(summary, "10-guided-summary");
+    await summary.context().close();
+    const phone = await open(`${HEARTBEAT_RUN}&${DATE}&g=6&v=checklist`, { width: 390, height: 844 });
+    await phone.getByTestId("guided").evaluate((card) => window.scrollTo(0, (card as HTMLElement).offsetTop - 12));
+    await shot(phone, "11-guided-phone");
+    await phone.context().close();
   });
 });
