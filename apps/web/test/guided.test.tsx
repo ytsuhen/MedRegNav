@@ -97,7 +97,10 @@ describe("the guided run in the app", () => {
     window.localStorage.clear();
   });
 
-  it("plays a step every four seconds and waits at a question the description leaves open", async () => {
+  // A run plays through two dozen renders of the whole app: room for a slower machine (CI took 5.2 s).
+  it("plays a step every four seconds and waits at a question the description leaves open", {
+    timeout: 30_000,
+  }, async () => {
     renderApp({ example: "heartbeat-app", profile: heartbeat, view: "checklist", selection: null });
     await act(async () => fireEvent.click(screen.getByTestId("guided-start")));
     expect(position()).toBe("Початок");
@@ -117,7 +120,9 @@ describe("the guided run in the app", () => {
     expect(position()).not.toBe(waiting);
   });
 
-  it("takes an answer from a chip into the run and keeps the description when the run stops", async () => {
+  it("takes an answer from a chip into the run and keeps the description when the run stops", {
+    timeout: 30_000,
+  }, async () => {
     renderApp({ example: "heartbeat-app", profile: heartbeat, view: "checklist", selection: null });
     await act(async () => fireEvent.click(screen.getByTestId("guided-start")));
     await act(async () => fireEvent.click(screen.getByTestId("guided-play")));
