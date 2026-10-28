@@ -92,10 +92,16 @@ describe("the guided run in Chromium", () => {
     const page = await open(`x=heartbeat-app&${DATE}`);
     await start(page);
     expect(await card(page).getByTestId("guided-blank").getAttribute("aria-live")).toBe("polite");
-    // Started with a press, the card comes to the top of the window, with the map right under it.
-    const top = await card(page).evaluate((el) => el.getBoundingClientRect().top);
-    expect(top).toBeGreaterThanOrEqual(0);
-    expect(top).toBeLessThan(20);
+    // Started with a press, the card comes to the top of the window (as far as the page scrolls), the map under it.
+    const atTop = () =>
+      card(page).evaluate((el) => {
+        const top = el.getBoundingClientRect().top;
+        const end = document.documentElement.scrollHeight - window.innerHeight;
+        return (
+          window.scrollY > 0 && top >= 0 && top < window.innerHeight / 3 && (top < 20 || window.scrollY >= end - 1)
+        );
+      });
+    await expect.poll(atTop).toBe(true);
     expect(await page.getByTestId("ladder").getAttribute("aria-label")).toBe(
       "Можливі класи: I, IIa, IIb, III. Відкрити пояснення",
     );
@@ -169,6 +175,28 @@ describe("the guided run in Chromium", () => {
     expect(await again.getByTestId("guided-play").getAttribute("aria-pressed")).toBe("false");
     expect(await again.evaluate(() => window.scrollY)).toBe(0);
     await again.context().close();
+    await page.context().close();
+  });
+
+  it("folds down to its one row and keeps going", async () => {
+    const page = await open(`x=heartbeat-app&${DATE}`);
+    await start(page);
+    const fold = card(page).getByTestId("guided-fold");
+    const body = card(page).locator("#guided-body");
+    const height = () => card(page).evaluate((el) => el.getBoundingClientRect().height);
+    const unfolded = await height();
+    await fold.click();
+    expect(await fold.getAttribute("aria-expanded")).toBe("false");
+    expect(await body.isVisible()).toBe(false);
+    expect(await height()).toBeLessThan(Math.min(unfolded, 60));
+    await card(page).getByTestId("guided-next").click();
+    expect(await position(page)).toMatch(/^Крок 1 з \d+$/);
+    // Folded, the card still opens at a question that waits for an answer, with the answers to pick from.
+    for (let i = 0; i < 30 && !(await position(page))?.includes("Чекає"); i++)
+      await card(page).getByTestId("guided-next").click();
+    expect(await position(page)).toContain("Чекає на вашу відповідь");
+    expect(await body.isVisible()).toBe(true);
+    expect(await card(page).getByTestId("guided-ask").isVisible()).toBe(true);
     await page.context().close();
   });
 

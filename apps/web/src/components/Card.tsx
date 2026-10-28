@@ -1,7 +1,8 @@
 // The margin note beside the map: for a requirement, how to comply (requirement → document or evidence → standard →
 // who → from when) with its legal basis quoted; for a rule result, what decided it; by default, the example the
 // device came from (quoted from the guidance, with how we read it) and how to use the map (its legend stands on the
-// map itself). The margin is an island over the sea (U12).
+// map itself). The margin is an island over the sea (U12), never taller than the room down to the work area's bottom.
+import { type RefObject, useEffect, useRef } from "react";
 import { type Screen, useScreen, useSnapshot } from "../data.tsx";
 import { formatDate } from "../lib/dates.ts";
 import type { LeafView } from "../lib/view.ts";
@@ -199,14 +200,55 @@ function DeviceCard({ screen }: { screen: Screen }) {
   );
 }
 
+/**
+ * Beside the map the card sticks under the window's top. On a short page scrolled to its end the work area's bottom
+ * comes up and would push the card up past its title, so the card is never taller than the room down to that bottom.
+ */
+function useRoom(card: RefObject<HTMLElement | null>, shown: boolean) {
+  useEffect(() => {
+    const el = card.current;
+    const space = el?.closest<HTMLElement>(".workspace");
+    if (!shown || !el || !space) return;
+    let frame = 0;
+    const fit = () => {
+      frame = 0;
+      // The sticky top (12 px) and the card's bottom margin (24 px).
+      const room = Math.round(space.getBoundingClientRect().bottom - 12 - 24);
+      el.style.setProperty("--card-room", `${Math.max(240, room)}px`);
+    };
+    const later = () => {
+      if (!frame) frame = requestAnimationFrame(fit);
+    };
+    fit();
+    window.addEventListener("scroll", later, { passive: true });
+    window.addEventListener("resize", later);
+    const sizing = typeof ResizeObserver === "undefined" ? null : new ResizeObserver(later);
+    sizing?.observe(space);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", later);
+      window.removeEventListener("resize", later);
+      sizing?.disconnect();
+    };
+  }, [card, shown]);
+}
+
 export function Card() {
   const screen = useScreen();
   const { state, t, select } = useApp();
+  const ref = useRef<HTMLElement>(null);
+  useRoom(ref, screen !== null);
   if (!screen) return null;
   const sel = state.selection;
   const sheet = sel !== null && sel.kind !== "device";
   return (
-    <aside className="card island" aria-label={t("card.label")} data-testid="card" data-sheet={sheet || undefined}>
+    <aside
+      ref={ref}
+      className="card island"
+      aria-label={t("card.label")}
+      data-testid="card"
+      data-sheet={sheet || undefined}
+    >
       {sheet ? (
         <button type="button" className="card-close" onClick={() => select(null)}>
           {t("card.close")}

@@ -203,9 +203,11 @@ const uk = {
   "guided.next": "Далі",
   "guided.play": "Відтворити",
   "guided.pause": "Пауза",
-  "guided.keys": "Клавіші: ← і → — кроки, пробіл — пауза",
+  "guided.space": "пробіл",
+  "guided.details": "Подробиці",
+  "guided.fold": "Сховати подробиці",
+  "guided.unfold": "Показати подробиці",
   "guided.waiting": "Чекає на вашу відповідь",
-  "guided.summary.heading": "Підсумок автопрогону",
   "guided.summary.lead":
     "{n, plural, one {# крок} few {# кроки} many {# кроків} other {# кроку}}: з опису — {target}, ваших відповідей — {given}, «не знаю» — {unknown}.",
   "guided.summary.results": "Результати правил",
@@ -215,6 +217,7 @@ const uk = {
   "guided.summary.acts.lead":
     "Вимоги, що застосовуються станом на {date}, за актом і статтею з їхніх цитат. Назви вимог — наші слова; текст статей — у картках вимог.",
   "guided.summary.acts.none": "Жодна вимога не застосовується.",
+  "guided.summary.articles": "{n, plural, one {# стаття} few {# статті} many {# статей} other {# статті}}",
   "guided.summary.again": "Почати знову",
 
   "example.heading": "Приклад із настанови",
@@ -476,9 +479,11 @@ const en: Record<MessageKey, string> = {
   "guided.next": "Next",
   "guided.play": "Play",
   "guided.pause": "Pause",
-  "guided.keys": "Keys: ← and → step, space pauses",
+  "guided.space": "space",
+  "guided.details": "Details",
+  "guided.fold": "Hide the details",
+  "guided.unfold": "Show the details",
   "guided.waiting": "Waiting for your answer",
-  "guided.summary.heading": "Guided run: summary",
   "guided.summary.lead":
     "{n, plural, one {# step} other {# steps}}: from the description {target}, your answers {given}, “don't know” {unknown}.",
   "guided.summary.results": "Rule results",
@@ -488,6 +493,7 @@ const en: Record<MessageKey, string> = {
   "guided.summary.acts.lead":
     "The requirements that apply as of {date}, by act and article from their quotes. The requirements' names are our words; the articles' text is in the requirements' cards.",
   "guided.summary.acts.none": "No requirement applies.",
+  "guided.summary.articles": "{n, plural, one {# article} other {# articles}}",
   "guided.summary.again": "Start again",
 
   "example.heading": "Example from the guidance",

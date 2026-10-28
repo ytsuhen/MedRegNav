@@ -3,8 +3,8 @@
 // layout needs no coordinates by hand; React Flow draws the nodes and edges and lets the map be dragged or pinched.
 // Ink is settled, pencil (dashed) waits for an answer, dotted applies from a later date, the highlighter links causes
 // and effects on hover; the legend stands on the map. The nodes are islands over the sea (U12), the lines lie on a thin
-// strip of paper; the device is marked for the sea to whirl round (`data-whirl`) and the lines for it to flow along
-// (`data-flow`).
+// strip of paper; the device is marked for the sea to whirl round (`data-whirl`), and the lines from it to the branches
+// for the sea's wavelets to run along (`data-wave`).
 import type { AttributeValue, DecisiveUnknown } from "@mrn/core";
 import {
   applyNodeChanges,
@@ -314,7 +314,16 @@ function LeafNode({ data }: NodeProps<LeafNodeT>) {
   );
 }
 
-function InkEdge({ sourceX, sourceY, targetX, targetY, sourcePosition, targetPosition, data }: EdgeProps<InkEdgeT>) {
+function InkEdge({
+  source,
+  sourceX,
+  sourceY,
+  targetX,
+  targetY,
+  sourcePosition,
+  targetPosition,
+  data,
+}: EdgeProps<InkEdgeT>) {
   const { state } = useApp();
   const [path] = getBezierPath({ sourceX, sourceY, sourcePosition, targetX, targetY, targetPosition, curvature: 0.4 });
   const marked = data ? isMarked(state.hover, data.target, data.support) : false;
@@ -327,7 +336,7 @@ function InkEdge({ sourceX, sourceY, targetX, targetY, sourcePosition, targetPos
     >
       <path d={path} className="ink-edge-casing" />
       {marked ? <path d={path} className="ink-edge-marker" /> : null}
-      <path d={path} className="ink-edge-line" data-flow />
+      <path d={path} className="ink-edge-line" data-wave={source === DEVICE_ID || undefined} />
     </g>
   );
 }

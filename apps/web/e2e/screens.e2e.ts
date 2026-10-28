@@ -55,6 +55,8 @@ describe.skipIf(!out)("README screenshots", () => {
     const page = await context.newPage();
     await page.goto(`${site.url}#${hash}`);
     await page.locator("[data-testid=ladder], [data-testid=checklist]").first().waitFor();
+    // Every font face in place (a Latin face loads later on a Ukrainian page, its text blank until then).
+    await page.evaluate(() => document.fonts.ready);
     await page.waitForTimeout(400);
     return page;
   }
@@ -118,18 +120,22 @@ describe.skipIf(!out)("README screenshots", () => {
 
   it("the guided run: a step on the map, the summary, and a step on a phone", async () => {
     // The card at the top of the window, as after a press on the run's button, with the map under it.
-    const toCard = (page: Page) =>
-      page
+    const toCard = async (page: Page) => {
+      await page
         .getByTestId("guided")
         .evaluate((card) => window.scrollTo(0, card.getBoundingClientRect().top + scrollY - 12));
-    // Step 7 of the heartbeat app: "drives a device: no" settles class IIb; the card quotes Annex VIII 3.3, unfolded.
+      // What the scroll brought into view, painted.
+      await page.waitForTimeout(300);
+    };
+    // Step 7 of the heartbeat app: "drives a device: no" settles class IIb; the card's quote of Annex VIII 3.3 folded,
+    // as the card opens.
     const step = await open(`${HEARTBEAT_RUN}&${DATE}&g=7`);
     await step.locator('[data-testid=guided] [data-testid=quote][data-verified="true"]').waitFor({ state: "attached" });
-    await step.locator(".guided-quote > summary").click();
     await toCard(step);
     await shot(step, "09-guided-step");
     await step.context().close();
-    const summary = await open(`${HEARTBEAT_RUN}&${GIVEN}&${DATE}&g=99`, { height: 1500 });
+    // The summary as it opens: each act folded to its name and how many articles.
+    const summary = await open(`${HEARTBEAT_RUN}&${GIVEN}&${DATE}&g=99`);
     await summary.getByTestId("guided-acts").waitFor();
     await toCard(summary);
     await shot(summary, "10-guided-summary");

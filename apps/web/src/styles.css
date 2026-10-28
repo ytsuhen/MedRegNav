@@ -265,10 +265,6 @@
     font: 600 15px var(--font-ui);
     cursor: pointer;
   }
-  .button-quiet {
-    background: none;
-    color: var(--color-accent);
-  }
   .button:disabled {
     border-color: var(--color-faint);
     background: none;
@@ -1172,12 +1168,14 @@
   }
 
   /* ── card (the margin note): an island beside the map ──────────────────── */
+  /* Its height never more than the room down to the work area's bottom (--card-room, Card.tsx): on a short page scrolled
+     to its end the sticky card is then not pushed up past its title. */
   .card {
     position: sticky;
     top: 12px;
     z-index: 1;
     align-self: start;
-    max-height: calc(100vh - 24px);
+    max-height: min(calc(100vh - 24px), var(--card-room, 100vh));
     overflow: auto;
     margin: 18px 20px 24px 0;
     padding: 20px 22px 32px;
@@ -1612,22 +1610,26 @@
     height: 11px;
     fill: currentColor;
   }
-  /* The run's card: an island between the description and the map; the page scrolls it to the top on start. */
+  /* The run's card: a small island between the description and the map (U13), one row of controls over the step; the
+     page scrolls it to the top on start. Folded, it is that row alone. */
   .guided {
-    margin: 18px 0 0;
-    padding: 12px 18px 12px;
+    margin: 14px 0 0;
+    padding: 8px 14px 10px;
     border: 1.5px solid var(--color-accent);
     scroll-margin-top: 12px;
+  }
+  .guided[data-folded] {
+    padding-bottom: 8px;
   }
   .guided-head {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 6px 16px;
+    gap: 6px 14px;
   }
   .guided-title {
     margin: 0;
-    font-size: 13px;
+    font-size: 12.5px;
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -1635,6 +1637,7 @@
   }
   .guided-position {
     margin: 0;
+    font-size: 14.5px;
     font-weight: 600;
     font-variant-numeric: tabular-nums;
   }
@@ -1644,28 +1647,84 @@
     color: var(--color-graphite);
   }
   .guided-track {
+    flex: 1 1 160px;
+    min-width: 120px;
     display: flex;
     gap: 3px;
-    margin: 10px 0 12px;
+  }
+  .guided-controls {
+    display: flex;
+    gap: 6px;
+  }
+  /* Round icon buttons: their names are their labels, their keys are in their tooltips. */
+  .guided-icon {
+    display: inline-grid;
+    place-items: center;
+    width: 30px;
+    height: 28px;
+    padding: 0;
+    border: 1.5px solid var(--color-accent);
+    border-radius: 999px;
+    background: var(--color-sheet);
+    color: var(--color-accent);
+    cursor: pointer;
+  }
+  .guided-icon svg {
+    width: 12px;
+    height: 12px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .guided-icon svg[data-fill] {
+    fill: currentColor;
+    stroke: none;
+  }
+  .guided-icon:hover {
+    background: var(--color-accent-soft);
+  }
+  .guided-primary,
+  .guided-primary:hover {
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+  }
+  .guided-primary:hover {
+    box-shadow: 0 0 0 2px var(--color-accent-soft);
+  }
+  .guided-icon:disabled,
+  .guided-icon[aria-disabled="true"] {
+    background: var(--color-sheet);
+    border-color: var(--color-faint);
+    color: var(--color-faint);
+    cursor: default;
+  }
+  .guided-fold {
+    border-color: transparent;
+    color: var(--color-graphite);
+  }
+  .guided-body {
+    margin-top: 8px;
   }
   /* The step in two columns: the question and its answer; what changed and what decided it (one column on phones). */
   .guided-cols {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 10px 26px;
+    gap: 6px 24px;
   }
   .guided-main:only-child {
     grid-column: 1 / -1;
   }
   .guided-side {
-    padding-left: 24px;
+    padding-left: 20px;
     border-left: 1px solid var(--color-rule);
   }
   .guided-quote {
-    margin-top: 4px;
+    margin-top: 2px;
   }
   .guided-quote summary {
-    font-size: 13.5px;
+    font-size: 13px;
     color: var(--color-graphite);
   }
   .guided-quote .quote {
@@ -1673,7 +1732,7 @@
   }
   .guided-seg {
     flex: 1;
-    height: 6px;
+    height: 5px;
     border-radius: 3px;
     background: var(--color-rule);
   }
@@ -1690,31 +1749,38 @@
   }
   .guided-question {
     margin: 0;
-    font-size: 17px;
+    font-size: 15.5px;
     font-weight: 600;
     line-height: 1.3;
   }
   .guided-answer {
-    margin: 6px 0 0;
+    margin: 3px 0 0;
+    font-size: 14.5px;
   }
   .guided-answer[data-source="pending"],
   .guided-answer[data-source="unknown"] {
     font-style: italic;
     color: var(--color-graphite);
   }
-  .guided-note {
-    margin: 6px 0 0;
+  .guided-lead {
+    margin: 0;
     font-size: 14.5px;
+  }
+  .guided-note {
+    margin: 4px 0 0;
+    font-size: 13.5px;
     color: var(--color-graphite);
   }
   .guided-section h3,
   .guided-decided h3 {
-    margin: 14px 0 4px;
-    font-size: 14.5px;
+    margin: 8px 0 2px;
+    font-size: 13px;
     font-weight: 600;
+    color: var(--color-graphite);
   }
   .guided-decided p {
     margin: 0;
+    font-size: 14px;
   }
   .guided-side > h3:first-child,
   .guided-side > :first-child > h3:first-child {
@@ -1725,15 +1791,15 @@
   .guided-unknown,
   .guided-rest {
     display: grid;
-    gap: 3px;
-    margin: 4px 0 0;
-    padding-left: 1.1rem;
-    font-size: 14.5px;
+    gap: 1px;
+    margin: 2px 0 0;
+    padding-left: 1rem;
+    font-size: 14px;
     list-style: disc;
   }
   .guided-none {
-    margin: 4px 0 0;
-    font-size: 14.5px;
+    margin: 2px 0 0;
+    font-size: 14px;
     font-style: italic;
     color: var(--color-graphite);
   }
@@ -1743,52 +1809,47 @@
     font-variation-settings: "opsz" 20;
   }
   .guided-rule-of {
-    font-size: 14px;
+    font-size: 13px;
     color: var(--color-graphite);
   }
   .guided-ask {
-    margin-top: 8px;
+    margin-top: 6px;
   }
   .guided-ask .answers {
-    margin: 6px 0 4px;
+    margin: 4px 0 2px;
   }
-  .guided-controls {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-left: auto;
+  /* The acts to comply with, each folded to its name and how many articles: the articles' lines open under it. */
+  .guided-act {
+    margin-top: 4px;
   }
-  .guided-controls .button {
-    margin-top: 0;
+  .guided-act summary {
+    font-size: 14.5px;
   }
-  .guided-keys {
-    margin: 8px 0 0;
-    font-size: 12.5px;
-    color: var(--color-graphite);
-  }
-  .guided-act h4 {
-    margin: 10px 0 2px;
-    font-size: 15px;
+  .guided-act-title {
     font-weight: 600;
   }
+  .guided-count {
+    font-size: 13px;
+    color: var(--color-graphite);
+  }
   .guided-act ul {
-    margin: 0;
+    margin: 2px 0 6px;
     padding-left: 1.1rem;
-    font-size: 14.5px;
+    font-size: 13.5px;
     list-style: disc;
   }
   .guided-act > ul > li {
-    margin-top: 3px;
+    margin-top: 2px;
   }
   .guided-ref {
     font-family: var(--font-law);
     font-style: italic;
   }
   .guided-items {
-    margin: 1px 0 0;
+    margin: 0;
   }
   .guided-date {
-    font-size: 13.5px;
+    font-size: 13px;
     color: var(--color-graphite);
   }
   /* From a later date: dotted, as on the map (U1). */
@@ -1967,13 +2028,13 @@
     margin-right: 16px;
   }
   .guided {
-    padding: 12px 14px;
+    padding: 8px 12px 10px;
   }
   .guided-cols {
     grid-template-columns: minmax(0, 1fr);
   }
   .guided-side {
-    padding: 10px 0 0;
+    padding: 6px 0 0;
     border-left: 0;
     border-top: 1px solid var(--color-rule);
   }

@@ -14,7 +14,7 @@ import {
   settledLeaves,
   stepChanges,
 } from "@mrn/core";
-import { type ReactNode, useEffect, useMemo, useRef } from "react";
+import { type ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import { type Screen, useSnapshot } from "../data.tsx";
 import { formatDate } from "../lib/dates.ts";
 import { actsOf, lastReachable, presentedRules, stepAt } from "../lib/guided.ts";
@@ -269,8 +269,7 @@ function Summary({ screen }: { screen: Screen }) {
   return (
     <div className="guided-cols" aria-live="polite" data-testid="guided-summary">
       <div className="guided-main">
-        <h3 className="guided-question">{t("guided.summary.heading")}</h3>
-        <p className="guided-note">
+        <p className="guided-lead">
           {t("guided.summary.lead", {
             n: g.run.steps.length,
             target: count("target"),
@@ -316,8 +315,13 @@ function Summary({ screen }: { screen: Screen }) {
         {acts.length === 0 ? <p className="guided-note">{t("guided.summary.acts.none")}</p> : null}
         <div className="guided-acts" data-testid="guided-acts">
           {acts.map((act) => (
-            <section key={act.source} className="guided-act">
-              <h4 lang="en">{act.title}</h4>
+            <details key={act.source} className="guided-act">
+              <summary>
+                <span className="guided-act-title" lang="en">
+                  {act.title}
+                </span>{" "}
+                <span className="guided-count">{t("guided.summary.articles", { n: act.articles.length })}</span>
+              </summary>
               <ul>
                 {act.articles.map((article) => {
                   // The article's requirements, one line per date: "in force since …: A; B".
@@ -347,7 +351,7 @@ function Summary({ screen }: { screen: Screen }) {
                   );
                 })}
               </ul>
-            </section>
+            </details>
           ))}
         </div>
       </section>
@@ -356,17 +360,43 @@ function Summary({ screen }: { screen: Screen }) {
 }
 
 /**
- * The run's card, between the description and the map: a head row (where the run is, the controls), the track, then
- * the step in two columns — the question and its answer; what changed and what decided it — or the blank sheet, or the
- * summary. When the run is started with a press, the page brings the card to the top, so the map shows right under it;
- * a link that opens the run leaves the page at its top, with the banner.
+ * The run's card, between the description and the map, kept small: one row with where the run is, its track, the
+ * controls (their keys in their tooltips) and a button that folds the card down to that row; under it the step in two
+ * columns — the question and its answer; what changed and what decided it — or the blank sheet, or the summary. Folded,
+ * the card still opens at a question that waits for an answer, and its row then says where the run is. When the run is
+ * started with a press, the page brings the card to the top, so the map shows right under it; a link that opens the run
+ * leaves the page at its top, with the banner.
  */
 export function GuidedCard({ screen }: { screen: Screen }) {
   const { state, t, dispatch } = useApp();
   const card = useRef<HTMLElement>(null);
+  const [folded, setFolded] = useState(false);
   useEffect(() => {
-    if (navigator.userActivation && !navigator.userActivation.isActive) return;
-    card.current?.scrollIntoView?.({ block: "start", behavior: reducedMotion() ? "auto" : "smooth" });
+    const el = card.current;
+    if (!el || (navigator.userActivation && !navigator.userActivation.isActive)) return;
+    el.scrollIntoView?.({ block: "start", behavior: reducedMotion() ? "auto" : "smooth" });
+    // The map under the card lays itself out a moment later and the page grows: once the scroll is over, bring the card
+    // up the rest of the way, unless the reader has scrolled meanwhile.
+    let moved = false;
+    const scrolled = () => {
+      moved = true;
+    };
+    // Keys that scroll the page (the arrows left and right and space work the run).
+    const keyed = (e: KeyboardEvent) => {
+      if (/^(PageUp|PageDown|Home|End|ArrowUp|ArrowDown)$/.test(e.key)) moved = true;
+    };
+    window.addEventListener("wheel", scrolled, { passive: true });
+    window.addEventListener("touchmove", scrolled, { passive: true });
+    window.addEventListener("keydown", keyed);
+    const settle = window.setTimeout(() => {
+      if (!moved && el.getBoundingClientRect().top > 24) el.scrollIntoView?.({ block: "start", behavior: "auto" });
+    }, 700);
+    return () => {
+      window.clearTimeout(settle);
+      window.removeEventListener("wheel", scrolled);
+      window.removeEventListener("touchmove", scrolled);
+      window.removeEventListener("keydown", keyed);
+    };
   }, []);
   const g = state.guided;
   if (!g) return null;
@@ -374,53 +404,90 @@ export function GuidedCard({ screen }: { screen: Screen }) {
   const reach = lastReachable(g.run);
   const step = stepAt(g.run, g.at);
   const waiting = step?.source === "pending";
+  const shown = !folded || waiting;
   const position = g.at === 0 ? t("guided.begin") : g.at > n ? t("guided.end") : t("guided.step", { k: g.at, n });
   const go = (at: number) => dispatch({ type: "guided-go", at });
   return (
-    <section ref={card} className="guided island" aria-labelledby="guided-heading" data-testid="guided" data-at={g.at}>
+    <section
+      ref={card}
+      className="guided island"
+      aria-labelledby="guided-heading"
+      data-testid="guided"
+      data-at={g.at}
+      data-folded={shown ? undefined : true}
+    >
       <div className="guided-head">
         <h2 id="guided-heading" className="guided-title">
           {t("guided.heading")}
         </h2>
-        <p className="guided-position" data-testid="guided-position">
+        <p className="guided-position" data-testid="guided-position" aria-live={folded ? "polite" : undefined}>
           {position}
           {waiting ? <span className="guided-waiting"> · {t("guided.waiting")}</span> : null}
         </p>
-        <GuidedControls go={go} reach={reach} />
-      </div>
-      <div
-        className="guided-track"
-        role="progressbar"
-        aria-label={t("guided.progress")}
-        aria-valuemin={0}
-        aria-valuemax={n + 1}
-        aria-valuenow={g.at}
-        aria-valuetext={position}
-      >
-        {Array.from({ length: n + 2 }, (_, i) => {
-          const s = stepAt(g.run, i);
-          const kind = i < g.at ? "done" : i === g.at ? "current" : i > reach ? "later" : "next";
-          const key = i === 0 ? "start" : i > n ? "end" : s?.attr || "rest";
-          return <span key={key} className="guided-seg" data-state={kind} data-source={s?.source} />;
-        })}
-      </div>
-      {g.at === 0 ? (
-        <div className="guided-cols" aria-live="polite" data-testid="guided-blank">
-          <div className="guided-main">
-            <h3 className="guided-question">{t("guided.blank.heading")}</h3>
-            <p className="guided-note">{t("guided.blank.body")}</p>
-          </div>
+        <div
+          className="guided-track"
+          role="progressbar"
+          aria-label={t("guided.progress")}
+          aria-valuemin={0}
+          aria-valuemax={n + 1}
+          aria-valuenow={g.at}
+          aria-valuetext={position}
+        >
+          {Array.from({ length: n + 2 }, (_, i) => {
+            const s = stepAt(g.run, i);
+            const kind = i < g.at ? "done" : i === g.at ? "current" : i > reach ? "later" : "next";
+            const key = i === 0 ? "start" : i > n ? "end" : s?.attr || "rest";
+            return <span key={key} className="guided-seg" data-state={kind} data-source={s?.source} />;
+          })}
         </div>
-      ) : g.at > n ? (
-        <Summary screen={screen} />
-      ) : step ? (
-        <StepView key={g.at} step={step} screen={screen} />
-      ) : null}
-      <p className="guided-keys">{t("guided.keys")}</p>
+        <GuidedControls go={go} reach={reach} />
+        <button
+          type="button"
+          className="guided-icon guided-fold"
+          data-testid="guided-fold"
+          aria-expanded={shown}
+          aria-controls="guided-body"
+          aria-label={t("guided.details")}
+          title={t(shown ? "guided.fold" : "guided.unfold")}
+          // Not `disabled`: the button may hold the focus when a question opens the card.
+          aria-disabled={waiting || undefined}
+          onClick={() => {
+            if (!waiting) setFolded(!folded);
+          }}
+        >
+          <svg viewBox="0 0 12 12" aria-hidden="true">
+            <path d={shown ? "M2.5 7.5 6 4l3.5 3.5" : "M2.5 4.5 6 8l3.5-3.5"} />
+          </svg>
+        </button>
+      </div>
+      <div id="guided-body" className="guided-body" hidden={!shown}>
+        {g.at === 0 ? (
+          <div className="guided-cols" aria-live="polite" data-testid="guided-blank">
+            <div className="guided-main">
+              <h3 className="guided-question">{t("guided.blank.heading")}</h3>
+              <p className="guided-note">{t("guided.blank.body")}</p>
+            </div>
+          </div>
+        ) : g.at > n ? (
+          <Summary screen={screen} />
+        ) : step ? (
+          <StepView key={g.at} step={step} screen={screen} />
+        ) : null}
+      </div>
     </section>
   );
 }
 
+/** An icon of the controls: a stroke, or (`fill`) a solid shape. */
+function Icon({ d, fill = false }: { d: string; fill?: boolean }) {
+  return (
+    <svg viewBox="0 0 12 12" aria-hidden="true" data-fill={fill || undefined}>
+      <path d={d} />
+    </svg>
+  );
+}
+
+/** Back, play or pause (start again at the end), next: icons, with their names and keys in their tooltips. */
 function GuidedControls({ go, reach }: { go: (at: number) => void; reach: number }) {
   const { state, t, dispatch } = useApp();
   const g = state.guided;
@@ -430,44 +497,55 @@ function GuidedControls({ go, reach }: { go: (at: number) => void; reach: number
     <div className="guided-controls">
       <button
         type="button"
-        className="button button-quiet"
+        className="guided-icon"
         data-testid="guided-back"
         disabled={g.at === 0}
+        aria-label={t("guided.back")}
+        aria-keyshortcuts="ArrowLeft"
+        title={`${t("guided.back")} (←)`}
         onClick={() => go(g.at - 1)}
       >
-        ← {t("guided.back")}
+        <Icon d="M7.5 2.5 4 6l3.5 3.5" />
       </button>
       {g.at > n ? (
         <button
           type="button"
-          className="button"
+          className="guided-icon guided-primary"
           data-testid="guided-again"
+          aria-label={t("guided.summary.again")}
+          title={t("guided.summary.again")}
           onClick={() => {
             go(0);
             dispatch({ type: "guided-play", on: true });
           }}
         >
-          {t("guided.summary.again")}
+          <Icon d="M9.6 6.4A3.6 3.6 0 1 1 8.5 3.4M9.6 1.4v2.4H7.2" />
         </button>
       ) : (
         <button
           type="button"
-          className="button"
+          className="guided-icon guided-primary"
           data-testid="guided-play"
           aria-pressed={g.playing}
+          aria-label={t("guided.play")}
+          aria-keyshortcuts="Space"
+          title={`${t(g.playing ? "guided.pause" : "guided.play")} (${t("guided.space")})`}
           onClick={() => dispatch({ type: "guided-play", on: !g.playing })}
         >
-          {g.playing ? `❚❚ ${t("guided.pause")}` : `▶ ${t("guided.play")}`}
+          {g.playing ? <Icon d="M3.4 2.4h1.9v7.2H3.4zM6.7 2.4h1.9v7.2H6.7z" fill /> : <Icon d="M3.6 2v8L10 6z" fill />}
         </button>
       )}
       <button
         type="button"
-        className="button button-quiet"
+        className="guided-icon"
         data-testid="guided-next"
         disabled={g.at >= reach}
+        aria-label={t("guided.next")}
+        aria-keyshortcuts="ArrowRight"
+        title={`${t("guided.next")} (→)`}
         onClick={() => go(g.at + 1)}
       >
-        {t("guided.next")} →
+        <Icon d="M4.5 2.5 8 6l-3.5 3.5" />
       </button>
     </div>
   );

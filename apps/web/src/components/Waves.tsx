@@ -1,30 +1,33 @@
 // The hexagon waves (lib/waves.ts) and their answer to actions (lib/sheen.ts):
-// - the river behind the masthead, with a pigeon wave now and then; a control pressed in the masthead lights it;
+// - the river behind the masthead, sprinkled with pigeon hexagons that shift their colour slowly, away from its text; a
+//   control pressed in the masthead lights it;
 // - the sea under the work area, behind everything below the masthead: a canvas the height of the window that stays in
 //   view while the page scrolls, its water fixed to the page. It reads the map from the page now and then — the device
-//   it whirls round (`data-whirl`) and the lines it flows along (`path[data-flow]`) — so it follows the automatic
-//   layout. A press anywhere in the work area lights the water round it.
+//   it whirls round (`data-whirl`) and the lines from it to the branches, along which its wavelets run
+//   (`path[data-wave]`) — and at once when the map moves, so it follows the automatic layout and a drag or a zoom. A
+//   press anywhere in the work area lights the water round it.
 // WebGL2 first; if the graphics card is missing or software-only, a fresh canvas (key) takes the 2D painter, because a
 // canvas once asked for WebGL cannot draw in 2D. `window.__wavesAnyGL = true` (as in the other demos) lets a test use a
 // software WebGL.
 import { useEffect, useRef, useState } from "react";
 import { addLightSink } from "../lib/sheen.ts";
-import { DEEP, type Geometry, type Renderer, SHALLOW, startWaves, type WaterKind } from "../lib/waves.ts";
+import { type Box, DEEP, type Geometry, type Renderer, SHALLOW, startWaves, type WaterKind } from "../lib/waves.ts";
 
 /** The map seen from the water, in page coordinates. */
 function mapGeometry(): Geometry {
   const [sx, sy] = [window.scrollX, window.scrollY];
-  const device = document.querySelector<HTMLElement>("[data-whirl]")?.getBoundingClientRect();
+  // The device's node on the map (not the sea's own canvas, whose data attributes report on the water).
+  const device = document.querySelector<HTMLElement>(".react-flow [data-whirl]")?.getBoundingClientRect();
   const whirl =
     device && device.width > 0
       ? {
           x: device.left + device.width / 2 + sx,
           y: device.top + device.height / 2 + sy,
-          r: Math.max(device.width, device.height) * 0.85,
+          r: Math.hypot(device.width, device.height) / 2,
         }
       : null;
-  const segments: number[] = [];
-  for (const path of document.querySelectorAll<SVGPathElement>("path[data-flow]")) {
+  const lines: number[][] = [];
+  for (const path of document.querySelectorAll<SVGPathElement>("path[data-wave]")) {
     const m = path.getScreenCTM?.();
     let length = 0;
     try {
@@ -33,17 +36,34 @@ function mapGeometry(): Geometry {
       continue;
     }
     if (!m || !length) continue;
-    const n = Math.max(2, Math.min(12, Math.ceil(length / 40)));
-    let [px, py] = [0, 0];
+    const n = Math.max(4, Math.min(24, Math.ceil(length / 20)));
+    const points: number[] = [];
     for (let i = 0; i <= n; i++) {
       const p = path.getPointAtLength((length * i) / n);
-      const x = m.a * p.x + m.c * p.y + m.e + sx;
-      const y = m.b * p.x + m.d * p.y + m.f + sy;
-      if (i > 0) segments.push(px, py, x, y);
-      [px, py] = [x, y];
+      points.push(m.a * p.x + m.c * p.y + m.e + sx, m.b * p.x + m.d * p.y + m.f + sy);
     }
+    lines.push(points);
   }
-  return { whirl, segments };
+  return { whirl, lines };
+}
+
+/** Where the map is, cheaply (read each frame): its viewport's transform and the device's box on the page. */
+function mapMark(): string {
+  const view = document.querySelector<HTMLElement>(".react-flow__viewport")?.style.transform ?? "";
+  const d = document.querySelector<HTMLElement>(".react-flow [data-whirl]")?.getBoundingClientRect();
+  return d ? `${view}|${[d.left + window.scrollX, d.top + window.scrollY, d.width, d.height].map(Math.round)}` : view;
+}
+
+/** The parts of `host` that hold text or a control, as boxes of `canvas`: the river keeps its sprinkles off them. */
+function textBoxes(host: Element, canvas: HTMLCanvasElement): Box[] {
+  const box = canvas.getBoundingClientRect();
+  const texty = (e: Element) =>
+    /^(INPUT|SELECT|BUTTON)$/.test(e.tagName) ||
+    [...e.childNodes].some((n) => n.nodeType === Node.TEXT_NODE && (n.textContent ?? "").trim() !== "");
+  return [...host.querySelectorAll("*")].filter(texty).map((e) => {
+    const r = e.getBoundingClientRect();
+    return [r.left - box.left, r.top - box.top, r.right - box.left, r.bottom - box.top] as const;
+  });
 }
 
 export function HexWaves({ water }: { water: WaterKind }) {
@@ -74,9 +94,10 @@ export function HexWaves({ water }: { water: WaterKind }) {
               return { x: box.left + window.scrollX, y: box.top + window.scrollY };
             },
             geometry: mapGeometry,
+            geometryKey: mapMark,
             animate2d: false,
           }
-        : { water, anyGl, wander: true, share: 0.1 },
+        : { water, anyGl, sprinkles: true, avoid: () => textBoxes(host, el), share: 0.1 },
     );
     if (!waves) {
       setMode(mode === "webgl2" ? "2d" : null);
