@@ -120,6 +120,26 @@ describe("the guided run in the app", () => {
     expect(position()).not.toBe(waiting);
   });
 
+  it("says what a step changed, including that a rule now applies", { timeout: 30_000 }, () => {
+    // Step 5 of the heartbeat app, "information for decisions: yes", brings the MDCG table into play.
+    const g = guidedState(snapshot.model, { target: heartbeat, answers: {}, at: 5, playing: false }, asOf);
+    expect(g.run.steps[4]?.attr).toBe("decisionInfo");
+    renderApp({
+      example: "heartbeat-app",
+      profile: profileAt(g.run, 5),
+      view: "checklist",
+      selection: null,
+      guided: g,
+    });
+    const changes = [...screen.getByTestId("guided-changes").querySelectorAll("li")].map((li) => li.textContent);
+    expect(changes).toContain("Клас за MDR (додаток VIII, правило 11): I · IIa · IIb · III → IIa · IIb · III");
+    const table = changes.find((c) => c?.startsWith("Перехресна перевірка")) ?? "";
+    expect(table).toMatch(/або не застосовується → Один із: Клас III, Клас IIb, Клас IIa$/);
+    expect(screen.getByTestId("guided-decided").textContent).toMatch(
+      /^Що вирішилоІнформація для діагностичних чи лікувальних рішень: так/,
+    );
+  });
+
   it("takes an answer from a chip into the run and keeps the description when the run stops", {
     timeout: 30_000,
   }, async () => {

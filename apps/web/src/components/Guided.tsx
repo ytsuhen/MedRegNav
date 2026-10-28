@@ -57,20 +57,30 @@ export function GuidedButton() {
   );
 }
 
-/** A rule's possible results in short words; the class ladder by its class numerals, in the law's voice. */
+/**
+ * A rule's possible results in short words; the class ladder by its class numerals, in the law's voice. While it is
+ * not known whether the rule applies at all, it says so: a step may settle just that.
+ */
 function Possible({ rule, result, ladder }: { rule: DeviceIr; result: RuleResult | undefined; ladder: boolean }) {
   const { t, state } = useApp();
   if (!result || result.status === "not-applicable") return <>{t("rule.notApplicable")}</>;
+  const maybeNot = result.scope === null ? ` ${t("guided.maybeNot")}` : "";
   const rank = (id: string) => rule.outcomes.find((o) => o.id === id)?.rank ?? 0;
   // The class numerals as the ladder shows them, lowest first.
   if (ladder)
-    return <span className="guided-classes">{[...result.possible].sort((a, b) => rank(a) - rank(b)).join(" · ")}</span>;
+    return (
+      <>
+        <span className="guided-classes">{[...result.possible].sort((a, b) => rank(a) - rank(b)).join(" · ")}</span>
+        {maybeNot}
+      </>
+    );
   const label = (id: string) => rule.outcomes.find((o) => o.id === id)?.label[state.lang] ?? id;
   return (
     <>
-      {result.status === "determined"
+      {result.status === "determined" && !maybeNot
         ? label(result.value ?? "")
         : t("ladder.oneOf", { list: result.possible.map(label).join(", ") })}
+      {maybeNot}
     </>
   );
 }
