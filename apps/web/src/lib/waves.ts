@@ -1,12 +1,13 @@
-// Hexagon waves behind the masthead (DECISIONS U12): a field of small hexagons whose brightness follows slow, irregular
-// ripples (two octaves of smooth value noise under slower drifting gusts), as in the header of the author's First Visit
-// demo. An action casts a short light on the field: the hexagons around where it happened answer with a wave that turns
-// from violet to teal, as a decision lights the hexagons around itself in the CQL demo's chat. Feedback only: the light
-// carries no meaning.
+// Hexagon waves (DECISIONS U12): a field of small hexagons whose brightness follows ripples of smooth value noise under
+// slower drifting gusts, as in the author's First Visit and CQL demos. Two kinds of water: the calm sea behind the
+// description of the software (the chips), and a livelier river behind the masthead, whose ripples run along a current
+// from left to right. An action casts a short light on a field: the hexagons around where it happened answer with a
+// wave that turns from violet to teal, as a decision lights the hexagons around itself in the CQL demo's chat. Feedback
+// only: the light carries no meaning.
 // Drawn on the graphics card (WebGL2, one instanced draw call a frame), so the page stays free for the map. Without a
 // real graphics card the same field goes on a 2D canvas at CSS resolution, and its frame rate backs off so that it
-// takes about a tenth of the page's time. Idle while the masthead is off screen or the tab is hidden; one static frame
-// and no light when reduced motion is requested.
+// takes no more than its share of the page's time. Idle while the field is off screen or the tab is hidden; one static
+// frame and no light when reduced motion is requested.
 // Adapted from ytsuhen/Pub-demos (first-visit), same author. The light after ytsuhen/cql-demo-yevenko (web/index.html,
 // the chat's waves), same author.
 
@@ -23,11 +24,52 @@ const CREST = [63, 181, 154] as const;
 const VIOLET = [177, 140, 255] as const;
 const TEAL = [79, 227, 193] as const;
 /**
- * Brightness of the field. Kept below First Visit's so that the masthead's text stays at contrast AA over the brightest
- * hexagon (the field alone reaches at most 0.52 × DIM opacity); a light, which lasts a moment, reaches LIGHT_ALPHA.
+ * Brightness of a field. Kept below First Visit's so that the text over it stays at contrast AA over the brightest
+ * hexagon (a field alone reaches at most 0.52 × DIM opacity); a light, which lasts a moment, reaches LIGHT_ALPHA.
  */
 const DIM = 0.62;
 const LIGHT_ALPHA = 0.62;
+
+/**
+ * How a kind of water moves. Two octaves of noise (`one`, `two`: scale across x and y, drift along x per second, change
+ * per second) under slow gusts; `mix` weighs the octaves, `glint` is where the brightest ripples begin, `sway` moves
+ * each hexagon with the water around it (x, y), `tilt` turns it.
+ */
+interface Water {
+  one: { sx: number; sy: number; drift: number; change: number };
+  two: { sx: number; sy: number; drift: number; change: number };
+  gust: { sx: number; sy: number; drift: number; change: number };
+  mix: number;
+  glint: number;
+  sway: [number, number];
+  tilt: number;
+}
+
+export type WaterKind = "sea" | "river";
+
+const WATERS: Record<WaterKind, Water> = {
+  // A lake in a light breeze: irregular ripples that slowly appear and melt away (First Visit, the CQL chat).
+  sea: {
+    one: { sx: 0.045, sy: 0.045, drift: 0, change: 0.2 },
+    two: { sx: 0.11, sy: 0.11, drift: 0, change: 0.33 },
+    gust: { sx: 0.007, sy: 0.007, drift: 0, change: 0.04 },
+    mix: 0.65,
+    glint: 0.7,
+    sway: [1.4, 1.4],
+    tilt: 0.12,
+  },
+  // A river: ripples drawn out along a current that carries them left to right (about 40–50 px a second), quicker to
+  // change, glinting more often — but no brighter, so the masthead's text keeps its contrast.
+  river: {
+    one: { sx: 0.026, sy: 0.085, drift: 1.05, change: 0.3 },
+    two: { sx: 0.075, sy: 0.16, drift: 3.6, change: 0.6 },
+    gust: { sx: 0.006, sy: 0.02, drift: 0.12, change: 0.06 },
+    mix: 0.55,
+    glint: 0.64,
+    sway: [2.6, 0.9],
+    tilt: 0.18,
+  },
+};
 
 export type Renderer = "webgl2" | "2d";
 
@@ -97,6 +139,17 @@ function noise(x: number, y: number, z: number): number {
   );
 }
 
+/** The water at a cell and time: how far the hexagon sways, how lit it is, and how much it glints. */
+function waterAt(w: Water, x0: number, y0: number, t: number) {
+  const n1 = noise(x0 * w.one.sx - t * w.one.drift, y0 * w.one.sy, t * w.one.change);
+  const n2 = noise(x0 * w.two.sx - t * w.two.drift + 31.7, y0 * w.two.sy - 12.3, t * w.two.change);
+  const gust = 0.5 + 0.5 * noise(x0 * w.gust.sx - t * w.gust.drift + 5.1, y0 * w.gust.sy + 9.7, t * w.gust.change);
+  const lift = 0.5 + 0.5 * (w.mix * n1 + (1 - w.mix) * n2);
+  const li = lift * (0.4 + 0.6 * gust);
+  const glint = (lift < w.glint ? 0 : ((lift - w.glint) / (1 - w.glint)) ** 2) * gust;
+  return { n1, n2, li, glint };
+}
+
 interface Painter {
   dpr(): number;
   /** The least time between frames (ms); the 2D painter raises it when drawing gets slow. */
@@ -105,7 +158,16 @@ interface Painter {
   draw(t: number, now: number, cells: Float32Array, width: number, height: number, lights: Light[]): void;
 }
 
-const VS = `#version 300 es
+/** A number as a GLSL float literal. */
+const f = (n: number) => (Number.isInteger(n) ? n.toFixed(1) : String(n));
+
+/** The vertex shader for a kind of water: the same field as `waterAt`, the lights, the hexagon's placement. */
+function vertexShader(w: Water): string {
+  const octave = (o: Water["one"], dx: string, dy: string) =>
+    `vec3(x0 * ${f(o.sx)} - uT * ${f(o.drift)}${dx}, y0 * ${f(o.sy)}${dy}, uT * ${f(o.change)})`;
+  const base = `vec3(${BASE.map(f).join(", ")})`;
+  const crest = `vec3(${CREST.map(f).join(", ")})`;
+  return `#version 300 es
 precision highp float;
 precision highp int;
 in vec2 aCorner;
@@ -132,17 +194,17 @@ float noise(vec3 p) {
 }
 void main() {
   float x0 = aCell.x, y0 = aCell.y;
-  float n1 = noise(vec3(x0 * 0.045, y0 * 0.045, uT * 0.2));
-  float n2 = noise(vec3(x0 * 0.11 + 31.7, y0 * 0.11 - 12.3, uT * 0.33));
-  float gust = 0.5 + 0.5 * noise(vec3(x0 * 0.007 + 5.1, y0 * 0.007 + 9.7, uT * 0.04));
-  float lift = 0.5 + 0.5 * (0.65 * n1 + 0.35 * n2);
+  float n1 = noise(${octave(w.one, "", "")});
+  float n2 = noise(${octave(w.two, " + 31.7", " - 12.3")});
+  float gust = 0.5 + 0.5 * noise(${octave(w.gust, " + 5.1", " + 9.7")});
+  float lift = 0.5 + 0.5 * (${f(w.mix)} * n1 + ${f(1 - w.mix)} * n2);
   float li = lift * (0.4 + 0.6 * gust);
-  float g = lift < 0.7 ? 0.0 : (lift - 0.7) / 0.3;
+  float g = lift < ${f(w.glint)} ? 0.0 : (lift - ${f(w.glint)}) / ${f(1 - w.glint)};
   float glint = g * g * gust;
   float m = min(1.0, 0.1 + 0.42 * li + 0.4 * glint);
-  vec2 c = vec2(x0 + 1.4 * n2, y0 + 1.4 * n1);
-  vec3 rgb = vec3(${BASE.join(".0, ")}.0) + (vec3(${CREST.join(".0, ")}.0) - vec3(${BASE.join(".0, ")}.0)) * m;
-  float a = (0.1 + 0.2 * li + 0.22 * glint) * ${DIM};
+  vec2 c = vec2(x0 + ${f(w.sway[0])} * n2, y0 + ${f(w.sway[1])} * n1);
+  vec3 rgb = ${base} + (${crest} - ${base}) * m;
+  float a = (0.1 + 0.2 * li + 0.22 * glint) * ${f(DIM)};
   for (int i = 0; i < ${MAX_LIGHTS}; i++) {
     if (i >= uNL) break;
     vec4 L = uL[i];
@@ -151,14 +213,15 @@ void main() {
     float r = (d - uLC[i].w) / (0.35 * L.z);
     float k = min(1.0, L.w * (0.45 * exp(-q * q * 1.3) + 0.55 * exp(-r * r)));
     rgb += (uLC[i].rgb - rgb) * k;
-    a += (${LIGHT_ALPHA} - a) * k;
+    a += (${f(LIGHT_ALPHA)} - a) * k;
   }
-  float size = 0.8 + 0.16 * li, tilt = 0.12 * n2;
+  float size = 0.8 + 0.16 * li, tilt = ${f(w.tilt)} * n2;
   float cs = cos(tilt) * size, sn = sin(tilt) * size;
   vec2 pos = c + vec2(cs * aCorner.x - sn * aCorner.y, sn * aCorner.x + cs * aCorner.y);
   gl_Position = vec4(pos.x / uView.x * 2.0 - 1.0, 1.0 - pos.y / uView.y * 2.0, 0.0, 1.0);
   vColor = vec4(floor(rgb) / 255.0, clamp(a, 0.0, 1.0));
 }`;
+}
 
 const FS = `#version 300 es
 precision mediump float;
@@ -167,7 +230,7 @@ out vec4 outColor;
 void main() { outColor = vec4(vColor.rgb * vColor.a, vColor.a); }`;
 
 /** The WebGL2 painter, or null without a real graphics card (a software WebGL would be slower than the 2D canvas). */
-function webgl(canvas: HTMLCanvasElement, anyGl: boolean): Painter | null {
+function webgl(canvas: HTMLCanvasElement, water: Water, anyGl: boolean): Painter | null {
   let gl: WebGL2RenderingContext | null = null;
   try {
     gl = canvas.getContext("webgl2", {
@@ -189,6 +252,7 @@ function webgl(canvas: HTMLCanvasElement, anyGl: boolean): Painter | null {
     if (info) name = String(g.getParameter(info.UNMASKED_RENDERER_WEBGL) ?? name);
   }
   if (!anyGl && /swiftshader|llvmpipe|softpipe|software|basic render/i.test(name)) return null;
+  const VS = vertexShader(water);
   let uniforms: Record<string, WebGLUniformLocation | null> = {};
   let cellBuffer: WebGLBuffer | null = null;
   let lost = false;
@@ -288,8 +352,8 @@ function webgl(canvas: HTMLCanvasElement, anyGl: boolean): Painter | null {
   };
 }
 
-/** The same field on a 2D canvas, at CSS resolution. */
-function canvas2d(canvas: HTMLCanvasElement): Painter | null {
+/** The same field on a 2D canvas, at CSS resolution; `share` is the part of the page's time it may take. */
+function canvas2d(canvas: HTMLCanvasElement, water: Water, share: number): Painter | null {
   let ctx: CanvasRenderingContext2D | null = null;
   try {
     ctx = canvas.getContext("2d");
@@ -310,7 +374,9 @@ function canvas2d(canvas: HTMLCanvasElement): Painter | null {
   return {
     dpr: () => 1,
     frameMs: 50,
-    resized() {},
+    resized() {
+      // nothing to upload: the 2D painter reads the cells each frame
+    },
     draw(t, now, cells, _width, _height, lights) {
       const t0 = performance.now();
       const lit = lights.map((l) => ({ l, ...lightAt(l, now) }));
@@ -319,15 +385,10 @@ function canvas2d(canvas: HTMLCanvasElement): Painter | null {
       for (let i = 0; i < cells.length; i += 2) {
         const x0 = cells[i] ?? 0;
         const y0 = cells[i + 1] ?? 0;
-        const n1 = noise(x0 * 0.045, y0 * 0.045, t * 0.2);
-        const n2 = noise(x0 * 0.11 + 31.7, y0 * 0.11 - 12.3, t * 0.33);
-        const gust = 0.5 + 0.5 * noise(x0 * 0.007 + 5.1, y0 * 0.007 + 9.7, t * 0.04);
-        const lift = 0.5 + 0.5 * (0.65 * n1 + 0.35 * n2);
-        const li = lift * (0.4 + 0.6 * gust);
-        const glint = (lift < 0.7 ? 0 : ((lift - 0.7) / 0.3) ** 2) * gust;
+        const { n1, n2, li, glint } = waterAt(water, x0, y0, t);
         const m = Math.min(1, 0.1 + 0.42 * li + 0.4 * glint);
-        const x = x0 + 1.4 * n2;
-        const y = y0 + 1.4 * n1;
+        const x = x0 + water.sway[0] * n2;
+        const y = y0 + water.sway[1] * n1;
         let r = BASE[0] + (CREST[0] - BASE[0]) * m;
         let g = BASE[1] + (CREST[1] - BASE[1]) * m;
         let b = BASE[2] + (CREST[2] - BASE[2]) * m;
@@ -344,30 +405,33 @@ function canvas2d(canvas: HTMLCanvasElement): Painter | null {
           a += (LIGHT_ALPHA - a) * k;
         }
         const size = 0.8 + 0.16 * li;
-        const tilt = 0.12 * n2;
+        const tilt = water.tilt * n2;
         const cos = Math.cos(tilt) * size;
         const sin = Math.sin(tilt) * size;
         c.setTransform(cos, sin, -sin, cos, x, y);
         c.fillStyle = `rgba(${r | 0},${g | 0},${b | 0},${a.toFixed(3)})`;
         c.fill(hex);
       }
-      // Painting is most of the cost: keep the waves near a tenth of the page's time.
-      this.frameMs = Math.min(400, Math.max(50, (performance.now() - t0) * 10));
+      // Painting is most of the cost: keep the field within its share of the page's time.
+      this.frameMs = Math.min(400, Math.max(50, (performance.now() - t0) / share));
     },
   };
 }
 
 /**
  * Starts the waves on `canvas`, sized to `host`. `mode` "webgl2" may fail (null): a canvas once asked for WebGL cannot
- * draw in 2D, so the caller then starts "2d" on a fresh canvas.
+ * draw in 2D, so the caller then starts "2d" on a fresh canvas. Without a graphics card a field takes at most `share`
+ * of the page's time (two fields: half a tenth each).
  */
 export function startWaves(
   canvas: HTMLCanvasElement,
   host: HTMLElement,
   mode: Renderer,
-  options: { anyGl?: boolean } = {},
+  options: { water?: WaterKind; anyGl?: boolean; share?: number } = {},
 ): Waves | null {
-  const painter = mode === "webgl2" ? webgl(canvas, options.anyGl ?? false) : canvas2d(canvas);
+  const water = WATERS[options.water ?? "sea"];
+  const painter =
+    mode === "webgl2" ? webgl(canvas, water, options.anyGl ?? false) : canvas2d(canvas, water, options.share ?? 0.1);
   if (!painter) return null;
   const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)") ?? null;
   const still = () => reduced?.matches ?? false;
@@ -395,7 +459,7 @@ export function startWaves(
     const list: number[] = [];
     // A margin round the edges, so swaying hexagons never leave gaps there.
     for (let y = -2 * R, row = 0; y < height + 2 * R; y += STEP_Y, row++)
-      for (let x = -2 * R + ((row % 2) * STEP_X) / 2; x < width + 2 * R; x += STEP_X) list.push(x, y);
+      for (let x = -3 * R + ((row % 2) * STEP_X) / 2; x < width + 3 * R; x += STEP_X) list.push(x, y);
     cells = Float32Array.from(list);
     painter.resized(cells);
     draw(performance.now());

@@ -245,15 +245,15 @@ market stands on exactly one branch.
 | `src/lib/quotes.ts` | `verifyQuote`, `sectionSha256`, `quoteView(citation, section, context, format)` (window + display reflow), `reflow`, `hostOf` |
 | `src/lib/dates.ts` | `todayIso`, `toDays` / `fromDays`, `formatDate(iso, lang)`, `keyDates(model)`, `sliderRange` |
 | `src/components/MapView.tsx` | React Flow canvas: device node (label with the class ladder and its first question), branch nodes (inline question), leaf nodes, ink edges (solid / dashed / dotted, marker underlay on hover); with proposals on, the red pen (`data-proposal`); viewport fitted to the width |
-| `src/components/DeviceChips.tsx` | Preset picker, attribute chips by group (answered, decisive unknown, folded rest), the attribute editor with the concept's quote |
+| `src/components/DeviceChips.tsx` | The description of the software, a dark band over the calm sea: preset picker, the guided run's button, attribute chips by group (answered, decisive unknown, folded rest), the attribute editor with the concept's quote |
 | `src/components/Card.tsx` | The margin note: obligation (how to comply, depends on, legal basis, guidance), rule (result, questions, what decided it, why not stricter, and with proposals on the proposal's section), device (the example's quote and our reading, the map's legend) |
 | `src/components/Proposal.tsx` | `ProposalSection` ("if the proposal were adopted": result and what decided it under the revision, changed requirements, the cohort's transition matrix with its coherence conditions, the MDCG examples; heading level and folding set by the host), `proposalWords(leaf, t, lang)` |
 | `src/components/Questions.tsx` | `useAsk` (open an attribute's editor), `QuestionList`, `SupportList` (shared by the card, the proposal section, the map) |
 | `src/components/Checklist.tsx` | The same content as a document: rule results, open questions with inline answers, each branch's obligations; with proposals on, the same red-pen lines and the proposal's section |
-| `src/components/Explain.tsx`, `Quote.tsx`, `Shell.tsx`, `ui.tsx` | Witness lists (heading level set by the host); quotes with context and the browser's check (the hash and offsets in mono); banner, masthead (the sea band with the waves; market, as-of slider with key dates, proposals, view, language), next-stage placeholder, footer; shared controls, the device's name and `rich` (a message with elements in its placeholders) |
-| `src/lib/waves.ts` | `startWaves(canvas, host, "webgl2" \| "2d")` → `{ renderer, light(x, y, reach), stop() }`: the masthead's hexagon field (DECISIONS U12; adapted from ytsuhen/Pub-demos first-visit), idle off screen and in a hidden tab, one static frame under reduced motion |
-| `src/lib/sheen.ts` | `sheen(el)` (the iridescent layer over an element, following it while it moves, and a light on the waves), `sheenKeys(keys)` (every `[data-flash]` with one of the keys), `installSheen(document)` (a delegated click listener), `setLightSink`, `reducedMotion` |
-| `src/components/Waves.tsx` | `HexWaves`: the canvas behind the masthead; WebGL2 first, a fresh canvas for the 2D painter when it fails; registers the waves' light with the sheen |
+| `src/components/Explain.tsx`, `Quote.tsx`, `Shell.tsx`, `ui.tsx` | Witness lists (heading level set by the host); quotes with context and the browser's check (the hash and offsets in mono); banner, masthead (a dark band over the river; market, as-of slider with key dates, proposals, view, language), next-stage placeholder, footer; shared controls, the device's name and `rich` (a message with elements in its placeholders) |
+| `src/lib/waves.ts` | `startWaves(canvas, host, "webgl2" \| "2d", { water: "sea" \| "river", anyGl?, share? })` → `{ renderer, light(x, y, reach), stop() }`: a hexagon field (DECISIONS U12; adapted from ytsuhen/Pub-demos first-visit) — the calm sea or the river whose ripples run along a current; idle off screen and in a hidden tab, one static frame under reduced motion; without a graphics card the 2D painter takes at most `share` of the page's time |
+| `src/lib/sheen.ts` | `sheen(el)` (the iridescent layer over an element, following it while it moves, and a light on the waves), `sheenKeys(keys)` (every `[data-flash]` with one of the keys), `installSheen(document)` (a delegated click listener), `addLightSink` (a field of waves hears every sheen), `reducedMotion` |
+| `src/components/Waves.tsx` | `HexWaves({ water, below? })`: the canvas behind a dark band (`.sea-band`: the masthead's river, the description's sea); WebGL2 first, a fresh canvas for the 2D painter when it fails; lights its hexagons round an action inside its band and, with `below`, along its bottom edge for one below it |
 | `src/i18n/dict.ts` | Every UI string in Ukrainian and English, with plural forms |
 
 Tests: `apps/web/test` (vitest; components under happy-dom) — view model (proposals included), layout (no overlap,
@@ -262,7 +262,8 @@ components, the banner word for word), the app and the map in a DOM, the proposa
 section and the checklist's red pen. `apps/web/e2e` (`pnpm e2e`, not in `verify`): the static build served under
 `/MedRegNav/` in a preinstalled Chromium — offline, no console errors, inline answers, verified quotes, the as-of step
 into 2 August 2028, the proposals switch, the checklist, a phone viewport; `design.e2e.ts` checks the look (U12): the
-three fonts, the waves on a 2D canvas and in WebGL2 (a software one allowed by `__wavesAnyGL`), the sheen and its absence
+three fonts, the river and the sea on a 2D canvas and in WebGL2 (a software one allowed by `__wavesAnyGL`) and no canvas
+over the map or the cards, the sheen and its absence
 under reduced motion, every map label inside its node at 1440 and 390 px; `screens.e2e.ts` writes the README's
 screenshots (`MRN_DOCS_SCREENS=docs/screens pnpm e2e apps/web/e2e/screens.e2e.ts`). Chromium is found through
 `MRN_CHROMIUM`, else `PLAYWRIGHT_BROWSERS_PATH` (`chromium-*/chrome-linux*/chrome`), else `/opt/pw-browsers`; it is never

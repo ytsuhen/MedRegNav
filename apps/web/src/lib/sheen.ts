@@ -1,18 +1,21 @@
 // The sheen (DECISIONS U12): when the user presses something, answers a question or moves the guided run to a step,
-// the element shimmers for a moment, violet with a teal-green glint like a pigeon's neck, and the masthead's hexagons
-// answer with a wave of the same colours. Feedback on an action, never a state: it carries no meaning and leaves
+// the element shimmers for a moment, violet with a teal-green glint like a pigeon's neck, and the hexagons of the
+// waves answer with a wave of the same colours. Feedback on an action, never a state: it carries no meaning and leaves
 // nothing behind. With reduced motion there is none (the focus ring stays as it is).
 // The flash is a separate layer over the element (absolutely placed, pointer-events none), so it never touches the
 // element's own styles: the highlighter, the red pen and the focus ring stay as they are underneath.
 
-/** What the masthead's waves do with an action at this place on the page (viewport coordinates). */
-export type LightSink = (rect: DOMRect) => void;
+/** What a field of waves does with an action on this element, at this place on the page (viewport coordinates). */
+export type LightSink = (target: Element, rect: DOMRect) => void;
 
-let sink: LightSink | null = null;
+const sinks = new Set<LightSink>();
 
-/** The masthead's waves register here; null when they stop. */
-export function setLightSink(next: LightSink | null): void {
-  sink = next;
+/** A field of waves registers here; the returned function unregisters it. */
+export function addLightSink(sink: LightSink): () => void {
+  sinks.add(sink);
+  return () => {
+    sinks.delete(sink);
+  };
 }
 
 const SHEEN_MS = 800;
@@ -36,7 +39,7 @@ export function sheen(el: Element): void {
   layer.setAttribute("aria-hidden", "true");
   layer.dataset.testid = "sheen";
   layer.style.borderRadius = style.borderRadius === "0px" ? "6px" : style.borderRadius;
-  // The iris pair as the element sees it: the masthead re-points it to its dark band.
+  // The iris pair as the element sees it: the dark bands (the masthead, the description) re-point it.
   for (const name of ["--color-iris-violet", "--color-iris-teal"]) {
     const value = style.getPropertyValue(name).trim();
     if (value) layer.style.setProperty(name, value);
@@ -60,7 +63,7 @@ export function sheen(el: Element): void {
   const remove = () => layer.remove();
   layer.addEventListener("animationend", remove, { once: true });
   window.setTimeout(remove, SHEEN_MS + 400);
-  sink?.(rect);
+  for (const sink of sinks) sink(el, rect);
 }
 
 /** Flashes every element marked `data-flash` with one of these keys ("chip:<attr>", "branch:<id>", "rule:<id>"). */

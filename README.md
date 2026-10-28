@@ -166,5 +166,5 @@ sha256, витягнутий текст):
 повторне використання дозволено за рішенням Комісії 2011/833/ЄС, вміст сайтів Єврокомісії — за CC BY 4.0. Зміни:
 витягнуто текст, нормалізовано пробіли й символи, прибрано службові маркери консолідації; оригінали збережено без змін.
 Шрифти IBM Plex Sans, Source Serif 4 і JetBrains Mono — SIL Open Font License 1.1; React Flow — MIT. Вигляд (палітра
-«море», шестикутники-хвилі в шапці) — як в інших демо автора: [CQL demo](https://ytsuhen.github.io/CQL-Demo-Yevenko/) і
-[First Visit](https://ytsuhen.github.io/Pub-demos/first-visit/).
+«море»: спокійне море з шестикутників у полі опису ПЗ і жвавіша річка в шапці) — як в інших демо автора:
+[CQL demo](https://ytsuhen.github.io/CQL-Demo-Yevenko/) і [First Visit](https://ytsuhen.github.io/Pub-demos/first-visit/).

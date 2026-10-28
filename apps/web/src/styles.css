@@ -116,9 +116,10 @@
     border-bottom: 1.5px dashed var(--color-graphite);
     font-size: 14.5px;
   }
-  /* The masthead is a deep-sea band in both schemes (U12), with the hexagon waves behind its content. Its controls keep
-     their own rules: the tokens are re-pointed to the sea's light-on-dark values here. */
-  .masthead {
+  /* Two dark bands over water in both schemes (U12): the masthead over the river, the description of the software over
+     the calm sea, the hexagon waves behind their content. Their controls keep their own rules: the tokens are
+     re-pointed to the sea's light-on-dark values here. */
+  .sea-band {
     --color-paper: var(--color-sea-deep);
     --color-sheet: #0a2622;
     --color-ink: var(--color-sea-ink);
@@ -136,14 +137,16 @@
     position: relative;
     isolation: isolate;
     overflow: hidden;
+    color: var(--color-ink);
+    background: radial-gradient(120% 90% at 20% 0%, var(--color-sea) 0%, #062a25 55%, var(--color-sea-deep) 100%);
+  }
+  .masthead {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-end;
     justify-content: space-between;
     gap: 14px 40px;
     padding: 24px 24px 18px;
-    color: var(--color-ink);
-    background: radial-gradient(120% 90% at 20% 0%, var(--color-sea) 0%, #062a25 55%, var(--color-sea-deep) 100%);
     border-bottom: 1px solid #1d3f39;
   }
   .hexwaves {
@@ -539,8 +542,8 @@
     background: var(--color-ink);
     transition: transform 0.15s;
   }
-  /* On the masthead's waves the track keeps a solid ground, so its knob and the red pen stay at contrast. */
-  .masthead .switch-track {
+  /* On the waves the track keeps a solid ground, so its knob and the red pen stay at contrast. */
+  .sea-band .switch-track {
     background: var(--color-paper);
   }
   .switch input:checked + .switch-track {
@@ -564,6 +567,13 @@
   }
 
   /* ── device: chips and the attribute editor ────────────────────────────── */
+  /* The description of the software: a panel over the calm sea (U12), like the chat of the CQL demo. */
+  .device {
+    padding: 16px 18px 18px;
+    border: 1px solid #1d3f39;
+    border-radius: 14px;
+    box-shadow: 0 12px 32px -18px rgb(4 23 22 / 0.55);
+  }
   .device-bar {
     display: flex;
     flex-wrap: wrap;
@@ -658,6 +668,13 @@
   .chip-small {
     font-size: 13.5px;
     padding: 1px 9px 2px;
+  }
+  /* Over the water, text stands on a solid ground wherever it can: a chip in pencil keeps the band's sheet. */
+  .sea-band .chip:not([data-known]) {
+    background: var(--color-sheet);
+  }
+  .sea-band .chip[data-marked] {
+    background: var(--color-marker);
   }
   .support-list,
   .question-list {
@@ -1858,6 +1875,10 @@
   }
   .masthead-title h1 {
     font-size: 25px;
+  }
+  .device {
+    padding: 14px 14px 16px;
+    border-radius: 12px;
   }
   .chip-group {
     grid-template-columns: minmax(0, 1fr);

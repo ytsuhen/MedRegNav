@@ -2,7 +2,8 @@
 // something in pencil (dashed, "don't know"; in red pen, and saying so, when only the proposal needs them), the rest
 // folded away. A chip opens its editor (the question, how to
 // answer it, the concept's source); hovering a chip marks the branches it causes on the map. Beside the example
-// picker, the guided run's button (DECISIONS U13).
+// picker, the guided run's button (DECISIONS U13). The description is a dark band over the calm sea's hexagon waves
+// (U12), like the chat of the CQL demo: a chip that changes lights the water around it.
 import type { AttributeValue } from "@mrn/core";
 import { useSnapshot } from "../data.tsx";
 import type { ChipView, ScreenView } from "../lib/view.ts";
@@ -10,6 +11,7 @@ import { useApp } from "../state.tsx";
 import { GuidedButton } from "./Guided.tsx";
 import { Quote } from "./Quote.tsx";
 import { AnswerControl, deviceName, tx, valueLabel } from "./ui.tsx";
+import { HexWaves } from "./Waves.tsx";
 
 function Chip({ chip }: { chip: ChipView }) {
   const { state, t, dispatch, hover } = useApp();
@@ -90,7 +92,8 @@ export function DeviceChips({ view }: { view: ScreenView }) {
   const presets = snapshot.examples.filter((e) => e.preset);
   const example = snapshot.examples.find((e) => e.id === state.example);
   return (
-    <section className="device" aria-labelledby="device-heading" data-testid="device-chips">
+    <section className="device sea-band" data-waves="sea" aria-labelledby="device-heading" data-testid="device-chips">
+      <HexWaves water="sea" below />
       <div className="device-bar">
         <h2 id="device-heading" className="device-heading">
           {deviceName(example, described, t, state.lang)}

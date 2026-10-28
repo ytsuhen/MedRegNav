@@ -1,11 +1,17 @@
-// The hexagon waves behind the masthead (lib/waves.ts) and their answer to actions (lib/sheen.ts). WebGL2 first; if
-// the graphics card is missing or software-only, a fresh canvas (key) takes the 2D painter, because a canvas once asked
-// for WebGL cannot draw in 2D. `window.__wavesAnyGL = true` (as in the other demos) lets a test use a software WebGL.
+// A field of hexagon waves behind a dark band (lib/waves.ts): the calm sea behind the description of the software, the
+// river behind the masthead; and their answer to actions (lib/sheen.ts). An action inside a band lights its hexagons
+// round the element; the sea also answers what happens below it (the map, the checklist, the card) with a light along
+// its bottom edge, above where it happened, as a wave coming up from the page. WebGL2 first; if the graphics card is
+// missing or software-only, a fresh canvas (key) takes the 2D painter, because a canvas once asked for WebGL cannot draw
+// in 2D. `window.__wavesAnyGL = true` (as in the other demos) lets a test use a software WebGL.
 import { useEffect, useRef, useState } from "react";
-import { setLightSink } from "../lib/sheen.ts";
-import { type Renderer, startWaves } from "../lib/waves.ts";
+import { addLightSink } from "../lib/sheen.ts";
+import { type Renderer, startWaves, type WaterKind } from "../lib/waves.ts";
 
-export function HexWaves() {
+/** Marks a band that has its own waves (`data-waves="river"`, `"sea"`), so the sea leaves the band's actions to them. */
+const WAVES_BAND = "data-waves";
+
+export function HexWaves({ water, below = false }: { water: WaterKind; below?: boolean }) {
   const canvas = useRef<HTMLCanvasElement>(null);
   const [mode, setMode] = useState<Renderer | null>("webgl2");
   useEffect(() => {
@@ -13,28 +19,29 @@ export function HexWaves() {
     const host = el?.parentElement;
     if (!el || !host || !mode) return;
     const anyGl = (window as { __wavesAnyGL?: unknown }).__wavesAnyGL === true;
-    const waves = startWaves(el, host, mode, { anyGl });
+    // Two fields share the page: without a graphics card each takes at most half a tenth of its time.
+    const waves = startWaves(el, host, mode, { water, anyGl, share: 0.05 });
     if (!waves) {
       setMode(mode === "webgl2" ? "2d" : null);
       return;
     }
-    // An action inside the masthead lights the hexagons round it; one below lights them along the bottom edge, above
-    // where it happened, as a wave coming up from the page.
-    setLightSink((rect) => {
+    const remove = addLightSink((target, rect) => {
       const box = el.getBoundingClientRect();
-      const x = rect.left + rect.width / 2 - box.left;
-      const inside = rect.top < box.bottom && rect.bottom > box.top;
-      const y = inside ? rect.top + rect.height / 2 - box.top : box.height + 18;
-      const reach = inside ? Math.max(rect.width, rect.height) * 0.6 + 50 : 130;
-      waves.light(x, y, reach);
+      if (host.contains(target)) {
+        const reach = Math.max(rect.width, rect.height) * 0.6 + 50;
+        waves.light(rect.left + rect.width / 2 - box.left, rect.top + rect.height / 2 - box.top, reach);
+      } else if (below && !target.closest(`[${WAVES_BAND}]`) && rect.top >= box.bottom) {
+        const x = Math.min(box.width, Math.max(0, rect.left + rect.width / 2 - box.left));
+        waves.light(x, box.height + 18, 130);
+      }
     });
     return () => {
-      setLightSink(null);
+      remove();
       waves.stop();
     };
-  }, [mode]);
+  }, [mode, water, below]);
   return mode ? (
     // biome-ignore lint/a11y/noAriaHiddenOnFocusable: a canvas without tabindex is not focusable; the waves are decoration
-    <canvas key={mode} ref={canvas} className="hexwaves" aria-hidden="true" data-testid="hexwaves" />
+    <canvas key={mode} ref={canvas} className="hexwaves" aria-hidden="true" data-testid={`waves-${water}`} />
   ) : null;
 }

@@ -1,6 +1,6 @@
-// The frame around the work: the disclaimer banner (always visible), the masthead (a deep-sea band with the hexagon
-// waves) with the video guide and the market, date, proposals, view and language controls, the placeholder for a market
-// that is not modelled yet, and the footer with the sources' editions and licences.
+// The frame around the work: the disclaimer banner (always visible), the masthead (a dark band with the river's
+// hexagon waves) with the video guide and the market, date, proposals, view and language controls, the placeholder for
+// a market that is not modelled yet, and the footer with the sources' editions and licences.
 import { useEffect, useId, useMemo, useState } from "react";
 import { useSnapshot } from "../data.tsx";
 import { formatDate, fromDays, keyDates, sliderRange, toDays } from "../lib/dates.ts";
@@ -141,8 +141,8 @@ function ProposalsToggle() {
 export function Masthead({ view }: { view: View }) {
   const { state, t, dispatch } = useApp();
   return (
-    <header className="masthead">
-      <HexWaves />
+    <header className="masthead sea-band" data-waves="river">
+      <HexWaves water="river" />
       <div className="masthead-title">
         <h1>{t("app.title")}</h1>
         <p className="lede">{t("app.lede")}</p>

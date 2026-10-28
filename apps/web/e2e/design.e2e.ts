@@ -1,5 +1,6 @@
-// The look of DECISIONS U12 in the preinstalled Chromium: the three voices are the bundled fonts, the masthead's waves
-// draw (on a 2D canvas without a graphics card, in WebGL2 when a software one is allowed), a press shimmers and the
+// The look of DECISIONS U12 in the preinstalled Chromium: the three voices are the bundled fonts, the waves draw — the
+// river in the masthead, the sea behind the description of the software, none over the map and the cards — (on a 2D
+// canvas without a graphics card, in WebGL2 when a software one is allowed), a press shimmers and the
 // shimmer leaves nothing behind, reduced motion has no shimmer, and the map's labels stay inside their nodes on a
 // desktop and on a phone.
 import { mkdtempSync, rmSync } from "node:fs";
@@ -81,15 +82,21 @@ describe("the look in Chromium", () => {
     await page.context().close();
   });
 
-  it("draws the masthead's waves on a 2D canvas without a graphics card", async () => {
+  it("draws the river in the masthead and the sea behind the description on a 2D canvas without a graphics card", async () => {
     const page = await open("x=heartbeat-app", { motion: true });
-    await expect.poll(() => page.getByTestId("hexwaves").getAttribute("data-renderer")).toBe("2d");
+    for (const id of ["waves-river", "waves-sea"])
+      await expect.poll(() => page.getByTestId(id).getAttribute("data-renderer")).toBe("2d");
+    expect(await page.locator("[data-testid=device-chips] [data-testid=waves-sea]").count()).toBe(1);
+    expect(await page.locator("header.masthead [data-testid=waves-river]").count()).toBe(1);
+    // The map and the cards stay plain.
+    expect(await page.locator("[data-testid=map] canvas, [data-testid=card] canvas").count()).toBe(0);
     await page.context().close();
   });
 
   it("draws them in WebGL2 when a software graphics card is allowed", async () => {
     const page = await open("x=heartbeat-app", { motion: true, anyGl: true, on: softwareGl });
-    await expect.poll(() => page.getByTestId("hexwaves").getAttribute("data-renderer")).toBe("webgl2");
+    for (const id of ["waves-river", "waves-sea"])
+      await expect.poll(() => page.getByTestId(id).getAttribute("data-renderer")).toBe("webgl2");
     await page.context().close();
   });
 
