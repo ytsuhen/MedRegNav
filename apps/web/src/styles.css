@@ -1523,6 +1523,178 @@
     font-size: 14.5px;
   }
 
+  /* ── guided run (U13): the button beside the example picker, the step card, the summary ───────────────── */
+  .guided-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 3px 14px 4px 11px;
+    border: 1.5px solid var(--color-accent);
+    border-radius: 999px;
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+    font: 600 14.5px var(--font-ui);
+    cursor: pointer;
+  }
+  .guided-toggle svg {
+    width: 11px;
+    height: 11px;
+    fill: currentColor;
+  }
+  .guided {
+    margin: 0 0 18px;
+    padding: 14px 18px 14px;
+    background: var(--color-sheet);
+    border: 1.5px solid var(--color-accent);
+    border-radius: 12px;
+  }
+  .card .guided {
+    margin: 0 0 24px;
+  }
+  .guided-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 2px 16px;
+  }
+  .guided-title {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+  .guided-position {
+    margin: 0;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  .guided-waiting {
+    font-weight: 400;
+    font-style: italic;
+    color: var(--color-graphite);
+  }
+  .guided-track {
+    display: flex;
+    gap: 3px;
+    margin: 10px 0 12px;
+  }
+  .guided-seg {
+    flex: 1;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--color-rule);
+  }
+  .guided-seg[data-state="done"] {
+    background: var(--color-accent);
+  }
+  .guided-seg[data-state="current"] {
+    background: var(--color-ink);
+  }
+  /* Beyond a question that waits for an answer: in pencil, as everything that depends on an answer. */
+  .guided-seg[data-state="later"] {
+    background: none;
+    border: 1px dashed var(--color-graphite);
+  }
+  .guided-question {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  .guided-answer {
+    margin: 6px 0 0;
+  }
+  .guided-answer[data-source="pending"],
+  .guided-answer[data-source="unknown"] {
+    font-style: italic;
+    color: var(--color-graphite);
+  }
+  .guided-note {
+    margin: 6px 0 0;
+    font-size: 14.5px;
+    color: var(--color-graphite);
+  }
+  .guided-section h3,
+  .guided-decided h3 {
+    margin: 14px 0 4px;
+    font-size: 14.5px;
+    font-weight: 600;
+  }
+  .guided-decided p {
+    margin: 0;
+  }
+  .guided-changes,
+  .guided-results,
+  .guided-unknown,
+  .guided-rest {
+    display: grid;
+    gap: 3px;
+    margin: 4px 0 0;
+    padding-left: 1.1rem;
+    font-size: 14.5px;
+    list-style: disc;
+  }
+  .guided-none {
+    margin: 4px 0 0;
+    font-size: 14.5px;
+    font-style: italic;
+    color: var(--color-graphite);
+  }
+  .guided-classes {
+    font-family: var(--font-law);
+    font-size: 1.1em;
+    font-variation-settings: "opsz" 20;
+  }
+  .guided-rule-of {
+    font-size: 14px;
+    color: var(--color-graphite);
+  }
+  .guided-ask {
+    margin-top: 8px;
+  }
+  .guided-ask .answers {
+    margin: 6px 0 4px;
+  }
+  .guided-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .guided-controls .button {
+    margin-top: 0;
+  }
+  .guided-keys {
+    margin: 8px 0 0;
+    font-size: 12.5px;
+    color: var(--color-graphite);
+  }
+  .guided-act h4 {
+    margin: 10px 0 2px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .guided-act ul {
+    margin: 0;
+    padding-left: 1.1rem;
+    font-size: 14.5px;
+    list-style: disc;
+  }
+  .guided-act > ul > li {
+    margin-top: 3px;
+  }
+  .guided-ref {
+    font-family: var(--font-law);
+    font-style: italic;
+  }
+  .guided-date {
+    font-size: 13.5px;
+    color: var(--color-graphite);
+  }
+
   /* ── checklist ─────────────────────────────────────────────────────────── */
   .checklist {
     margin-top: 22px;

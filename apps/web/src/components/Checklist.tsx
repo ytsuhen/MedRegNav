@@ -11,7 +11,7 @@ import { useApp } from "../state.tsx";
 import { RuleExplanation } from "./Explain.tsx";
 import { ProposalSection, proposalWords } from "./Proposal.tsx";
 import { Quotes } from "./Quote.tsx";
-import { AnswerControl, tx } from "./ui.tsx";
+import { AnswerControl, ruleWords, tx } from "./ui.tsx";
 
 function ProposalLine({ leaf }: { leaf: LeafView }) {
   const { t, state } = useApp();
@@ -80,7 +80,9 @@ function BranchSection({ branch }: { branch: BranchView }) {
   const hidden = branch.hidden.filter((l) => l.kind === "obligation");
   return (
     <section className="check-branch" data-state={branch.state} aria-labelledby={`check-${branch.id}`}>
-      <h3 id={`check-${branch.id}`}>{t(`branch.${branch.id}`)}</h3>
+      <h3 id={`check-${branch.id}`} data-flash={`branch:${branch.id}`}>
+        {t(`branch.${branch.id}`)}
+      </h3>
       {obligations.length === 0 ? <p className="check-empty">{t("checklist.empty")}</p> : null}
       <ul className="check-list">
         {obligations.map((l) => (
@@ -115,20 +117,7 @@ export function Checklist({ screen }: { screen: Screen }) {
             const rule = snapshot.model.rules.find((r) => r.id === l.id);
             const result = screen.nav.results[l.id];
             if (!rule || !result) return null;
-            const label = (id: string | null) =>
-              rule.outcomes.find((o) => o.id === id)?.label[state.lang] ?? String(id);
-            const words =
-              result.status === "not-applicable"
-                ? t("rule.notApplicable")
-                : l.check?.status === "consistent"
-                  ? t("cross.consistent", { actual: label(l.check.actual) })
-                  : l.check?.status === "inconsistent"
-                    ? t("cross.inconsistent", { actual: label(l.check.actual), expected: label(l.check.expected) })
-                    : l.check?.status === "incomplete"
-                      ? t("cross.incomplete")
-                      : result.status === "determined"
-                        ? l.outcomes.map((o) => tx(o, state.lang)).join(", ")
-                        : t("ladder.oneOf", { list: l.outcomes.map((o) => tx(o, state.lang)).join(", ") });
+            const words = ruleWords(rule, result, l.check, t, state.lang);
             return (
               <li
                 key={l.key}
@@ -140,7 +129,7 @@ export function Checklist({ screen }: { screen: Screen }) {
                 <span className="leaf-mark" aria-hidden="true" />
                 <div className="check-body">
                   <h4 className="check-title">{tx(rule.title, state.lang)}</h4>
-                  <p className="check-status">
+                  <p className="check-status" data-flash={`rule:${l.id}`}>
                     {words}
                     {l.state === "upcoming" && rule.effective
                       ? `. ${t("rule.upcoming", { date: formatDate(rule.effective.from, state.lang) })}`

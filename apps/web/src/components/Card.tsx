@@ -1,11 +1,13 @@
 // The margin note beside the map: for a requirement, how to comply (requirement → document or evidence → standard →
 // who → from when) with its legal basis quoted; for a rule result, what decided it; by default, the example the
-// device came from (quoted from the guidance, with how we read it) and how to read the map.
+// device came from (quoted from the guidance, with how we read it) and how to read the map. While the guided run is
+// on (a wide screen), its card heads the margin instead of the example.
 import { type Screen, useScreen, useSnapshot } from "../data.tsx";
 import { formatDate } from "../lib/dates.ts";
 import type { LeafView } from "../lib/view.ts";
 import { useApp } from "../state.tsx";
 import { RuleExplanation } from "./Explain.tsx";
+import { GuidedCard } from "./Guided.tsx";
 import { ProposalSection } from "./Proposal.tsx";
 import { QuestionList, SupportList } from "./Questions.tsx";
 import { Quote, Quotes } from "./Quote.tsx";
@@ -206,11 +208,11 @@ function Legend() {
 
 function DeviceCard({ screen }: { screen: Screen }) {
   const snapshot = useSnapshot();
-  const { state, t } = useApp();
+  const { state, t, described } = useApp();
   const example = snapshot.examples.find((e) => e.id === state.example);
   const outcome = (rule: string, id: string) =>
     snapshot.model.rules.find((r) => r.id === rule)?.outcomes.find((o) => o.id === id)?.label[state.lang] ?? id;
-  const modified = example ? !sameProfile(example.profile, state.profile) : false;
+  const modified = example ? !sameProfile(example.profile, described) : false;
   const matches = example?.expected.every((e) => screen.nav.results[e.rule]?.value === e.outcome) ?? false;
   return (
     <article className="card-body" data-testid="device-card">
@@ -241,12 +243,14 @@ function DeviceCard({ screen }: { screen: Screen }) {
   );
 }
 
-export function Card() {
+/** The margin; with `guided` (the run is on, on a wide screen) the run's card heads it, in place of the device's. */
+export function Card({ guided = false }: { guided?: boolean }) {
   const screen = useScreen();
   const { state, t, select } = useApp();
   if (!screen) return null;
   const sel = state.selection;
   const sheet = sel !== null && sel.kind !== "device";
+  const run = guided && state.guided !== null;
   return (
     <aside className="card" aria-label={t("card.label")} data-testid="card" data-sheet={sheet || undefined}>
       {sheet ? (
@@ -254,11 +258,12 @@ export function Card() {
           {t("card.close")}
         </button>
       ) : null}
+      {run ? <GuidedCard screen={screen} /> : null}
       {sel?.kind === "obligation" ? (
         <ObligationCard key={sel.id} screen={screen} id={sel.id} />
       ) : sel?.kind === "rule" ? (
         <RuleCard key={sel.id} screen={screen} id={sel.id} />
-      ) : (
+      ) : run ? null : (
         <DeviceCard screen={screen} />
       )}
     </aside>

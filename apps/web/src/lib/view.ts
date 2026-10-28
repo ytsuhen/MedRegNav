@@ -106,6 +106,30 @@ export interface ScreenView {
 
 export const leafKey = (kind: LeafView["kind"], id: string) => `${kind === "rule" ? "r" : "o"}.${id}`;
 
+/**
+ * What changed between two screens, as the `data-flash` keys the sheen looks for: "chip:<attribute>" for an answer
+ * that changed, "branch:<id>" for a branch whose state or counts changed, "rule:<id>" for a rule whose possible
+ * outcomes or state changed (the ladder and the qualification line carry their rules' keys).
+ */
+export function changedKeys(before: ScreenView, after: ScreenView): string[] {
+  const chips = (v: ScreenView) =>
+    new Map([...v.chips.groups.flatMap((g) => g.chips), ...v.chips.rest].map((c) => [c.attribute.id, c.value]));
+  const [was, now] = [chips(before), chips(after)];
+  const keys: string[] = [];
+  for (const [id, value] of now) if (was.get(id) !== value) keys.push(`chip:${id}`);
+  for (const b of after.branches) {
+    const p = before.branches.find((x) => x.id === b.id);
+    if (!p || p.state !== b.state || p.counts.applies !== b.counts.applies || p.counts.open !== b.counts.open)
+      keys.push(`branch:${b.id}`);
+  }
+  const words = (l: LeafView) => `${l.state}|${l.outcomes.map((o) => o.en).join(",")}`;
+  for (const l of after.leaves.values()) {
+    const p = before.leaves.get(l.key);
+    if (l.kind === "rule" && (!p || words(p) !== words(l))) keys.push(`rule:${l.id}`);
+  }
+  return keys;
+}
+
 function timing(effective: { from: string; until?: string } | undefined, asOf: string): LeafState {
   if (!effective) return "in-force";
   if (asOf < effective.from) return "upcoming";

@@ -92,13 +92,18 @@ function DeviceNode({ data }: NodeProps<DeviceNodeT>) {
       <Handle type="source" position={Position.Left} id="left" isConnectable={false} />
       <Handle type="source" position={Position.Right} id="right" isConnectable={false} />
       <p className="device-node-name">{name}</p>
-      <p className="device-node-qual" data-status={qualification.result.status}>
+      <p
+        className="device-node-qual"
+        data-status={qualification.result.status}
+        data-flash={`rule:${qualification.rule.id}`}
+      >
         {qual}
       </p>
       <button
         type="button"
         className="ladder nopan"
         data-testid="ladder"
+        data-flash={`rule:${ladder.rule.id}`}
         data-proposal={proposal ? "changed" : undefined}
         aria-label={
           status === "not-applicable"
@@ -208,7 +213,7 @@ function BranchNode({ data }: NodeProps<BranchNodeT>) {
       data-marked={isMarked(state.hover, branchKey(branch.id), branch.support) || undefined}
       data-testid={`branch-${branch.id}`}
     >
-      <div className="branch-head">
+      <div className="branch-head" data-flash={`branch:${branch.id}`}>
         <Handle
           type="target"
           position={branch.side === "left" ? Position.Right : Position.Left}
@@ -283,6 +288,7 @@ function LeafNode({ data }: NodeProps<LeafNodeT>) {
       data-selected={selected || undefined}
       data-marked={isMarked(state.hover, leaf.key, leaf.support) || undefined}
       data-testid={`leaf-${leaf.key}`}
+      data-flash={leaf.kind === "rule" ? `rule:${leaf.id}` : undefined}
     >
       <Handle type="target" position={side === "left" ? Position.Right : Position.Left} id="in" isConnectable={false} />
       <button
@@ -385,7 +391,7 @@ function edgeState(
 
 function MapCanvas({ screen }: { screen: Screen }) {
   const snapshot = useSnapshot();
-  const { state, t } = useApp();
+  const { state, t, described } = useApp();
   const flow = useReactFlow();
   const box = useRef<HTMLDivElement>(null);
   const heights = useRef(new Map<string, number>());
@@ -393,7 +399,7 @@ function MapCanvas({ screen }: { screen: Screen }) {
   const [width, setWidth] = useState(0);
   const [nodes, setNodes] = useState<MapNode[]>([]);
   const example = snapshot.examples.find((e) => e.id === state.example);
-  const name = deviceName(example, state.profile, t, state.lang);
+  const name = deviceName(example, described, t, state.lang);
 
   const items = useMemo(() => specs(screen, state.branch, name, state.lang), [screen, state.branch, name, state.lang]);
 

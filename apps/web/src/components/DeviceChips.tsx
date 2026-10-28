@@ -1,11 +1,13 @@
 // The device's description as attribute chips above the map: answered ones in ink, unanswered ones that would change
 // something in pencil (dashed, "don't know"; in red pen, and saying so, when only the proposal needs them), the rest
 // folded away. A chip opens its editor (the question, how to
-// answer it, the concept's source); hovering a chip marks the branches it causes on the map.
+// answer it, the concept's source); hovering a chip marks the branches it causes on the map. Beside the example
+// picker, the guided run's button (DECISIONS U13).
 import type { AttributeValue } from "@mrn/core";
 import { useSnapshot } from "../data.tsx";
 import type { ChipView, ScreenView } from "../lib/view.ts";
 import { useApp } from "../state.tsx";
+import { GuidedButton } from "./Guided.tsx";
 import { Quote } from "./Quote.tsx";
 import { AnswerControl, deviceName, tx, valueLabel } from "./ui.tsx";
 
@@ -26,6 +28,7 @@ function Chip({ chip }: { chip: ChipView }) {
       title={chip.forProposal ? t("proposal.chip") : undefined}
       data-marked={marked || undefined}
       data-testid={`chip-${a.id}`}
+      data-flash={`chip:${a.id}`}
       aria-expanded={open}
       aria-controls={open ? "attribute-editor" : undefined}
       aria-label={[
@@ -83,14 +86,14 @@ function AttributeEditor({ id }: { id: string }) {
 
 export function DeviceChips({ view }: { view: ScreenView }) {
   const snapshot = useSnapshot();
-  const { state, t, dispatch } = useApp();
+  const { state, t, dispatch, described } = useApp();
   const presets = snapshot.examples.filter((e) => e.preset);
   const example = snapshot.examples.find((e) => e.id === state.example);
   return (
     <section className="device" aria-labelledby="device-heading" data-testid="device-chips">
       <div className="device-bar">
         <h2 id="device-heading" className="device-heading">
-          {deviceName(example, state.profile, t, state.lang)}
+          {deviceName(example, described, t, state.lang)}
         </h2>
         <label className="preset">
           <span>{t("preset.label")}</span>
@@ -110,6 +113,7 @@ export function DeviceChips({ view }: { view: ScreenView }) {
             {example && !example.preset ? <option value={example.id}>{tx(example.title, state.lang)}</option> : null}
           </select>
         </label>
+        <GuidedButton />
         <button type="button" className="text-button" onClick={() => dispatch({ type: "clear" })}>
           {t("device.clear")}
         </button>

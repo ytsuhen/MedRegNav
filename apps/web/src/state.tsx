@@ -1,11 +1,16 @@
-// App state: the device's answers, the date, the market and view, the expanded branch, the open card, and the hover
-// that links attribute chips with the branches they cause. Everything a link should reproduce is mirrored in the URL
-// hash (lib/route.ts, replaceState so typing answers does not flood the history); a pasted link or Back re-reads it.
-// The language choice also lives in localStorage (a per-viewer convenience; every access guarded).
-import type { AttributeValue, Branch, Example, Profile, WebSnapshot } from "@mrn/core";
+// App state: the device's answers, the date, the market and view, the expanded branch, the open card, the hover
+// that links attribute chips with the branches they cause, and the guided run (DECISIONS U13). Everything a link should
+// reproduce is mirrored in the URL hash (lib/route.ts, replaceState so typing answers does not flood the history); a
+// pasted link or Back re-reads it. The language choice also lives in localStorage (a per-viewer convenience; every
+// access guarded).
+// While the guided run is on, the answers on screen are its position's (lib/guided.ts): the reducer works the run out
+// again whenever the description, an answer given on the way or the date changes, and every answer given anywhere on
+// the screen goes into the run.
+import type { AttributeValue, Branch, Example, NavigatorModel, Profile, WebSnapshot } from "@mrn/core";
 import { createContext, type ReactNode, useCallback, useContext, useEffect, useMemo, useReducer } from "react";
 import { type Lang, type MessageKey, translate } from "./i18n/dict.ts";
 import { todayIso } from "./lib/dates.ts";
+import { type GuidedState, guidedState, profileAt } from "./lib/guided.ts";
 import {
   EMPTY_ROUTE,
   encodeRoute,
@@ -36,6 +41,8 @@ export interface AppState {
   /** Show the chips that change nothing right now. */
   showRest: boolean;
   hover: Hover | null;
+  /** The guided run, while it is on. */
+  guided: GuidedState | null;
 }
 
 type Action =
@@ -52,13 +59,43 @@ type Action =
   | { type: "proposals"; on: boolean }
   | { type: "edit"; attr: string | null }
   | { type: "showRest"; on: boolean }
-  | { type: "hover"; hover: Hover | null };
+  | { type: "hover"; hover: Hover | null }
+  | { type: "guided-start" }
+  | { type: "guided-go"; at: number }
+  | { type: "guided-play"; on: boolean }
+  | { type: "guided-stop" };
 
-function reducer(state: AppState, action: Action): AppState {
+interface Context {
+  model: NavigatorModel;
+  today: string;
+}
+
+/** The run worked out again for its inputs on the state's date, with the screen's answers at its position. */
+function withRun(state: AppState, input: Omit<GuidedState, "run"> | null, ctx: Context): AppState {
+  if (!input) return { ...state, guided: null };
+  const guided = guidedState(ctx.model, input, state.asOf ?? ctx.today);
+  return { ...state, guided, profile: profileAt(guided.run, guided.at) };
+}
+
+/** An answer given while the run is on goes into the run: into the description if it knew that, else to the answers. */
+function answerInRun(g: GuidedState, attr: string, value: AttributeValue | null): Omit<GuidedState, "run"> {
+  const known = g.target[attr] !== null && g.target[attr] !== undefined;
+  if (known) {
+    const target: Record<string, AttributeValue | null | undefined> = { ...g.target };
+    if (value === null) delete target[attr];
+    else target[attr] = value;
+    return { ...g, target, answers: value === null ? { ...g.answers, [attr]: null } : g.answers };
+  }
+  return { ...g, answers: { ...g.answers, [attr]: value } };
+}
+
+function reducer(state: AppState, action: Action, ctx: Context): AppState {
+  const g = state.guided;
   switch (action.type) {
     case "route": {
-      const { lang, ...route } = action.route;
-      return { ...state, ...route, lang: lang ?? state.lang, editing: null, hover: null };
+      const { lang, guided, ...route } = action.route;
+      const next = { ...state, ...route, lang: lang ?? state.lang, editing: null, hover: null };
+      return withRun(next, guided ? { ...guided, playing: false } : null, ctx);
     }
     case "lang":
       return { ...state, lang: action.lang };
@@ -66,8 +103,10 @@ function reducer(state: AppState, action: Action): AppState {
       return { ...state, market: action.market };
     case "view":
       return { ...state, view: action.view };
-    case "asOf":
-      return { ...state, asOf: action.asOf };
+    case "asOf": {
+      const next = { ...state, asOf: action.asOf };
+      return g ? withRun(next, g, ctx) : next;
+    }
     case "example":
       return {
         ...state,
@@ -76,8 +115,10 @@ function reducer(state: AppState, action: Action): AppState {
         selection: action.example ? { kind: "device" } : null,
         editing: null,
         hover: null,
+        guided: null,
       };
     case "answer": {
+      if (g) return withRun(state, answerInRun(g, action.attr, action.value), ctx);
       const profile: Record<string, AttributeValue> = {};
       for (const [k, v] of Object.entries(state.profile)) if (v !== null && v !== undefined) profile[k] = v;
       if (action.value === null) delete profile[action.attr];
@@ -85,11 +126,11 @@ function reducer(state: AppState, action: Action): AppState {
       return { ...state, profile };
     }
     case "clear":
-      return { ...state, profile: {}, example: null, selection: null, editing: null, hover: null };
+      return { ...state, profile: {}, example: null, selection: null, editing: null, hover: null, guided: null };
     case "branch":
       return { ...state, branch: action.branch };
     case "select":
-      return { ...state, selection: action.selection };
+      return { ...state, selection: action.selection, guided: g && action.selection ? { ...g, playing: false } : g };
     case "proposals":
       return { ...state, proposals: action.on };
     case "edit":
@@ -98,6 +139,18 @@ function reducer(state: AppState, action: Action): AppState {
       return { ...state, showRest: action.on };
     case "hover":
       return { ...state, hover: action.hover };
+    case "guided-start":
+      return withRun(
+        { ...state, selection: null, editing: null, hover: null },
+        { target: state.profile, answers: {}, at: 0, playing: true },
+        ctx,
+      );
+    case "guided-go":
+      return g ? withRun(state, { ...g, at: action.at }, ctx) : state;
+    case "guided-play":
+      return g ? withRun(state, { ...g, playing: action.on }, ctx) : state;
+    case "guided-stop":
+      return g ? { ...state, profile: g.run.final, guided: null } : state;
   }
 }
 
@@ -130,7 +183,12 @@ export function knownIds(snapshot: WebSnapshot): KnownIds {
 }
 
 /** The state a URL hash describes; a first visit (no hash) opens the first preset example. */
-export function initialState(snapshot: WebSnapshot, hash: string, storedLang: string | null): AppState {
+export function initialState(
+  snapshot: WebSnapshot,
+  hash: string,
+  storedLang: string | null,
+  today = todayIso(),
+): AppState {
   const route = hash.replace(/^#/, "") === "" ? null : parseRoute(hash, knownIds(snapshot));
   const preset = snapshot.examples.find((e) => e.preset);
   const base: Route = route ?? {
@@ -139,14 +197,16 @@ export function initialState(snapshot: WebSnapshot, hash: string, storedLang: st
     profile: preset ? { ...preset.profile } : {},
     selection: preset ? { kind: "device" } : null,
   };
-  const { lang, ...rest } = base;
-  return {
+  const { lang, guided, ...rest } = base;
+  const state: AppState = {
     ...rest,
     lang: lang ?? (storedLang === "en" ? "en" : "uk"),
     editing: null,
     showRest: false,
     hover: null,
+    guided: null,
   };
+  return withRun(state, guided ? { ...guided, playing: false } : null, { model: snapshot.model, today });
 }
 
 export const routeOf = (s: AppState): Route => ({
@@ -159,6 +219,7 @@ export const routeOf = (s: AppState): Route => ({
   selection: s.selection,
   proposals: s.proposals,
   lang: null,
+  guided: s.guided ? { target: s.guided.target, answers: s.guided.answers, at: s.guided.at } : null,
 });
 
 interface AppContextValue {
@@ -166,6 +227,8 @@ interface AppContextValue {
   /** The as-of date in effect (the chosen one, or today). */
   asOf: string;
   today: string;
+  /** The description of the software: the answers on screen, or while the guided run is on, where it ends. */
+  described: Profile;
   t: (key: MessageKey, vars?: Record<string, string | number>) => string;
   dispatch: (action: Action) => void;
   answer: (attr: string, value: AttributeValue | null) => void;
@@ -188,8 +251,10 @@ export function AppProvider({
   today?: string;
   syncUrl?: boolean;
 }) {
-  const [state, dispatch] = useReducer(reducer, undefined, () => ({
-    ...initialState(snapshot, typeof window === "undefined" ? "" : window.location.hash, storage.get(LANG_KEY)),
+  const ctx = useMemo<Context>(() => ({ model: snapshot.model, today }), [snapshot, today]);
+  const bound = useCallback((s: AppState, a: Action) => reducer(s, a, ctx), [ctx]);
+  const [state, dispatch] = useReducer(bound, undefined, () => ({
+    ...initialState(snapshot, typeof window === "undefined" ? "" : window.location.hash, storage.get(LANG_KEY), today),
     ...initial,
   }));
   useEffect(() => {
@@ -215,6 +280,7 @@ export function AppProvider({
       state,
       asOf: state.asOf ?? today,
       today,
+      described: state.guided ? state.guided.run.final : state.profile,
       t,
       dispatch,
       answer: (attr, v) => dispatch({ type: "answer", attr, value: v }),

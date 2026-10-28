@@ -1,7 +1,17 @@
-// Small shared pieces: picking a data text in the current language, the device's name, the segmented radio group used
-// for the market, view and language switches, and the answer control used by the attribute editor and the map's
-// inline questions.
-import { type Attribute, type AttributeValue, domain, type Example, type Profile, type Text } from "@mrn/core";
+// Small shared pieces: picking a data text in the current language, the device's name, a rule's result in words, the
+// segmented radio group used for the market, view and language switches, and the answer control used by the attribute
+// editor, the checklist and the guided run.
+import {
+  type Attribute,
+  type AttributeValue,
+  type CrossCheckResult,
+  type DeviceIr,
+  domain,
+  type Example,
+  type Profile,
+  type RuleResult,
+  type Text,
+} from "@mrn/core";
 import { Fragment, type ReactNode, useId } from "react";
 import type { Lang } from "../i18n/dict.ts";
 import { useApp } from "../state.tsx";
@@ -43,6 +53,24 @@ export function deviceName(
   if (!example) return t("device.custom");
   const name = tx(example.title, lang);
   return sameProfile(example.profile, profile) ? name : t("device.modified", { name });
+}
+
+/** A rule's result in words: the outcome, "one of …", "does not apply", or a cross-check's verdict. */
+export function ruleWords(
+  rule: DeviceIr,
+  result: RuleResult,
+  check: CrossCheckResult | null,
+  t: ReturnType<typeof useApp>["t"],
+  lang: Lang,
+): string {
+  const label = (id: string | null) => rule.outcomes.find((o) => o.id === id)?.label[lang] ?? String(id);
+  if (result.status === "not-applicable") return t("rule.notApplicable");
+  if (check?.status === "consistent") return t("cross.consistent", { actual: label(check.actual) });
+  if (check?.status === "inconsistent")
+    return t("cross.inconsistent", { actual: label(check.actual), expected: label(check.expected) });
+  if (check?.status === "incomplete") return t("cross.incomplete");
+  const list = result.possible.map(label).join(", ");
+  return result.status === "determined" ? list : t("ladder.oneOf", { list });
 }
 
 /** The words for an attribute's value ("так", an enum value's label, "не знаю"). */
@@ -92,7 +120,7 @@ export function Segmented<T extends string>({
   );
 }
 
-/** Radio buttons for an attribute: its values (with their help) and "don't know". */
+/** Radio buttons for an attribute: its values (with their help) and "don't know"; `undefined`: nothing chosen yet. */
 export function AnswerControl({
   attribute,
   value,
@@ -100,7 +128,7 @@ export function AnswerControl({
   compact = false,
 }: {
   attribute: Attribute;
-  value: AttributeValue | null;
+  value: AttributeValue | null | undefined;
   onChange: (value: AttributeValue | null) => void;
   compact?: boolean;
 }) {
