@@ -41,6 +41,16 @@ export {
   profileIssues,
 } from "./attributes.ts";
 export { type Example, type ExampleRun, ExampleSchema, ExamplesFileSchema, runExample } from "./examples.ts";
+export {
+  type GuidedRun,
+  type GuidedStep,
+  guidedRun,
+  type RunAnswers,
+  type StepChanges,
+  type StepSource,
+  settledLeaves,
+  stepChanges,
+} from "./guided.ts";
 export { base64Utf8, canonicalJson, sha256Hex } from "./hash.ts";
 export { type CrossCheckResult, crossCheck } from "./ir/crosscheck.ts";
 export {
@@ -85,7 +95,14 @@ export {
 } from "./ir/schema.ts";
 export { type IrIssue, type IrIssueCode, irHash, validateRules } from "./ir/validate.ts";
 export { IdSchema, IsoDateSchema, LANGS, type Lang, type Text, TextSchema } from "./model/text.ts";
-export { type Navigation, type NavigatorModel, navigate, type Scenario } from "./navigator.ts";
+export {
+  type Navigation,
+  type NavigatorModel,
+  navigate,
+  nextQuestion,
+  outcomeKey,
+  type Scenario,
+} from "./navigator.ts";
 export {
   BRANCHES,
   type Branch,

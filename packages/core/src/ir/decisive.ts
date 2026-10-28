@@ -15,17 +15,22 @@ export interface DecisiveUnknown {
 /** What the results are, as comparable strings per key. */
 export type Signature = (profile: Profile) => Record<string, string>;
 
-/** The unknown attributes among `candidates` (in that order) whose answer would change the signature. */
+/**
+ * The unknown attributes among `candidates` (in that order) whose answer would change the signature; with `limit`, only
+ * the first that many.
+ */
 export function decisiveUnknowns(
   registry: AttributeRegistry,
   profile: Profile,
   signature: Signature,
   candidates: readonly string[],
+  limit = Number.POSITIVE_INFINITY,
 ): DecisiveUnknown[] {
   const base = signature(profile);
   const byId = new Map(registry.attributes.map((a) => [a.id, a]));
   const out: DecisiveUnknown[] = [];
   for (const attr of candidates) {
+    if (out.length >= limit) break;
     const attribute = byId.get(attr);
     if (!attribute || (profile[attr] !== null && profile[attr] !== undefined)) continue;
     const affects = new Set<string>();

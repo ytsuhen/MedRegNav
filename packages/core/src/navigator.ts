@@ -75,6 +75,28 @@ function candidates(model: NavigatorModel, rules: readonly DeviceIr[]): string[]
   return out;
 }
 
+/** What the questions are about, comparable: per primary rule its scope and possibilities, per obligation whether it applies. */
+export function outcomeKey(model: NavigatorModel, profile: Profile, asOf: string): string {
+  return JSON.stringify(signature(model, inForceSet(model.rules), asOf, ["primary"])(profile));
+}
+
+/**
+ * The first question `navigate` would ask on this profile, passing over `skip`: the first decisive unknown in reading
+ * order (the same as `navigate(…).questions.find((q) => !skip.has(q.attr))`, without working out the rest). The
+ * guided run takes its steps from here.
+ */
+export function nextQuestion(
+  model: NavigatorModel,
+  profile: Profile,
+  options: { asOf: string; skip?: ReadonlySet<string> },
+): DecisiveUnknown | null {
+  const rules = inForceSet(model.rules);
+  const ask = candidates(model, rules).filter((a) => !options.skip?.has(a));
+  return (
+    decisiveUnknowns(model.registry, profile, signature(model, rules, options.asOf, ["primary"]), ask, 1)[0] ?? null
+  );
+}
+
 export function navigate(
   model: NavigatorModel,
   profile: Profile,
