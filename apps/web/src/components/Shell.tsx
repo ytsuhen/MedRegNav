@@ -1,10 +1,11 @@
 // The frame around the work: the disclaimer banner (always visible), the masthead (a dark band with the river's
-// hexagon waves) with the video guide and the market, date, proposals, view and language controls, the placeholder for
-// a market that is not modelled yet, and the footer with the sources' editions and licences.
+// hexagon waves) with the video guide and the market, date, proposals, view, language and theme controls, the
+// placeholder for a market that is not modelled yet, and the footer with the sources' editions and licences.
 import { useEffect, useId, useMemo, useState } from "react";
 import { useSnapshot } from "../data.tsx";
 import { formatDate, fromDays, keyDates, sliderRange, toDays } from "../lib/dates.ts";
 import type { View } from "../lib/route.ts";
+import { useTheme } from "../lib/theme.ts";
 import { useApp } from "../state.tsx";
 import { ExternalLink, Segmented } from "./ui.tsx";
 import { VideoGuide } from "./VideoGuide.tsx";
@@ -183,8 +184,27 @@ export function Masthead({ view }: { view: View }) {
           ]}
           onChange={(lang) => dispatch({ type: "lang", lang })}
         />
+        <ThemeSwitch />
       </div>
     </header>
+  );
+}
+
+/** Light or dark: the system's scheme until the reader picks one (lib/theme.ts). */
+function ThemeSwitch() {
+  const { t } = useApp();
+  const [theme, setTheme] = useTheme();
+  return (
+    <Segmented
+      legend={t("theme.legend")}
+      testId="theme"
+      value={theme}
+      options={[
+        { value: "light", label: t("theme.light") },
+        { value: "dark", label: t("theme.dark") },
+      ]}
+      onChange={setTheme}
+    />
   );
 }
 

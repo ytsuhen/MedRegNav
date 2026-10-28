@@ -2,13 +2,13 @@
 // something in pencil (dashed, "don't know"; in red pen, and saying so, when only the proposal needs them), the rest
 // folded away. A chip opens its editor (the question, how to
 // answer it, the concept's source); hovering a chip marks the branches it causes on the map. Beside the example
-// picker, the guided run's button (DECISIONS U13). The description is an island over the sea (U12): a chip that changes
+// picker, the guided run's tick (DECISIONS U13). The description is an island over the sea (U12): a chip that changes
 // lights the water around it.
 import type { AttributeValue } from "@mrn/core";
 import { useSnapshot } from "../data.tsx";
 import type { ChipView, ScreenView } from "../lib/view.ts";
 import { useApp } from "../state.tsx";
-import { GuidedButton } from "./Guided.tsx";
+import { GuidedCheck } from "./Guided.tsx";
 import { Quote } from "./Quote.tsx";
 import { AnswerControl, deviceName, tx, valueLabel } from "./ui.tsx";
 
@@ -114,7 +114,7 @@ export function DeviceChips({ view }: { view: ScreenView }) {
             {example && !example.preset ? <option value={example.id}>{tx(example.title, state.lang)}</option> : null}
           </select>
         </label>
-        <GuidedButton />
+        <GuidedCheck />
         <button type="button" className="text-button" onClick={() => dispatch({ type: "clear" })}>
           {t("device.clear")}
         </button>

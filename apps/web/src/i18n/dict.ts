@@ -22,6 +22,9 @@ const uk = {
   "lang.legend": "Мова інтерфейсу",
   "lang.uk": "Укр",
   "lang.en": "Eng",
+  "theme.legend": "Тема",
+  "theme.light": "Світла",
+  "theme.dark": "Темна",
   "asOf.label": "Станом на",
   "asOf.today": "Сьогодні",
   "asOf.todayMark": "Сьогодні, {date}",
@@ -169,7 +172,6 @@ const uk = {
 
   "guided.start": "Автопрогін",
   "guided.start.hint": "Пройти цей опис з чистого аркуша, питання за питанням",
-  "guided.stop": "Зупинити автопрогін",
   "guided.heading": "Автопрогін",
   "guided.step": "Крок {k} з {n}",
   "guided.begin": "Початок",
@@ -207,6 +209,7 @@ const uk = {
   "guided.details": "Подробиці",
   "guided.fold": "Сховати подробиці",
   "guided.unfold": "Показати подробиці",
+  "guided.off": "Вимкнути автопрогін",
   "guided.waiting": "Чекає на вашу відповідь",
   "guided.summary.lead":
     "{n, plural, one {# крок} few {# кроки} many {# кроків} other {# кроку}}: з опису — {target}, ваших відповідей — {given}, «не знаю» — {unknown}.",
@@ -302,6 +305,9 @@ const en: Record<MessageKey, string> = {
   "lang.legend": "Interface language",
   "lang.uk": "Укр",
   "lang.en": "Eng",
+  "theme.legend": "Theme",
+  "theme.light": "Light",
+  "theme.dark": "Dark",
   "asOf.label": "As of",
   "asOf.today": "Today",
   "asOf.todayMark": "Today, {date}",
@@ -445,7 +451,6 @@ const en: Record<MessageKey, string> = {
 
   "guided.start": "Guided run",
   "guided.start.hint": "Walk through this description from a blank sheet, question by question",
-  "guided.stop": "Stop the guided run",
   "guided.heading": "Guided run",
   "guided.step": "Step {k} of {n}",
   "guided.begin": "Start",
@@ -483,6 +488,7 @@ const en: Record<MessageKey, string> = {
   "guided.details": "Details",
   "guided.fold": "Hide the details",
   "guided.unfold": "Show the details",
+  "guided.off": "Turn the guided run off",
   "guided.waiting": "Waiting for your answer",
   "guided.summary.lead":
     "{n, plural, one {# step} other {# steps}}: from the description {target}, your answers {given}, “don't know” {unknown}.",

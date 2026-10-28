@@ -1,4 +1,4 @@
-// The guided run (DECISIONS U13): the button beside the example picker, the step card and the summary, and the
+// The guided run (DECISIONS U13): the tick beside the example picker, the step card and the summary, and the
 // playback — a step every four seconds, paused at a question the description leaves open, ←/→ and space, and the
 // sheen on what each step changed (the answer's chip, the branches, the rules). The card shows the question from the
 // attribute registry and its answer, what changed (possible results, how many requirements apply), and the node that
@@ -14,7 +14,7 @@ import {
   settledLeaves,
   stepChanges,
 } from "@mrn/core";
-import { type ReactNode, useEffect, useMemo, useRef, useState } from "react";
+import { type ReactNode, useEffect, useId, useMemo, useRef, useState } from "react";
 import { type Screen, useSnapshot } from "../data.tsx";
 import { formatDate } from "../lib/dates.ts";
 import { actsOf, lastReachable, presentedRules, stepAt } from "../lib/guided.ts";
@@ -27,35 +27,38 @@ import { AnswerControl, ruleWords, tx, valueLabel } from "./ui.tsx";
 /** How long a step stays on screen while the run plays. */
 export const STEP_MS = 4000;
 
-export function GuidedButton() {
+/**
+ * The tick beside the example picker: on, the run's row appears at its start, paused (▶ plays it); off, the row goes
+ * and the description stays as the run left it. Unticked, the page is the plain navigator.
+ */
+export function GuidedCheck() {
   const { state, t, dispatch } = useApp();
-  return state.guided ? (
-    <button
-      type="button"
-      className="guided-toggle"
-      data-testid="guided-stop"
-      onClick={() => dispatch({ type: "guided-stop" })}
-    >
-      <svg viewBox="0 0 12 12" aria-hidden="true">
-        <rect x="2.5" y="2.5" width="7" height="7" rx="1" />
-      </svg>
-      {t("guided.stop")}
-    </button>
-  ) : (
-    <button
-      type="button"
-      className="guided-toggle"
-      data-testid="guided-start"
-      title={t("guided.start.hint")}
-      onClick={() => dispatch({ type: "guided-start" })}
-    >
-      <svg viewBox="0 0 12 12" aria-hidden="true">
-        <path d="M3 1.8v8.4L10 6z" />
-      </svg>
-      {t("guided.start")}
-    </button>
+  const hint = useId();
+  return (
+    <>
+      <label className="guided-check" title={t("guided.start.hint")}>
+        <input
+          type="checkbox"
+          id={GUIDED_CHECK}
+          data-testid="guided-check"
+          aria-describedby={hint}
+          checked={state.guided !== null}
+          onChange={(e) =>
+            dispatch(e.target.checked ? { type: "guided-start", playing: false } : { type: "guided-stop" })
+          }
+        />
+        <span>{t("guided.start")}</span>
+      </label>
+      {/* Outside the label, so it describes the tick without becoming part of its name. */}
+      <span id={hint} className="sr-only">
+        {t("guided.start.hint")}
+      </span>
+    </>
   );
 }
+
+/** The tick's id: the row's × gives the focus back to it. */
+const GUIDED_CHECK = "guided-check";
 
 /**
  * A rule's possible results in short words; the class ladder by its class numerals, in the law's voice. While it is
@@ -374,6 +377,8 @@ export function GuidedCard({ screen }: { screen: Screen }) {
   useEffect(() => {
     const el = card.current;
     if (!el || (navigator.userActivation && !navigator.userActivation.isActive)) return;
+    // The focus goes from the tick (soon scrolled away) to ▶, so space then plays the run instead of ticking it off.
+    el.querySelector<HTMLElement>(".guided-primary")?.focus({ preventScroll: true });
     el.scrollIntoView?.({ block: "start", behavior: reducedMotion() ? "auto" : "smooth" });
     // The map under the card lays itself out a moment later and the page grows: once the scroll is over, bring the card
     // up the rest of the way, unless the reader has scrolled meanwhile.
@@ -441,24 +446,44 @@ export function GuidedCard({ screen }: { screen: Screen }) {
           })}
         </div>
         <GuidedControls go={go} reach={reach} />
-        <button
-          type="button"
-          className="guided-icon guided-fold"
-          data-testid="guided-fold"
-          aria-expanded={shown}
-          aria-controls="guided-body"
-          aria-label={t("guided.details")}
-          title={t(shown ? "guided.fold" : "guided.unfold")}
-          // Not `disabled`: the button may hold the focus when a question opens the card.
-          aria-disabled={waiting || undefined}
-          onClick={() => {
-            if (!waiting) setFolded(!folded);
-          }}
-        >
-          <svg viewBox="0 0 12 12" aria-hidden="true">
-            <path d={shown ? "M2.5 7.5 6 4l3.5 3.5" : "M2.5 4.5 6 8l3.5-3.5"} />
-          </svg>
-        </button>
+        {/* Fold and ×: kept together at the row's end, on a phone too. */}
+        <div className="guided-ends">
+          <button
+            type="button"
+            className="guided-icon guided-fold"
+            data-testid="guided-fold"
+            aria-expanded={shown}
+            aria-controls="guided-body"
+            aria-label={t("guided.details")}
+            title={t(shown ? "guided.fold" : "guided.unfold")}
+            // Not `disabled`: the button may hold the focus when a question opens the card.
+            aria-disabled={waiting || undefined}
+            onClick={() => {
+              if (!waiting) setFolded(!folded);
+            }}
+          >
+            <svg viewBox="0 0 12 12" aria-hidden="true">
+              <path d={shown ? "M2.5 7.5 6 4l3.5 3.5" : "M2.5 4.5 6 8l3.5-3.5"} />
+            </svg>
+          </button>
+          {/* The row's own way out, as the tick, which the scroll may have taken out of view; the focus goes back to
+              the tick. */}
+          <button
+            type="button"
+            className="guided-icon guided-fold"
+            data-testid="guided-off"
+            aria-label={t("guided.off")}
+            title={t("guided.off")}
+            onClick={() => {
+              dispatch({ type: "guided-stop" });
+              requestAnimationFrame(() => document.getElementById(GUIDED_CHECK)?.focus({ preventScroll: true }));
+            }}
+          >
+            <svg viewBox="0 0 12 12" aria-hidden="true">
+              <path d="M3 3l6 6M9 3 3 9" />
+            </svg>
+          </button>
+        </div>
       </div>
       <div id="guided-body" className="guided-body" hidden={!shown}>
         {g.at === 0 ? (

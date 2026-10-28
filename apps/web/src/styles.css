@@ -27,6 +27,13 @@
 :root {
   color-scheme: light dark;
 }
+/* The reader's choice with the masthead's switch (lib/theme.ts) wins over the system's scheme. */
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
 
 @theme {
   --font-ui: "IBM Plex Sans Variable", "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
@@ -1592,23 +1599,21 @@
     font-size: 14.5px;
   }
 
-  /* ── guided run (U13): the button beside the example picker, the step card, the summary ───────────────── */
-  .guided-toggle {
+  /* ── guided run (U13): the tick beside the example picker, the step card, the summary ────────────────── */
+  .guided-check {
     display: inline-flex;
     align-items: center;
     gap: 7px;
-    padding: 3px 14px 4px 11px;
-    border: 1.5px solid var(--color-accent);
-    border-radius: 999px;
-    background: var(--color-accent);
-    color: var(--color-on-accent);
     font: 600 14.5px var(--font-ui);
+    color: var(--color-ink);
     cursor: pointer;
   }
-  .guided-toggle svg {
-    width: 11px;
-    height: 11px;
-    fill: currentColor;
+  .guided-check input {
+    width: 17px;
+    height: 17px;
+    margin: 0;
+    accent-color: var(--color-accent);
+    cursor: pointer;
   }
   /* The run's card: a small island between the description and the map (U13), one row of controls over the step; the
      page scrolls it to the top on start. Folded, it is that row alone. */
@@ -1652,9 +1657,13 @@
     display: flex;
     gap: 3px;
   }
-  .guided-controls {
+  .guided-controls,
+  .guided-ends {
     display: flex;
     gap: 6px;
+  }
+  .guided-ends {
+    margin-left: auto;
   }
   /* Round icon buttons: their names are their labels, their keys are in their tooltips. */
   .guided-icon {

@@ -167,15 +167,18 @@ describe("the look in Chromium", () => {
       return Math.max(...[x, y, r].map((v, i) => Math.abs((v ?? Number.NaN) - (d[i] ?? 0))));
     };
     await expect.poll(gap, { timeout: 8000 }).toBeLessThan(3);
-    // The wavelets run along the six lines from the device to the branches, not along the lines to the leaves.
-    await expect.poll(() => sea.getAttribute("data-wavelines")).toBe("6");
+    // The wavelets run along the six lines from the device to the branches, and on from the open branch along each line
+    // to its requirements.
+    const leaves = await page.locator(".node-leaf").count();
+    expect(leaves).toBeGreaterThan(0);
+    await expect.poll(() => sea.getAttribute("data-wavelines")).toBe(`6 ${leaves}`);
     await page.context().close();
   });
 
   it("moves the water right round the device and along its lines, keeps the open sea calm, and stands still under reduced motion", async () => {
     // A blank description: the margin card is short, so the right column under it is open sea.
     const page = await open("p=", { motion: true, anyGl: true, on: softwareGl, dark: true });
-    await expect.poll(() => page.getByTestId("waves-sea").getAttribute("data-wavelines")).toBe("6");
+    await expect.poll(() => page.getByTestId("waves-sea").getAttribute("data-wavelines")).toBe("6 0");
     await page.evaluate(() => {
       const r = document.querySelector(".react-flow [data-whirl]")?.getBoundingClientRect();
       if (r) window.scrollTo(0, window.scrollY + r.top + r.height / 2 - window.innerHeight / 2);
@@ -215,12 +218,56 @@ describe("the look in Chromium", () => {
     await still.context().close();
   });
 
+  it("switches between light and dark with the masthead's switch, the sea with it, and remembers the choice", async () => {
+    // Without motion: the 2D sea is drawn once, so only the switch can redraw it.
+    const page = await open("x=heartbeat-app");
+    const sea = page.getByTestId("waves-sea");
+    await expect.poll(() => sea.getAttribute("data-water")).toBe("shallow");
+    const look = () =>
+      page.evaluate(() => ({
+        theme: document.documentElement.dataset.theme ?? null,
+        paper: getComputedStyle(document.body).backgroundColor,
+      }));
+    const before = await look();
+    // The system's scheme until a choice: light here.
+    expect(before.theme).toBeNull();
+    expect(await page.getByTestId("theme").locator("input[value=light]").isChecked()).toBe(true);
+    await page.getByTestId("theme").getByRole("radio", { name: "Темна" }).check();
+    const after = await look();
+    expect(after.theme).toBe("dark");
+    expect(after.paper).not.toBe(before.paper);
+    await expect.poll(() => sea.getAttribute("data-water")).toBe("deep");
+    // The masthead stays a dark band in both.
+    const band = () =>
+      page.evaluate(() => getComputedStyle(document.querySelector("header.masthead") as Element).color);
+    expect(await band()).toBe("rgb(227, 244, 238)");
+    // Remembered in this browser: the next visit opens dark.
+    const again = await page.context().newPage();
+    await again.goto(page.url());
+    await again.locator("[data-testid=ladder]").waitFor();
+    expect(await again.evaluate(() => document.documentElement.dataset.theme)).toBe("dark");
+    expect(await again.getByTestId("theme").locator("input[value=dark]").isChecked()).toBe(true);
+    await page.context().close();
+  });
+
+  it("paints the chosen scheme before the app's script arrives", async () => {
+    const context = await browser.newContext({ viewport: { width: 1440, height: 900 }, colorScheme: "light" });
+    await context.addInitScript(() => window.localStorage.setItem("mrn.theme", "dark"));
+    const page = await context.newPage();
+    // No script but the page's own: what the reader sees while the bundle is on its way.
+    await page.route("**/*.js", (route) => route.abort());
+    await page.goto(site.url);
+    expect(await page.evaluate(() => document.documentElement.dataset.theme)).toBe("dark");
+    expect(await page.evaluate(() => getComputedStyle(document.documentElement).colorScheme)).toBe("dark");
+    await context.close();
+  });
+
   it("keeps the legend on the map, beside a requirement's card and while the guided run is on", async () => {
     const page = await open("x=heartbeat-app&b=market&s=o.route-iib");
     const legend = page.getByTestId("map-legend");
     expect(await legend.isVisible()).toBe(true);
     expect(await page.locator("[data-testid=card] [data-testid=map-legend]").count()).toBe(0);
-    await page.getByTestId("guided-start").click();
+    await page.getByTestId("guided-check").check();
     await page.getByTestId("guided").waitFor();
     // The run's card stands between the description and the map; the legend stays in view under it.
     const top = await legend.evaluate((el) => el.getBoundingClientRect().top);

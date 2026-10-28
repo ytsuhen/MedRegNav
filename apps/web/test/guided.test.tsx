@@ -102,8 +102,12 @@ describe("the guided run in the app", () => {
     timeout: 30_000,
   }, async () => {
     renderApp({ example: "heartbeat-app", profile: heartbeat, view: "checklist", selection: null });
-    await act(async () => fireEvent.click(screen.getByTestId("guided-start")));
+    // The tick shows the run's row at its start, paused; ▶ plays it.
+    await act(async () => fireEvent.click(screen.getByTestId("guided-check")));
     expect(position()).toBe("Початок");
+    await act(async () => vi.advanceTimersByTime(STEP_MS));
+    expect(position()).toBe("Початок");
+    await act(async () => fireEvent.click(screen.getByTestId("guided-play")));
     await act(async () => vi.advanceTimersByTime(STEP_MS));
     expect(position()).toMatch(/^Крок 1 з \d+$/);
     // Each step sets its timer once it is on screen.
@@ -144,14 +148,14 @@ describe("the guided run in the app", () => {
     timeout: 30_000,
   }, async () => {
     renderApp({ example: "heartbeat-app", profile: heartbeat, view: "checklist", selection: null });
-    await act(async () => fireEvent.click(screen.getByTestId("guided-start")));
-    await act(async () => fireEvent.click(screen.getByTestId("guided-play")));
+    await act(async () => fireEvent.click(screen.getByTestId("guided-check")));
     // An answer the description lacks, from the chip's editor while the run is on.
     await act(async () => fireEvent.click(screen.getByTestId("chip-manufacturerOutsideEu")));
     const editor = screen.getByTestId("attribute-editor");
     await act(async () => fireEvent.click(within(editor).getByLabelText("Ні")));
     expect(screen.getByTestId("guided-position").textContent).toBe("Початок");
-    await act(async () => fireEvent.click(screen.getByTestId("guided-stop")));
+    // Off with the tick: the row goes, the description stays as the run left it.
+    await act(async () => fireEvent.click(screen.getByTestId("guided-check")));
     expect(screen.queryByTestId("guided")).toBeNull();
     expect(screen.getByTestId("chip-manufacturerOutsideEu").textContent).toBe("Виробник поза ЄСні");
     expect(screen.getByTestId("chip-decisionInfo").textContent).toBe("Інформація для рішеньтак");

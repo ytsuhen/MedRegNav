@@ -52,12 +52,10 @@ describe("the guided run in Chromium", () => {
   const card = (page: Page) => page.getByTestId("guided");
   const position = (page: Page) => card(page).getByTestId("guided-position").textContent();
 
-  /** Starts the run and pauses it at the blank sheet. */
+  /** Ticks the run on: its row comes up at the blank sheet, paused. */
   async function start(page: Page) {
-    await page.getByTestId("guided-start").click();
+    await page.getByTestId("guided-check").check();
     await card(page).waitFor();
-    expect(await card(page).getByTestId("guided-play").getAttribute("aria-pressed")).toBe("true");
-    await card(page).getByTestId("guided-play").click();
     expect(await card(page).getByTestId("guided-play").getAttribute("aria-pressed")).toBe("false");
     expect(await position(page)).toBe("Початок");
   }
@@ -121,8 +119,8 @@ describe("the guided run in Chromium", () => {
     expect(acts).toMatch(/чинне з 26\.05\.2021/);
     expect(await position(page)).toBe("Підсумок");
     expect(page.url()).toMatch(/[#&]g=\d+/);
-    // Stopping the run keeps the description and the answers given on the way.
-    await page.getByTestId("guided-stop").click();
+    // Ticking the run off keeps the description and the answers given on the way.
+    await page.getByTestId("guided-check").uncheck();
     expect(await page.getByTestId("guided").count()).toBe(0);
     expect(await page.getByTestId("ladder").getAttribute("aria-label")).toBe("Клас IIb. Відкрити пояснення");
     expect(page.url()).not.toContain("g=");
@@ -178,6 +176,27 @@ describe("the guided run in Chromium", () => {
     await page.context().close();
   });
 
+  it("works with the keys right after the tick, and turns off from its own row", async () => {
+    const page = await open(`x=heartbeat-app&${DATE}`);
+    // A real click: the focus moves on from the tick (scrolled away) to ▶, so space plays rather than ticks it off.
+    await page.getByTestId("guided-check").click();
+    await card(page).waitFor();
+    await page.keyboard.press(" ");
+    expect(await card(page).getByTestId("guided-play").getAttribute("aria-pressed")).toBe("true");
+    expect(await page.getByTestId("guided").count()).toBe(1);
+    await page.keyboard.press(" ");
+    await page.keyboard.press("ArrowRight");
+    expect(await position(page)).toMatch(/^Крок 1 з \d+$/);
+    await card(page).getByTestId("guided-off").click();
+    expect(await page.getByTestId("guided").count()).toBe(0);
+    expect(await page.getByTestId("guided-check").isChecked()).toBe(false);
+    // The focus goes back to the tick.
+    await expect
+      .poll(() => page.evaluate(() => document.activeElement?.getAttribute("data-testid")))
+      .toBe("guided-check");
+    await page.context().close();
+  });
+
   it("folds down to its one row and keeps going", async () => {
     const page = await open(`x=heartbeat-app&${DATE}`);
     await start(page);
@@ -202,7 +221,8 @@ describe("the guided run in Chromium", () => {
 
   it("plays a step every four seconds", async () => {
     const page = await open(`x=heartbeat-app&${DATE}`);
-    await page.getByTestId("guided-start").click();
+    await start(page);
+    await card(page).getByTestId("guided-play").click();
     expect(await position(page)).toBe("Початок");
     await expect.poll(() => position(page), { timeout: 6000 }).toMatch(/^Крок 1 з \d+$/);
     await card(page).getByTestId("guided-play").click();
@@ -234,8 +254,7 @@ describe("the guided run in Chromium", () => {
 
   it("shimmers the chip and the branches a step changed", async () => {
     const page = await open(`x=heartbeat-app&${DATE}`, { motion: true });
-    await page.getByTestId("guided-start").click();
-    await card(page).getByTestId("guided-play").click();
+    await start(page);
     await card(page).getByTestId("guided-next").click();
     await expect.poll(() => page.getByTestId("sheen").count()).toBeGreaterThan(1);
     await page.context().close();

@@ -60,7 +60,7 @@ type Action =
   | { type: "edit"; attr: string | null }
   | { type: "showRest"; on: boolean }
   | { type: "hover"; hover: Hover | null }
-  | { type: "guided-start" }
+  | { type: "guided-start"; playing?: boolean }
   | { type: "guided-go"; at: number }
   | { type: "guided-play"; on: boolean }
   | { type: "guided-stop" };
@@ -142,7 +142,7 @@ function reducer(state: AppState, action: Action, ctx: Context): AppState {
     case "guided-start":
       return withRun(
         { ...state, selection: null, editing: null, hover: null },
-        { target: state.profile, answers: {}, at: 0, playing: true },
+        { target: state.profile, answers: {}, at: 0, playing: action.playing ?? true },
         ctx,
       );
     case "guided-go":

@@ -2,8 +2,8 @@
 // slower drifting gusts, as in the author's First Visit and CQL demos. Two kinds of water:
 // - the sea under everything below the masthead: calm, light and shallow in the light scheme, deep in the dark one. It
 //   turns only right round the device in the middle of the map, in a slow whirlpool, and from the device little pigeon
-//   wavelets run along the lines to the branches: trains of crests in the colours of a pigeon's neck, a magenta violet
-//   and a green. The water scrolls with the page;
+//   wavelets glide slowly along the lines to the branches and on, fainter, from the open branch to its requirements:
+//   pairs of crests in the colours of a pigeon's neck, a magenta violet and a green. The water scrolls with the page;
 // - the river behind the masthead: slow ripples drawn out along a current that carries them left to right, sprinkled
 //   here and there, away from the text, with a pigeon hexagon whose colour shifts very slowly.
 // An action casts a short light on the field around where it happened, as a decision lights the hexagons round itself
@@ -26,17 +26,23 @@ const BURST_MS = 1500;
 const WHIRL_SPEED = (2 * Math.PI) / 45;
 const WHIRL_EDGE = 80;
 /**
- * The wavelets: every 6.5–9 s each line from the device to a branch sends a train of three crests out to the branch, at
- * this speed (px/s), the crests this far apart and reaching about this far either side of the line (px).
+ * The wavelets: every 10–14 s each line from the device to a branch sends a pair of crests out, at this speed (px/s), the
+ * crests this far apart and reaching about this far either side of the line (px). From an open branch they carry on to
+ * its requirements as one crest, this much fainter.
  */
-const WAVE_SPEED = 32;
-const WAVE_EVERY = 6.5;
-const WAVE_LENGTH = 16;
+const WAVE_SPEED = 16;
+const WAVE_EVERY = 10;
+const WAVE_LENGTH = 20;
 const WAVE_HALF = 15;
-const WAVE_CRESTS = 3;
-/** The most lines that carry wavelets, and the cell of their map (px). */
-const MAX_LINES = 8;
+const WAVE_CRESTS = 2;
+const WAVE_ONWARD = 0.6;
+/** The most lines that carry wavelets (six to the branches, the rest on to requirements) and the cell of their map (px). */
+const MAX_LINES = 32;
 const WAVE_CELL = 4;
+/** How far along a line the wave map keeps (px): four to a step of its green channel. */
+const WAVE_REACH = 1020;
+/** The crest's way across the branch, from the line that comes in to the lines that go on (s). */
+const WAVE_ACROSS = 0.8;
 /** A pigeon sprinkle on the river: a new one every 1.6–2.8 s, each shifting its colour for 10–14 s (ms). */
 const SPRINKLE_EVERY = [1600, 2800] as const;
 const SPRINKLE_LIFE = [10000, 14000] as const;
@@ -56,9 +62,14 @@ export interface Palette {
   /** The lights of actions turn from violet to teal, as the sheen on what was pressed does. */
   violet: RGB;
   teal: RGB;
-  /** A pigeon's neck for the wavelets and sprinkles: a magenta violet and a green, and how opaque they get. */
+  /**
+   * A pigeon's neck for the wavelets and sprinkles: a magenta violet and a green, and how opaque the wavelets get (soft;
+   * a sprinkle, which keeps off the text, goes nearly opaque).
+   */
   pigeon: readonly [RGB, RGB];
   pigeonAlpha: number;
+  /** Which water it is, for tests (the canvas's `data-water`). */
+  name: string;
 }
 
 /** The deep sea (the CQL demo's): the masthead's river in both schemes, the page's sea in the dark one. */
@@ -73,7 +84,8 @@ export const DEEP: Palette = {
     [205, 118, 255],
     [96, 232, 146],
   ],
-  pigeonAlpha: 0.85,
+  pigeonAlpha: 0.5,
+  name: "deep",
 };
 
 /** Shallow water on the light page: pale teal hexagons over the paper, quieter than the deep sea. */
@@ -88,7 +100,8 @@ export const SHALLOW: Palette = {
     [136, 44, 214],
     [8, 128, 66],
   ],
-  pigeonAlpha: 0.9,
+  pigeonAlpha: 0.55,
+  name: "shallow",
 };
 
 /**
@@ -135,8 +148,11 @@ const MOTIONS: Record<WaterKind, Motion> = {
 export interface Geometry {
   /** The device the whirlpool turns round: its centre and half-diagonal. */
   whirl: { x: number; y: number; r: number } | null;
-  /** Each line from the device to a branch, as x, y pairs from the device outwards. */
-  lines: number[][];
+  /**
+   * The lines the wavelets run along, as x, y pairs outwards: first those from the device, then those that carry one of
+   * them on (`from`: its index), from a branch to its requirements.
+   */
+  lines: { points: number[]; from?: number }[];
 }
 
 export type Renderer = "webgl2" | "2d";
@@ -196,7 +212,7 @@ function glowOf(l: Light, now: number, p: Palette): Glow {
       power: Math.min(1, Math.sin(Math.PI * age) ** 0.6 * 1.3),
       ring: 0,
       rgb: mixRgb(p.pigeon[0], p.pigeon[1], green),
-      alpha: Math.min(1, p.pigeonAlpha + 0.1),
+      alpha: Math.min(1, p.pigeonAlpha + 0.45),
     };
   }
   const power = age < 0.12 ? age / 0.12 : (1 - (age - 0.12) / 0.88) ** 1.6;
@@ -212,22 +228,27 @@ function glowOf(l: Light, now: number, p: Palette): Glow {
   };
 }
 
-/** The lines the wavelets run along, as a small RGBA map over their bounding box, and each line's length. */
+/**
+ * The lines the wavelets run along, as a small RGBA map over their bounding box, and per line its wave's family (the
+ * line from the device it began on), where on the family's path it starts and ends, and how strong the wave is on it.
+ */
 interface WaveMap {
   rect: [number, number, number, number];
   cols: number;
   rows: number;
   data: Uint8Array;
-  lengths: number[];
+  lines: { family: number; start: number; end: number; strength: number }[];
 }
 
 /**
- * Per cell: how near the nearest line is (red: 1 on it, fading over WAVE_HALF), how far along it from the device (green:
- * px / 2) and which line (blue: its index × 32).
+ * Per cell: how near the nearest line is (red: 1 on it, fading over WAVE_HALF), how far along that line (green: px / 4,
+ * up to WAVE_REACH) and which line (blue: its index × 8). Per line: where on its family's path from the device it
+ * starts — a line that carries another on starts where that one ended, plus a short way across the branch.
  */
-function waveMap(lines: readonly number[][]): WaveMap | null {
-  const shown = lines.slice(0, MAX_LINES).filter((l) => l.length >= 4);
-  if (shown.length === 0) return null;
+export function waveMap(lines: Geometry["lines"]): WaveMap | null {
+  const kept = lines.slice(0, MAX_LINES);
+  const shown = kept.map((l) => (l.points.length >= 4 ? l.points : []));
+  if (!shown.some((p) => p.length > 0)) return null;
   const along = shown.map((pts) => {
     const out = [0];
     for (let i = 2; i + 1 < pts.length; i += 2)
@@ -237,16 +258,35 @@ function waveMap(lines: readonly number[][]): WaveMap | null {
       );
     return out;
   });
+  // Families, starts and strengths: a line from the device begins its own family; one that carries another on joins it.
+  const info: WaveMap["lines"] = [];
+  let families = 0;
+  kept.forEach((l, i) => {
+    const steps = along[i] ?? [0];
+    const length = steps[steps.length - 1] ?? 0;
+    const parent = l.from !== undefined && l.from < i ? info[l.from] : undefined;
+    const before = l.from !== undefined ? shown[l.from] : undefined;
+    if (!parent || !before) {
+      info.push({ family: families++, start: 0, end: length, strength: 1 });
+      return;
+    }
+    // Under the branch's island the crest takes a short moment, not the island's whole width: it comes out on the far
+    // side right after it went in.
+    const start = parent.end + WAVE_ACROSS * WAVE_SPEED;
+    info.push({ family: parent.family, start, end: start + length, strength: WAVE_ONWARD });
+  });
   const reach = 2 * WAVE_HALF;
   const boxes = shown.map((pts) => {
+    if (pts.length === 0) return [0, 0, -1, -1];
     const xs = pts.filter((_, i) => i % 2 === 0);
     const ys = pts.filter((_, i) => i % 2 === 1);
     return [Math.min(...xs) - reach, Math.min(...ys) - reach, Math.max(...xs) + reach, Math.max(...ys) + reach];
   });
-  const x0 = Math.min(...boxes.map((b) => b[0] ?? 0));
-  const y0 = Math.min(...boxes.map((b) => b[1] ?? 0));
-  const x1 = Math.max(...boxes.map((b) => b[2] ?? 0));
-  const y1 = Math.max(...boxes.map((b) => b[3] ?? 0));
+  const real = boxes.filter((b) => (b[2] ?? 0) >= (b[0] ?? 0));
+  const x0 = Math.min(...real.map((b) => b[0] ?? 0));
+  const y0 = Math.min(...real.map((b) => b[1] ?? 0));
+  const x1 = Math.max(...real.map((b) => b[2] ?? 0));
+  const y1 = Math.max(...real.map((b) => b[3] ?? 0));
   const cell = Math.max(WAVE_CELL, (x1 - x0) / 512, (y1 - y0) / 512);
   const cols = Math.max(2, Math.ceil((x1 - x0) / cell));
   const rows = Math.max(2, Math.ceil((y1 - y0) / cell));
@@ -277,17 +317,31 @@ function waveMap(lines: readonly number[][]): WaveMap | null {
       if (which < 0) continue;
       const o = (r * cols + c) * 4;
       data[o] = Math.round(Math.exp(-best / (WAVE_HALF * WAVE_HALF)) * 255);
-      data[o + 1] = Math.min(255, Math.round(s / 2));
-      data[o + 2] = which * 32;
+      data[o + 1] = Math.min(255, Math.round(s / 4));
+      data[o + 2] = which * 8;
       data[o + 3] = 255;
     }
-  return {
-    rect: [x0, y0, cols * cell, rows * cell],
-    cols,
-    rows,
-    data,
-    lengths: along.map((a) => a[a.length - 1] ?? 0),
-  };
+  return { rect: [x0, y0, cols * cell, rows * cell], cols, rows, data, lines: info };
+}
+
+/** How far every point of `next` moved from the same point of `before`, if all moved alike (a drag of the map). */
+export function movedBy(before: Geometry["lines"], next: Geometry["lines"]): [number, number] | null {
+  if (before.length !== next.length || before.length === 0) return null;
+  const [dx, dy] = [
+    (next[0]?.points[0] ?? 0) - (before[0]?.points[0] ?? 0),
+    (next[0]?.points[1] ?? 0) - (before[0]?.points[1] ?? 0),
+  ];
+  for (let l = 0; l < next.length; l++) {
+    const [a, b] = [before[l], next[l]];
+    if (!a || !b || a.from !== b.from || a.points.length !== b.points.length) return null;
+    for (let i = 0; i + 1 < b.points.length; i += 2)
+      if (
+        Math.abs((b.points[i] ?? 0) - (a.points[i] ?? 0) - dx) > 0.5 ||
+        Math.abs((b.points[i + 1] ?? 0) - (a.points[i + 1] ?? 0) - dy) > 0.5
+      )
+        return null;
+  }
+  return [dx, dy];
 }
 
 // Smooth 3D value noise on a seeded permutation: a continuous but irregular field, so the ripples never repeat.
@@ -365,14 +419,13 @@ interface Painter {
 /** A number as a GLSL float literal. */
 const f = (n: number) => (Number.isInteger(n) ? n.toFixed(1) : String(n));
 
-/** Uniform vectors the vertex shader needs, with room to spare: lights (3 each), noise tables, wave lengths, the rest. */
+/** Uniform vectors the vertex shader needs, with room to spare: lights (3 each), noise tables, wave lines, the rest. */
 const UNIFORM_VECTORS = 3 * MAX_LIGHTS + 128 + MAX_LINES + 24;
 
 /** The vertex shader: the water of `waterAt` (with the whirlpool and the wavelets when `map` is set), the lights. */
 function vertexShader(m: Motion, map: boolean): string {
   const octave = (o: Motion["one"], at: string, dx: string, dy: string) =>
     `vec3(${at}.x * ${f(o.sx)} - uT * ${f(o.drift)}${dx}, ${at}.y * ${f(o.sy)}${dy}, uT * ${f(o.change)})`;
-  const train = WAVE_CRESTS * WAVE_LENGTH;
   return `#version 300 es
 precision highp float;
 precision highp int;
@@ -395,7 +448,7 @@ ${
     ? `uniform vec4 uWhirl;
 uniform vec4 uWaveRect;
 uniform float uWaveOn;
-uniform float uWaveLen[${MAX_LINES}];
+uniform vec4 uWaveLine[${MAX_LINES}];
 uniform sampler2D uWave;
 uniform vec3 uPigeonA;
 uniform vec3 uPigeonB;
@@ -424,16 +477,16 @@ void main() {
   float spiral = 0.0;
 ${
   map
-    ? `  // The lines from the device to the branches, from their map: how near, how far along from the device, which one.
+    ? `  // The map's lines, from their map: how near, how far along the path from the device, which line.
   float near = 0.0;
-  float along = 0.0;
+  float own = 0.0;
   int line = 0;
   vec2 uv = (P - uWaveRect.xy) / uWaveRect.zw;
   if (uWaveOn > 0.5 && uv.x >= 0.0 && uv.y >= 0.0 && uv.x <= 1.0 && uv.y <= 1.0) {
     vec4 W = texture(uWave, uv);
     near = W.r;
-    along = W.g * 510.0;
-    line = clamp(int(W.b * 255.0 / 32.0 + 0.5), 0, ${MAX_LINES - 1});
+    own = W.g * ${f(WAVE_REACH)};
+    line = clamp(int(W.b * 255.0 / 8.0 + 0.5), 0, ${MAX_LINES - 1});
   }
   // A calm whirlpool right round the device and nowhere else: the water there turns as one, fading out over a ring
   // ${WHIRL_EDGE} px wide beyond the device's corners into the still sea, and quieter where the wavelets run.
@@ -460,24 +513,30 @@ ${
   float a = (0.1 + 0.2 * li + 0.22 * glint) * uDim;
 ${
   map
-    ? `  // The wavelets: each line sends a train of ${WAVE_CRESTS} crests out from the device, out of step with the others; on each crest
-  // the pigeon's violet runs along the line and its green at the flanks, the other way round on the next crest.
+    ? `  // The wavelets: every few seconds each line from the device sends ${WAVE_CRESTS} crests out (each family of lines out of step with
+  // the others), and the lines from an open branch carry them on to its requirements as one fainter crest (fainter in
+  // its opacity, the same pigeon colours). On each crest the pigeon's violet runs along the line and its green at the
+  // flanks, the other way round on the next crest.
   if (near > 0.02) {
-    float len = uWaveLen[line];
-    float period = max(${f(WAVE_EVERY)} + mod(float(line), 3.0) * 1.25, (len + ${f(train)}) / ${f(WAVE_SPEED)} + 1.0);
-    float head = mod(uT + float(line) * 2.3, period) * ${f(WAVE_SPEED)};
-    float x = (head - along) / ${f(WAVE_LENGTH)};
-    if (x > -0.5 && x < ${f(WAVE_CRESTS - 0.5)}) {
+    vec4 Ln = uWaveLine[line];
+    float along = Ln.y + own;
+    float family = Ln.x;
+    float period = ${f(WAVE_EVERY)} + mod(family, 3.0) * 2.0;
+    float crests = Ln.w < 0.99 ? 1.0 : ${f(WAVE_CRESTS)};
+    // Where the crests are, by the time they took to come this far along the path: 0 at the first, 1 at the next…
+    float x = mod(uT + family * 2.3 - along / ${f(WAVE_SPEED)} + ${f(0.5 * (WAVE_LENGTH / WAVE_SPEED))}, period) * ${f(WAVE_SPEED / WAVE_LENGTH)} - 0.5;
+    if (x > -0.5 && x < crests - 0.5) {
       float n = floor(x + 0.5);
       // A broad crest (about a row of hexagons wide), so rows hand it on smoothly as it runs.
-      float crest = pow(max(0.0, cos(3.14159 * (x - n))), 2.0) * (1.0 - 0.25 * n);
-      // The map keeps the distance along a line up to 510 px; nothing is drawn past it.
-      float ends = smoothstep(0.0, 14.0, along) * (1.0 - smoothstep(len - 22.0, len, along)) * step(along, 508.0);
-      float k = crest * ends * smoothstep(0.05, 0.6, near);
+      float crest = pow(max(0.0, cos(3.14159 * (x - n))), 2.0) * (1.0 - 0.3 * n);
+      // In from the line's start, out before its end; the map keeps the way along a line up to ${WAVE_REACH} px.
+      float ends = smoothstep(Ln.y, Ln.y + 14.0, along) * (1.0 - smoothstep(Ln.z - 22.0, Ln.z, along));
+      // Never all the way to the pigeon's colours: a soft shimmer over the water, not a flash.
+      float k = 0.85 * crest * ends * step(own, ${f(WAVE_REACH - 6)}) * smoothstep(0.05, 0.6, near);
       float flank = 1.0 - smoothstep(0.35, 0.85, near);
       float green = mod(n, 2.0) < 0.5 ? flank : 1.0 - flank;
-      rgb += (mix(uPigeonA, uPigeonB, smoothstep(0.3, 0.7, green)) - rgb) * k;
-      a += (uPigeonAlpha - a) * k;
+      rgb += (mix(uPigeonA, uPigeonB, smoothstep(0.15, 0.85, green)) - rgb) * k;
+      a += (uPigeonAlpha * Ln.w - a) * k;
     }
   }`
     : ""
@@ -522,7 +581,7 @@ const UNIFORMS = [
   "uWhirl",
   "uWaveRect",
   "uWaveOn",
-  "uWaveLen",
+  "uWaveLine",
   "uWave",
   "uPigeonA",
   "uPigeonB",
@@ -559,13 +618,14 @@ function webgl(canvas: HTMLCanvasElement, motion: Motion, map: boolean, anyGl: b
   let cellBuffer: WebGLBuffer | null = null;
   let waveTexture: WebGLTexture | null = null;
   let waves: WaveMap | null = null;
+  let drawn: Geometry["lines"] = [];
   let whirl: Geometry["whirl"] = null;
   let lost = false;
   let cellsNow: Float32Array = new Float32Array(0);
   const LA = new Float32Array(MAX_LIGHTS * 4);
   const LC = new Float32Array(MAX_LIGHTS * 4);
   const LO = new Float32Array(MAX_LIGHTS);
-  const lengths = new Float32Array(MAX_LINES);
+  const waveLines = new Float32Array(MAX_LINES * 4);
   const uploadWaves = () => {
     if (!map) return;
     g.activeTexture(g.TEXTURE0);
@@ -665,10 +725,18 @@ function webgl(canvas: HTMLCanvasElement, motion: Motion, map: boolean, anyGl: b
     },
     geometry(next) {
       whirl = next.whirl;
+      // Dragged as a whole (every point moved alike): the map of the lines moves with it, nothing to build again.
+      const shift = waves ? movedBy(drawn, next.lines) : null;
+      drawn = next.lines;
+      if (waves && shift) {
+        waves.rect[0] += shift[0];
+        waves.rect[1] += shift[1];
+        return;
+      }
       waves = waveMap(next.lines);
-      lengths.fill(0);
-      waves?.lengths.forEach((l, i) => {
-        lengths[i] = l;
+      waveLines.fill(0);
+      waves?.lines.forEach((l, i) => {
+        waveLines.set([l.family, l.start, l.end, l.strength], 4 * i);
       });
       if (!lost) uploadWaves();
     },
@@ -688,7 +756,7 @@ function webgl(canvas: HTMLCanvasElement, motion: Motion, map: boolean, anyGl: b
         g.uniform4f(u.uWaveRect ?? null, rect[0], rect[1], rect[2], rect[3]);
         // Still water has no wavelets (reduced motion, or the first frame before the clock runs).
         g.uniform1f(u.uWaveOn ?? null, waves && t > 0 ? 1 : 0);
-        g.uniform1fv(u.uWaveLen ?? null, lengths);
+        g.uniform4fv(u.uWaveLine ?? null, waveLines);
         g.uniform3f(u.uPigeonA ?? null, ...palette.pigeon[0]);
         g.uniform3f(u.uPigeonB ?? null, ...palette.pigeon[1]);
         g.uniform1f(u.uPigeonAlpha ?? null, palette.pigeonAlpha);
@@ -849,13 +917,20 @@ export function startWaves(
     geometryMark = mark;
     geometryAt = now;
     const g = options.geometry();
-    const key = [...(g.whirl ? [g.whirl.x, g.whirl.y, g.whirl.r] : [-1]), ...g.lines.flat()].map(Math.round).join();
+    const key = [
+      ...(g.whirl ? [g.whirl.x, g.whirl.y, g.whirl.r] : [-1]),
+      ...g.lines.flatMap((l) => [l.from ?? -1, ...l.points]),
+    ]
+      .map(Math.round)
+      .join();
     if (key === geometryRead) return;
     geometryRead = key;
     painter.geometry?.(g);
     // For tests: where the whirlpool turns (page px: centre and radius) and how many lines carry wavelets.
     canvas.dataset.whirlpool = g.whirl ? [g.whirl.x, g.whirl.y, g.whirl.r].map(Math.round).join(" ") : "off";
-    canvas.dataset.wavelines = String(Math.min(MAX_LINES, g.lines.length));
+    // …from the device, and on from the open branch.
+    const kept = g.lines.slice(0, MAX_LINES);
+    canvas.dataset.wavelines = `${kept.filter((l) => l.from === undefined).length} ${kept.filter((l) => l.from !== undefined).length}`;
   };
   const draw = (now: number) => {
     if (!width || !height) return;
@@ -870,6 +945,7 @@ export function startWaves(
       ...lights.filter((l) => l.kind === "sprinkle").map((l) => glowOf(l, now, colours)),
     ].slice(0, MAX_LIGHTS);
     painter.draw({ t: moving ? now / 1000 : 0, cells, width, height, glows, palette: colours, origin: origin() });
+    if (canvas.dataset.water !== colours.name) canvas.dataset.water = colours.name;
   };
   const resize = () => {
     const box = host.getBoundingClientRect();
@@ -932,6 +1008,9 @@ export function startWaves(
   const redraw = () => draw(performance.now());
   reduced?.addEventListener?.("change", redraw);
   scheme?.addEventListener?.("change", redraw);
+  // The page's own light or dark switch (data-theme on the root) redraws the water as the system's does.
+  const themed = typeof MutationObserver === "undefined" ? null : new MutationObserver(redraw);
+  themed?.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
   resize();
   frame = requestAnimationFrame(tick);
   canvas.dataset.renderer = mode;
@@ -953,6 +1032,7 @@ export function startWaves(
       window.removeEventListener("scroll", onScroll);
       reduced?.removeEventListener?.("change", redraw);
       scheme?.removeEventListener?.("change", redraw);
+      themed?.disconnect();
     },
   };
 }

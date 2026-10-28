@@ -3,8 +3,8 @@
 // layout needs no coordinates by hand; React Flow draws the nodes and edges and lets the map be dragged or pinched.
 // Ink is settled, pencil (dashed) waits for an answer, dotted applies from a later date, the highlighter links causes
 // and effects on hover; the legend stands on the map. The nodes are islands over the sea (U12), the lines lie on a thin
-// strip of paper; the device is marked for the sea to whirl round (`data-whirl`), and the lines from it to the branches
-// for the sea's wavelets to run along (`data-wave`).
+// strip of paper; the device is marked for the sea to whirl round (`data-whirl`), and every line with where it runs from
+// and to (`data-wave`, `data-to`), for the sea's wavelets to run from the device to the branches and on to requirements.
 import type { AttributeValue, DecisiveUnknown } from "@mrn/core";
 import {
   applyNodeChanges,
@@ -316,6 +316,7 @@ function LeafNode({ data }: NodeProps<LeafNodeT>) {
 
 function InkEdge({
   source,
+  target,
   sourceX,
   sourceY,
   targetX,
@@ -336,7 +337,7 @@ function InkEdge({
     >
       <path d={path} className="ink-edge-casing" />
       {marked ? <path d={path} className="ink-edge-marker" /> : null}
-      <path d={path} className="ink-edge-line" data-wave={source === DEVICE_ID || undefined} />
+      <path d={path} className="ink-edge-line" data-wave={source} data-to={target} />
     </g>
   );
 }
