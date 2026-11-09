@@ -281,6 +281,9 @@ const uk = {
   "video.ch9": "Під капотом",
   "video.ch10": "Межі й де знайти",
 
+  "footer.author":
+    "Демо для портфоліо Андрія Євенка. Задум, рамки й правила якості його; код, дані, прочитання правил і перевірки зробили агенти Claude Code. Регуляторний фахівець правил не перевіряв.",
+  "footer.log": "Хто що зробив: чесний лог",
   "footer.texts":
     "Тексти законодавства й настанов: © Європейський Союз, повторне використання дозволено (рішення Комісії 2011/833/ЄС; CC BY 4.0). Змінено лише форму: пробіли нормалізовано, маркери консолідації прибрано.",
   "footer.code": "Код: Apache-2.0. Шрифти IBM Plex Sans, Source Serif 4 і JetBrains Mono: SIL Open Font License 1.1.",
@@ -562,6 +565,9 @@ const en: Record<MessageKey, string> = {
   "video.ch9": "Under the hood",
   "video.ch10": "Limits and where to find it",
 
+  "footer.author":
+    "A portfolio demo by Andrii Yevenko. The idea, the scope and the quality rules are his; the code, the data, the readings of the rules and the checks were done by Claude Code agents. No regulatory specialist has reviewed the rules.",
+  "footer.log": "Who did what: the honest log (in Ukrainian)",
   "footer.texts":
     "Legislation and guidance texts: © European Union, reuse authorised (Commission Decision 2011/833/EU; CC BY 4.0). Only the form is changed: whitespace normalised, consolidation markers removed.",
   "footer.code": "Code: Apache-2.0. Fonts IBM Plex Sans, Source Serif 4 and JetBrains Mono: SIL Open Font License 1.1.",

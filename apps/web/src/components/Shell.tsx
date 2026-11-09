@@ -12,6 +12,7 @@ import { VideoGuide } from "./VideoGuide.tsx";
 import { HexWaves } from "./Waves.tsx";
 
 const REPOSITORY = "https://github.com/ytsuhen/MedRegNav";
+const BUILD_LOG = `${REPOSITORY}/blob/main/docs/BUILD_LOG.md`;
 
 export function Banner() {
   const { t } = useApp();
@@ -246,6 +247,9 @@ export function Footer() {
   const sources = Object.values(snapshot.sources);
   return (
     <footer className="footer">
+      <p data-testid="authorship">
+        {t("footer.author")} <ExternalLink href={BUILD_LOG}>{t("footer.log")}</ExternalLink>
+      </p>
       <p>{t("footer.texts")}</p>
       <p>
         {t("footer.code")} <ExternalLink href={REPOSITORY}>{t("footer.repo")}</ExternalLink>
